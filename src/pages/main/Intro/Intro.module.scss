@@ -1,9 +1,13 @@
 .intro{
   height: 100%;
-  padding: 5%;
+  max-height: 100%;
+  width: 60%;
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 1rem;
+  justify-content: center;
+  margin: auto;
 
   b{
     color:#66E586;
