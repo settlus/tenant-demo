@@ -6,17 +6,17 @@ import DemoIntro from './pages/main/DemoIntro/DemoIntro';
 const router = createBrowserRouter([
   {
     path:'/',
-    loader: ()=>redirect('/demo'),
+    loader: ()=>redirect('/intro'),
   },
   {
-    path: '/demo',
+    path: '/intro',
     element: <Outlet />,
     children: [
       { index: true,
         element: <Intro />,
       },
       {
-        path:'intro',
+        path:'mission',
         element: <DemoIntro />,
       }
     ],

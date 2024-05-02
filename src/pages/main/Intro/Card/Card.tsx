@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Card(){
   const navigate = useNavigate();
-
+  
   return <div className={styles.card}>
     <img src={introImg} alt='intro' />
     <div className={styles.container}>
@@ -14,7 +14,7 @@ export default function Card(){
         <br />set up NFT license,
         <br />and sell your costumes here
       </p>
-      <button onClick={()=>navigate('/demo/intro')}>ENTER Avatar Costume Shop</button>
+      <button onClick={()=>navigate('/intro/mission')}>ENTER Avatar Costume Shop</button>
     </div>
   </div>
 }
