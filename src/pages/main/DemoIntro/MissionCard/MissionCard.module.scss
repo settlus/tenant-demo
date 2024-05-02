@@ -1,0 +1,35 @@
+.mission{
+  width: 40%;
+  border: 1.5px solid #FFA300;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+
+  h3{
+    font-size: 1rem;
+  }
+
+  p{
+    font-size: 0.7rem;
+  }
+
+
+  ul{
+    list-style-type: none;
+    text-align: left;
+    font-size: 0.7rem;
+    padding-inline-start: 0px;
+    margin: auto;
+    display:flex;
+    flex-direction: column;
+    gap: 8px;
+
+    li::before{
+      content:'aa';
+      margin-right: 5px;
+    }
+  }
+}
