@@ -1,13 +1,10 @@
-.navigation{
+img{
   width: 2rem;
   height: 2.5rem;
   margin: auto;
 
-  img{
-    height:2rem;
-  }
-
-  .backwards{
+  &.backwards{
     transform: rotate(180deg);
   }
+
 }
