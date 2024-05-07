@@ -31,7 +31,11 @@ const router = createBrowserRouter([
       {
         path:'create-nft',
         element: <CreatePage />,
-      }
+      },
+      {
+        path:'dashboard',
+        element: <h2>dashboard</h2>,
+      },
     ]
   }
   // {
