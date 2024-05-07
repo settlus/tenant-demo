@@ -5,7 +5,7 @@ type PropType = {
 }
 
 export default function ProgressBar({step}: PropType): React.ReactElement{
-  const step2 = step===2 ? styles.active : styles.inactive;
+  const step2 = step>1 ? styles.active : styles.inactive;
 
   return <div className={styles.progress}>
     <div className={styles.step}>
