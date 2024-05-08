@@ -1,4 +1,4 @@
-import Header from "../../shared/Header/Header";
+import Header from "../../../shared/Header/Header";
 import { Outlet } from 'react-router-dom';
 import styles from './Demo.module.scss';
 
