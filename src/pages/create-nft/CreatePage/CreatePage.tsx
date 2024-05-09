@@ -43,7 +43,7 @@ export default function CreatePage(){
   const instruction = step<2 ? TEXT[0]: TEXT[1];
 
   useEffect(()=>{
-    if(step===0) navigate('intro/mission');
+    if(step===0) navigate(-1);
     if(step===3) {
       const mint = async()=>{
         await mintNFT(file, info);
