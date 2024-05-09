@@ -3,7 +3,8 @@ import { RouterProvider, createBrowserRouter, redirect, Outlet} from 'react-rout
 import Intro from './pages/main/Intro/Intro'
 import DemoIntro from './pages/main/DemoIntro/DemoIntro';
 import CreatePage from './pages/create-nft/CreatePage/CreatePage.tsx';
-import Demo from './pages/Demo/Demo.tsx';
+import Demo from './pages/demo/Demo/Demo.tsx';
+import Dashboard from './shared/Dashboard/Dashboard.tsx';
 
 
 const router = createBrowserRouter([
@@ -34,7 +35,10 @@ const router = createBrowserRouter([
       },
       {
         path:'dashboard',
-        element: <h2>dashboard</h2>,
+        element: <Outlet />,
+        children: [
+          {index: true, element: <Dashboard />},
+        ]
       },
     ]
   }
