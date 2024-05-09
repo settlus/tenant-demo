@@ -1,0 +1,21 @@
+header{
+  display: flex;
+  flex-direction: horizontal;
+
+  h3{
+    font-style: italic; 
+  }
+
+  img{
+    margin: 0rem;
+    margin-right: 0.2rem;
+    height: 1.4rem;
+    padding-top: 0.2rem;
+  }
+
+  .link{
+    margin-left: auto;
+    color: black;
+    text-decoration: none;
+  }
+}

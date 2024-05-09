@@ -1,0 +1,68 @@
+.card{
+  perspective: 1000px;
+  position: relative;
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+
+  margin-left: auto;
+  margin-top: 1.3rem;
+  grid-column: 2;
+  grid-row: 1/3;
+  width: 13.5rem;
+  height: 13.5rem;
+  display: flex;
+  flex-direction: horizontal;
+  align-items: center;
+  position: relative;
+
+  &.flipped {
+    .front {
+        transform: rotateY(180deg);
+    }
+    .back {
+        transform: rotateY(0deg);
+    }
+  }
+
+  .front, 
+  .back{
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: -webkit-transform ease 500ms;
+    transition: transform ease 500ms;
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+
+    padding:0rem 1rem;
+    width:100%;
+    height:80%;
+    background-color: #F2F2F2;
+    width: 13.5rem;
+    height: 13.5rem;
+    border-radius: 1rem;
+
+  }
+
+  .front {
+    transform: rotateY(0deg);
+    /* front tile styles */
+  }
+  .back {
+    z-index: 2;
+    transform: rotateY(-180deg);
+    /* back tile styles */
+  }
+
+  button{
+    border-radius: 50%;
+    border: 1px dotted #838383;
+    padding:0.1rem 0.5rem;
+    background-color: white;
+    color: #838383;
+    position: absolute;
+    right: -0.7rem;
+    z-index: 3;
+  }
+
+}
