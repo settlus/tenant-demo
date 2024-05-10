@@ -1,30 +1,33 @@
+import { useState } from 'react';
 import styles from './Content.module.scss';
 import Card from '../Card/Card.tsx';
 
 type PropType={
   type: string,
-  data: {
-    image: string,
-    table: any,
-    card: any,
-  } | null,
+  data: any[] | null,
 }
 
 
 export default function Content({type,data}: PropType): React.ReactElement{
-  const DATA = data || {
-    image: '',
-    table:  [{}],
-    card: '',
-  }
+  const DATA = data || [];
+  const [selected,setSelected] = useState(0);
 
-  const KEYS = Object.keys(DATA.table[0]);
+
+
+  function handleSelected(key: number){
+    setSelected(key);
+  }
 
   return  <div className={styles.main}>
     <div className={styles.table1}>
       <label>{type==='on-chain' ? 'NFTs' : 'Items'}</label>
       <span>
-        <img src={DATA.image} />
+        {DATA.map((item: any,index: number)=>(
+          <img key={index}
+          src={item.image}
+          onClick={()=>handleSelected(index)}
+          className={selected===index ? styles.selected : ''}/>
+        ))}
       </span>
     </div>
     <div className={styles.table2}>
@@ -34,28 +37,45 @@ export default function Content({type,data}: PropType): React.ReactElement{
           <thead>  
           <tr>
             <th>Thumbnail</th>
-            {KEYS.map((item,index)=>(
-              <th key={index}>{item}</th>
-            ))}
+            {type==='on-chain' && <>
+              <th>Title</th>
+              <th>Activity</th>
+              <th>Txn Hash</th>
+            </>}
+            {type==='off-chain' && <>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total Sales Revenue</th>
+            </>}
           </tr>
           </thead>
           <tbody>
-            {DATA.table.map((item: any,index: any) => (
-              <tr key={index}>
-                <td><img src={DATA.image}/></td>
-                {KEYS.map((item1,index1)=>(
-                  <td key={index1}>
-                    {item1==='Txn Hash' ? <a href={`https://scan.migaloo.io/tx/${item[item1]}`}>{item[item1]}</a> : item[item1]}
-                  </td>
-                ))}
-              </tr>
+            {DATA.map((item: any,index: any) => (<>
+              {type==='on-chain' && item.history.map((item1: any)=>(
+                <tr key={index}>
+                  <td><img src={item.image}/></td>
+                  <td>{item.title}</td>
+                  <td>{item1['Activity']}</td>
+                  <td><a href={`https://scan.migaloo.io/tx/${item1['Txn Hash']}`}>{item1['Txn Hash']}</a></td>
+                </tr>
+              ))}
+              {type==='off-chain' && <tr key={index}>
+                <td><img src={item.image}/></td>
+                <td>{item.title}</td>
+                <td>$ {item.revenue['Price']}</td>
+                <td>{item.revenue['Quantity']}</td>
+                <td>$ {item.revenue['Total Sales Revenue']}</td>
+              </tr>}
+            </>
             ))}
+
           </tbody>
           
         </table>
       </span>
     </div>
-    <Card image={DATA.image} content={type==='on-chain' ? DATA.card : DATA.table}/>
+    <Card content={DATA[selected]}/>
   </div> 
   
 }
