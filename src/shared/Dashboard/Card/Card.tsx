@@ -1,8 +1,22 @@
 import styles from './Card.module.scss';
 import { useState } from 'react';
 
-export default function Card(){
+type PropType={
+  content: any,
+}
+
+type FrontType={
+  image: string,
+  price?: number | null,
+}
+
+type BackType={
+  content: any,
+}
+
+export default function Card({content}: PropType): React.ReactElement{
   const [state,setState] = useState({flipped: false});
+  const isOffChain = content && content.revenue;
   
   const flip = ()=>{
     setState((prev)=>
@@ -10,20 +24,42 @@ export default function Card(){
   }
 
   return <div className={`${styles.card} ${state.flipped ? styles.flipped : ""}`}>
-    <Back />
-    <Front />
+    <Back content={content}/>
+    <Front image={content && content.image} price={isOffChain ? content.revenue['Price'] : null}/>
     <button onClick={flip}>{'>'}</button>
   </div>
 }
 
-function Front(){
+function Front({image, price}: FrontType): React.ReactElement{
   return <div className={styles.front}>
-    <p>front</p>
+    {price!==null ?
+      //Off-Chain Card 
+      <div className={styles.offChain}>
+        <img src={''} alt={'icon'}/>
+        <img src={image} />
+        <h3>$ {price}</h3>
+      </div> : 
+      
+      //On-Chain Card
+      <div className={styles.onChain}>
+        <img src={image} />
+      </div>
+    }
+  
   </div>
 }
 
-function Back(){
+function Back({content}: BackType): React.ReactElement{
   return <div className={styles.back}>
-    <p>back</p>
+    {content && content.revenue ?
+    //Off-Chain Card 
+    <div className={styles.offChain}>
+     Off-chain
+    </div> : 
+    
+    //On-Chain Card
+    <div className={styles.onChain}>
+      On-chain
+    </div>}
   </div>
 }
