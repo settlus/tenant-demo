@@ -7,7 +7,7 @@ import { getData } from '../../apis/api';
 
 export default function Dashboard(){
   const [type,setType]=useState('on-chain');
-  const [data,setData]=useState({'on-chain': null, 'off-chain': null});
+  const [data,setData]=useState({'on-chain': [], 'off-chain': []});
 
   useEffect(()=>{
     const setMainData = async ()=>{
@@ -26,7 +26,9 @@ export default function Dashboard(){
   return <div className={styles.board}>
     <Header />
     <Menu handleClick={handleClick}/>
-    <Content type={type} data={type==='on-chain' ? data['on-chain'] : data['off-chain']} />
+    {type==='on-chain' && <Content type={'on-chain'} data={data['on-chain']} />}
+    {type==='off-chain' && <Content type={'off-chain'} data={data['off-chain']} />}
+    {/* <Content type={type} data={type==='on-chain' ? data['on-chain'] : data['off-chain']} /> */}
 
   </div>
 }
