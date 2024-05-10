@@ -19,6 +19,23 @@
     text-align: left;
     grid-column: 1;
     grid-row: 1;
+
+    span{
+      display: flex;
+      flex-direction: horizontal;
+      overflow-x: auto;
+      gap: 1rem;
+
+      img{
+        height: 3.5rem;
+        width: 3.5rem;
+        margin: auto 0rem;
+        
+        &.selected{
+          border: 2px solid #7700D5;
+        }
+      }
+    }
   }
 
   .table2{
