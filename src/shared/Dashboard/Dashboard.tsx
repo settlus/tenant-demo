@@ -11,7 +11,7 @@ export default function Dashboard(){
 
   useEffect(()=>{
     const setMainData = async ()=>{
-      const info = await getData(type);
+      const info = await getData();
       setData(info);
     }
 
