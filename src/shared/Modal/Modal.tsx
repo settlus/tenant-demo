@@ -5,9 +5,10 @@ type PropType={
   children: React.ReactNode,
   open: boolean,
   handleClose?: ()=>void,
+  style?: string,
 }
 
-export default function Modal({children, open, handleClose}: PropType): React.ReactElement{
+export default function Modal({children, open, handleClose, style}: PropType): React.ReactElement{
   const dialog=useRef<HTMLDialogElement>(null);
   
   useEffect(()=>{
@@ -17,7 +18,7 @@ export default function Modal({children, open, handleClose}: PropType): React.Re
     }
   },[open]);
 
-  return <dialog ref={dialog} className={styles.dialog}>
+  return <dialog ref={dialog} className={`${styles.dialog} ${style}`}>
     <div className={styles.content}>
     {handleClose && <button className={styles.close} onClick={handleClose}>x</button>}
     {children}
