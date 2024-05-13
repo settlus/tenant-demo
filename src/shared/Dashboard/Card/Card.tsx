@@ -79,11 +79,11 @@ function Back({content}: BackType): React.ReactElement{
     //On-Chain Card
     <div className={styles.onChain}>
       <ul>
-        {content && content.details && Object.keys(content.details).map((item,index)=>(
+        {content && Object.keys(content.details).map((item,index)=>(
           <li key={index}>{item}: {content.details[item]}</li>
         ))}
       </ul>
-      <img src={content.itemImage}/>
+      {content && <img src={content.itemImage}/>}
     </div>
   }
 
