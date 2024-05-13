@@ -83,6 +83,7 @@ function Back({content}: BackType): React.ReactElement{
           <li key={index}>{item}: {content.details[item]}</li>
         ))}
       </ul>
+      <img src={content.itemImage}/>
     </div>
   }
 
