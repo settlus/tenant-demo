@@ -20,7 +20,7 @@ export default function SubmitModal({step, open, handleClose}: PropType): React.
   }
 
   return <>
-    {step>2 && step<5 && <Modal open={open} handleClose={handleClick}>
+    {step>2 && step<5 && <Modal open={open} handleClose={step===4 ? handleClick : undefined}>
       {step===3 && <h3>Processing</h3>}
       {step===4 && <>
         <h3>NFT Minted</h3>
