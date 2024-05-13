@@ -1,3 +1,5 @@
+@import '../../../shared/styling/modal';
+
 .modal{
   position: absolute;
   z-index: 3000;
@@ -12,6 +14,7 @@
   align-items: center;
   justify-items: center;
   justify-content: space-around;
+  animation: scaleUp 0.1s;
 
   top: 7rem;
   left: 17.5rem;
