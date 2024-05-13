@@ -24,7 +24,7 @@ export default function Dashboard(){
   }
  
   return <div className={styles.board}>
-    <Header />
+    <Header length={data['on-chain'].length}/>
     <Menu handleClick={handleClick}/>
     {type==='on-chain' && <Content type={'on-chain'} data={data['on-chain']} />}
     {type==='off-chain' && <Content type={'off-chain'} data={data['off-chain']} />}
