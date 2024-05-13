@@ -68,17 +68,23 @@ function Back({content}: BackType): React.ReactElement{
         </div>
         <div className={styles.usdc}>
           <label>Total Earned USDC</label>
-          <h2>
+          <div>
             <img src={CoinImg}/>
-            {content.revenue['Total Sales Revenue']}
-          </h2>
+            <h2>{content.revenue['Total Sales Revenue']}</h2>
+          </div>
         </div>
       </div>
     </div> : 
     
     //On-Chain Card
     <div className={styles.onChain}>
-      On-chain
-    </div>}
-  </div>
-}
+      <ul>
+        {content && content.details && Object.keys(content.details).map((item,index)=>(
+          <li key={index}>{item}: {content.details[item]}</li>
+        ))}
+      </ul>
+    </div>
+  }
+
+    </div>
+  }

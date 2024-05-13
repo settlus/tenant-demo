@@ -36,7 +36,7 @@
 
     padding:0.5rem 1rem;
     width:100%;
-    height:80%;
+    height:100%;
     background-color: #F2F2F2;
     width: 13.5rem;
     height: 13.5rem;
@@ -51,6 +51,18 @@
   .front {
     transform: rotateY(0deg);
     /* front tile styles */
+    .onChain{
+      display: flex;
+      height: 100%;
+
+      img{
+        margin: auto;
+        height: 50%;
+        width: auto;
+
+      }
+    }
+
     .offChain{
       display:flex;
       flex-direction: column;
@@ -101,7 +113,7 @@
 
         h2{
           margin: 0rem;
-          margin-top: -0.4rem;
+          margin-top: -0.6rem;
           font-size: 2rem;
           text-align: left;
         }
@@ -109,9 +121,33 @@
 
         .usdc{
           grid-column: 1 / -1;
+          div{
+            display: flex;
+            flex-direction: row;
+            gap: 0.3rem;
+            
+          }
         }
       }
       
+    }
+
+    .onChain{
+      ul{
+        margin-top: 2rem;
+        list-style: none;
+        padding-inline-start: 1rem;
+        text-align: left;
+        font-size: 0.8rem;
+
+        li{
+          margin:0rem;
+          line-height: 1rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
     }
   }
 
