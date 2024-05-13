@@ -1,0 +1,55 @@
+$color: #FFA300;
+
+
+.main{
+  position: absolute;
+  top: -4.5rem;
+  left: 20px; 
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  display: block;
+  
+
+  &.visible{
+    opacity: 1;
+    display: block;
+  }
+
+  p{
+    border: 2px solid $color;
+    background-color: white;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    width: 12rem;
+    text-align: left;
+    padding: 0.6rem 0.5rem;
+    line-height: 1rem;
+  }
+  
+  .line{
+    background-color: $color;
+    height: 0.6rem;
+    width: 2px;
+    margin-left: 4.5rem;
+  }
+
+  .circle{
+    background-color: $color;
+    border-radius: 50%;
+    height: 0.6rem;
+    width: 0.6rem;
+    margin-left: 4.25rem;
+  }
+  
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
