@@ -4,7 +4,7 @@ import styles from './Modal.module.scss';
 type PropType={
   children: React.ReactNode,
   open: boolean,
-  handleClose: ()=>void,
+  handleClose?: ()=>void,
 }
 
 export default function Modal({children, open, handleClose}: PropType): React.ReactElement{
@@ -19,7 +19,7 @@ export default function Modal({children, open, handleClose}: PropType): React.Re
 
   return <dialog ref={dialog} className={styles.dialog}>
     <div className={styles.content}>
-    <button className={styles.close} onClick={handleClose}>x</button>
+    {handleClose && <button className={styles.close} onClick={handleClose}>x</button>}
     {children}
     </div>
   </dialog>
