@@ -17,5 +17,10 @@ header{
     margin-left: auto;
     color: black;
     text-decoration: none;
+
+    &.disabled{
+      color: gray;
+      pointer-events: none;
+    }
   }
 }
