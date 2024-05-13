@@ -133,8 +133,10 @@
     }
 
     .onChain{
+      display: flex;
+      flex-direction: column;
       ul{
-        margin-top: 2rem;
+        margin-top: 1rem;
         list-style: none;
         padding-inline-start: 1rem;
         text-align: left;
@@ -147,6 +149,12 @@
           overflow: hidden;
           text-overflow: ellipsis;
         }
+      }
+
+      img{
+        margin-left: auto;
+        height: 4rem;
+        width: auto;
       }
     }
   }
