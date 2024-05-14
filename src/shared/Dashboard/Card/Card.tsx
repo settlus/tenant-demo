@@ -25,7 +25,7 @@ export default function Card({content}: PropType): React.ReactElement{
   }
 
   return <div className={`${styles.card} ${state.flipped ? styles.flipped : ""}`}>
-    {isModal===1 && isOffChain && <UserModal collapsed={true}/>}
+    {isModal===1 && isOffChain && <UserModal collapsed={true} content={content}/>}
     <Back content={content}/>
     <Front image={content && content.image} price={isOffChain ? content.revenue['Price'] : null}/>
     <button onClick={handleClick}>{'>'}</button>
