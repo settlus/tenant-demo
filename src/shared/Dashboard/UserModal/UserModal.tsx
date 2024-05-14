@@ -1,6 +1,7 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import styles from './UserModal.module.scss';
 import { DashboardContext } from '../../../store/dashboard_context';
+import Draggable, {DraggableData} from 'react-draggable';
 
 type PropType={
   collapsed: boolean,
@@ -9,7 +10,13 @@ type PropType={
 
 export default function UserModal({collapsed, content}: PropType): React.ReactElement{
   const {setIsModal, selected, setSelected, data, setData} = useContext(DashboardContext);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const len = data['on-chain'].length;
+
+  const handleOnDrag = (data: DraggableData) => {
+    setPosition({ x: data.x, y: data.y }); 
+  };
+
 
   function handleClick(value: number){
     setIsModal(value);
@@ -46,7 +53,12 @@ export default function UserModal({collapsed, content}: PropType): React.ReactEl
   } 
 
   return <>
-  {!collapsed && <div className={`${styles.modal}`}>
+  {!collapsed && <Draggable
+    position={{ x: position.x, y: position.y }}
+    onDrag={(_, data) => handleOnDrag(data)}
+    bounds={{left: -270, top: -33, right: 280, bottom: 60}}
+  >
+    <div className={`${styles.modal}`}>
         <button className={styles.close} onClick={()=>{handleClick(1)}}>-</button>
         <h3>USER MODE</h3>
         <div className={styles.main}>
@@ -60,6 +72,7 @@ export default function UserModal({collapsed, content}: PropType): React.ReactEl
         <p>On the Avatar Costume Shop, your NFT-licensed item is listed as shown above. 
           Click to buy the item.</p>
     </div>
+  </Draggable>
   }
 
   {collapsed && <div className={styles.collapsed}>
