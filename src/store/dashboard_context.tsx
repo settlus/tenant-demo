@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 export interface DashboardState {
-  isModal: boolean;
-  setIsModal: (value: boolean) => void;
+  isModal: number; //0: closed, 1: collapsed, 2: open
+  setIsModal: (value: number) => void;
 }
 
 export const DashboardContext = React.createContext<DashboardState>({
-  isModal: false,
+  isModal: 0,
   setIsModal: ()=>{},
 });
 
@@ -15,7 +15,7 @@ interface GlobalProviderProps {
 }
 
 const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
-  const [isModal, setIsModal] = useState<boolean>(false);
+  const [isModal, setIsModal] = useState<number>(0);
 
   const state: DashboardState = {
     isModal, setIsModal
