@@ -17,7 +17,6 @@ function Dashboard(){
   const [type,setType]=useState('on-chain');
   const [data,setData]=useState({'on-chain': [], 'off-chain': []});
   const {isModal} = useContext(DashboardContext);
-  console.log(isModal);
 
   useEffect(()=>{
     const setMainData = async ()=>{
@@ -34,7 +33,7 @@ function Dashboard(){
   }
  
   return <div className={styles.board}>
-      {isModal && type==='off-chain' && <UserModal />}
+      {isModal===2 && type==='off-chain' && <UserModal collapsed={false} />}
       <Header length={data['on-chain'].length}/>
       <Menu handleClick={handleClick}/>
       {type==='on-chain' && <Content type={'on-chain'} data={data['on-chain']} />}
