@@ -1,5 +1,5 @@
 import styles from './Navigation.module.scss';
-import navSvg from '../../public/svg/navigation.svg';
+import navImg from '../../public/images/navigation.png';
 import { useNavigate} from 'react-router-dom';
 
 type PropType = {
@@ -14,10 +14,10 @@ export default function Navigation({path, handleClick, isBackwards}: PropType): 
     if(path) navigate(path);
   }
 
-  return <img src={navSvg} 
+  return <img src={navImg} 
       alt='navigation'
       onClick={handleNavigate}
-      className={isBackwards ? styles.backwards : ''}
+      className={`${styles.image} ${isBackwards ? styles.backwards : ''}`}
       />
 
 }
