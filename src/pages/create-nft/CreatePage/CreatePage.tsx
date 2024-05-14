@@ -22,8 +22,13 @@ type Info = {
   name: string | null,
 }
 
-function validate(file: File | null, info: Info){
+function validateFile(file: File | null ){
   if(!file) return {error: 'Please upload an NFT image file!'};
+
+  return {};
+}
+
+function validateFields(info: Info){
   if(!info.name) return {error: 'Please enter a valid NFT name!'};
   if(!info.price || !Number(info.price)) return {error: 'Please enter a valid price!'};
 
@@ -44,6 +49,14 @@ export default function CreatePage(){
 
   useEffect(()=>{
     if(step===0) navigate(-1);
+    if(step===2) {
+      const errorMsg = validateFile(file).error;
+      if(errorMsg){
+        alert(errorMsg);
+        setStep(1);
+        // setOpen(false);
+      }
+    }
     if(step===3) {
       const mint = async()=>{
         await mintNFT(file, info);
@@ -51,7 +64,7 @@ export default function CreatePage(){
       }
       setOpen(true);
 
-      const errorMsg = validate(file,info).error;
+      const errorMsg = validateFields(info).error;
       if(errorMsg){
         alert(errorMsg);
         setStep(2);
