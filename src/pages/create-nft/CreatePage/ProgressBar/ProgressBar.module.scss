@@ -52,17 +52,20 @@ $inactive: #D9D9D9;
     height: 0.2rem;
     margin-left: -0.4rem;
     margin-right: -0.4rem;
-    border:none;
+    border: none;
     z-index: 1;
+    background-color: $inactive;
+    background-image: linear-gradient(to right, $active 50%, $inactive 50%);
+    background-size: 200% 100%;
+    transition: background-position 0.3s ease-in-out;
 
-    &.inactive{
-      background-color: $inactive;
+    &.inactive {
+      background-position: 100% 100%;
     }
 
-    &.active{
-      background-color: $active;
+    &.active {
+      background-position: 0% 100%;
     }
-
-
   }
 }
+
