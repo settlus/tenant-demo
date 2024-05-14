@@ -1,17 +1,21 @@
-import { useState } from 'react';
+import { useContext, useEffect } from 'react';
 import styles from './Content.module.scss';
 import Card from '../Card/Card.tsx';
+import UserModal from '../UserModal/UserModal.tsx';
+import { DashboardContext } from '../../../store/dashboard_context.tsx';
 
 type PropType={
   type: string,
-  data: any[] | null,
 }
 
 
-export default function Content({type,data}: PropType): React.ReactElement{
-  const DATA = data || [];
-  const [selected,setSelected] = useState(0);
+export default function Content({type}: PropType): React.ReactElement{
+  const {selected,setSelected, data, isModal, setIsModal} = useContext(DashboardContext);
+  const DATA = data[type] || [];
 
+  useEffect(()=>{
+    if(type==='on-chain' && isModal===2) setIsModal(1);
+  });
 
 
   function handleSelected(key: number){
@@ -19,6 +23,7 @@ export default function Content({type,data}: PropType): React.ReactElement{
   }
 
   return  <div className={styles.main}>
+    {isModal===2 && type==='off-chain' && <UserModal collapsed={false} content={DATA[selected]}/>}
     <div className={styles.table1}>
       <label>{type==='on-chain' ? 'NFTs' : 'Items'}</label>
       <span>
