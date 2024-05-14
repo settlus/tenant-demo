@@ -56,7 +56,7 @@ export default function UserModal({collapsed, content}: PropType): React.ReactEl
   {!collapsed && <Draggable
     position={{ x: position.x, y: position.y }}
     onDrag={(_, data) => handleOnDrag(data)}
-    bounds={{left: -270, top: -33, right: 280, bottom: 60}}
+    bounds={{left: -280, top: -40, right: 270, bottom: 55}}
   >
     <div className={`${styles.modal}`}>
         <button className={styles.close} onClick={()=>{handleClick(1)}}>-</button>
