@@ -2,6 +2,7 @@
 
 .pos{
   @include n.pos;
+  align-items: center;
 }
 
 .intro{
@@ -9,7 +10,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: center;
   margin: auto;
 }
