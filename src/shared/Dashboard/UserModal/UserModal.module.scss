@@ -1,4 +1,5 @@
 @import '../../../shared/styling/modal';
+$theme-color: #FFA300;
 
 .modal{
   position: absolute;
@@ -8,7 +9,7 @@
   width: 20%;
   display: flex;
   flex-direction: column;
-  border: 2px solid #FFA300;
+  border: 2px solid $theme-color;
   border-radius: 0.5rem;
   padding: 1rem;
   align-items: center;
@@ -18,6 +19,23 @@
 
   top: 7rem;
   left: 17.5rem;
+
+  &.hidden {
+    // visibility: hidden;
+    animation: scaleDown 0.1s;
+  }
+
+  .close{
+    position: absolute;
+    background-color: $theme-color;
+    color: white;
+    border-radius: 50%;
+    top: -0.7rem;
+    left: 13rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 0rem;
+  }
 
   .main{
     display: flex;
@@ -62,4 +80,37 @@
     line-height: 1rem;
   }
 
+}
+
+
+.collapsed{
+  position: absolute;
+  background-color: white;
+  height: 1.2rem;
+  width: 7.5rem;
+  top: -1.4rem;
+  left: 4.5rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: row;
+  border: 1.5px solid $theme-color;
+
+  button{
+    position: initial;
+    background-color: $theme-color;
+    color: white;
+    width: 20%;
+    line-height: 1rem;
+    border-radius: 0.2rem;
+    border: none;
+    z-index: inherit;
+  }
+
+  .usermode{
+    background-color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.3rem;
+    margin-inline-start: 0.5rem;
+  }
 }
