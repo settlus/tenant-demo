@@ -57,7 +57,7 @@
     
     table{
       font-size: 0.7rem;
-      border-collapse: separate; /* Allows spacing to be applied */
+      border-collapse: separate; 
       border-spacing: 1rem 0rem;
       margin-left: -1rem;
 
@@ -71,9 +71,9 @@
       th, td{
         margin-right: 10rem;
         max-width: 10%;
-        max-width: 6rem; /* Adjust max-width based on your column requirements */
-        white-space: nowrap; /* Prevents text from wrapping */
-        overflow: hidden; /* Clips the text that exceeds the column width */
+        max-width: 6rem; 
+        white-space: nowrap; 
+        overflow: hidden; 
         text-overflow: ellipsis;
       }
     }
