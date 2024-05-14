@@ -8,11 +8,14 @@ $color: #FFA300;
   opacity: 0;
   transition: opacity 0.15s ease-in-out;
   display: block;
+  z-index: 0;
+  pointer-events: none;
   
 
   &.visible{
     opacity: 1;
     display: block;
+    z-index: 3000 !important;
   }
 
   p{
