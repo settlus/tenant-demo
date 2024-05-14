@@ -2,7 +2,6 @@
 $theme-color: #FFA300;
 
 .modal{
-  position: absolute;
   z-index: 3000;
   background: white;
   height: 14rem;
@@ -16,9 +15,11 @@ $theme-color: #FFA300;
   justify-items: center;
   justify-content: space-around;
   animation: scaleUp 0.1s;
-
-  top: 7rem;
-  left: 17.5rem;
+  
+  position: relative;
+  // position: absolute;
+  top: -18.5rem;
+  left: 15rem;
 
   &.hidden {
     // visibility: hidden;
