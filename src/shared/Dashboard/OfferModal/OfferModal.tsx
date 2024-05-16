@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import { DashboardContext } from "../../../store/dashboard_context";
 
 export default function OfferModal(){
-  const {isOfferModal, setIsOfferModal} = useContext(DashboardContext);
+  const {isOfferModal, setIsOfferModal, offer} = useContext(DashboardContext);
   const navigate = useNavigate();
 
   function handleClose(){
@@ -22,7 +22,7 @@ export default function OfferModal(){
       <h3>Deal Offer</h3>
       <img src={GiftImg}/>
       <p>
-      Someone has just offered to buy your NFT for $1,000,000. 
+      Someone has just offered to buy your NFT for ${offer?.offerPrice}. 
       Want to accept the offer 
       and transfer NFT?
       <br /><br />
