@@ -3,6 +3,7 @@ import React, { useState } from "react";
 type offerType = {
   itemIndex: number,
   offerAddress: string,
+  offerPrice: number,
 } | null;
 
 export interface DashboardState {
@@ -31,6 +32,7 @@ const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [offer, setOffer] = useState<offerType>({
     itemIndex: 0,
     offerAddress: 'xxxxxxx',
+    offerPrice: 1000,
   }); //dummy initial state
   const [selected, setSelected] = useState<number>(0);
   const [data, setData] = useState<any>({'on-chain': [], 'off-chain': []});
