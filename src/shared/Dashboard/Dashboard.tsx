@@ -3,16 +3,10 @@ import styles from './Dashboard.module.scss';
 import Header from './Header/Header';
 import Menu from './Menu/Menu';
 import Content from './Content/Content';
-import DashboardProvider, { DashboardContext } from '../../store/dashboard_context';
+import { DashboardContext } from '../../store/dashboard_context';
 import { getData } from '../../apis/api';
 
-export default function DashboardPage(){
-  return <DashboardProvider>
-    <Dashboard />
-  </DashboardProvider>
-}
-
-function Dashboard(){
+export default function Dashboard(){
   const [type,setType]=useState('on-chain');
   const { data, setData} = useContext(DashboardContext);
 
