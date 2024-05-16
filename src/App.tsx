@@ -7,6 +7,7 @@ import Demo from './pages/demo/Demo/Demo.tsx';
 import Main from './pages/dashboard/Main/Main.tsx';
 import TransferPage from './pages/transfer-nft/TransferPage/TransferPage.tsx';
 import DashboardProvider from './store/dashboard_context.tsx';
+import CompletePage from './pages/complete/CompletePage/CompletePage.tsx';
 
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path:'transfer-nft',
         element: <TransferPage />,
+      },
+      {
+        path:'complete',
+        element: <CompletePage />,
       },
     ]
   }
