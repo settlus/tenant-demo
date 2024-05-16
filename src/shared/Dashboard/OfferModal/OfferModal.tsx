@@ -14,6 +14,7 @@ export default function OfferModal(){
   }
 
   function handleProceed(){
+    handleClose();
     navigate('/demo/transfer-nft');
   }
 
