@@ -1,9 +1,9 @@
 .mission{
-  width: 40%;
+  width: 15rem;
   border: 1.5px solid #FFA300;
   border-radius: 5px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 1rem 1rem 1.5rem 1rem;
   display: flex;
   flex-direction: column;
   gap:10px;
@@ -21,15 +21,23 @@
     list-style-type: none;
     text-align: left;
     font-size: 0.7rem;
-    padding-inline-start: 0px;
+    padding-inline-start: 20px;
     margin: auto;
     display:flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 15px;
 
-    li::before{
-      content:'aa';
-      margin-right: 5px;
+    li{
+      img{
+        margin: 0rem;
+        height: 1rem;
+        width: 1rem;
+        vertical-align: middle;
+        margin-right: 0.5rem;
+      }
     }
+
+
+
   }
 }
