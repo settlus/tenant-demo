@@ -3,13 +3,50 @@ $color: #FFA300;
 
 .main{
   position: absolute;
-  top: -4.5rem;
-  left: 20px; 
   opacity: 0;
   transition: opacity 0.15s ease-in-out;
   display: block;
   z-index: 0;
   pointer-events: none;
+
+  &.mark{
+    top: -4.5rem;
+    left: 20px; 
+
+    .line{
+      height: 0.6rem;
+      width: 2px;
+      margin-left: 4.5rem;
+    }
+  
+    .circle{
+      height: 0.6rem;
+      width: 0.6rem;
+      margin-left: 4.25rem;
+    }
+
+  }
+
+  &.quantity{
+    top: 1rem;
+    left: 10rem; 
+    
+
+    .line{
+      width: 0.6rem;
+      height: 2px;
+      margin-left: -0.5rem;
+      margin-top: -1rem;
+    }
+  
+    .circle{
+      height: 0.6rem;
+      width: 0.6rem;
+      margin-left: -1rem;
+      margin-top: -0.35rem;
+    }
+
+  }
   
 
   &.visible{
@@ -31,17 +68,11 @@ $color: #FFA300;
   
   .line{
     background-color: $color;
-    height: 0.6rem;
-    width: 2px;
-    margin-left: 4.5rem;
   }
 
   .circle{
     background-color: $color;
     border-radius: 50%;
-    height: 0.6rem;
-    width: 0.6rem;
-    margin-left: 4.25rem;
   }
   
 }
