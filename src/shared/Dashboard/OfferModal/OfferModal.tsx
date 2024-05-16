@@ -13,9 +13,9 @@ export default function OfferModal(){
     setIsOfferModal(false);
   }
 
-  // function handleProceed(){
-  //   navigate();
-  // }
+  function handleProceed(){
+    navigate('/demo/transfer-nft');
+  }
 
   return <Modal open={isOfferModal} style={styles.style}>
     <div className={styles.main}>
@@ -30,7 +30,7 @@ export default function OfferModal(){
       </p>
       <div className={styles.buttons}>
         <button onClick={handleClose}>Cancel</button>
-        <button className={styles.proceed}>Proceed</button>
+        <button className={styles.proceed} onClick={handleProceed}>Proceed</button>
       </div>
     </div>
   </Modal>
