@@ -1,0 +1,32 @@
+.main{
+  position: absolute;
+  top: -1rem;
+  left: 10rem;
+
+  button{
+    background-color: none;
+    max-height: 2rem;
+    width: 7rem;
+    border-radius: 0rem;
+    border: none;
+    padding: 0rem;
+    color: black;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(255, 163, 0,0.4);
+    border: 2px solid rgb(255, 163, 0);
+    border-radius: 1rem;
+    padding-right: 1rem;
+    
+
+    img{
+      margin: 0rem;
+      height: 2rem;
+      width: 2rem;
+      margin-left: -0.5rem;
+      margin-right: 0.2rem;
+    }
+  }
+}
