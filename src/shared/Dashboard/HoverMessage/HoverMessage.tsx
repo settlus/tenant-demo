@@ -2,12 +2,14 @@ import styles from "./HoverMessage.module.scss";
 
 type PropType={
   isVisible: boolean,
+  type: string,
+  children?: React.ReactNode,
 }
 
-export default function HoverMessage({isVisible}: PropType): React.ReactElement{
+export default function HoverMessage({isVisible, children, type}: PropType): React.ReactElement{
 
-  return <div className={`${styles.main} ${isVisible ? styles.visible : ''}`}>
-    <p>With transparent settlement system, final transactions are recorded on-chian.</p>
+  return <div className={`${styles.main} ${type==='mark' ? styles.mark : styles.quantity} ${isVisible ? styles.visible : ''}`}>
+    <p>{children}</p>
     <div className={styles.line} />
     <div className={styles.circle}/>
   </div>

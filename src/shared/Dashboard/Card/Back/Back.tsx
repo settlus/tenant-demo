@@ -10,28 +10,38 @@ type BackType={
 
 
 export default function Back({content}: BackType): React.ReactElement{
-  const [isHover, setIsHover] = useState(false);
+  const [isHover, setIsHover] = useState({mark: false, quantity: false});
 
-  function handleEnter(){
-    setIsHover(true);
+  function handleEnter(value: string){
+    setIsHover((prev)=>{
+      const updated={...prev};
+      if(value==='mark') updated.mark=true;
+      else updated.quantity=true;
+      return updated;
+    });
   }
 
   function handleLeave(){
-    setIsHover(false);
+    setIsHover({mark: false, quantity: false});
   }
 
   return <div className={styles.back}>
     {content && content.revenue ?
     //Off-Chain Card 
     <div className={styles.offChain}>
-      <HoverMessage isVisible={isHover}/>
-      <img src={NFTLicenseMark} alt={'mark'} className={styles.mark} onMouseEnter={handleEnter} onMouseLeave={handleLeave}/>
+      <HoverMessage isVisible={isHover.mark} type='mark'>
+        With transparent settlement system, final transactions are recorded on-chian.
+      </HoverMessage>
+      <HoverMessage isVisible={isHover.quantity} type='quantity'>
+        Number of total quantity that users bought
+      </HoverMessage>
+      <img src={NFTLicenseMark} alt={'mark'} className={styles.mark} onMouseEnter={()=>handleEnter('mark')} onMouseLeave={handleLeave}/>
       <div className={styles.stats}>
         <div className={styles.price}>
           <label>Price($)</label>
           <h2>{content.revenue['Price']}</h2>
         </div>
-        <div className={styles.sold}>
+        <div className={styles.sold} onMouseEnter={()=>handleEnter('quantity')} onMouseLeave={handleLeave}>
           <label>Sold</label>
           <h2>{content.revenue['Quantity']}</h2>
         </div>
