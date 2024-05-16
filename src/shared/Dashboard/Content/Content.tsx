@@ -3,6 +3,7 @@ import styles from './Content.module.scss';
 import Card from '../Card/Card.tsx';
 import UserModal from '../UserModal/UserModal.tsx';
 import { DashboardContext } from '../../../store/dashboard_context.tsx';
+import OfferModal from '../OfferModal/OfferModal.tsx';
 
 type PropType={
   type: string,
@@ -10,7 +11,7 @@ type PropType={
 
 
 export default function Content({type}: PropType): React.ReactElement{
-  const {selected,setSelected, data, isModal, setIsModal} = useContext(DashboardContext);
+  const {selected,setSelected, data, isModal, setIsModal, isOfferModal} = useContext(DashboardContext);
   const DATA = data[type] || [];
 
   useEffect(()=>{
@@ -24,6 +25,7 @@ export default function Content({type}: PropType): React.ReactElement{
 
   return  <div className={styles.main}>
     {isModal===2 && type==='off-chain' && <UserModal collapsed={false} content={DATA[selected]}/>}
+    {isOfferModal && type==='on-chain' && <OfferModal />}
     <div className={styles.table1}>
       <label>{type==='on-chain' ? 'NFTs' : 'Items'}</label>
       <span>
