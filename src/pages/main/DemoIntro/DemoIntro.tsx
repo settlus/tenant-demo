@@ -12,6 +12,6 @@ export default function DemoIntro(){
     <Mission />
     <MissionCard />
   </div>
-  <Navigation path='/intro'/>
+  <Navigation path='/demo/create-nft'/>
   </div>
 }
