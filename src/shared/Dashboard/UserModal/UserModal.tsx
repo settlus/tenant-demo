@@ -11,7 +11,7 @@ type PropType={
 export default function UserModal({collapsed, content}: PropType): React.ReactElement{
   const {setIsModal, selected, setSelected, data, setData} = useContext(DashboardContext);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const len = data['on-chain'].length;
+  const len = data.length;
 
   const handleOnDrag = (data: DraggableData) => {
     setPosition({ x: data.x, y: data.y }); 
@@ -41,13 +41,13 @@ export default function UserModal({collapsed, content}: PropType): React.ReactEl
 
   function handleBuy(){
     setData((prev: any)=>{
-      let updated={...prev,}
-      const selectedItem = {...updated['off-chain'][selected]};
+      let updated=[...prev,]
+      const selectedItem = {...updated[selected]};
       
       selectedItem.revenue['Quantity'] += 1;
       selectedItem.revenue['Total Sales Revenue'] += selectedItem.revenue['Price'];
 
-      updated['off-chain'][selected] = selectedItem;
+      updated[selected] = selectedItem;
       return updated;
     })
   } 
@@ -64,7 +64,7 @@ export default function UserModal({collapsed, content}: PropType): React.ReactEl
         <div className={styles.main}>
           <button onClick={()=>handleNavigate('left')}>{'<'}</button>
           <div className={styles.card}>
-            <img src={content.image}/>
+            <img src={content.thumbnail}/>
             <button onClick={handleBuy}>BUY</button>
           </div>
           <button onClick={()=>handleNavigate('right')}>{'>'}</button>

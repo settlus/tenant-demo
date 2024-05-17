@@ -5,14 +5,9 @@ import UserModal from '../UserModal/UserModal.tsx';
 import { DashboardContext } from '../../../store/dashboard_context.tsx';
 import OfferModal from '../OfferModal/OfferModal.tsx';
 
-type PropType={
-  type: string,
-}
-
-
-export default function Content({type}: PropType): React.ReactElement{
-  const {selected,setSelected, data, isModal, setIsModal, isOfferModal} = useContext(DashboardContext);
-  const DATA = data[type] || [];
+export default function Content(){
+  const {selected,setSelected, data, isModal, setIsModal, isOfferModal, type} = useContext(DashboardContext);
+  const DATA = data || [];
 
   useEffect(()=>{
     if(type==='on-chain' && isModal===2) setIsModal(1);
@@ -29,9 +24,9 @@ export default function Content({type}: PropType): React.ReactElement{
     <div className={styles.table1}>
       <label>{type==='on-chain' ? 'NFTs' : 'Items'}</label>
       <span>
-        {DATA.map((item: any,index: number)=>(
-          <img key={index}
-          src={item.image}
+        {DATA && DATA.map((item: any,index: number)=>(
+          <img key={item.thumbnail}
+          src={item.thumbnail}
           onClick={()=>handleSelected(index)}
           className={selected===index ? styles.selected : ''}/>
         ))}
@@ -61,14 +56,14 @@ export default function Content({type}: PropType): React.ReactElement{
             {DATA.map((item: any,index: any) => (<>
               {type==='on-chain' && item.history.map((item1: any)=>(
                 <tr key={index}>
-                  <td><img src={item.image}/></td>
+                  <td><img src={item.thumbnail}/></td>
                   <td>{item.title}</td>
                   <td>{item1['Activity']}</td>
                   <td><a href={`https://scan.migaloo.io/tx/${item1['Txn Hash']}`}>{item1['Txn Hash']}</a></td>
                 </tr>
               ))}
               {type==='off-chain' && <tr key={index}>
-                <td><img src={item.image}/></td>
+                <td><img src={item.thumbnail}/></td>
                 <td>{item.title}</td>
                 <td>$ {item.revenue['Price']}</td>
                 <td>{item.revenue['Quantity']}</td>
