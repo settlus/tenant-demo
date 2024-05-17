@@ -10,8 +10,8 @@ export default function TransferPage(){
   const index= offer ? offer.itemIndex : 0;
 
   const INFO = {
-    thumbnail: data['off-chain'][index].image,
-    title: data['on-chain'][index].title,
+    thumbnail: data[index].thumbnail,
+    title: data[index].title,
   }
 
   function handleOpen(){
