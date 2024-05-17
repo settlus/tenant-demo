@@ -12,6 +12,7 @@ export interface DashboardState {
   offer: offerType, setOffer: (value: offerType)=>void;
   selected: number; setSelected: (value:any) =>void;
   data: any; setData: (value:any)=>void;
+  type: string; setType: (value:string)=>void;
 }
 
 export const DashboardContext = React.createContext<DashboardState>({
@@ -19,7 +20,8 @@ export const DashboardContext = React.createContext<DashboardState>({
   isOfferModal: false, setIsOfferModal: ()=>{},
   offer: null, setOffer: ()=>{},
   selected:0, setSelected: ()=>{},
-  data: {'on-chain': [], 'off-chain': []}, setData:()=>{},
+  data: [], setData:()=>{},
+  type: 'on-chain', setType:()=>{},
 });
 
 interface GlobalProviderProps {
@@ -35,7 +37,8 @@ const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     offerPrice: 1000,
   }); //dummy initial state
   const [selected, setSelected] = useState<number>(0);
-  const [data, setData] = useState<any>({'on-chain': [], 'off-chain': []});
+  const [data, setData] = useState<any[]>([]);
+  const [type, setType] = useState<string>('on-chain');
 
   const state: DashboardState = {
     isModal, setIsModal,
@@ -43,6 +46,7 @@ const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     offer, setOffer,
     selected, setSelected,
     data, setData,
+    type, setType,
   };
 
   return (
