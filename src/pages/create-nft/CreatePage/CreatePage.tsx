@@ -59,7 +59,11 @@ export default function CreatePage(){
     }
     if(step===3) {
       const mint = async()=>{
-        await mintNFT(file, info);
+        const final= {
+          name: info.name,
+          price: parseInt(info.price ||'',10),
+        }
+        await mintNFT(file || new File([],''), final);
         setStep(4);    
       }
       setOpen(true);
