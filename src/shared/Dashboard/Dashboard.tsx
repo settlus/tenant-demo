@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from 'react';
+import {useEffect, useContext} from 'react';
 import styles from './Dashboard.module.scss';
 import Header from './Header/Header';
 import Menu from './Menu/Menu';
@@ -7,8 +7,7 @@ import { DashboardContext } from '../../store/dashboard_context';
 import { getData } from '../../apis/api';
 
 export default function Dashboard(){
-  const [type,setType]=useState('on-chain');
-  const { data, setData} = useContext(DashboardContext);
+  const { data, setData, type, setType } = useContext(DashboardContext);
 
   useEffect(()=>{
     const setMainData = async ()=>{
@@ -25,10 +24,10 @@ export default function Dashboard(){
   }
  
   return <div className={styles.board}>
-      <Header length={data['on-chain'].length}/>
+      <Header length={data.length}/>
       <Menu handleClick={handleClick}/>
-      {type==='on-chain' && <Content type={'on-chain'} />}
-      {type==='off-chain' && <Content type={'off-chain'} />}
-      {/* <Content type={type} data={type==='on-chain' ? data['on-chain'] : data['off-chain']} /> */}
+      {/* {type==='on-chain' && <Content />}
+      {type==='off-chain' && <Content />} */}
+      <Content />
     </div>
 }

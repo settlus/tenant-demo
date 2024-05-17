@@ -1,5 +1,7 @@
 import styles from '../Card.module.scss';
 import NFTLicenseMark from '../../../../public/images/NftLicense.png';
+import { useContext } from 'react';
+import { DashboardContext } from '../../../../store/dashboard_context';
 
 type FrontType={
   image: string,
@@ -8,8 +10,10 @@ type FrontType={
 
 
 export default function Front({image, price}: FrontType): React.ReactElement{
+  const {type} = useContext(DashboardContext);
+
   return <div className={styles.front}>
-    {price!==null ?
+    {type==='off-chain' ?
       //Off-Chain Card 
       <div className={styles.offChain}>
         <img src={NFTLicenseMark} alt={'mark'} className={styles.mark}/>

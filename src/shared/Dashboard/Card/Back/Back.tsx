@@ -2,7 +2,8 @@ import styles from '../Card.module.scss';
 import NFTLicenseMark from '../../../../public/images/NftLicense.png';
 import CoinImg from '../../../../public/images/coin.png';
 import HoverMessage from '../../HoverMessage/HoverMessage';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { DashboardContext } from '../../../../store/dashboard_context';
 
 type BackType={
   content: any,
@@ -10,6 +11,7 @@ type BackType={
 
 
 export default function Back({content}: BackType): React.ReactElement{
+  const {type} = useContext(DashboardContext);
   const [isHover, setIsHover] = useState({mark: false, quantity: false});
 
   function handleEnter(value: string){
@@ -26,7 +28,7 @@ export default function Back({content}: BackType): React.ReactElement{
   }
 
   return <div className={styles.back}>
-    {content && content.revenue ?
+    {type==='off-chain' ?
     //Off-Chain Card 
     <div className={styles.offChain}>
       <HoverMessage isVisible={isHover.mark} type='mark'>
@@ -62,7 +64,7 @@ export default function Back({content}: BackType): React.ReactElement{
           <li key={index}>{item}: {content.details[item]}</li>
         ))}
       </ul>
-      {content && <img src={content.itemImage}/>}
+      {content && <img src={content.thumbnail}/>}
     </div>
   }
 

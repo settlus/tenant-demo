@@ -11,9 +11,9 @@ type PropType={
 }
 
 export default function Card({content}: PropType): React.ReactElement{
-  const {isModal, setIsModal, offer, selected} = useContext(DashboardContext);
+  const {isModal, setIsModal, offer, selected, type} = useContext(DashboardContext);
   const [state,setState] = useState({flipped: false});
-  const isOffChain = content && content.revenue;
+  const isOffChain = type==='off-chain';
 
   const handleClick=()=>{
     flip();
@@ -29,7 +29,7 @@ export default function Card({content}: PropType): React.ReactElement{
     {isModal===1 && isOffChain && <UserModal collapsed={true} content={content}/>}
     {!isOffChain && offer && offer.itemIndex===selected && <OfferNoti />}
     <Back content={content}/>
-    <Front image={content && content.image} price={isOffChain ? content.revenue['Price'] : null}/>
+    <Front image={content && content.thumbnail} price={isOffChain && content ? content.revenue['Price'] : null}/>
     <button onClick={handleClick}>{'>'}</button>
   </div>
 }
