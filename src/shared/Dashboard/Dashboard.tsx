@@ -7,7 +7,7 @@ import { DashboardContext } from '../../store/dashboard_context';
 import { getData } from '../../apis/api';
 
 export default function Dashboard(){
-  const { data, setData, type, setType } = useContext(DashboardContext);
+  const { data, setData, setType, setIsModal, setSelected } = useContext(DashboardContext);
 
   useEffect(()=>{
     const setMainData = async ()=>{
@@ -16,6 +16,13 @@ export default function Dashboard(){
     }
 
     setMainData();
+
+    return ()=>{
+      setType('on-chain');
+      setIsModal(0);
+      setSelected(0);
+      
+    };
   },[]);
 
   function handleClick(type: string){
