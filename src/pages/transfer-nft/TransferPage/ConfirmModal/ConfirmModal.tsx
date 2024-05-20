@@ -15,7 +15,7 @@ export default function ConfirmModal({open, handleClose, offer, data}:PropType):
   const navigate = useNavigate();
 
   async function handleConfirm(){
-    await transferNFT(offer, data);
+    await transferNFT(offer);
     navigate('/demo/complete');
   }
 
