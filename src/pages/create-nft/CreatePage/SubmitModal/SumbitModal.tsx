@@ -1,7 +1,7 @@
 import {useNavigate} from 'react-router-dom';
 import Modal from "../../../../shared/Modal/Modal.tsx";
-import checkImg from '../../../../public/images/check.png';
-import docImg from '../../../../public/images/doc.png';
+import checkSvg from '../../../../public/svg/Check.svg';
+import docSvg from '../../../../public/svg/Doc.svg';
 import styles from './SubmitModal.module.scss';
 
 
@@ -24,9 +24,9 @@ export default function SubmitModal({step, open, handleClose}: PropType): React.
       {step===3 && <h3>Processing</h3>}
       {step===4 && <>
         <h3>NFT Minted</h3>
-        <img src={checkImg}/>
+        <img src={checkSvg}/>
         <div className={styles.icon}>
-          <img src={docImg} />
+          <img src={docSvg} />
         </div>
       
       </>}

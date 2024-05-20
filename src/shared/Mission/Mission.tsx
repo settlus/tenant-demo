@@ -1,9 +1,9 @@
 import styles from './Mission.module.scss';
-import missionImg from '../../public/images/mission.png';
+import missionSvg from '../../public/svg/Mission.svg';
 
 export default function Mission(){
   return <button className={styles.mission}>
-    <img src={missionImg} />
+    <img src={missionSvg} />
     <p>Mission</p>
   </button>
 }

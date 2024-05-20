@@ -1,5 +1,5 @@
 import styles from './Card.module.scss';
-import introImg from '../../../../public/images/intro.png';
+import introSvg from '../../../../public/svg/Intro.svg';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -7,7 +7,7 @@ export default function Card(){
   const navigate = useNavigate();
   
   return <div className={styles.card}>
-    <img src={introImg} alt='intro' />
+    <img src={introSvg} alt='intro' />
     <div className={styles.container}>
       <p>
         Create 3D avatar costumes,

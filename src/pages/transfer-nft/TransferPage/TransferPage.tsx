@@ -1,5 +1,5 @@
 import styles from './TransferPage.module.scss';
-import docImg from '../../../public/images/doc.png';
+import docSvg from '../../../public/svg/Doc.svg';
 import ConfirmModal from './ConfirmModal/ConfirmModal';
 import { useContext, useState } from 'react';
 import { DashboardContext } from '../../../store/dashboard_context';
@@ -26,7 +26,7 @@ export default function TransferPage(){
     {isModal && <ConfirmModal open={isModal} handleClose={handleClose} offer={offer}/>}
     <h2>Sell NFT</h2>
     <div className={styles.image}>
-      <img src={docImg} className={styles.icon}/>
+      <img src={docSvg} className={styles.icon}/>
       <img src={INFO.thumbnail} className={styles.item}/>
     </div>
     <p>Transfer "{INFO.title}" To: </p>

@@ -1,5 +1,5 @@
 import Modal from "../../../../shared/Modal/Modal";
-import sendIcon from "../../../../public/images/send.png";
+import sendIcon from "../../../../public/svg/Send.svg";
 import styles from "./ConfirmModal.module.scss";
 import { transferNFT } from "../../../../apis/api";
 import {useNavigate} from "react-router-dom";

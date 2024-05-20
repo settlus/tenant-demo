@@ -1,5 +1,6 @@
 import {useRef, useEffect} from 'react';
 import styles from './Modal.module.scss';
+import closeSvg from '../../public/svg/Close.svg';
 
 type PropType={
   children: React.ReactNode,
@@ -20,7 +21,7 @@ export default function Modal({children, open, handleClose, style}: PropType): R
 
   return <dialog ref={dialog} className={`${styles.dialog} ${style}`}>
     <div className={styles.content}>
-    {handleClose && <button className={styles.close} onClick={handleClose}>x</button>}
+    {handleClose && <img className={styles.close} onClick={handleClose} src={closeSvg}/>}
     {children}
     </div>
   </dialog>

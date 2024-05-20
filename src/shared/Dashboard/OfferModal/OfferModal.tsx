@@ -1,6 +1,6 @@
 import styles from './OfferModal.module.scss';
 import Modal from "../../Modal/Modal";
-import GiftImg from "../../../public/images/Giftbox.png";
+import GiftSvg from "../../../public/svg/Present.svg";
 import { useContext } from "react";
 import {useNavigate} from 'react-router-dom';
 import { DashboardContext } from "../../../store/dashboard_context";
@@ -21,7 +21,7 @@ export default function OfferModal(){
   return <Modal open={isOfferModal} style={styles.style}>
     <div className={styles.main}>
       <h3>Deal Offer</h3>
-      <img src={GiftImg}/>
+      <img src={GiftSvg}/>
       <p>
       Someone has just offered to buy your NFT for ${offer?.offerPrice}. 
       Want to accept the offer 
