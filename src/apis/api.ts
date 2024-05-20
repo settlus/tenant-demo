@@ -1,3 +1,13 @@
+type Info = {
+  price: number | null,
+  name: string | null,
+}
+
+type Data = {
+  'on-chain': any,
+  'off-chain': any,
+}
+
 const delay = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
@@ -17,16 +27,6 @@ async function getBase64Image(file: File) {
   });
 }
 
-type Info = {
-  price: number | null,
-  name: string | null,
-}
-
-type Data = {
-  'on-chain': any,
-  'off-chain': any,
-}
-
 export async function mintNFT(file: File , info: Info){
   const prev = sessionStorage.getItem('nftArr') || '[]';
   const arr = JSON.parse(prev);
@@ -44,7 +44,13 @@ export async function mintNFT(file: File , info: Info){
   return;
 }
 
-export async function transferNFT(offer: any, data: any){
+export async function transferNFT(offer: any){
+  const prev = sessionStorage.getItem('nftArr') || '[]';
+  const arr = JSON.parse(prev);
+
+  if(offer.itemIndex<arr.length) arr.splice(offer.itemIndex, 1);
+  sessionStorage.setItem('nftArr',JSON.stringify(arr));
+
   await delay(2000);
   return;
 }
