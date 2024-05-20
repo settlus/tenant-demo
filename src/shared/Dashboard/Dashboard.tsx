@@ -7,7 +7,7 @@ import { DashboardContext } from '../../store/dashboard_context';
 import { getData } from '../../apis/api';
 
 export default function Dashboard(){
-  const { data, setData, setType, setIsModal, setSelected } = useContext(DashboardContext);
+  const { data, setData, setType, setIsModal, setSelected, type } = useContext(DashboardContext);
 
   useEffect(()=>{
     const setMainData = async ()=>{
@@ -33,8 +33,7 @@ export default function Dashboard(){
   return <div className={styles.board}>
       <Header length={data.length}/>
       <Menu handleClick={handleClick}/>
-      {/* {type==='on-chain' && <Content />}
-      {type==='off-chain' && <Content />} */}
-      <Content />
+      {type==='on-chain' && <Content />}
+      {type==='off-chain' && <Content />}
     </div>
 }
