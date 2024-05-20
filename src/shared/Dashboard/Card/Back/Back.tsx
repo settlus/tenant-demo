@@ -38,7 +38,7 @@ export default function Back({content}: BackType): React.ReactElement{
         Number of total quantity that users bought
       </HoverMessage>
       <img src={NFTLicenseMark} alt={'mark'} className={styles.mark} onMouseEnter={()=>handleEnter('mark')} onMouseLeave={handleLeave}/>
-      <div className={styles.stats}>
+      {content && <div className={styles.stats}>
         <div className={styles.price}>
           <label>Price($)</label>
           <h2>{content.revenue['Price']}</h2>
@@ -54,7 +54,7 @@ export default function Back({content}: BackType): React.ReactElement{
             <h2>{content.revenue['Total Sales Revenue']}</h2>
           </div>
         </div>
-      </div>
+      </div>}
     </div> : 
     
     //On-Chain Card
