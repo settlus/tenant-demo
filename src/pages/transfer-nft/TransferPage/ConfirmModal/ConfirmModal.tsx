@@ -3,20 +3,28 @@ import sendIcon from "../../../../public/images/send.png";
 import styles from "./ConfirmModal.module.scss";
 import { transferNFT } from "../../../../apis/api";
 import {useNavigate} from "react-router-dom";
+import {useMutation} from 'react-query';
 
 type PropType={
   handleClose: ()=>void,
   open: boolean, 
   offer: any,
-  data: any,
 }
 
-export default function ConfirmModal({open, handleClose, offer, data}:PropType):React.ReactElement{
+export default function ConfirmModal({open, handleClose, offer}:PropType):React.ReactElement{
   const navigate = useNavigate();
+  const {mutate, isLoading,} = useMutation(
+    offer=>transferNFT(offer),
+    {
+      onSuccess: ()=>{
+        navigate('/demo/complete');
+      },
+    },
+  )
+
 
   async function handleConfirm(){
-    await transferNFT(offer);
-    navigate('/demo/complete');
+    mutate(offer);
   }
 
   return <Modal open={open} handleClose={handleClose} style={styles.style}>
@@ -29,7 +37,7 @@ export default function ConfirmModal({open, handleClose, offer, data}:PropType):
       You will receive ${offer.offerPrice} to your account.<br />
       (In demo, no payment will be received.)
       </p>
-      <button onClick={handleConfirm}>Confirm</button>
+      <button onClick={handleConfirm}>{isLoading ? 'Loading...' : 'Confirm'}</button>
     </div>
   </Modal>
 }

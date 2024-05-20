@@ -1,4 +1,5 @@
 import './App.scss'
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterProvider, createBrowserRouter, redirect, Outlet} from 'react-router-dom';
 import Intro from './pages/main/Intro/Intro'
 import DemoIntro from './pages/main/DemoIntro/DemoIntro';
@@ -9,6 +10,8 @@ import TransferPage from './pages/transfer-nft/TransferPage/TransferPage.tsx';
 import DashboardProvider from './store/dashboard_context.tsx';
 import CompletePage from './pages/complete/CompletePage/CompletePage.tsx';
 
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -68,9 +71,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <DashboardProvider>
-    <RouterProvider router={router} />
-  </DashboardProvider>;
+  return <QueryClientProvider client={queryClient}>
+    <DashboardProvider>
+      <RouterProvider router={router} />
+    </DashboardProvider>;
+  </QueryClientProvider> 
 }
 
 export default App;
