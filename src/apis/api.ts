@@ -2,6 +2,21 @@ const delay = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
+async function getBase64Image(file: File) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      resolve(reader.result); 
+    };
+
+    reader.onerror = (error) => {
+      reject(error);
+    };
+  });
+}
+
 type Info = {
   price: number | null,
   name: string | null,
@@ -15,11 +30,12 @@ type Data = {
 export async function mintNFT(file: File , info: Info){
   const prev = sessionStorage.getItem('nftArr') || '[]';
   const arr = JSON.parse(prev);
+  const base64 = await getBase64Image(file);
 
   const item = {
     name: info.name,
     price: info.price,
-    thumbnail: URL.createObjectURL(file),
+    thumbnail: base64,
   };
   arr.push(item);
   sessionStorage.setItem('nftArr',JSON.stringify(arr));
