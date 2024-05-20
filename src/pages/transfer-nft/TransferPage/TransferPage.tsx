@@ -23,7 +23,7 @@ export default function TransferPage(){
   }
 
   return <div className={styles.main}>
-    {isModal && <ConfirmModal open={isModal} handleClose={handleClose} offer={offer} data={data}/>}
+    {isModal && <ConfirmModal open={isModal} handleClose={handleClose} offer={offer}/>}
     <h2>Sell NFT</h2>
     <div className={styles.image}>
       <img src={docImg} className={styles.icon}/>
