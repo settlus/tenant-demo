@@ -1,12 +1,24 @@
 .mission{
-  width: 15rem;
+  width: 13rem;
   border: 1.5px solid #FFA300;
   border-radius: 5px;
-  margin: 0 auto;
+  margin: 0rem;
   padding: 1rem 1rem 1.5rem 1rem;
   display: flex;
   flex-direction: column;
   gap:10px;
+  position: relative;
+  background-color: white;
+
+  .sparkle{
+    position: absolute;
+    top: -2.5rem;
+    left: -2rem;
+    height: 4rem;
+    width: auto;
+    object-fit: cover;
+    transform: rotate(-30deg);
+  }
 
   h3{
     font-size: 1rem;
@@ -21,11 +33,11 @@
     list-style-type: none;
     text-align: left;
     font-size: 0.7rem;
-    padding-inline-start: 20px;
+    padding-inline-start: 0rem;
     margin: auto;
     display:flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.8rem;
 
     li{
       img{

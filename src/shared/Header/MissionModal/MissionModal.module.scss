@@ -1,0 +1,23 @@
+@import '../../../shared/styling/modal';
+
+.backdrop{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0rem;
+  left: 0rem;
+  background-color: rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.modal{
+  background-color: transparent;
+  overflow: visible;
+  width: auto;
+  align-items: center;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  z-index: 3000;
+  animation: scaleUp 0.1s;
+}

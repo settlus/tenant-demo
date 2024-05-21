@@ -3,12 +3,16 @@
   flex-direction: row;
   margin: 1rem 4rem;
   
-  .mission{
+  .menu{
     margin-left: auto;
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
 
+    .mission{
+      height:100%;
+      position: relative;
+    }
   }
 
   .qna{
