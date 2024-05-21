@@ -1,6 +1,6 @@
 import styles from '../Card.module.scss';
 import NFTLicenseMark from '../../../../public/images/NftLicense.png';
-import CoinImg from '../../../../public/images/coin.png';
+import CoinImg from '../../../../public/svg/coin.svg';
 import HoverMessage from '../../HoverMessage/HoverMessage';
 import { useContext, useState } from 'react';
 import { DashboardContext } from '../../../../store/dashboard_context';
