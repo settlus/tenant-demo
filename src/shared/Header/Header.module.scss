@@ -5,5 +5,13 @@
   
   .mission{
     margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+
+  }
+
+  .qna{
+    margin: 0rem;
   }
 }

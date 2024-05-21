@@ -1,0 +1,53 @@
+.modal{
+  min-height: 70vh;
+  width: 60vw;
+  display: flex;
+  background-color:transparent;
+  padding: 0rem;
+
+  .main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow:visible;
+
+    .symbol{
+      margin: 0rem auto 1rem auto;
+      height: 4rem;
+      width: 4rem;
+      object-fit: cover;
+    }
+
+    .text{
+      height: 100%;
+      overflow: auto;
+      background-color: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      padding-top: 1rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+
+      .close{
+        height: 1.3rem;
+        margin: 0rem;
+        margin-left: auto;
+
+        &:hover{
+          cursor: pointer;
+        }
+      }
+
+      p{
+        margin-bottom: 1rem;
+      }
+  
+      a{
+        margin-top: auto;
+      }
+    }
+  }
+
+}
