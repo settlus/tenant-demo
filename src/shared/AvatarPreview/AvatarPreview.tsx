@@ -244,9 +244,9 @@ const AvatarPreview = ({
           ref={mainAreaRef}
           className='wrapper'
           id='mainarea'
-          style={{ position: 'relative', width: small ? 258 : 250 }}
+          style={{ position: 'relative', minWidth: small ? 258 : 240, height: 320}}
         >
-          <canvas id='canvas' className='emscripten' style={{ display: 'none', height: 310, width: 250 }} />
+          <canvas id='canvas' className='emscripten' style={{ display: 'none', height: 350, minWidth: 245}}/> 
         </div>
         <div className={styles.buttonBox} id='buttonarea'>
           <button className={styles.bodyChange} onClick={() => handleChangeBody(bodyType)}>
