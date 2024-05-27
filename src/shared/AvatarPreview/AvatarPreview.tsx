@@ -97,7 +97,6 @@ const AvatarPreview = ({
   }, [])
 
   const handleLoadTemplate = useCallback(async () => {
-    console.log('initiating',isLoaded);
 
     try {
       Module.OVDR_FilePath = '/lib/unreal/'
@@ -139,6 +138,7 @@ const AvatarPreview = ({
   }, [])
 
   const handleApplyPng = useCallback(async (file: string, meshName: string) => {
+    console.log('executed');
     try {
       handleIsLoading && handleIsLoading(true)
       Module.OVDR_ApplyPNG && (await Module.OVDR_ApplyPNG(file, meshName))
@@ -164,7 +164,6 @@ const AvatarPreview = ({
   }, [])
 
   useEffect(() => {
-    console.log('executing jquery', isLoaded);
     if (!isLoaded) handleLoadJquery()
   }, [isLoaded, handleLoadJquery])
 
@@ -175,7 +174,6 @@ const AvatarPreview = ({
   // unmount 시, 2d template 초기화
   useEffect(() => {
     return () => {
-      console.log('handle execute handleResetAvatar')
       handleResetAvatar()
     }
   }, [handleResetAvatar])
