@@ -1,0 +1,36 @@
+.main{
+  border: 1px solid #D9D9D9;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  width: 7rem;
+  padding-right: 0rem;
+
+  ul{
+    margin: 0rem;
+    overflow: auto;
+    max-height: 22rem;
+    li{
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap:0.4rem;
+      margin: 0.5rem 0rem;
+    }
+  }
+
+  .thumbnail{
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 2px; /* Width of the vertical scrollbar */
+  height: 12px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2); /* Thumb color with transparency */
+  border-radius: 1px; /* Rounded corners for the thumb */
+}

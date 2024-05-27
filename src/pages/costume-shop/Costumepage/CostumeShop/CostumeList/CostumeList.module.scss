@@ -1,0 +1,17 @@
+.main{
+  border: 1px solid #D9D9D9;
+  border-radius: 1rem;
+  width: 16rem;
+  padding: 0.5rem;
+
+  ul{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+    gap: 0.5rem;
+
+    li{
+      display: flex;
+      margin: auto;
+    }
+  }
+}
