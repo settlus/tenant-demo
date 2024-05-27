@@ -693,8 +693,6 @@ function fetchFromIndexedDB(db, key) {
 			var getRequest = packages.get("file/" + Module.key + '/' + key);
 			getRequest.onsuccess = function(evt) {
 				if (evt.target.result) {
-					console.log("file/" + Module.key + '/' + key);
-					console.log(evt.target.result, db, Module.key, key);
 					var len = evt.target.result.size || evt.target.result.byteLength || evt.target.result.length;
 					if (len) reportDataBytesStoredInIndexedDB(len);
 					resolve(evt.target.result);
