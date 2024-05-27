@@ -9,6 +9,7 @@ import Main from './pages/dashboard/Main/Main.tsx';
 import TransferPage from './pages/transfer-nft/TransferPage/TransferPage.tsx';
 import DashboardProvider from './store/dashboard_context.tsx';
 import CompletePage from './pages/complete/CompletePage/CompletePage.tsx';
+import CostumePage from './pages/costume-shop/Costumepage/CostumePage.tsx';
 
 
 const queryClient = new QueryClient();
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     path: '/demo',
     element: <Demo />,
     children: [
+      {
+        path:'costume-shop',
+        element: <CostumePage />
+      },
       {
         path:'create-nft',
         element: <CreatePage />,
