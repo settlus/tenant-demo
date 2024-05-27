@@ -1,5 +1,5 @@
 import styles from './Header.module.scss';
-import HeaderButton from '../HeaderButton/HeaderButton.tsx';
+import HeaderButton from './HeaderButton/HeaderButton.tsx';
 import QnaModal from '../QnaModal/QnaModal.tsx';
 import MissionModal from './MissionModal/MissionModal.tsx';
 import missionSvg from '../../public/svg/Mission.svg';
