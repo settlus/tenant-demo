@@ -1,5 +1,5 @@
 import MissionCard from '../../../shared/MissionCard/MissionCard.tsx';
-import HeaderButton from '../../../shared/HeaderButton/HeaderButton.tsx';
+import HeaderButton from '../../../shared/Header/HeaderButton/HeaderButton.tsx';
 import Navigation from '../../../shared/Navigation/Navigation.tsx';
 import styles from './DemoIntro.module.scss';
 import missionSvg from '../../../public/svg/Mission.svg';
