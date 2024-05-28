@@ -3,6 +3,7 @@
 // import Image from 'next/image'
 // import Script from 'next/script'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import LoadingSpinner from '../../public/svg/loading.svg'
 
 // import { isUnrealErrorAtom } from '@shared/store'
 // import { Button } from '@shared/ui/button'
@@ -225,29 +226,21 @@ const AvatarPreview = ({
   return (
       <div className={styles.avatarPreview}>
         {isUnrealError ? (
-            <></>
-          // <div className={styles.errorBox}>
-          //   {`Oops! An unknown error has occurred.\nPlease reload the page.`}
-          //   {/* <Button
-          //     style={styles.refereshButton}
-          //     onClick={() => {
-          //       window.location.reload()
-          //     }}
-          //   >
-          //     Reload
-          //   </Button> */}
-          // </div>
+          <div className={styles.errorBox}>
+            {`Oops! An unknown error has occurred.\nPlease reload the page.`}
+            <button
+            className={styles.refereshButton}
+            onClick={()=>{
+              window.location.reload()
+            }}
+            >
+              Reload
+            </button>
+          </div>
         ) : (
           !isUnrealLoaded &&
           !isCanvasLoaded && (
-            <p>Loading...</p>
-            // <Image
-            //   className={styles.loadingSpin}
-            //   src='/images/common/loading.gif'
-            //   width={100}
-            //   height={100}
-            //   alt='loading'
-            // />
+            <img src={LoadingSpinner} alt='loading' className={styles.loading}/>
           )
         )}
         <div
