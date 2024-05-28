@@ -1,5 +1,6 @@
 import styles from './Live.module.scss';
 import Thumbnail from '../Thumbnail/Thumbnail';
+import LiveIcon from '../../../../../public/images/live.gif';
 import { useContext } from 'react';
 import { ShopContext } from '../../../../../store/costumeshop_context';
 
@@ -21,7 +22,10 @@ export default function Live(){
   const {items} = useContext(ShopContext);
 
   return <div className={styles.main}>
-    <h3>Live</h3>
+    <div className={styles.title}>
+      <img src={LiveIcon} />
+      <h3>Live</h3>
+    </div>
     <ul>
       {LIST.map((item,index)=><li key={index}>
         <p>User {item.user} bought</p>

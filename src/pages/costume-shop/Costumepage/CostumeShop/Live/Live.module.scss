@@ -5,6 +5,16 @@
   width: 7rem;
   padding-right: 0rem;
 
+  .title{
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.6rem;
+
+    img{
+      margin: 0rem;
+    }
+  }
+
   ul{
     margin: 0rem;
     overflow: auto;
