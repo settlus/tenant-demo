@@ -2,7 +2,7 @@ import styles from './Live.module.scss';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import LiveIcon from '../../../../../public/images/live.gif';
 import { useContext, useEffect, useState } from 'react';
-import { ShopContext } from '../../../../../store/costumeshop_context';
+import { ShopContext, itemType } from '../../../../../store/costumeshop_context';
 
 const LIST = [
   {user: 1, thumbnail: 4,},
@@ -19,21 +19,27 @@ const LIST = [
 ]
 
 export default function Live(){
-  const {items} = useContext(ShopContext);
+  const {items, setItems} = useContext(ShopContext);
   const [liveList, setLiveList] = useState(LIST);
 
   const addToList = async(user: number, thumbnail: number)=>{
     const delay = Math.random()*1000+500;
     await new Promise(resolve=>setTimeout(resolve, delay));
+    setItems(prevList=>{
+      const updated=[...prevList];
+      updated[thumbnail].quantity=prevList[thumbnail].quantity+1;
+
+      return updated;
+    })
     setLiveList(prevList=> [{user: user, thumbnail: thumbnail},...prevList]);
   }
 
   useEffect(()=>{
     const addLive = async()=>{
-      await addToList(2,0);
-      await addToList(3,0);
-      await addToList(4,7);
-      await addToList(2,3);
+      await addToList(2,2);
+      await addToList(3,2);
+      await addToList(4,10);
+      await addToList(2,8);
     }
     addLive();
   },[])
