@@ -163,9 +163,6 @@ const AvatarPreview = ({
     handleIsLoading && handleIsLoading(false)
   }, [])
 
-  // useEffect(()=>{
-  //   handleResetAvatar();
-  // },[uploadedFile, handleResetAvatar])
 
   useEffect(() => {
     if (!isLoaded) handleLoadJquery()
@@ -192,15 +189,6 @@ const AvatarPreview = ({
   // (init 시에) selectedTemplate / uploadedFile 있을 경우 셋팅
   // selectedTemplate / uploadedFile 값이 바뀔 경우 재셋팅
   useEffect(() => {
-    // const resetAndSelect = async()=>{
-    //   if (isLoaded && (isUnrealLoaded || isCanvasLoaded) && selectedTemplateMeshName) {
-    //     handleResetAvatar()
-    //       .then(()=>handleSelectTemplate(selectedTemplateMeshName))
-    //     //handleSelectTemplate(selectedTemplateMeshName)
-    //   }
-    // }
-
-    //resetAndSelect();
       if (isLoaded && (isUnrealLoaded || isCanvasLoaded) && selectedTemplateMeshName) {
         handleSelectTemplate(selectedTemplateMeshName)
       }
@@ -225,17 +213,6 @@ const AvatarPreview = ({
     }
 
     resetAndApply();
-    // if (
-    //   isLoaded &&
-    //   (isUnrealLoaded || isCanvasLoaded) &&
-    //   selectedTemplateMeshName &&
-    //   uploadedFile
-    // ) {
-    //   // handleResetAvatar()
-    //   //   .then(()=>handleApplyPng(uploadedFile, selectedTemplateMeshName))
-      
-    //   handleApplyPng(uploadedFile, selectedTemplateMeshName)
-    // }
   }, [
     isLoaded,
     isUnrealLoaded,
