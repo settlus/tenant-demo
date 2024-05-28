@@ -31,7 +31,7 @@ import profile3 from '../public/svg/userProfile/profile3.svg';
 import profile4 from '../public/svg/userProfile/profile4.svg';
 
 
-type itemType = {
+export type itemType = {
   thumbnailPng: string,
   meshName: string,
   templatePng: string,
@@ -152,9 +152,11 @@ const ITEM_ARR: itemType[] = [{
   quantity: 180000
 },];
 
+type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
+
 export interface shopState {
-  items: itemType[], setItems: (value: itemType[])=>void;
-  selected: number, setSelected: (value:number)=>void;
+  items: itemType[], setItems: SetState<itemType[]>;
+  selected: number, setSelected: SetState<number>;
 }
 
 export const ShopContext = React.createContext<shopState>({
