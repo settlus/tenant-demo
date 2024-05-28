@@ -1,3 +1,5 @@
+@import '../../../../../shared/styling/modal';
+
 .main{
   border: 1px solid #D9D9D9;
   border-radius: 1rem;
@@ -26,6 +28,14 @@
       align-items: center;
       gap:0.4rem;
       margin: 0.5rem 0rem;
+
+      &.first{
+        animation: scaleUp 0.2s ease-in-out;
+      } 
+
+      &.remaining{
+        animation: slideIn 0.2s ease-in-out;
+      }
     }
   }
 
@@ -43,4 +53,15 @@
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.2); /* Thumb color with transparency */
   border-radius: 1px; /* Rounded corners for the thumb */
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

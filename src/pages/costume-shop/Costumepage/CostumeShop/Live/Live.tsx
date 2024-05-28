@@ -1,7 +1,7 @@
 import styles from './Live.module.scss';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import LiveIcon from '../../../../../public/images/live.gif';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../../../../../store/costumeshop_context';
 
 const LIST = [
@@ -20,6 +20,23 @@ const LIST = [
 
 export default function Live(){
   const {items} = useContext(ShopContext);
+  const [liveList, setLiveList] = useState(LIST);
+
+  const addToList = async(user: number, thumbnail: number)=>{
+    const delay = Math.random()*1000+500;
+    await new Promise(resolve=>setTimeout(resolve, delay));
+    setLiveList(prevList=> [{user: user, thumbnail: thumbnail},...prevList]);
+  }
+
+  useEffect(()=>{
+    const addLive = async()=>{
+      await addToList(2,0);
+      await addToList(3,0);
+      await addToList(4,7);
+      await addToList(2,3);
+    }
+    addLive();
+  },[])
 
   return <div className={styles.main}>
     <div className={styles.title}>
@@ -27,7 +44,7 @@ export default function Live(){
       <h3>Live</h3>
     </div>
     <ul>
-      {LIST.map((item,index)=><li key={index}>
+      {liveList.map((item,index)=><li key={`${item.user}-${item.thumbnail}-${index}`} className={`${index===0 ? styles.first : styles.remaining}`}>
         <p>User {item.user} bought</p>
         <Thumbnail style={styles.thumbnail} thumbnail={items[item.thumbnail].thumbnailPng}/>
       </li>)}
