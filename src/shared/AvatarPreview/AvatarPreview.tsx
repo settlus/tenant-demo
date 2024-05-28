@@ -163,6 +163,10 @@ const AvatarPreview = ({
     handleIsLoading && handleIsLoading(false)
   }, [])
 
+  // useEffect(()=>{
+  //   handleResetAvatar();
+  // },[uploadedFile, handleResetAvatar])
+
   useEffect(() => {
     if (!isLoaded) handleLoadJquery()
   }, [isLoaded, handleLoadJquery])
@@ -188,20 +192,50 @@ const AvatarPreview = ({
   // (init 시에) selectedTemplate / uploadedFile 있을 경우 셋팅
   // selectedTemplate / uploadedFile 값이 바뀔 경우 재셋팅
   useEffect(() => {
-    if (isLoaded && (isUnrealLoaded || isCanvasLoaded) && selectedTemplateMeshName) {
-      handleSelectTemplate(selectedTemplateMeshName)
-    }
+    // const resetAndSelect = async()=>{
+    //   if (isLoaded && (isUnrealLoaded || isCanvasLoaded) && selectedTemplateMeshName) {
+    //     handleResetAvatar()
+    //       .then(()=>handleSelectTemplate(selectedTemplateMeshName))
+    //     //handleSelectTemplate(selectedTemplateMeshName)
+    //   }
+    // }
+
+    //resetAndSelect();
+      if (isLoaded && (isUnrealLoaded || isCanvasLoaded) && selectedTemplateMeshName) {
+        handleSelectTemplate(selectedTemplateMeshName)
+      }
+    
   }, [isLoaded, isUnrealLoaded, isCanvasLoaded, selectedTemplateMeshName, handleSelectTemplate])
 
   useEffect(() => {
-    if (
-      isLoaded &&
-      (isUnrealLoaded || isCanvasLoaded) &&
-      selectedTemplateMeshName &&
-      uploadedFile
-    ) {
-      handleApplyPng(uploadedFile, selectedTemplateMeshName)
+    const resetAndApply = async()=>{
+      if (
+        isLoaded &&
+        (isUnrealLoaded || isCanvasLoaded) &&
+        selectedTemplateMeshName &&
+        uploadedFile
+      ) {
+        // handleResetAvatar()
+        //   .then(()=>handleApplyPng(uploadedFile, selectedTemplateMeshName))
+        handleResetAvatar()
+          .then(()=>handleSelectTemplate(selectedTemplateMeshName))
+          .then(()=>handleApplyPng(uploadedFile, selectedTemplateMeshName))
+      }
+
     }
+
+    resetAndApply();
+    // if (
+    //   isLoaded &&
+    //   (isUnrealLoaded || isCanvasLoaded) &&
+    //   selectedTemplateMeshName &&
+    //   uploadedFile
+    // ) {
+    //   // handleResetAvatar()
+    //   //   .then(()=>handleApplyPng(uploadedFile, selectedTemplateMeshName))
+      
+    //   handleApplyPng(uploadedFile, selectedTemplateMeshName)
+    // }
   }, [
     isLoaded,
     isUnrealLoaded,
@@ -214,17 +248,18 @@ const AvatarPreview = ({
   return (
       <div className={styles.avatarPreview}>
         {isUnrealError ? (
-          <div className={styles.errorBox}>
-            {`Oops! An unknown error has occurred.\nPlease reload the page.`}
-            {/* <Button
-              style={styles.refereshButton}
-              onClick={() => {
-                window.location.reload()
-              }}
-            >
-              Reload
-            </Button> */}
-          </div>
+            <></>
+          // <div className={styles.errorBox}>
+          //   {`Oops! An unknown error has occurred.\nPlease reload the page.`}
+          //   {/* <Button
+          //     style={styles.refereshButton}
+          //     onClick={() => {
+          //       window.location.reload()
+          //     }}
+          //   >
+          //     Reload
+          //   </Button> */}
+          // </div>
         ) : (
           !isUnrealLoaded &&
           !isCanvasLoaded && (
