@@ -1,4 +1,5 @@
 import styles from './Upload.module.scss';
+import AvatarPreview from '../../../../shared/AvatarPreview/AvatarPreview';
 
 export function validateFile(imgFile: File){
     const extension=imgFile.name.split('.').pop() || 'none';
@@ -40,7 +41,9 @@ export default function Upload({file, handleFile}: PropType):React.ReactElement{
   }
 
   return <div className={styles.main}>
-    <div className={styles.avatar}>Avatar</div>
+    <div className={styles.avatar}>
+      <AvatarPreview uploadedFile={''}/>
+    </div>
     <div className={styles.preview}>
       {fileUrl && <img src={fileUrl}/>}
     </div>
