@@ -1,0 +1,21 @@
+.instruction{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  .detail{
+    margin: 0rem;
+    width: 55rem;
+  }
+
+  .text{
+    img{
+      margin: 0rem;
+      margin-right: 0.2rem;
+      width: 1.1rem;
+      height: 1.1rem;
+    }
+  }
+}
