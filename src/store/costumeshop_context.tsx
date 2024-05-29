@@ -40,6 +40,7 @@ export type itemType = {
   creator: string, 
   creatorProfilePng: string, 
   quantity: number,
+  offerValue: number,
 }
 
 const ITEM_ARR: itemType[] = [{
@@ -50,7 +51,8 @@ const ITEM_ARR: itemType[] = [{
   price: 3,
   creator: 'Creator 1',
   creatorProfilePng: profile1,
-  quantity: 200000
+  quantity: 200000,
+  offerValue: 100000,
 },{
   thumbnailPng: item2thumbnail,
   meshName: 'Backpack001',
@@ -59,7 +61,8 @@ const ITEM_ARR: itemType[] = [{
   price: 5,
   creator: 'Creator 3',
   creatorProfilePng: profile3,
-  quantity: 100000
+  quantity: 100000,
+  offerValue: 120000,
 },{
   thumbnailPng: item3thumbnail,
   meshName: 'Backpack006',
@@ -68,7 +71,8 @@ const ITEM_ARR: itemType[] = [{
   price: 6,
   creator: 'Creator 3',
   creatorProfilePng: profile3,
-  quantity: 300000
+  quantity: 300000,
+  offerValue: 130000,
 },{
   thumbnailPng: item4thumbnail,
   meshName: 'Shoe001',
@@ -77,7 +81,8 @@ const ITEM_ARR: itemType[] = [{
   price: 6,
   creator: 'Creator 2',
   creatorProfilePng: profile2,
-  quantity: 50000
+  quantity: 50000,
+  offerValue: 140000,
 },{
   thumbnailPng: item5thumbnail,
   meshName: 'Crop010F',
@@ -86,7 +91,8 @@ const ITEM_ARR: itemType[] = [{
   price: 4,
   creator: 'Creator 4',
   creatorProfilePng: profile4,
-  quantity: 600000
+  quantity: 600000,
+  offerValue: 170000,
 },{
   thumbnailPng: item6thumbnail,
   meshName: 'MTM003M',
@@ -95,7 +101,8 @@ const ITEM_ARR: itemType[] = [{
   price: 7,
   creator: 'Creator 1',
   creatorProfilePng: profile1,
-  quantity: 30000
+  quantity: 30000,
+  offerValue: 180000,
 },{
   thumbnailPng: item7thumbnail,
   meshName: 'HalfSkirt001',
@@ -104,7 +111,8 @@ const ITEM_ARR: itemType[] = [{
   price: 5,
   creator: 'Creator 2',
   creatorProfilePng: profile2,
-  quantity: 1000000
+  quantity: 1000000,
+  offerValue: 130000,
 },{
   thumbnailPng: item8thumbnail,
   meshName: 'Longskirt001',
@@ -113,7 +121,8 @@ const ITEM_ARR: itemType[] = [{
   price: 7,
   creator: 'Creator 3',
   creatorProfilePng: profile3,
-  quantity: 80000
+  quantity: 80000,
+  offerValue: 180000,
 },{
   thumbnailPng: item9thumbnail,
   meshName: 'Jean006',
@@ -122,7 +131,8 @@ const ITEM_ARR: itemType[] = [{
   price: 7,
   creator: 'Creator 1',
   creatorProfilePng: profile1,
-  quantity: 300000
+  quantity: 300000,
+  offerValue: 180000,
 },{
   thumbnailPng: item10thumbnail,
   meshName: 'DefaultShorts001',
@@ -131,7 +141,8 @@ const ITEM_ARR: itemType[] = [{
   price: 4,
   creator: 'Creator 1',
   creatorProfilePng: profile1,
-  quantity: 150000
+  quantity: 150000,
+  offerValue: 140000,
 },{
   thumbnailPng: item11thumbnail,
   meshName: 'Blouson001',
@@ -140,7 +151,8 @@ const ITEM_ARR: itemType[] = [{
   price: 10,
   creator: 'Creator 3',
   creatorProfilePng: profile3,
-  quantity: 270000
+  quantity: 270000,
+  offerValue: 200000,
 },{
   thumbnailPng: item12thumbnail,
   meshName: 'Default005',
@@ -149,7 +161,8 @@ const ITEM_ARR: itemType[] = [{
   price: 3,
   creator: 'Creator 4',
   creatorProfilePng: profile4,
-  quantity: 180000
+  quantity: 180000,
+  offerValue: 125000,
 },];
 
 type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
@@ -157,11 +170,13 @@ type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 export interface shopState {
   items: itemType[], setItems: SetState<itemType[]>;
   selected: number, setSelected: SetState<number>;
+  step: number, setStep: SetState<number>;
 }
 
 export const ShopContext = React.createContext<shopState>({
   items: [], setItems: ()=>{},
   selected: 0, setSelected: ()=>{},
+  step: 0, setStep: ()=>{},
 });
 
 interface GlobalProviderProps {
@@ -171,10 +186,12 @@ interface GlobalProviderProps {
 const ShopProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [items, setItems] = useState<itemType[]>(ITEM_ARR);
   const [selected, setSelected] = useState<number>(0);
+  const [step, setStep] = useState<number>(0);
 
   const state: shopState = {
     items, setItems,
     selected, setSelected,
+    step, setStep,
   };
 
   return (
