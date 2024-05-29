@@ -19,7 +19,7 @@ const LIST = [
 ]
 
 export default function Live(){
-  const {items, setItems} = useContext(ShopContext);
+  const {items, setItems, step} = useContext(ShopContext);
   const [liveList, setLiveList] = useState(LIST);
 
   const addToList = async(user: number, thumbnail: number)=>{
@@ -44,7 +44,7 @@ export default function Live(){
     addLive();
   },[])
 
-  return <div className={styles.main}>
+  return <div className={`${styles.main} ${step===0 ? styles.active : ''}`}>
     <div className={styles.title}>
       <img src={LiveIcon} />
       <h3>Live</h3>

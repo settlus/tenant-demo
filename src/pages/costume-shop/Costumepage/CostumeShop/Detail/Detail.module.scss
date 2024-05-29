@@ -5,6 +5,11 @@
   width: 10rem;
   display: flex;
   flex-direction: column;
+
+  &.active{
+    border: 2px solid #FFA300;
+  }
+
   p{
     font-size: 0.7rem;
   }
@@ -35,6 +40,12 @@
 
   .detail{
     text-align: left;
+
+    span{
+      &.active{
+        background-color: rgba(255, 163, 0, 0.5);
+      }
+    }
   }
 
   button{
