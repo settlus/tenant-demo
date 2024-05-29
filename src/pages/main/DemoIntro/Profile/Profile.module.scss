@@ -1,0 +1,33 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  height: 100%;
+  justify-content: space-between;
+
+  input{
+    font-family: 'Archivo Narrow', sans-serif;
+    border: 1px solid #E0DEDE;
+    border-radius: 0.7rem;
+    padding: 0.8rem 0.7rem;
+    text-align: center;
+  }
+  
+  img{
+    height: 8rem;
+    width: auto;
+    margin: 0rem;
+    margin-bottom: 1rem;
+  }
+
+  button{
+    background-color: #FFA300;
+    color: white;
+    font-size: 1.6rem;
+    box-shadow: 0px 3px 2px rgba(0,0,0,0.5);
+    text-shadow: 0px 3px 2px rgba(0,0,0,0.3);
+    padding: 0rem 0rem;
+    font-family: 'Pacifico', curive;
+  }
+
+}

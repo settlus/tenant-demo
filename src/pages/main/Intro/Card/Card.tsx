@@ -8,13 +8,6 @@ export default function Card(){
   
   return <div className={styles.card}>
     <img src={introSvg} alt='intro' />
-    <div className={styles.container}>
-      <p>
-        Create 3D avatar costumes,
-        <br />set up NFT license,
-        <br />and sell your costumes here
-      </p>
-      <button onClick={()=>navigate('/intro/mission')}>ENTER Avatar Costume Shop</button>
-    </div>
+    <button onClick={()=>navigate('/intro/mission')}>Start !!</button>
   </div>
 }

@@ -2,15 +2,26 @@
 
 .pos{
   @include n.pos;
+  margin-top: 1rem;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  gap: 2rem;
 }
 
 .intro{
-  width: 60%;
+  // width: 70%;
+  height: 16rem;
   display: flex;
   align-items: center;
-  flex-direction: column;
-  gap: 2rem;
+  flex-direction: row;
+  gap: 5rem;
   justify-content: center;
   margin: auto;
+  margin-top: 3rem;
+
+  .card{
+    margin-top: auto;
+  }
 }

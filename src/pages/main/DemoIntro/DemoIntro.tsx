@@ -1,18 +1,26 @@
 import MissionCard from '../../../shared/MissionCard/MissionCard.tsx';
-import HeaderButton from '../../../shared/Header/HeaderButton/HeaderButton.tsx';
-import Navigation from '../../../shared/Navigation/Navigation.tsx';
 import styles from './DemoIntro.module.scss';
-import missionSvg from '../../../public/svg/Mission.svg';
+import Instruction from '../../../shared/Instruction/Instruction.tsx';
+import Profile from './Profile/Profile.tsx';
+import Header from '../../../shared/Header/Header.tsx';
 
 export default function DemoIntro(){
-  return <div className={styles.pos}>
-  <Navigation path='/intro' isBackwards={true}/>
-  <div className={styles.intro}>
-    <p>On this Demo, you will experience as a creator and learn the value of NFT licensing on Settlus Blockchain.
-       Follow the guides and complete the missions!</p>
-    <HeaderButton icon={missionSvg} name='Mission' />
-    <MissionCard title={"Tutorial Mission"}/>
+  return <>
+    <Header logoOnly={true} />
+    <div className={styles.pos}>
+      <Instruction title='Tips before you start the journey'>
+        <p>
+          On this Demo, you will create a 3D costume and monetize your IP in a special way.
+          Follow the tutorial and complete all the missions!
+          Write your creator nickname and enter the Shop!
+        </p>
+      </Instruction>
+      <div className={styles.intro}>
+        <div className={styles.card}>
+          <MissionCard title={"Tutorial Mission"}/>
+        </div>
+        <Profile />
+      </div>
   </div>
-  <Navigation path='/demo/create-nft'/>
-  </div>
+  </>
 }

@@ -9,6 +9,7 @@ export default function Intro(){
       <br />
       Transform the way you manage and monetize your IP  in the web3 era.
     </p>
+
     <Card />
   </div>
 }
