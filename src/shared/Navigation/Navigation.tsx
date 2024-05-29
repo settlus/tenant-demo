@@ -1,6 +1,7 @@
 import styles from './Navigation.module.scss';
-import navImg from '../../public/images/navigation.png';
-import { useNavigate} from 'react-router-dom';
+import navSymbol from '../../public/svg/nav.svg';
+import navBackSymbol from '../../public/svg/navBack.svg';
+import { useNavigate } from 'react-router-dom';
 
 type PropType = {
   path?: string,
@@ -14,10 +15,8 @@ export default function Navigation({path, handleClick, isBackwards}: PropType): 
     if(path) navigate(path);
   }
 
-  return <img src={navImg} 
-      alt='navigation'
-      onClick={handleNavigate}
-      className={`${styles.image} ${isBackwards ? styles.backwards : ''}`}
-      />
+  return <div onClick={handleNavigate} className={`${styles.button} ${isBackwards ? styles.backwards : ''}`}>
+    <img src={isBackwards ? navBackSymbol : navSymbol} alt='nav' />
+  </div> 
 
 }

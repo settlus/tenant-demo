@@ -1,10 +1,23 @@
-.image{
+.button{
   width: 2.5rem;
+  min-width: 2.5rem;
   height: 2.3rem;
-  margin: auto;
+  border-radius: 50%;
+  margin: auto 0rem;
+  background-color: #FFA300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  img{
+    margin: 0rem;
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 
   &.backwards{
-    transform: rotate(180deg);
+    border: 1px solid #C8C8C8;
+    background-color: transparent;
   }
 
   &:hover{

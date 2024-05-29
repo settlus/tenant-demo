@@ -1,11 +1,16 @@
 .instruction{
   padding: 1rem 0rem;
-  margin: auto;
-  text-align: center;
-  width: 60%;
+  text-align: left;
+  align-self: center;
+  width: auto;
   
   h2,p{
     text-align: left;
+  }
+
+  .content{
+    display: flex;
+    flex-direction: row;
   }
 
 }
