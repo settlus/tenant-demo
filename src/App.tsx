@@ -8,6 +8,7 @@ import Demo from './pages/demo/Demo/Demo.tsx';
 import Main from './pages/dashboard/Main/Main.tsx';
 import TransferPage from './pages/transfer-nft/TransferPage/TransferPage.tsx';
 import DashboardProvider from './store/dashboard_context.tsx';
+import GlobalProvider from './store/nft_context.tsx';
 import ShopProvider from './store/costumeshop_context.tsx';
 import CompletePage from './pages/complete/CompletePage/CompletePage.tsx';
 import CostumePage from './pages/costume-shop/Costumepage/CostumePage.tsx';
@@ -78,11 +79,13 @@ const router = createBrowserRouter([
 
 function App() {
   return <QueryClientProvider client={queryClient}>
-    <DashboardProvider>
-      <ShopProvider>
-        <RouterProvider router={router} />
-      </ShopProvider>
-    </DashboardProvider>;
+    <GlobalProvider>
+      <DashboardProvider>
+        <ShopProvider>
+          <RouterProvider router={router} />
+        </ShopProvider>
+      </DashboardProvider>
+    </GlobalProvider>
   </QueryClientProvider> 
 }
 
