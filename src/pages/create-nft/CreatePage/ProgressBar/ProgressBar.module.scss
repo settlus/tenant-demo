@@ -3,21 +3,37 @@ $inactive: #D9D9D9;
 
 .progress{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: auto;
-  width: 15%;
+  width: 16%;
+  min-width: 12rem;
+
 
   .step{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 0.5rem;
     z-index: 2;
+
+    img{
+      margin: 0rem;
+      height: 0.7rem;
+      margin-top: auto;
+    }
+
+    &.visual{
+      margin: 0rem 1.8rem;
+    }
 
     .circle{
       border-radius: 50%;
       height: 1rem;
       width: 1rem;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      display: flex;
 
       &.active{
         background-color: $active;
@@ -26,6 +42,13 @@ $inactive: #D9D9D9;
       &.inactive{
         background-color: $inactive;
       }
+    }
+
+    .labels{
+      width: 200%;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
     }
 
     label{
@@ -37,6 +60,10 @@ $inactive: #D9D9D9;
 
       &.inactive{
         color: $inactive;
+      }
+
+      &.second{
+        margin-left: auto;
       }
     }
 
@@ -50,10 +77,10 @@ $inactive: #D9D9D9;
   hr{
     flex: 1 0 auto;
     height: 0.2rem;
-    margin-left: -0.4rem;
-    margin-right: -0.4rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
     border: none;
-    z-index: 1;
+    z-index: 0;
     background-color: $inactive;
     background-image: linear-gradient(to right, $active 50%, $inactive 50%);
     background-size: 200% 100%;

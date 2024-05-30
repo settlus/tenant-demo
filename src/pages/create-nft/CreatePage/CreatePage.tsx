@@ -37,7 +37,7 @@ function validateFields(info: Info){
 
 export default function CreatePage(){
   const [open, setOpen] = useState(false);
-  const [step,setStep] = useState(1);
+  const [step,setStep] = useState(0);
 
   const [file,setFile] = useState<string>('');
   const [info, setInfo] = useState<Info>({
@@ -45,38 +45,56 @@ export default function CreatePage(){
     name: null,
   })
   const navigate = useNavigate();
-  const instruction = step<2 ? TEXT[0]: TEXT[1];
+  const instruction = step<3 ? TEXT[0]: TEXT[1];
 
   useEffect(()=>{
-    if(step===0) navigate(-1);
-    if(step===2) {
+    console.log(step);
+    if(step<0) navigate(-1);
+    if(step===1) {
       const errorMsg = validateFile(file).error;
       if(errorMsg){
         alert(errorMsg);
-        setStep(1);
+        setStep(0);
         // setOpen(false);
+      }else{
+        const mint = async()=>{
+          await mintNFT(file);
+          setStep(2);    
+        }
+        setOpen(true);
+        mint();
       }
     }
-    if(step===3) {
-      const mint = async()=>{
-        const final= {
-          name: info.name,
-          price: parseInt(info.price ||'',10),
-        }
-        await mintNFT(file, final);
-        setStep(4);    
-      }
-      setOpen(true);
-
+    if(step===4){
       const errorMsg = validateFields(info).error;
       if(errorMsg){
         alert(errorMsg);
-        setStep(2);
+        setStep(3);
         // setOpen(false);
       }
-      else mint();
-    
+      else navigate('/demo/costume-shop');
+
     }
+    // if(step===2) {
+    //   const mint = async()=>{
+    //     const final= {
+    //       name: info.name,
+    //       price: parseInt(info.price ||'',10),
+    //     }
+    //     await mintNFT(file, final);
+    //     setStep(3);    
+    //   }
+    //   setOpen(true);
+
+    //   const errorMsg = validateFields(info).error;
+    //   if(errorMsg){
+    //     alert(errorMsg);
+    //     setStep(1);
+    //     // setOpen(false);
+    //   }
+    //   else mint();
+    
+    // }
   },[step]);
 
   function handleFile(file:string){
@@ -94,31 +112,39 @@ export default function CreatePage(){
     
   }
 
+  function handleStep(){
+    setStep(prev=>{
+      return prev+1;
+    });
+  }
+
 
   function handleNavigate(dir: string) {
     if(dir==='next') setStep((prev)=>{
       return prev+1;
     });
-    else setStep((prev)=>{
-      return prev-1;
-    })
+    else {
+      if(step===3) setStep(0);
+      else setStep((prev)=>{
+        return prev-1
+      });
+    } 
 
   }
 
   function handleClose(){
     setOpen(false);
-    setStep(5);
   }
 
   return <div className={styles.main}>
-    <SubmitModal step={step} open={open} handleClose={handleClose}/>
+    <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep}/>
 
     <Instruction title={instruction.title}>{instruction.text}</Instruction>
     <ProgressBar step={step}/>
     <div className={styles.pos}>
       <Navigation handleClick={()=>handleNavigate('back')} isBackwards={true}/>
-      {step===1 && <Upload file={file} handleFile={handleFile}/>}
-      {step>1 && <Submit info={info} handleInfo={handleInfo}/>}
+      {step<3 && <Upload file={file} handleFile={handleFile}/>}
+      {step>2 && <Submit info={info} handleInfo={handleInfo}/>}
       <Navigation handleClick={()=>handleNavigate('next')} path='/intro'/>
     </div>
   </div>
