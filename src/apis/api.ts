@@ -12,10 +12,13 @@ const delay = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-async function getBase64Image(file: File) {
+async function getBase64Image(file: string) {
+  const response = await fetch(file);
+  const blob = await response.blob();
+
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(blob);
 
     reader.onload = () => {
       resolve(reader.result); 
@@ -27,7 +30,7 @@ async function getBase64Image(file: File) {
   });
 }
 
-export async function mintNFT(file: File , info: Info){
+export async function mintNFT(file: string , info: Info){
   const prev = sessionStorage.getItem('nftArr') || '[]';
   const arr = JSON.parse(prev);
   const base64 = await getBase64Image(file);

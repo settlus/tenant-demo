@@ -1,5 +1,13 @@
 import styles from './Upload.module.scss';
 import AvatarPreview from '../../../../shared/AvatarPreview/AvatarPreview';
+import templateImg from '../../../../public/images/clothTemplate/Item1/T_UGC_Top_DefaultWear001F_D.png';
+import downloadIcon from '../../../../public/svg/Download.svg';
+import sample1 from '../../../../public/images/clothTemplate/sampleTexture/sample1.png';
+import sample2 from '../../../../public/images/clothTemplate/sampleTexture/sample2.png';
+import sample3 from '../../../../public/images/clothTemplate/sampleTexture/sample3.png';
+import { useState } from 'react';
+
+const SAMPLES = [sample1, sample2, sample3]
 
 export function validateFile(imgFile: File){
     const extension=imgFile.name.split('.').pop() || 'none';
@@ -18,34 +26,49 @@ export function validateFile(imgFile: File){
 }
 
 type PropType={
-  file: File | null,
-  handleFile: (file: File)=>void,
+  file: string,
+  handleFile: (file: string)=>void,
 }
 
 export default function Upload({file, handleFile}: PropType):React.ReactElement{
+  const [useSample, setUseSample] = useState(false);
+  const [sample, setSample] = useState(0);
 
-  let fileUrl = null;
-  if (file) {
-    fileUrl = URL.createObjectURL(file);
-  }
+  // let fileUrl = null;
+  // if (file) {
+  //   fileUrl = URL.createObjectURL(file);
+  // }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>){
     if (e.target.files && e.target.files.length > 0) {
       const currFile = e.target.files[0];
+      const url = URL.createObjectURL(currFile);
       let error = validateFile(currFile);
 
       if (!error.error) {
-        handleFile(currFile);
+        handleFile(url);
       } else alert(error.error);
     }
   }
 
+  function handleClick(){
+    if(useSample==false) setUseSample(true);
+    if(useSample){
+      setSample(prev=>(prev+1)%3);
+      handleFile(SAMPLES[sample]);
+    }
+
+  }
+
   return <div className={styles.main}>
     <div className={styles.avatar}>
-      <AvatarPreview uploadedFile={''}/>
+      <AvatarPreview uploadedFile={file} selectedTemplateMeshName='DefaultWear001F'/>
     </div>
     <div className={styles.preview}>
-      {fileUrl && <img src={fileUrl}/>}
+      <img src={templateImg}/>
+      <a href={templateImg} download={'template.png'}>
+        <img src={downloadIcon} alt='download'/>
+      </a>
     </div>
     <div className={styles.select}>
       <h3>Upload File</h3>
@@ -58,6 +81,6 @@ export default function Upload({file, handleFile}: PropType):React.ReactElement{
         <p>Select</p>
       </span>
     </div>
-    <button>Or use AI generated image</button>
+    <button onClick={handleClick}>Or use AI generated image</button>
   </div>
 }

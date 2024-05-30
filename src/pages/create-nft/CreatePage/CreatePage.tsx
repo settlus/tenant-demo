@@ -10,7 +10,7 @@ import SubmitModal from './SubmitModal/SumbitModal';
 import { mintNFT } from '../../../apis/api';
 
 const TEXT = [{
-  title: 'Now, let’ experience as a creator and make an awesome costume!',
+  title: 'Now, let’ experience as a creator and make an awesome t-shirt!',
   text: 'Upload 2D image or choose AI generated image.',
 },{
   title: 'Whoa! Almost there',
@@ -22,8 +22,8 @@ type Info = {
   name: string | null,
 }
 
-function validateFile(file: File | null ){
-  if(!file) return {error: 'Please upload an NFT image file!'};
+function validateFile(file: string ){
+  if(file.length==0) return {error: 'Please upload an NFT image file or select a sample costume!'};
 
   return {};
 }
@@ -39,7 +39,7 @@ export default function CreatePage(){
   const [open, setOpen] = useState(false);
   const [step,setStep] = useState(1);
 
-  const [file,setFile] = useState<File | null>(null);
+  const [file,setFile] = useState<string>('');
   const [info, setInfo] = useState<Info>({
     price: null,
     name: null,
@@ -63,7 +63,7 @@ export default function CreatePage(){
           name: info.name,
           price: parseInt(info.price ||'',10),
         }
-        await mintNFT(file || new File([],''), final);
+        await mintNFT(file, final);
         setStep(4);    
       }
       setOpen(true);
@@ -79,7 +79,7 @@ export default function CreatePage(){
     }
   },[step]);
 
-  function handleFile(file:File){
+  function handleFile(file:string){
     setFile(file);
   }
 

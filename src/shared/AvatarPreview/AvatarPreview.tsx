@@ -206,9 +206,12 @@ const AvatarPreview = ({
       ) {
         // handleResetAvatar()
         //   .then(()=>handleApplyPng(uploadedFile, selectedTemplateMeshName))
-        handleResetAvatar()
-          .then(()=>handleSelectTemplate(selectedTemplateMeshName))
-          .then(()=>handleApplyPng(uploadedFile, selectedTemplateMeshName))
+
+        // handleResetAvatar()
+        //   .then(()=>handleSelectTemplate(selectedTemplateMeshName))
+        //   .then(()=>handleApplyPng(uploadedFile, selectedTemplateMeshName))
+
+        handleApplyPng(uploadedFile, selectedTemplateMeshName);
       }
 
     }
