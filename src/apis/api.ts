@@ -30,29 +30,25 @@ async function getBase64Image(file: string) {
   });
 }
 
-// export async function mintNFT(file: string , info: Info){
-//   const prev = sessionStorage.getItem('nftArr') || '[]';
-//   const arr = JSON.parse(prev);
-//   const base64 = await getBase64Image(file);
-
-//   const item = {
-//     name: info.name,
-//     price: info.price,
-//     thumbnail: base64,
-//   };
-//   arr.push(item);
-//   sessionStorage.setItem('nftArr',JSON.stringify(arr));
-
-//   await delay(2000);
-//   return;
-// }
-
-export async function mintNFT(file: string){
-  const base64 = await getBase64Image(file);
-  sessionStorage.setItem('nftImg',JSON.stringify(base64));
+export async function mintNFT(){
 
   await delay(2000);
   return;
+}
+
+export async function createItem(info: Info, file: string){
+  const base64 = await getBase64Image(file);
+  const item = JSON.stringify({
+    ...info,
+    thumbnail: base64,
+  });
+  sessionStorage.setItem('itemInfo',item);
+}
+
+export function getItem(){
+  const raw = sessionStorage.getItem('itemInfo');
+  const result = raw ? JSON.parse(raw) : null;
+  return result;
 }
 
 export async function transferNFT(offer: any){

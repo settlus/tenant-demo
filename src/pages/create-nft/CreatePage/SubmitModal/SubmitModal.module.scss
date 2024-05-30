@@ -4,6 +4,33 @@ img{
   margin: 1rem auto;
 }
 
+.loading{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+
+  img{
+    margin: 0rem;
+  }
+  
+
+  .thumbnail{
+    height: 8rem;
+    width: auto;
+    margin: 0rem;
+  }
+
+  .nftDoc{
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+
+  }
+}
+
 .icon {
   height: 11rem;
   width: 11rem;
@@ -17,8 +44,13 @@ img{
 
 
   img{
-    // margin-bottom: auto;
-    // margin-right: auto;
     margin: 0rem;
+
+    &.thumbnail{
+      margin: 0rem auto;
+      height: 8rem;
+      width: auto;
+
+    }
   }
 }

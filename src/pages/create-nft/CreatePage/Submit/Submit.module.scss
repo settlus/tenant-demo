@@ -4,9 +4,26 @@
   padding: 0rem 3rem;
   max-width: 60rem;
 
-  form{
+  .itemInfo{
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 3rem;
+
+    img{
+      margin: 0rem;
+      height: 8rem;
+      width: auto;
+      border: 1px solid #D9D9D9;
+      border-radius: 1rem;
+    }
+
+    form{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
   }
 }

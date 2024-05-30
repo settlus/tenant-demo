@@ -1,15 +1,14 @@
 .field{
   display: flex;
   flex-direction: row;
-  width: 50%;
   margin: auto;
   justify-content: center;
   font-size: 1.1rem;
 
   label{
-    width: 20%;
+    width: 5.5rem;;
     text-align: left;
-    padding: 0.3rem;
+    line-height: 2.5rem;
   }
 
   input{

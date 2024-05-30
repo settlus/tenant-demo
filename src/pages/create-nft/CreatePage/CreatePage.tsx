@@ -7,7 +7,7 @@ import Navigation from '../../../shared/Navigation/Navigation';
 import Upload from './Upload/Upload';
 import Submit from './Submit/Submit';
 import SubmitModal from './SubmitModal/SumbitModal';
-import { mintNFT } from '../../../apis/api';
+import { mintNFT, createItem } from '../../../apis/api';
 
 const TEXT = [{
   title: 'Now, let’ experience as a creator and make an awesome t-shirt!',
@@ -36,6 +36,8 @@ function validateFields(info: Info){
 }
 
 export default function CreatePage(){
+  const isLoaded = typeof window !=='undefined' && typeof window.Module !=='undefined';
+
   const [open, setOpen] = useState(false);
   const [step,setStep] = useState(0);
 
@@ -48,7 +50,6 @@ export default function CreatePage(){
   const instruction = step<3 ? TEXT[0]: TEXT[1];
 
   useEffect(()=>{
-    console.log(step);
     if(step<0) navigate(-1);
     if(step===1) {
       const errorMsg = validateFile(file).error;
@@ -58,7 +59,7 @@ export default function CreatePage(){
         // setOpen(false);
       }else{
         const mint = async()=>{
-          await mintNFT(file);
+          await mintNFT();
           setStep(2);    
         }
         setOpen(true);
@@ -66,35 +67,25 @@ export default function CreatePage(){
       }
     }
     if(step===4){
+      const create = async()=>{
+        const final= {
+          name: info.name,
+          price: parseInt(info.price ||'',10),
+        }
+        const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
+        await createItem(final, thumbnail);
+      };
+
       const errorMsg = validateFields(info).error;
       if(errorMsg){
         alert(errorMsg);
         setStep(3);
-        // setOpen(false);
       }
-      else navigate('/demo/costume-shop');
-
+      else {
+        create();
+        navigate('/demo/costume-shop');
+      }
     }
-    // if(step===2) {
-    //   const mint = async()=>{
-    //     const final= {
-    //       name: info.name,
-    //       price: parseInt(info.price ||'',10),
-    //     }
-    //     await mintNFT(file, final);
-    //     setStep(3);    
-    //   }
-    //   setOpen(true);
-
-    //   const errorMsg = validateFields(info).error;
-    //   if(errorMsg){
-    //     alert(errorMsg);
-    //     setStep(1);
-    //     // setOpen(false);
-    //   }
-    //   else mint();
-    
-    // }
   },[step]);
 
   function handleFile(file:string){
