@@ -13,6 +13,8 @@
 
   .loading{
     margin: auto;
+    margin-left: 40%;
+    position: absolute;
   }
 
   .errorBox {
@@ -59,11 +61,11 @@
     width: max-content;
     font-size: 0.8rem;
     padding: 5px 10px;
-    justify-content: center;
-    align-items: center;
     gap: 4px;
     border-radius: 8px;
     background: var(--Gray-White, #fff);
+    color: #696969;
+    border: 1px solid #9b9b9b;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.02), 0px 0px 0px 1px rgba(0, 0, 0, 0.08) inset,
       0px -1px 0px 0px rgba(0, 0, 0, 0.06) inset;
   }
