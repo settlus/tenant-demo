@@ -40,6 +40,7 @@ export default function CreatePage(){
 
   const [open, setOpen] = useState(false);
   const [step,setStep] = useState(0);
+  const [navOnHover, setNavOnHover] = useState(false);
 
   const [file,setFile] = useState<string>('');
   const [info, setInfo] = useState<Info>({
@@ -127,6 +128,10 @@ export default function CreatePage(){
     setOpen(false);
   }
 
+  function handleNavHover(){
+    setNavOnHover(prev=>!prev);
+  }
+
   return <div className={styles.main}>
     <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep}/>
 
@@ -136,7 +141,11 @@ export default function CreatePage(){
       <Navigation handleClick={()=>handleNavigate('back')} isBackwards={true}/>
       {step<3 && <Upload file={file} handleFile={handleFile}/>}
       {step>2 && <Submit info={info} handleInfo={handleInfo}/>}
-      <Navigation handleClick={()=>handleNavigate('next')} path='/intro'/>
+      <div className={styles.proceed} onMouseEnter={handleNavHover} onMouseLeave={handleNavHover}>
+        {navOnHover && step===0 && <h3>Mint &gt;&gt;</h3>}
+        {navOnHover && step===3 && <h3>Save &gt;&gt;</h3>}
+        <Navigation handleClick={()=>handleNavigate('next')} path='/intro'/>
+      </div>
     </div>
   </div>
   
