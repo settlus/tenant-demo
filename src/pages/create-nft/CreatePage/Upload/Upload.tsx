@@ -9,20 +9,34 @@ import { useState, useEffect } from 'react';
 
 const SAMPLES = [sample1, sample2, sample3]
 
-export function validateFile(imgFile: File){
-    const extension=imgFile.name.split('.').pop() || 'none';
-    if('png'!==extension.toLowerCase()) return {error: 'The file must have png extension!'};
-    
-    // let url = URL.createObjectURL(imgFile);
-    // let img = new Image();
-    // img.src=url;
+export function validateFile(imgFile: File): Promise<{ error?: string }>{
+  return new Promise((resolve, reject) => {
+    const extension = imgFile.name.split('.').pop() || 'none';
+    if ('png' !== extension.toLowerCase()) {
+      resolve({ error: 'The file must have a png extension!' });
+      return;
+    }
 
-    // let width = img.width;
-    // let height = img.height;
-    // console.log(width, height, url, img.src);
-    // if(width!==height) return {error:'Image ratio should be 1:1 !'};
-    // if(width>1024) return {error:'Image size should be smaller than 1024px!'};
-    return {};
+    const img = new Image();
+    
+    img.onload = function () {
+      if (img.width !== img.height) {
+        resolve({ error: 'The image should be of 1:1 ratio!' });
+      } else if(img.width>1024){
+        resolve({ error: 'The file size is too large!' });
+      }
+      else {
+        resolve({});
+      }
+      URL.revokeObjectURL(img.src);
+    };
+
+    img.onerror = function (e) {
+      reject({ error: 'Failed to load the image. Please select a valid image file.' });
+    };
+
+    img.src = URL.createObjectURL(imgFile);
+  });
 }
 
 type PropType={
@@ -38,11 +52,16 @@ export default function Upload({file, handleFile}: PropType):React.ReactElement{
     if (e.target.files && e.target.files.length > 0) {
       const currFile = e.target.files[0];
       const url = URL.createObjectURL(currFile);
-      let error = validateFile(currFile);
 
-      if (!error.error) {
-        handleFile(url);
-      } else alert(error.error);
+      validateFile(currFile)
+        .then(result=>{
+          if(result.error){
+            alert(result.error);
+          }else handleFile(url);
+        })
+        .catch(e=>{
+          console.log(e);
+        })
     }
   }
 
