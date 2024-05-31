@@ -112,5 +112,9 @@ $border-color: #D9D9D9;
     border-color: black;
     background-color: white;
     box-shadow: 5px 5px 10px rgba(160, 160, 160, 0.2);
+
+    &.active{
+      background-color: #D9D9D9;
+    }
   }
 }

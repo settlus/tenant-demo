@@ -57,7 +57,10 @@ export default function Upload({file, handleFile}: PropType):React.ReactElement{
         .then(result=>{
           if(result.error){
             alert(result.error);
-          }else handleFile(url);
+          }else{
+            setUseSample(false);
+            handleFile(url);
+          }
         })
         .catch(e=>{
           console.log(e);
@@ -101,6 +104,6 @@ export default function Upload({file, handleFile}: PropType):React.ReactElement{
         <p>Select</p>
       </span>
     </div>
-    <button onClick={handleClick}>Or use AI generated image</button>
+    <button onClick={handleClick} className={useSample ? styles.active : ''}>Or use Sample Costume {useSample ? sample+1 : ' '}</button>
   </div>
 }
