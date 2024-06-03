@@ -1,27 +1,37 @@
 import React, { useState } from "react";
+import { DataType, OfferType } from "../types/type";
 
-type offerType = {
-  itemIndex: number,
-  offerAddress: string,
-  offerPrice: number,
-} | null;
+const INITIAL_DATA = {
+  thumbnail: '',
+  title: '',
+  history: [],
+  details: {
+    'Contact Address':'0x72f223423984723649823782374982392e9',
+    'Token ID': '',
+    'Token Standard': 'ERC-721',
+    'Chain': 'Settlus',
+    'Creator ID': '',
+    'Owner ID': '',
+  },
+  revenue: {
+    'Price': 0,
+    'Quantity': 0,
+  },
+
+}
+
+type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 export interface DashboardState {
-  isModal: number; setIsModal: (value: number) => void; //0: closed, 1: collapsed, 2: open
-  isOfferModal: boolean; setIsOfferModal: (value: boolean)=>void;
-  offer: offerType, setOffer: (value: offerType)=>void;
-  selected: number; setSelected: (value:any) =>void;
-  data: any; setData: (value:any)=>void;
-  type: string; setType: (value:string)=>void;
+  isOfferModal: boolean; setIsOfferModal: SetState<boolean>;
+  offer: OfferType, setOffer: SetState<OfferType>;
+  data: DataType; setData: SetState<DataType>;
 }
 
 export const DashboardContext = React.createContext<DashboardState>({
-  isModal: 0, setIsModal: ()=>{},
   isOfferModal: false, setIsOfferModal: ()=>{},
   offer: null, setOffer: ()=>{},
-  selected:0, setSelected: ()=>{},
-  data: [], setData:()=>{},
-  type: 'on-chain', setType:()=>{},
+  data: INITIAL_DATA, setData:()=>{},
 });
 
 interface GlobalProviderProps {
@@ -29,24 +39,18 @@ interface GlobalProviderProps {
 }
 
 const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
-  const [isModal, setIsModal] = useState<number>(0);
   const [isOfferModal, setIsOfferModal] = useState<boolean>(false);
-  const [offer, setOffer] = useState<offerType>({
+  const [offer, setOffer] = useState<OfferType>({
     itemIndex: 0,
     offerAddress: 'xxxxxxx',
     offerPrice: 1000,
   }); //dummy initial state
-  const [selected, setSelected] = useState<number>(0);
-  const [data, setData] = useState<any[]>([]);
-  const [type, setType] = useState<string>('on-chain');
+  const [data, setData] = useState<DataType>(INITIAL_DATA);
 
   const state: DashboardState = {
-    isModal, setIsModal,
     isOfferModal, setIsOfferModal,
     offer, setOffer,
-    selected, setSelected,
     data, setData,
-    type, setType,
   };
 
   return (

@@ -7,11 +7,10 @@ import { DashboardContext } from '../../../store/dashboard_context';
 export default function TransferPage(){
   const [isModal, setIsModal] = useState(false);
   const {offer, data} = useContext(DashboardContext);
-  const index= offer ? offer.itemIndex : 0;
 
   const INFO = {
-    thumbnail: data[index].thumbnail,
-    title: data[index].title,
+    thumbnail: data.thumbnail,
+    title: data.title,
   }
 
   function handleOpen(){

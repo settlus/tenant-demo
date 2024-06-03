@@ -5,7 +5,7 @@ import Intro from './pages/main/Intro/Intro'
 import DemoIntro from './pages/main/DemoIntro/DemoIntro';
 import CreatePage from './pages/create-nft/CreatePage/CreatePage.tsx';
 import Demo from './pages/demo/Demo/Demo.tsx';
-import Main from './pages/dashboard/Main/Main.tsx';
+import DashboardPage from './pages/dashboard/DashboardPage/DashboardPage.tsx';
 import TransferPage from './pages/transfer-nft/TransferPage/TransferPage.tsx';
 import DashboardProvider from './store/dashboard_context.tsx';
 import GlobalProvider from './store/nft_context.tsx';
@@ -55,18 +55,7 @@ const router = createBrowserRouter([
       },
       {
         path:'dashboard',
-        element: <Outlet />,
-        children: [
-          {index: true, element: <Main />},
-          {
-            path:'explore',
-            element:<></>,
-          },
-          {
-            path:'sell-nft',
-            element:<></>,
-          }
-        ]
+        element: <DashboardPage />,
       },
       {
         path:'transfer-nft',

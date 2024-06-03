@@ -1,15 +1,16 @@
 import styles from './Header.module.scss';
-import {Link} from 'react-router-dom';
 import smileSvg from '../../../public/svg/smile.svg';
+import infoSvg from '../../../public/svg/Info.svg';
 
-type PropType = {
-  length: number,
-}
-
-export default function Header({length}: PropType): React.ReactElement{
+export default function Header(){
   return <header className={styles.header}>
-    <img src={smileSvg} />
-    <h3>Creator Dashboard</h3>
-    <Link to={'/demo/create-nft'} className={`${styles.link} ${length>2 ? styles.disabled : ''}`} >+ Create costume</Link>
+    <span>
+      <img src={smileSvg} />
+      <h3>(Creator)’s Dashboard</h3>
+    </span>
+    <span>
+      <img src={infoSvg} className={styles.info}/>
+      <p>NFT is the royalty right of your creation. You can also sell your NFT and earn more profits.</p>
+    </span>
   </header>
 }

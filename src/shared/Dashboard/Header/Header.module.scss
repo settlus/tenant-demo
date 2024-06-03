@@ -1,8 +1,14 @@
 header{
   display: flex;
-  flex-direction: horizontal;
+  flex-direction: column;
+  margin-bottom: 2rem;
 
-  h3{
+  span{
+    display: flex;
+    flex-direction: horizontal;
+  }
+
+  h3,p{
     font-style: italic; 
   }
 
@@ -11,16 +17,11 @@ header{
     margin-right: 0.2rem;
     height: 1.4rem;
     padding-top: 0.2rem;
-  }
 
-  .link{
-    margin-left: auto;
-    color: black;
-    text-decoration: none;
-
-    &.disabled{
-      color: gray;
-      pointer-events: none;
+    &.info{
+      height: 1rem;
+      margin-right: 0rem;
     }
   }
+
 }
