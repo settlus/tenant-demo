@@ -5,7 +5,7 @@ import downloadIcon from '../../../../public/svg/Download.svg';
 import sample1 from '../../../../public/images/clothTemplate/sampleTexture/sample1.png';
 import sample2 from '../../../../public/images/clothTemplate/sampleTexture/sample2.png';
 import sample3 from '../../../../public/images/clothTemplate/sampleTexture/sample3.png';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const SAMPLES = [sample1, sample2, sample3]
 
@@ -67,12 +67,6 @@ export default function Upload({file, handleFile}: PropType):React.ReactElement{
         })
     }
   }
-
-  useEffect(()=>{
-    return ()=>{
-      handleFile('');
-    }
-  },[]);
 
   function handleClick(){
     if(useSample==false) setUseSample(true);

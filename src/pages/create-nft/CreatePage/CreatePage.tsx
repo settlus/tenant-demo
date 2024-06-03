@@ -52,6 +52,9 @@ export default function CreatePage(){
 
   useEffect(()=>{
     if(step<0) navigate(-1);
+    if(step===0) {
+      setFile('');
+    }
     if(step===1) {
       const errorMsg = validateFile(file).error;
       if(errorMsg){
@@ -74,7 +77,7 @@ export default function CreatePage(){
           price: parseInt(info.price ||'',10),
         }
         const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
-        await createItem(final, thumbnail);
+        await createItem(final, thumbnail, file);
       };
 
       const errorMsg = validateFields(info).error;
@@ -84,7 +87,7 @@ export default function CreatePage(){
       }
       else {
         create();
-        navigate('/demo/costume-shop');
+        navigate('/demo/costume-shop/new-item');
       }
     }
   },[step]);
