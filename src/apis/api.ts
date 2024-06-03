@@ -36,11 +36,13 @@ export async function mintNFT(){
   return;
 }
 
-export async function createItem(info: Info, file: string){
-  const base64 = await getBase64Image(file);
+export async function createItem(info: Info, thumbnail: string, file:string){
+  const base64Thumbnail = await getBase64Image(thumbnail);
+  const base64Template = await getBase64Image(file);
   const item = JSON.stringify({
     ...info,
-    thumbnail: base64,
+    thumbnail: base64Thumbnail,
+    template: base64Template,
   });
   sessionStorage.setItem('itemInfo',item);
 }
