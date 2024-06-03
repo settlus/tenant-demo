@@ -41,6 +41,7 @@ export type itemType = {
   creatorProfilePng: string, 
   quantity: number,
   offerValue: number,
+  userCreated?: boolean,
 }
 
 const ITEM_ARR: itemType[] = [{

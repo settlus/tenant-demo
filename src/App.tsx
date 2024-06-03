@@ -40,7 +40,14 @@ const router = createBrowserRouter([
     children: [
       {
         path:'costume-shop',
-        element: <CostumePage />
+        element: <CostumePage />,
+        children: [
+          {index: true, element: <></>},
+          {
+            path:'new-item',
+            element: <></>
+          },
+        ]
       },
       {
         path:'create-nft',

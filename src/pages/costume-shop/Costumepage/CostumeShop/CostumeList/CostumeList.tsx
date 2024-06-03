@@ -13,7 +13,7 @@ export default function CostumeList(){
   return <div className={styles.main}>
   <h3>Costume lists</h3>
   <ul>
-    {items.map((item, index)=><li key={item.title}><Thumbnail thumbnail={item.thumbnailPng} onClick={()=>{handleClick(index)}} selected={selected===index ? true : false}/></li>)}
+    {items.map((item, index)=><li key={item.title}><Thumbnail thumbnail={item.thumbnailPng} isNew={item.userCreated ? true : false} onClick={()=>{handleClick(index)}} selected={selected===index ? true : false}/></li>)}
   </ul>
 </div>
 }

@@ -1,11 +1,17 @@
 import styles from './Detail.module.scss';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../../../../../store/costumeshop_context';
 
 export default function Detail(){
   const {selected, items, step} = useContext(ShopContext);
   const selectedItem = items[selected];
+  const navigate = useNavigate();
+
+  const handleClick = ()=>{
+    navigate('/demo/dashboard');
+  }
 
   return <div className={`${styles.main} ${step===1 || step===2 ? styles.active : ''}`}>
   <h3>Detail</h3>
@@ -28,6 +34,9 @@ export default function Detail(){
     </span>
   </p>
 
-  <button>Buy</button>
+  {selectedItem.userCreated ? 
+    <button className={styles.dashboardButton} onClick={handleClick}>Go to my dashboard</button>  
+    : <button>Buy</button>}
+ 
 </div>
 }

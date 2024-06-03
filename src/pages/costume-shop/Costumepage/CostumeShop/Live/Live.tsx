@@ -2,7 +2,8 @@ import styles from './Live.module.scss';
 import Thumbnail from '../Thumbnail/Thumbnail';
 import LiveIcon from '../../../../../public/images/live.gif';
 import { useContext, useEffect, useState } from 'react';
-import { ShopContext, itemType } from '../../../../../store/costumeshop_context';
+import {useLocation} from 'react-router-dom';
+import { ShopContext } from '../../../../../store/costumeshop_context';
 
 const LIST = [
   {user: 1, thumbnail: 4,},
@@ -21,6 +22,7 @@ const LIST = [
 export default function Live(){
   const {items, setItems, step} = useContext(ShopContext);
   const [liveList, setLiveList] = useState(LIST);
+  const location = useLocation();
 
   const addToList = async(user: number, thumbnail: number)=>{
     const delay = Math.random()*1000+500;
@@ -41,7 +43,20 @@ export default function Live(){
       await addToList(4,10);
       await addToList(2,8);
     }
-    addLive();
+
+    const addUserLive = async()=>{
+      await addToList(1,0);
+      await addToList(5,0);
+      await addToList(4,0);
+      await addToList(2,0);
+      await addToList(6,0);
+      await addToList(9,0);
+      await addToList(7,0);
+    }
+
+    const path = location.pathname.split('/')
+    if(path[path.length-1]==='new-item') addUserLive();
+    else addLive();
   },[])
 
   return <div className={`${styles.main} ${step===0 ? styles.active : ''}`}>

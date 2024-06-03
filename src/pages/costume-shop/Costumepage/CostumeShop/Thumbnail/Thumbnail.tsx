@@ -6,11 +6,13 @@ type propType={
   onClick?: ()=>void,
   thumbnail: string,
   selected?: boolean,
+  isNew?: boolean,
 }
 
-export default function Thumbnail({style, thumbnail, onClick, selected}: propType){
+export default function Thumbnail({style, thumbnail, onClick, selected, isNew}: propType){
   return <div className={`${styles.main} ${style ? style : ''} ${selected ? styles.selected  :''}`} onClick={onClick}>
     <img className={styles.nft} src={nftIcon} />
     <img className={styles.item} src={thumbnail} />
+    {isNew &&  <p>NEW</p>}
   </div>
 }
