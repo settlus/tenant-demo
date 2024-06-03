@@ -61,11 +61,11 @@ const router = createBrowserRouter([
         path:'transfer-nft',
         element: <TransferPage />,
       },
-      {
-        path:'complete',
-        element: <CompletePage />,
-      },
     ]
+  },
+  {
+    path:'/complete',
+    element: <CompletePage />
   }
   // {
   //   path:'*',
