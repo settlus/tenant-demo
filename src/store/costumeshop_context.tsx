@@ -44,7 +44,7 @@ export type itemType = {
   userCreated?: boolean,
 }
 
-const ITEM_ARR: itemType[] = [{
+export const ITEM_ARR: itemType[] = [{
   thumbnailPng: item1thumbnail,
   meshName: 'DefaultWear001F',
   templatePng: item1template,
