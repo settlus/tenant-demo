@@ -42,7 +42,7 @@ const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [isOfferModal, setIsOfferModal] = useState<boolean>(false);
   const [offer, setOffer] = useState<OfferType>({
     itemIndex: 0,
-    offerAddress: 'xxxxxxx',
+    offerAddress: '0x1ed3da02aaGd0x1ed3da02aaGd',
     offerPrice: 1000,
   }); //dummy initial state
   const [data, setData] = useState<DataType>(INITIAL_DATA);
