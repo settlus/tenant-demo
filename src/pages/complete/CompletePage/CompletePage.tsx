@@ -2,7 +2,7 @@ import Instruction from "../../../shared/Instruction/Instruction";
 import MissionCard from "../../../shared/MissionCard/MissionCard";
 import Header from "../../../shared/Header/Header";
 import QnaModal from "../../../shared/QnaModal/QnaModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from './CompletePage.module.scss';
 
 export default function CompletePage(){
@@ -11,6 +11,10 @@ export default function CompletePage(){
   const handleQna = ()=>{
     setQnaOpen(prev=>!prev);
   }
+
+  useEffect(()=>{
+    sessionStorage.clear();
+  },[]);
 
   return <>
     {qnaOpen && <QnaModal open={qnaOpen} handleClose={handleQna} />}
