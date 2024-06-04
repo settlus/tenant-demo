@@ -7,7 +7,7 @@ import Navigation from '../../../shared/Navigation/Navigation';
 import Upload from './Upload/Upload';
 import Submit from './Submit/Submit';
 import SubmitModal from './SubmitModal/SumbitModal';
-import { mintNFT, createItem } from '../../../apis/api';
+import { mintNFT, createItem, getItem } from '../../../apis/api';
 
 const TEXT = [{
   title: 'Now, let’ experience as a creator and make an awesome t-shirt!',
@@ -71,24 +71,24 @@ export default function CreatePage(){
       }
     }
     if(step===4){
-      const create = async()=>{
-        const final= {
-          name: info.name,
-          price: parseInt(info.price ||'',10),
-        }
-        const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
-        await createItem(final, thumbnail, file);
-      };
-
       const errorMsg = validateFields(info).error;
       if(errorMsg){
         alert(errorMsg);
         setStep(3);
       }
       else {
+        const create = async()=>{
+          const final= {
+            name: info.name,
+            price: parseInt(info.price ||'',10),
+          }
+          const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
+          await createItem(final, thumbnail, file);
+          sessionStorage.setItem('mission','2');
+          navigate('/demo/costume-shop/new-item');
+        };
+
         create();
-        sessionStorage.setItem('mission','2');
-        navigate('/demo/costume-shop/new-item');
       }
     }
   },[step]);

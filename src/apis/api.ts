@@ -41,7 +41,7 @@ export async function createItem(info: InfoType, thumbnail: string, file:string)
   sessionStorage.setItem('itemInfo',item);
 }
 
-export function getItem(){
+export async function getItem(){
   const raw = sessionStorage.getItem('itemInfo');
   const name = getNickName();
   const result = raw ? JSON.parse(raw) : {};
@@ -65,7 +65,7 @@ export async function transferNFT(offer: any){
 }
 
 export async function getData(): Promise<DataType>{
-  const data = getItem();
+  const data = await getItem();
 
   return {
     thumbnail: data.thumbnail,

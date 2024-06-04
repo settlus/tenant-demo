@@ -33,22 +33,27 @@ export default function CostumePage(){
   useEffect(()=>{
     const path = location.pathname.split('/')
     if(path[path.length-1]==='new-item'){
-      const sessionData = getItem();
-      setStep(3);
-      setItems(prev=>{
-        return [{
-          thumbnailPng: sessionData.thumbnail,
-          meshName: 'DefaultWear001F',
-          templatePng: sessionData.template,
-          title: sessionData.name, 
-          price: sessionData.price, 
-          creator: sessionData.nickname, 
-          creatorProfilePng: userProfile, 
-          quantity: 0,
-          offerValue: 0,
-          userCreated: true,
-        }, ...prev];
-      });
+      const handleData = async ()=>{
+        const sessionData = await getItem();
+        console.log(sessionData);
+        setItems(prev=>{
+          return [{
+            thumbnailPng: sessionData.thumbnail,
+            meshName: 'DefaultWear001F',
+            templatePng: sessionData.template,
+            title: sessionData.name, 
+            price: sessionData.price, 
+            creator: sessionData.nickname, 
+            creatorProfilePng: userProfile, 
+            quantity: 0,
+            offerValue: 0,
+            userCreated: true,
+          }, ...prev];
+        });
+        setStep(3);
+      }
+      
+      handleData();
     }
 
     return ()=>{
