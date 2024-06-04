@@ -10,10 +10,12 @@
     gap: 0.5rem;
     overflow: auto;
     max-height: 20.5rem;
+    padding-bottom: 0.1rem;
 
     li{
       display: flex;
       margin: auto;
+      padding-bottom: 0.03rem;
     }
   }
 }
