@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
 import Instruction from "../../../shared/Instruction/Instruction"
 import CostumeShop from "./CostumeShop/CostumeShop"
-import { ShopContext } from "../../../store/costumeshop_context"
+import { ShopContext, ITEM_ARR } from "../../../store/costumeshop_context"
 import nftIcon from '../../../public/images/NftLicense.png'
 import styles from './CostumePage.module.scss'
 import Navigation from "../../../shared/Navigation/Navigation"
@@ -17,7 +17,7 @@ const TITLES = [
 ]
 
 export default function CostumePage(){
-  const {step, setStep, items, setItems, selected} = useContext(ShopContext);
+  const {step, setStep, items, setItems, selected, setSelected} = useContext(ShopContext);
   const selectedItem = items[selected];
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,6 +46,12 @@ export default function CostumePage(){
           userCreated: true,
         }, ...prev];
       });
+    }
+
+    return ()=>{
+      setSelected(0);
+      setItems(ITEM_ARR);
+
     }
 
   },[]);
