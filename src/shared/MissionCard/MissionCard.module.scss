@@ -40,6 +40,10 @@
     gap: 0.8rem;
 
     li{
+      &.current{
+        font-weight: bold;
+      }
+
       img{
         margin: 0rem;
         height: 1rem;

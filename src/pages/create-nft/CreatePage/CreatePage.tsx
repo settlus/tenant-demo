@@ -87,6 +87,7 @@ export default function CreatePage(){
       }
       else {
         create();
+        sessionStorage.setItem('mission','2');
         navigate('/demo/costume-shop/new-item');
       }
     }

@@ -3,8 +3,14 @@ import styles from './DemoIntro.module.scss';
 import Instruction from '../../../shared/Instruction/Instruction.tsx';
 import Profile from './Profile/Profile.tsx';
 import Header from '../../../shared/Header/Header.tsx';
+import { useEffect } from 'react';
 
 export default function DemoIntro(){
+
+  useEffect(()=>{
+    sessionStorage.setItem('mission','0');
+  },[]);
+
   return <>
     <Header logoOnly={true} />
     <div className={styles.pos}>

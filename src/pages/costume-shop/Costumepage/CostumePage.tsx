@@ -23,7 +23,10 @@ export default function CostumePage(){
   const location = useLocation();
 
   const handleNav = ()=>{
-    if(step===2) navigate('/demo/create-nft'); 
+    if(step===2){
+      sessionStorage.setItem('mission','1');
+      navigate('/demo/create-nft'); 
+    }
     else setStep(prev=>prev+1);
   }
 

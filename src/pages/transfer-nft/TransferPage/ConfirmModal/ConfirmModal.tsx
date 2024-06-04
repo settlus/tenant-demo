@@ -17,6 +17,7 @@ export default function ConfirmModal({open, handleClose, offer}:PropType):React.
     offer=>transferNFT(offer),
     {
       onSuccess: ()=>{
+        sessionStorage.setItem('mission','5');
         navigate('/complete');
       },
     },

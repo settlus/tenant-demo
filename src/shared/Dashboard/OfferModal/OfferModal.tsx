@@ -16,6 +16,7 @@ export default function OfferModal(){
 
   function handleProceed(){
     handleClose();
+    sessionStorage.setItem('mission','4')
     navigate('/demo/transfer-nft');
   }
 

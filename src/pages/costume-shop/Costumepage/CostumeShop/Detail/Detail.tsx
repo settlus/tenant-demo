@@ -10,6 +10,7 @@ export default function Detail(){
   const navigate = useNavigate();
 
   const handleClick = ()=>{
+    sessionStorage.setItem('mission','3');
     navigate('/demo/dashboard');
   }
 
