@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 export default function DemoIntro(){
 
   useEffect(()=>{
+    sessionStorage.clear();
     sessionStorage.setItem('mission','0');
   },[]);
 
