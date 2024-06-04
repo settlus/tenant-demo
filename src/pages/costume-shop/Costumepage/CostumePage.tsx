@@ -27,7 +27,7 @@ export default function CostumePage(){
       sessionStorage.setItem('mission','1');
       navigate('/demo/create-nft'); 
     }
-    else setStep(prev=>prev+1);
+    setStep(prev=>prev+1);
   }
 
   useEffect(()=>{
