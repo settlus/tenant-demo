@@ -14,9 +14,10 @@ const STEPS = [
 
 type PropType={
   title: string,
+  beforeStart?: boolean,
 }
 
-export default function MissionCard({title}: PropType): React.ReactElement{
+export default function MissionCard({title, beforeStart}: PropType): React.ReactElement{
   const missionRef = useRef(sessionStorage.getItem('mission') || '0');
   const mission = Number(missionRef.current);
 
@@ -25,7 +26,7 @@ export default function MissionCard({title}: PropType): React.ReactElement{
     <h3>{title}</h3>
     <p>{mission} / 5</p>
     <ul>
-      {STEPS.map((item, index)=><li key={item} className={index===mission ? styles.current : ''}><img src={index<mission ? checkBulletIcon : bulletIcon}/>{item}</li>)}
+      {STEPS.map((item, index)=><li key={item} className={index===mission && !beforeStart ? styles.current : ''}><img src={index<mission ? checkBulletIcon : bulletIcon}/>{item}</li>)}
     </ul>
     
   </div>

@@ -23,7 +23,7 @@ export default function DemoIntro(){
       </Instruction>
       <div className={styles.intro}>
         <div className={styles.card}>
-          <MissionCard title={"Tutorial Mission"}/>
+          <MissionCard title={"Tutorial Mission"} beforeStart={true} />
         </div>
         <Profile />
       </div>
