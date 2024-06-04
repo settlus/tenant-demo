@@ -38,7 +38,7 @@ export default function ConfirmModal({open, handleClose, offer}:PropType):React.
       You will receive ${offer.offerPrice} to your account.<br />
       (In demo, no payment will be received.)
       </p>
-      <button onClick={handleConfirm}>{isLoading ? 'Loading...' : 'Confirm'}</button>
+      <button onClick={handleConfirm} className={isLoading ? styles.loading : ''}>{isLoading ? 'Loading...' : 'Confirm'}</button>
     </div>
   </Modal>
 }

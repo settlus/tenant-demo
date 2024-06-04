@@ -1,4 +1,7 @@
 import profile1 from '../public/svg/userProfile/profile1.svg';
+import profile2 from '../public/svg/userProfile/profile3.svg';
+import profile4 from '../public/svg/userProfile/profile4.svg';
+
 import { InfoType, DataType } from '../types/type';
 
 
@@ -76,11 +79,11 @@ export async function getData(): Promise<DataType>{
         'Activity': 'NFT Offer Arrived',
       },
       {
-        'Profile': profile1,
+        'Profile': profile2,
         'Activity': 'bought an item',
       },
       {
-        'Profile': profile1,
+        'Profile': profile4,
         'Activity': 'bought an item',
       },
       {
