@@ -39,7 +39,7 @@ export default function CostumePage(){
           templatePng: sessionData.template,
           title: sessionData.name, 
           price: sessionData.price, 
-          creator: 'dummy', 
+          creator: sessionData.nickname, 
           creatorProfilePng: userProfile, 
           quantity: 0,
           offerValue: 0,

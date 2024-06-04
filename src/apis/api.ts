@@ -43,8 +43,14 @@ export async function createItem(info: InfoType, thumbnail: string, file:string)
 
 export function getItem(){
   const raw = sessionStorage.getItem('itemInfo');
-  const result = raw ? JSON.parse(raw) : null;
-  return result;
+  const name = getNickName();
+  const result = raw ? JSON.parse(raw) : {};
+  return {...result, nickname: name};
+}
+
+export function getNickName(){
+  const name = sessionStorage.getItem('nickname') || 'User';
+  return name;
 }
 
 export async function transferNFT(offer: any){
