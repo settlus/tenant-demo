@@ -3,13 +3,16 @@ import styles from './DemoIntro.module.scss';
 import Instruction from '../../../shared/Instruction/Instruction.tsx';
 import Profile from './Profile/Profile.tsx';
 import Header from '../../../shared/Header/Header.tsx';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { ShopContext } from '../../../store/costumeshop_context.tsx';
 
 export default function DemoIntro(){
+  const {reset} = useContext(ShopContext);
 
   useEffect(()=>{
     sessionStorage.clear();
     sessionStorage.setItem('mission','0');
+    reset();
   },[]);
 
   return <>
