@@ -4,6 +4,7 @@ import Header from "../../../shared/Header/Header";
 import QnaModal from "../../../shared/QnaModal/QnaModal";
 import { useState } from "react";
 import styles from './CompletePage.module.scss';
+import {Link} from 'react-router-dom';
 
 export default function CompletePage(){
   const [qnaOpen, setQnaOpen] = useState(false);
@@ -31,6 +32,9 @@ export default function CompletePage(){
         <a href='https://blueholestudio.sharepoint.com/:w:/r/sites/ProjectMigaloo/_layouts/15/doc2.aspx?sourcedoc=%7B92B4DFB1-C0D8-4A65-860D-97624C9585EE%7D&file=Whitepaper_240201.docx&action=default&mobileredirect=true'>
           <button>Read Settlus White paper</button>
         </a>
+        <Link to={'/intro'}>
+          <button>Return to Beginning</button>
+        </Link> 
       </div>
     </div>
   </>
