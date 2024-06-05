@@ -5,6 +5,7 @@ import { useContext } from "react";
 import {useNavigate} from 'react-router-dom';
 import { DashboardContext } from "../../../store/dashboard_context";
 import profile1 from '../../../public/svg/userProfile/profile1.svg';
+import { formatNum } from '../../../utils/util';
 
 export default function OfferModal(){
   const {isOfferModal, setIsOfferModal, offer} = useContext(DashboardContext);
@@ -25,7 +26,7 @@ export default function OfferModal(){
       <h3>Deal Offer</h3>
       <img src={GiftSvg}/>
       <p>
-      <img src={profile1} />Joy has just offered to buy your NFT for ${offer?.offerPrice}. 
+      <img src={profile1} />Joy has just offered to buy your NFT for {formatNum(offer?.offerPrice)}. 
       Want to accept the offer 
       and transfer NFT?
       <br /><br />

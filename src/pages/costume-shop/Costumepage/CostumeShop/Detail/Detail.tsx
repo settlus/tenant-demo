@@ -3,6 +3,7 @@ import Thumbnail from '../Thumbnail/Thumbnail';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../../../../../store/costumeshop_context';
+import { formatNum } from '../../../../../utils/util';
 
 export default function Detail(){
   const {selected, items, step} = useContext(ShopContext);
@@ -18,7 +19,7 @@ export default function Detail(){
   <h3>Detail</h3>
   <div className={styles.profile}>
     <Thumbnail thumbnail={selectedItem.thumbnailPng}/>
-    <p>{selectedItem.title}<br />${selectedItem.price}</p>
+    <p>{selectedItem.title}<br />{formatNum(selectedItem.price)}</p>
     <span>
       <img src={selectedItem.creatorProfilePng}/>
       <p>{selectedItem.creator}, NFT holder</p>
@@ -31,7 +32,7 @@ export default function Detail(){
     <br />
     <span className={step===2 ? styles.active : ''}>
       Total sales quantity: {selectedItem.quantity}<br />
-      Total sold amount: ${selectedItem.quantity*selectedItem.price}
+      Total sold amount: {formatNum(selectedItem.quantity*selectedItem.price)}
     </span>
   </p>
 

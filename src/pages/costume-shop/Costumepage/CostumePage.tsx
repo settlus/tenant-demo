@@ -8,6 +8,7 @@ import Navigation from "../../../shared/Navigation/Navigation"
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getItem } from "../../../apis/api";
 import userProfile from '../../../public/svg/userProfile/userProfile.svg';
+import { formatNum } from "../../../utils/util"
 
 const TITLES = [
   'Welcome to the Avatar Costume Shop!',
@@ -72,7 +73,7 @@ export default function CostumePage(){
         {step===1 && <div className={styles.text}>
             <p><img src={nftIcon} alt='license' /> mark shows that the costumes are minted as NFTs. The NFT guarantees the ownership of a creator's costumes, and copies of costumes can be sold as items without quantity limit on the off-chain Avatar Costume Shop. Click your favorite costume to see the detail!</p>      
           </div>}
-        {step===2 && <p>This costume’s creator earned ${selectedItem.price*selectedItem.quantity} for item sales and now consider selling NFT for ${selectedItem.offerValue} on the NFT Marketplace. Once the NFT is sold, the new owner will earn profits from the item sales. That’s why NFT licensing is attractive.</p> }
+        {step===2 && <p>This costume’s creator earned {formatNum(selectedItem.price*selectedItem.quantity)} for item sales and now consider selling NFT for {formatNum(selectedItem.offerValue)} on the NFT Marketplace. Once the NFT is sold, the new owner will earn profits from the item sales. That’s why NFT licensing is attractive.</p> }
         {step===3 && <p>Now, you are one of the creators in the Avatar Costume Shop. Look at the “Live” section. Users are buying your item.
           Click the “Go to my dashboard” button to manage your sales.</p>}
       </Instruction>

@@ -4,6 +4,7 @@ import styles from "./ConfirmModal.module.scss";
 import { transferNFT } from "../../../../apis/api";
 import {useNavigate} from "react-router-dom";
 import {useMutation} from 'react-query';
+import { formatNum } from "../../../../utils/util";
 
 type PropType={
   handleClose: ()=>void,
@@ -35,7 +36,7 @@ export default function ConfirmModal({open, handleClose, offer}:PropType):React.
       <p>
       Once transferred, profits from NFT-licensed item will be vested to the new owner.
       <br /><br />
-      You will receive ${offer.offerPrice} to your account.<br />
+      You will receive {formatNum(offer.offerPrice)} to your account.<br />
       (In demo, no payment will be received.)
       </p>
       <button onClick={handleConfirm} className={isLoading ? styles.loading : ''}>{isLoading ? 'Loading...' : 'Confirm'}</button>

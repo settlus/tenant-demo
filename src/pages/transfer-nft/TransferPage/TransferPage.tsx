@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from 'react';
 import { DashboardContext } from '../../../store/dashboard_context';
 import profile1 from '../../../public/svg/userProfile/profile1.svg';
 import { getItem } from '../../../apis/api';
+import { formatNum } from '../../../utils/util';
 
 export default function TransferPage(){
   const [isModal, setIsModal] = useState(false);
@@ -37,6 +38,6 @@ export default function TransferPage(){
     </div>
     <p>Transfer "{data.name}" To <img src={profile1}/>Joy: </p>
     <p>{offer?.offerAddress}</p>
-    <button className={styles.button} onClick={handleOpen}>Transfer & Receive ${offer?.offerPrice}</button>
+    <button className={styles.button} onClick={handleOpen}>Transfer & Receive {formatNum(offer?.offerPrice)}</button>
   </div>
 }

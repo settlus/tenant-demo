@@ -3,6 +3,7 @@ import styles from './Content.module.scss';
 import Card from '../Card/Card.tsx';
 import { DashboardContext } from '../../../store/dashboard_context.tsx';
 import OfferModal from '../OfferModal/OfferModal.tsx';
+import { formatNum } from '../../../utils/util.ts';
 
 export default function Content(){
   const {data, isOfferModal} = useContext(DashboardContext);
@@ -14,9 +15,9 @@ export default function Content(){
         <img src={data.thumbnail} />
         <ul>
           <li>{data.title}</li>
-          <li>Item Price: ${data.revenue['Price']}</li>
+          <li>Item Price: {formatNum(data.revenue['Price'])}</li>
           <li>Total Quantity Sold: {data.revenue['Quantity']}</li>
-          <li className={styles.soldAmount}>Total Sold Amount: ${data.revenue['Price']*data.revenue['Quantity']}</li>
+          <li className={styles.soldAmount}>Total Sold Amount: {formatNum(data.revenue['Price']*data.revenue['Quantity'])}</li>
         </ul>
       </span>
     </div>
