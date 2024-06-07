@@ -132,8 +132,8 @@ export default function CreatePage(){
     setOpen(false);
   }
 
-  function handleNavHover(){
-    setNavOnHover(prev=>!prev);
+  function handleNavHover(value: boolean){
+    setNavOnHover(value);
   }
 
   return <div className={styles.main}>
@@ -145,11 +145,10 @@ export default function CreatePage(){
       <Navigation handleClick={()=>handleNavigate('back')} isBackwards={true}/>
       {step<3 && <Upload file={file} handleFile={handleFile}/>}
       {step>2 && <Submit info={info} handleInfo={handleInfo}/>}
-      <div className={styles.proceed} onMouseEnter={handleNavHover} onMouseLeave={handleNavHover}>
-        {navOnHover && step===0 && <h3>Mint &gt;&gt;</h3>}
-        {navOnHover && step===3 && <h3>Save &gt;&gt;</h3>}
-        <Navigation handleClick={()=>handleNavigate('next')} path='/intro'/>
-      </div>
+      <button className={styles.proceed} onClick={()=>handleNavigate('next')} onMouseEnter={()=>{handleNavHover(true)}} onMouseLeave={()=>{handleNavHover(false)}}>
+        {navOnHover && <h3>{step===0 && 'Mint'}{step===3 && 'Save'} &gt;&gt;</h3>}
+        {!navOnHover && <Navigation path='/intro'/>}
+      </button>
     </div>
   </div>
   

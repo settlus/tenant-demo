@@ -12,18 +12,26 @@
     padding: 1.5rem 0rem;
 
     .proceed{
-      position: relative;
       display: flex;
       margin: auto 0rem;
+      padding: 0.3rem;
+      background-color: transparent;
+      transition: none;
+      max-width: 2rem;
+
+      &:hover{
+        border: none;
+      }
 
       h3{
-        position: absolute;
-        top: -2.5rem;
+        // position: absolute;
+        // top: -2.5rem;
+        z-index: 3000;
         text-align: center;
         background-color: #FFA300;
         color: white;
         white-space: nowrap;
-        padding: 0rem 0.5rem;
+        padding: 0.2rem 0.5rem;
         border-radius: 0.5rem 1rem 1rem 0.5rem;
         animation: scaleUp 0.03s ease-in-out;
       }
