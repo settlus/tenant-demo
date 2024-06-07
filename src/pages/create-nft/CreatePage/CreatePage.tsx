@@ -147,7 +147,7 @@ export default function CreatePage(){
       {step>2 && <Submit info={info} handleInfo={handleInfo}/>}
       <button className={styles.proceed} onClick={()=>handleNavigate('next')} onMouseEnter={()=>{handleNavHover(true)}} onMouseLeave={()=>{handleNavHover(false)}}>
         {navOnHover && <h3>{step===0 && 'Mint'}{step===3 && 'Save'} &gt;&gt;</h3>}
-        {!navOnHover && <Navigation path='/intro'/>}
+        {!navOnHover && <Navigation />}
       </button>
     </div>
   </div>
