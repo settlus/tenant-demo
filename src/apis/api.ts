@@ -86,12 +86,6 @@ export async function getData(): Promise<DataType>{
         'Profile': profile4,
         'Activity': 'bought an item',
       },
-      {
-        'Activity': 'List an Item and start sales on Avatar Costume Shop',
-      },
-      {
-        'Activity': 'Create a costume and minted as NFT on Settlus Blockchain',
-      },
     ],
     details: {
       'Contact Address':'0x72f223423984723649823782374982392e9',
