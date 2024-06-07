@@ -66,6 +66,8 @@ export default function Upload({file, handleFile}: PropType):React.ReactElement{
           console.log(e);
         })
     }
+
+    e.target.value='';
   }
 
   function handleClick(){
