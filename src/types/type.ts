@@ -11,7 +11,7 @@ export type DataType = {
     'Activity': string,
   }[],
   details: {
-    'Contact Address': string,
+    'Contract Address': string,
     'Token ID': string,
     'Token Standard': string,
     'Chain': string,
