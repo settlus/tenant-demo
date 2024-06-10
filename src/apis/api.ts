@@ -114,14 +114,29 @@ const provider = new ethers.JsonRpcProvider('https://settlus-dev-eth.migaloo.io'
 })
 
 const pvKey = '0x42ae27fcc79a3c2df01918a38c90a397ae371f064026ae6efdd2663143593a2b'
+const tenantDemo = '0x5fFc331bDb96b6A56BBF136547a0824B63036c3a'
+const joy = '0x3aDA51d048199Bb55660B420e0fF19a17abff2ee'
 
-async function mintNft(to: string, tokenUri: string) {
+export async function mintNft() {
   const contract = new ethers.Contract(
     "0x96d97F921582A8df31c06dda16e6d4E41Ff02ED1",
     TenantDemoAssetAbi,
     new ethers.Wallet(pvKey, provider)
   )
 
-  const tx = await contract.mintNft(to, tokenUri)
+  const tx = await contract.mintNft('0x5fFc331bDb96b6A56BBF136547a0824B63036c3a', '알맞은 URI')
+  console.log(tx)
+  return tx
+}
+
+export async function transferNft() {
+  const contract = new ethers.Contract(
+    "0x96d97F921582A8df31c06dda16e6d4E41Ff02ED1",
+    TenantDemoAssetAbi,
+    new ethers.Wallet(pvKey, provider)
+  )
+
+  const tx = await contract.safeTransferFrom(tenantDemo, joy, 0)
+  console.log(tx)
   return tx
 }
