@@ -3,6 +3,7 @@ import { InfoType, DataType } from '../types/type';
 import { ethers } from 'ethers';
 import { abi as TenantDemoAssetAbi } from './data/TenantDemoAsset.json'
 
+const ENV = import.meta.env
 
 const delay = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -26,10 +27,57 @@ async function getBase64Image(file: string) {
   });
 }
 
+async function createContract(){
+  const provider = new ethers.JsonRpcProvider(ENV.VITE_DEVNET_RPC_URL, {
+    name: 'settlus',
+    chainId: parseInt(ENV.VITE_DEVNET_CHAIN_ID,10),
+  })
+
+  const contract = new ethers.Contract(
+    ENV.VITE_CONTRACT_ADDR,
+    TenantDemoAssetAbi,
+    new ethers.Wallet(ENV.VITE_USER_PV_KEY, provider)
+  )
+  return contract
+}
+
+export async function parseData(tx: any) {
+  const data = tx.data
+  const parsed = new ethers.Interface(TenantDemoAssetAbi).parseTransaction({ data })
+
+  console.log(parsed)
+  return 0
+  // console.log(typeof parsed?.args[2])
+  // console.log(parsed)
+
+  // return parsed?.args[2]
+}
+
+
 export async function mintNFT(){
+  const contract = await createContract();
+  const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, '알맞은 URI')
+  console.log(tx)
+ 
+  // sessionStorage.setItem('tokenId', JSON.stringify(tokenId));
+
+  await delay(2000)
+  return tx
+}
+
+export async function transferNFT(offer?: any){
+  const contract = await createContract();
 
   await delay(2000);
-  return;
+  try{
+    const tx = await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, 4)
+    console.log(tx)
+    
+    return tx
+  }catch(e){
+    console.log(e);
+    return e
+  }
 }
 
 export async function createItem(info: InfoType, thumbnail: string, file:string){
@@ -53,17 +101,6 @@ export async function getItem(){
 export function getNickName(){
   const name = sessionStorage.getItem('nickname') || 'User';
   return name;
-}
-
-export async function transferNFT(offer: any){
-  // const prev = sessionStorage.getItem('nftArr') || '[]';
-  // const arr = JSON.parse(prev);
-
-  // if(offer.itemIndex<arr.length) arr.splice(offer.itemIndex, 1);
-  // sessionStorage.setItem('nftArr',JSON.stringify(arr));
-
-  await delay(2000);
-  return;
 }
 
 export async function getData(): Promise<DataType>{
@@ -93,7 +130,7 @@ export async function getData(): Promise<DataType>{
       },
     ],
     details: {
-      'Contact Address':'0x72f223423984723649823782374982392e9',
+      'Contract Address':'0x72f223423984723649823782374982392e9',
       'Token ID': '',
       'Token Standard': 'ERC-721',
       'Chain': 'Settlus',
@@ -106,45 +143,4 @@ export async function getData(): Promise<DataType>{
     },
 
   }
-}
-
-const provider = new ethers.JsonRpcProvider('https://settlus-dev-eth.migaloo.io', {
-  name: 'settlus',
-  chainId: 5371,
-})
-
-const pvKey = '0x42ae27fcc79a3c2df01918a38c90a397ae371f064026ae6efdd2663143593a2b'
-
-const tenantDemo = '0x5fFc331bDb96b6A56BBF136547a0824B63036c3a'
-const joy = '0x3aDA51d048199Bb55660B420e0fF19a17abff2ee'
-
-export async function mintNft() {
-  const contract = new ethers.Contract(
-    "0x96d97F921582A8df31c06dda16e6d4E41Ff02ED1",
-    TenantDemoAssetAbi,
-    new ethers.Wallet(pvKey, provider)
-  )
-
-  const tx = await contract.mintNft('0x5fFc331bDb96b6A56BBF136547a0824B63036c3a', '알맞은 URI')
-  console.log(tx)
-  return tx
-}
-
-export async function transferNft() {
-  const contract = new ethers.Contract(
-    "0x96d97F921582A8df31c06dda16e6d4E41Ff02ED1",
-    TenantDemoAssetAbi,
-    new ethers.Wallet(pvKey, provider)
-  )
-
-  const tx = await contract.safeTransferFrom(tenantDemo, joy, 0)
-  console.log(tx)
-  return tx
-}
-
-export async function parseData(tx: ) {
-  const data = '0x42842e0e0000000000000000000000005ffc331bdb96b6a56bbf136547a0824b63036c3a0000000000000000000000003ada51d048199bb55660b420e0ff19a17abff2ee0000000000000000000000000000000000000000000000000000000000000000'
-  const parsed = new ethers.Interface(TenantDemoAssetAbi).parseTransaction({ data })
-  console.log(typeof parsed?.args[2])
-  console.log(parsed)
 }
