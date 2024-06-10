@@ -1,5 +1,7 @@
 import profile1 from '../public/svg/userProfile/profile1.svg';
 import { InfoType, DataType } from '../types/type';
+import { ethers } from 'ethers';
+import { abi as TenantDemoAssetAbi } from './data/TenantDemoAsset.json'
 
 
 const delay = (ms: number): Promise<void> => {
@@ -104,4 +106,22 @@ export async function getData(): Promise<DataType>{
     },
 
   }
+}
+
+const provider = new ethers.JsonRpcProvider('https://settlus-dev-eth.migaloo.io', {
+  name: 'settlus',
+  chainId: 5371,
+})
+
+const pvKey = '0x42ae27fcc79a3c2df01918a38c90a397ae371f064026ae6efdd2663143593a2b'
+
+async function mintNft(to: string, tokenUri: string) {
+  const contract = new ethers.Contract(
+    "0x96d97F921582A8df31c06dda16e6d4E41Ff02ED1",
+    TenantDemoAssetAbi,
+    new ethers.Wallet(pvKey, provider)
+  )
+
+  const tx = await contract.mintNft(to, tokenUri)
+  return tx
 }
