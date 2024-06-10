@@ -114,6 +114,7 @@ const provider = new ethers.JsonRpcProvider('https://settlus-dev-eth.migaloo.io'
 })
 
 const pvKey = '0x42ae27fcc79a3c2df01918a38c90a397ae371f064026ae6efdd2663143593a2b'
+
 const tenantDemo = '0x5fFc331bDb96b6A56BBF136547a0824B63036c3a'
 const joy = '0x3aDA51d048199Bb55660B420e0fF19a17abff2ee'
 
@@ -139,4 +140,11 @@ export async function transferNft() {
   const tx = await contract.safeTransferFrom(tenantDemo, joy, 0)
   console.log(tx)
   return tx
+}
+
+export async function parseData(tx: ) {
+  const data = '0x42842e0e0000000000000000000000005ffc331bdb96b6a56bbf136547a0824b63036c3a0000000000000000000000003ada51d048199bb55660b420e0ff19a17abff2ee0000000000000000000000000000000000000000000000000000000000000000'
+  const parsed = new ethers.Interface(TenantDemoAssetAbi).parseTransaction({ data })
+  console.log(typeof parsed?.args[2])
+  console.log(parsed)
 }

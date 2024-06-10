@@ -1,7 +1,7 @@
 import Card from './Card/Card.tsx';
 import styles from './Intro.module.scss';
 
-import { mintNft, transferNft } from '../../../apis/api.ts';
+import { mintNft, transferNft, parseData } from '../../../apis/api.ts';
 
 export default function Intro(){
   return <div className={styles.intro}>
@@ -13,6 +13,6 @@ export default function Intro(){
     </p>
 
     <Card />
-    <button onClick={transferNft}>transfer</button>
+    <button onClick={parseData}>transfer</button>
   </div>
 }
