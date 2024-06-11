@@ -63,7 +63,8 @@ export default function CreatePage(){
         // setOpen(false);
       }else{
         const mint = async()=>{
-          await mintNFT();
+          const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
+          await mintNFT(thumbnail);
           setStep(2);    
         }
         setOpen(true);

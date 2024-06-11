@@ -57,7 +57,7 @@ export async function parseData(hash: any): Promise<string> {
 }
 
 
-export async function mintNFT(){
+export async function mintNFT(thumbnail: string){
   const contract = await createContract()
   const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, '알맞은 URI')
   console.log(tx)
