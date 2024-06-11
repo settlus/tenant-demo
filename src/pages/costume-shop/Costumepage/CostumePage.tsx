@@ -66,7 +66,7 @@ export default function CostumePage(){
   },[]);
   
 
-  return <div>
+  return <div className={styles.main}>
     <div className={styles.instruction}>
       <Instruction title={!isAfterItemCreated ? TITLES[step]: 'Congratulations! Your item is listed for sale.'} style={styles.detail}>
         { !isAfterItemCreated ? <>

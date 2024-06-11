@@ -2,10 +2,9 @@
 @use "../../../shared/styling/modal" as modal;
 
 .main{
-  height:100%;
-  width:100%;
   display: flex;
   flex-direction: column;
+  margin: auto;
 
   .pos{
     @include n.pos;
