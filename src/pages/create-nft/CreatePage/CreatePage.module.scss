@@ -9,6 +9,7 @@
   .pos{
     @include n.pos;
     padding: 1.5rem 0rem;
+    margin-top: 5vh;
 
     .proceed{
       display: flex;
