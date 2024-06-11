@@ -41,40 +41,43 @@ async function createContract(){
   return contract
 }
 
-export async function parseData(hash: any) {
+export async function parseData(hash: any): Promise<string> {
   const provider = new ethers.JsonRpcProvider(ENV.VITE_DEVNET_RPC_URL, {
     name: 'settlus',
     chainId: parseInt(ENV.VITE_DEVNET_CHAIN_ID, 10),
   })
 
-  const tx = await provider.getTransactionReceipt('0x8512dcb5b0b323bd1a4ca0c94761c7d2c78ca71d92918e15925b90ff3ff9cefe')
+  console.log(hash)
+  await provider.waitForTransaction(hash)
+  const tx = await provider.getTransactionReceipt(hash) //'0x8512dcb5b0b323bd1a4ca0c94761c7d2c78ca71d92918e15925b90ff3ff9cefe'
 
   console.log(tx?.logs)
-  return 0
-  // console.log(typeof parsed?.args[2])
-  // console.log(parsed)
-
-  // return parsed?.args[2]
+  console.log(typeof tx?.logs[0].topics[3])
+  return tx?.logs[0].topics[3] || '0x0'
 }
 
 
 export async function mintNFT(){
-  const contract = await createContract();
+  const contract = await createContract()
   const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, '알맞은 URI')
   console.log(tx)
- 
-  // sessionStorage.setItem('tokenId', JSON.stringify(tokenId));
 
-  await delay(2000)
+  const tokenId = await parseData(tx.hash)
+ 
+  sessionStorage.setItem('tokenId', tokenId);
   return tx
 }
 
 export async function transferNFT(offer?: any){
+  const tokenId = sessionStorage.getItem('tokenId') || '0x0';
+  const dec = BigInt(tokenId)
+
   const contract = await createContract();
+  
 
   await delay(2000);
   try{
-    const tx = await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, 4)
+    const tx = await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, dec)
     console.log(tx)
     
     return tx
