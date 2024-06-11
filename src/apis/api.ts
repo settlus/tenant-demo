@@ -41,11 +41,15 @@ async function createContract(){
   return contract
 }
 
-export async function parseData(tx: any) {
-  const data = tx.data
-  const parsed = new ethers.Interface(TenantDemoAssetAbi).parseTransaction({ data })
+export async function parseData(hash: any) {
+  const provider = new ethers.JsonRpcProvider(ENV.VITE_DEVNET_RPC_URL, {
+    name: 'settlus',
+    chainId: parseInt(ENV.VITE_DEVNET_CHAIN_ID, 10),
+  })
 
-  console.log(parsed)
+  const tx = await provider.getTransactionReceipt('0x8512dcb5b0b323bd1a4ca0c94761c7d2c78ca71d92918e15925b90ff3ff9cefe')
+
+  console.log(tx?.logs)
   return 0
   // console.log(typeof parsed?.args[2])
   // console.log(parsed)
