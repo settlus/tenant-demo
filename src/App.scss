@@ -29,7 +29,10 @@ footer {
   li {
     display: inline;
     margin-right: 10px;
-    color: #A0ABC0;
+    a{
+      color: #A0ABC0;
+      text-decoration: none;
+    }
   }
 
   #text {
