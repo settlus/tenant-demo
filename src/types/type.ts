@@ -12,11 +12,12 @@ export type DataType = {
   }[],
   details: {
     'Contract Address': string,
+    'Mint Hash': string,
     'Token ID': string,
     'Token Standard': string,
     'Chain': string,
-    'Creator ID': string,
-    'Owner ID': string,
+    'Creator': string,
+    'Owner': string,
   },
   revenue: {
     'Price': number,

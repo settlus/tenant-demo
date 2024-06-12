@@ -64,7 +64,8 @@ export async function mintNFT(thumbnail: string){
 
   const tokenId = await parseData(tx.hash)
  
-  sessionStorage.setItem('tokenId', tokenId);
+  sessionStorage.setItem('tokenId', tokenId)
+  sessionStorage.setItem('hash',tx.hash)
   return tx
 }
 
@@ -100,9 +101,11 @@ export async function createItem(info: InfoType, thumbnail: string, file:string)
 
 export async function getItem(){
   const raw = sessionStorage.getItem('itemInfo');
+  const tokenId = sessionStorage.getItem('tokenId') || '';
+  const hash= sessionStorage.getItem('hash') || '';
   const name = getNickName();
   const result = raw ? JSON.parse(raw) : {};
-  return {...result, nickname: name};
+  return {...result, nickname: name, tokenId: tokenId, hash:hash};
 }
 
 export function getNickName(){
@@ -137,12 +140,13 @@ export async function getData(): Promise<DataType>{
       },
     ],
     details: {
-      'Contract Address':'0x72f223423984723649823782374982392e9',
-      'Token ID': '',
+      'Contract Address':ENV.VITE_CONTRACT_ADDR,
+      'Mint Hash': data.hash,
+      'Token ID': parseInt(data.tokenId,16).toString(),
       'Token Standard': 'ERC-721',
       'Chain': 'Settlus',
-      'Creator ID': '',
-      'Owner ID': '',
+      'Creator': data.nickname,
+      'Owner': data.nickname,
     },
     revenue: {
       'Price': data.price,
