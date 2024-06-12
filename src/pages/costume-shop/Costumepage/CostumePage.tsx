@@ -1,13 +1,11 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import Instruction from "../../../shared/Instruction/Instruction"
 import CostumeShop from "./CostumeShop/CostumeShop"
 import { ShopContext, ITEM_ARR } from "../../../store/costumeshop_context"
 import nftIcon from '../../../public/images/NftLicense.png'
 import styles from './CostumePage.module.scss'
 import Navigation from "../../../shared/Navigation/Navigation"
-import { useNavigate, useLocation } from 'react-router-dom';
-import { getItem } from "../../../apis/api";
-import userProfile from '../../../public/svg/userProfile/userProfile.svg';
+import { useNavigate } from 'react-router-dom';
 import { formatNum } from "../../../utils/util"
 
 const TITLES = [
@@ -16,12 +14,14 @@ const TITLES = [
   'Take a peak at the creator’s revenue!',
 ]
 
-export default function CostumePage(){
+type PropType = {
+  isAfterItemCreated?: boolean,
+}
+
+export default function CostumePage({isAfterItemCreated}: PropType): React.ReactElement{
   const {step, setStep, items, setItems, selected, setSelected} = useContext(ShopContext);
-  const [isAfterItemCreated, setIsAfterItemCreated] = useState(false);
   const selectedItem = items[selected];
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleNav = ()=>{
     if(step===2){
@@ -32,35 +32,9 @@ export default function CostumePage(){
   }
 
   useEffect(()=>{
-    const path = location.pathname.split('/')
-    if(path[path.length-1]==='new-item'){
-      const handleData = async ()=>{
-        const sessionData = await getItem();
-        console.log(sessionData);
-        setItems(prev=>{
-          return [{
-            thumbnailPng: sessionData.thumbnail,
-            meshName: 'DefaultWear001F',
-            templatePng: sessionData.template,
-            title: sessionData.name, 
-            price: sessionData.price, 
-            creator: sessionData.nickname, 
-            creatorProfilePng: userProfile, 
-            quantity: 0,
-            offerValue: 0,
-            userCreated: true,
-          }, ...prev];
-        });
-        setIsAfterItemCreated(true);
-      }
-      
-      handleData();
-    }
-
     return ()=>{
       setSelected(0);
       setItems(ITEM_ARR);
-
     }
 
   },[]);

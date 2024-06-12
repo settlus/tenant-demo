@@ -10,7 +10,8 @@ import TransferPage from './pages/transfer-nft/TransferPage/TransferPage.tsx';
 import DashboardProvider from './store/dashboard_context.tsx';
 import ShopProvider from './store/costumeshop_context.tsx';
 import CompletePage from './pages/complete/CompletePage/CompletePage.tsx';
-import CostumePage from './pages/costume-shop/Costumepage/CostumePage.tsx';
+import GuidePage from './pages/costume-shop/Costumepage/GuidePage.tsx';
+import NewItemPage from './pages/costume-shop/Costumepage/NewItemPage.tsx';
 
 
 const queryClient = new QueryClient();
@@ -39,12 +40,12 @@ const router = createBrowserRouter([
     children: [
       {
         path:'costume-shop',
-        element: <CostumePage />,
+        element: <Outlet />,
         children: [
-          {index: true, element: <></>},
+          {index: true, element: <GuidePage />},
           {
             path:'new-item',
-            element: <></>
+            element: <NewItemPage />
           },
         ]
       },
