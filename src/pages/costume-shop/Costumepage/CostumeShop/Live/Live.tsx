@@ -11,7 +11,7 @@ const LIST = [
   {user: 3, thumbnail: 1,},
   {user: 2, thumbnail: 6,},
   {user: 3, thumbnail: 8,},
-  {user: 1, thumbnail: 0,},
+  {user: 1, thumbnail: 2,},
   {user: 1, thumbnail: 11,},
   {user: 4, thumbnail: 5,},
   {user: 1, thumbnail: 7,},
@@ -51,7 +51,7 @@ export default function Live(){
       await addToList(2,0);
       await addToList(6,0);
       await addToList(9,0);
-      await addToList(7,0);
+      await addToList(5,0);
     }
 
     const path = location.pathname.split('/')

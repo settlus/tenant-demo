@@ -1,6 +1,10 @@
-import profile1 from '../public/svg/userProfile/profile1.svg';
-import profile2 from '../public/svg/userProfile/profile3.svg';
-import profile4 from '../public/svg/userProfile/profile4.svg';
+import giftImg from '../public/svg/Present.svg';
+import user1 from '../public/svg/userProfile/user1.svg';
+import user2 from '../public/svg/userProfile/user2.svg';
+import user3 from '../public/svg/userProfile/user3.svg';
+import user4 from '../public/svg/userProfile/user4.svg';
+import user5 from '../public/svg/userProfile/user5.svg';
+import user6 from '../public/svg/userProfile/user6.svg';
 import userProfile from '../public/svg/userProfile/userProfile.svg';
 
 import { InfoType, DataType } from '../types/type';
@@ -76,31 +80,35 @@ export async function getData(): Promise<DataType>{
     title: data.name,
     history: [
       {
-        'Profile': profile1,
+        'Profile': giftImg,
         'Activity': 'NFT Offer Arrived',
       },
       {
-        'Profile': profile2,
-        'Activity': 'User 9 bought an item',
-      },
-      {
-        'Profile': profile2,
-        'Activity': 'User 6 bought an item',
-      },
-      {
-        'Profile': profile2,
-        'Activity': 'User 2 bought an item',
-      },
-      {
-        'Profile': profile2,
-        'Activity': 'User 4 bought an item',
-      },
-      {
-        'Profile': profile2,
+        'Profile': user5,
         'Activity': 'User 5 bought an item',
       },
       {
-        'Profile': profile4,
+        'Profile': user1,
+        'Activity': 'User 9 bought an item',
+      },
+      {
+        'Profile': user2,
+        'Activity': 'User 6 bought an item',
+      },
+      {
+        'Profile': user3,
+        'Activity': 'User 2 bought an item',
+      },
+      {
+        'Profile': user4,
+        'Activity': 'User 4 bought an item',
+      },
+      {
+        'Profile': user5,
+        'Activity': 'User 5 bought an item',
+      },
+      {
+        'Profile': user6,
         'Activity': 'User 1 bought an item',
       },
       {
