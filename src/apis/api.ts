@@ -2,30 +2,9 @@ import profile1 from '../public/svg/userProfile/profile1.svg';
 import { InfoType, DataType } from '../types/type';
 import { ethers } from 'ethers';
 import { abi as TenantDemoAssetAbi } from './data/TenantDemoAsset.json'
+import { delay, getBase64Image } from '../utils/util';
 
 const ENV = import.meta.env
-
-const delay = (ms: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
-async function getBase64Image(file: string) {
-  const response = await fetch(file);
-  const blob = await response.blob();
-
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
-
-    reader.onload = () => {
-      resolve(reader.result); 
-    };
-
-    reader.onerror = (error) => {
-      reject(error);
-    };
-  });
-}
 
 async function createContract(){
   const provider = new ethers.JsonRpcProvider(ENV.VITE_DEVNET_RPC_URL, {
@@ -63,9 +42,12 @@ export async function mintNFT(thumbnail: string){
   console.log(tx)
 
   const tokenId = await parseData(tx.hash)
- 
+
+  const now = new Date();
+
   sessionStorage.setItem('tokenId', tokenId)
   sessionStorage.setItem('hash',tx.hash)
+  sessionStorage.setItem('mintTime',now.toISOString())
   return tx
 }
 
@@ -103,9 +85,10 @@ export async function getItem(){
   const raw = sessionStorage.getItem('itemInfo');
   const tokenId = sessionStorage.getItem('tokenId') || '';
   const hash= sessionStorage.getItem('hash') || '';
+  const mintTime = sessionStorage.getItem('mintTime') || '';
   const name = getNickName();
   const result = raw ? JSON.parse(raw) : {};
-  return {...result, nickname: name, tokenId: tokenId, hash:hash};
+  return {...result, nickname: name, tokenId: tokenId, hash:hash, mintTime: new Date(mintTime)};
 }
 
 export function getNickName(){
