@@ -18,7 +18,7 @@ type PropType={
 }
 
 export default function MissionCard({title, beforeStart}: PropType): React.ReactElement{
-  const missionRef = useRef(sessionStorage.getItem('mission') || '0');
+  const missionRef = useRef(beforeStart ? '0' : sessionStorage.getItem('mission') || '0');
   const mission = Number(missionRef.current);
 
   return <div className={styles.mission}>
