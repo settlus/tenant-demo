@@ -20,10 +20,10 @@ export async function getBase64Image(file: string) {
   });
 }
 
-export async function convertToFile(url: string){
+export async function convertToFile(url: string, nickname: string){
   const response = await fetch(url);
   const blob = await response.blob();
-  const file = new File([blob],'name1',{type:blob.type});
+  const file = new File([blob],`${nickname}.png`,{type:blob.type});
 
   return file;
 }

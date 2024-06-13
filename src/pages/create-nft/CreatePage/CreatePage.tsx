@@ -47,52 +47,21 @@ export default function CreatePage(){
     price: null,
     name: null,
   })
+
+  const [useSample, setUseSample] = useState(false);
+  const [sample, setSample] = useState(0);
+
   const navigate = useNavigate();
   const instruction = step<3 ? TEXT[0]: TEXT[1];
 
-  useEffect(()=>{
-    if(step<0) navigate(-1);
-    if(step===0) {
-      setFile('');
-    }
-    if(step===1) {
-      const errorMsg = validateFile(file).error;
-      if(errorMsg){
-        alert(errorMsg);
-        setStep(0);
-        // setOpen(false);
-      }else{
-        const mint = async()=>{
-          const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
-          await mintNFT(thumbnail);
-          setStep(2);    
-        }
-        setOpen(true);
-        mint();
-      }
-    }
-    if(step===4){
-      const errorMsg = validateFields(info).error;
-      if(errorMsg){
-        alert(errorMsg);
-        setStep(3);
-      }
-      else {
-        const create = async()=>{
-          const final= {
-            name: info.name,
-            price: parseInt(info.price ||'',10),
-          }
-          const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
-          await createItem(final, thumbnail, file);
-          sessionStorage.setItem('mission','2');
-          navigate('/demo/costume-shop/new-item');
-        };
+  function handleUseSample(value:boolean){
+    setUseSample(value);
+  }
 
-        create();
-      }
-    }
-  },[step]);
+  function handleSample(){
+    setSample(prev=>(prev+1)%3);
+  }
+
 
   function handleFile(file:string){
     setFile(file);
@@ -137,6 +106,50 @@ export default function CreatePage(){
     setNavOnHover(prev=>!prev);
   }
 
+  useEffect(()=>{
+    if(step<0) navigate(-1);
+    if(step===0) {
+      setFile('');
+    }
+    if(step===1) {
+      const errorMsg = validateFile(file).error;
+      if(errorMsg){
+        alert(errorMsg);
+        setStep(0);
+        // setOpen(false);
+      }else{
+        const mint = async()=>{
+          const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
+          await mintNFT(thumbnail, useSample ? sample : undefined);
+          setStep(2);    
+        }
+        setOpen(true);
+        mint();
+      }
+    }
+    if(step===4){
+      const errorMsg = validateFields(info).error;
+      if(errorMsg){
+        alert(errorMsg);
+        setStep(3);
+      }
+      else {
+        const create = async()=>{
+          const final= {
+            name: info.name,
+            price: parseInt(info.price ||'',10),
+          }
+          const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
+          await createItem(final, thumbnail, file);
+          sessionStorage.setItem('mission','2');
+          navigate('/demo/costume-shop/new-item');
+        };
+
+        create();
+      }
+    }
+  },[step]);
+
   return <div className={styles.main}>
     <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep}/>
 
@@ -144,7 +157,7 @@ export default function CreatePage(){
     <ProgressBar step={step}/>
     <div className={styles.pos}>
       <Navigation handleClick={()=>handleNavigate('back')} isBackwards={true}/>
-      {step<3 && <Upload file={file} handleFile={handleFile}/>}
+      {step<3 && <Upload file={file} handleFile={handleFile} sample={sample} handleSample={handleSample} useSample={useSample} handleUseSample={handleUseSample}/>}
       {step>2 && <Submit info={info} handleInfo={handleInfo}/>}
       <div className={styles.proceed} onMouseEnter={handleNavHover} onMouseLeave={handleNavHover}>
         {navOnHover && step===0 && <h3>Mint &gt;&gt;</h3>}

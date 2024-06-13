@@ -13,11 +13,12 @@ const s3client = new S3Client({region:S3_REGION,credentials:{
   secretAccessKey: ENV.VITE_AWS_SECRET_ACCESS_KEY,
 }});
 
-export async function uploadToS3(filename: string, file: File){
+async function uploadToS3(type: string, file: File, fileName: string, contentType:string){
   const params = {
     Bucket: S3_BUCKET,
-    Key: filename,
+    Key: `${type}/${fileName}`,
     Body: file,
+    contentType: contentType,
   }
 
   const upload = new Upload({
@@ -25,10 +26,22 @@ export async function uploadToS3(filename: string, file: File){
   })
 
   await upload.done()
-    .then(_ => console.log(`${S3_BUCKET}/${filename}`))
+    .then(_ => console.log(`${S3_BUCKET}/${file.name}`))
     .catch(e => {
       console.error("unable to upload", e);
     })
 
-  return `https://${S3_BUCKET}.s3.${s3client.config.region}.amazonaws.com/${file.name}`;
+  console.log(`https://${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com/${type}/${fileName}`)
+  return `https://${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com/${type}/${fileName}`;
+}
+
+export async function uploadImageToS3(file: File, sample?:number){
+  const FILENAME = sample ? `sample${sample+1}.png` : file.name
+  const result = await uploadToS3('images',file, FILENAME, 'image/png');
+  return result;
+}
+
+export async function uploadJsonToS3(object: any, fileName: string){
+  const result = await uploadToS3('json',object, fileName, 'application/json');
+  return result;
 }

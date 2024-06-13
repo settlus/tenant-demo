@@ -13,6 +13,9 @@ dependencies:
   aws-sdk:
     specifier: ^2.1640.0
     version: 2.1640.0
+  buffer:
+    specifier: ^6.0.3
+    version: 6.0.3
   ethers:
     specifier: ^6.13.0
     version: 6.13.0
@@ -2559,6 +2562,13 @@ packages:
 
   /buffer@5.6.0:
     resolution: {integrity: sha512-/gDYp/UtU0eA1ys8bOs9J6a+E/KWIY+DZ+Q2WESNUA0jFRsJOc0SNUO6xJ5SGA1xueg3NL65W6s+NY5l9cunuw==}
+    dependencies:
+      base64-js: 1.5.1
+      ieee754: 1.2.1
+    dev: false
+
+  /buffer@6.0.3:
+    resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1

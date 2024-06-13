@@ -3,7 +3,8 @@ import { InfoType, DataType } from '../types/type';
 import { ethers } from 'ethers';
 import { abi as TenantDemoAssetAbi } from './data/TenantDemoAsset.json'
 import { delay, getBase64Image, convertToFile } from '../utils/util';
-import { uploadToS3 } from './s3/s3-config';
+import { uploadImageToS3, uploadJsonToS3 } from './s3/s3-config';
+import { Buffer } from 'buffer';
 
 const ENV = import.meta.env
 
@@ -37,12 +38,24 @@ export async function parseData(hash: any): Promise<string> {
 }
 
 
-export async function mintNFT(thumbnail: string){
-  const file = await convertToFile(thumbnail);
-  const res = await uploadToS3('name2',file);
+export async function mintNFT(thumbnail: string, sample?:number){
+  const nickname=getNickName();
+  const file = await convertToFile(thumbnail, nickname);
+  const res = await uploadImageToS3(file,sample);
+
+  const metadataObj = {
+    name: `Tenant Demo Item NFT #${nickname}`,
+    description: 'Tenant Demo NFT',
+    image: `${res}`,
+    buildFileUrl: ``,
+    attributes: [],
+  }
+
+  const metadata = Buffer.from(JSON.stringify(metadataObj))
+  const metadataRes = await uploadJsonToS3(metadata,`${nickname}.json`);
 
   const contract = await createContract()
-  const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, res)
+  const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, metadataRes)
   console.log(tx)
 
   const tokenId = await parseData(tx.hash)
