@@ -20,6 +20,14 @@ export async function getBase64Image(file: string) {
   });
 }
 
+export async function convertToFile(url: string){
+  const response = await fetch(url);
+  const blob = await response.blob();
+  const file = new File([blob],'name1',{type:blob.type});
+
+  return file;
+}
+
 export function getTimeString(date: Date,addSec?:number){
   
 }

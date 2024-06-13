@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.596.0",
+    "@aws-sdk/credential-providers": "^3.596.0",
+    "@aws-sdk/lib-storage": "^3.596.0",
+    "aws-sdk": "^2.1640.0",
     "ethers": "^6.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

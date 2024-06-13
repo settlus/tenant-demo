@@ -2,7 +2,8 @@ import profile1 from '../public/svg/userProfile/profile1.svg';
 import { InfoType, DataType } from '../types/type';
 import { ethers } from 'ethers';
 import { abi as TenantDemoAssetAbi } from './data/TenantDemoAsset.json'
-import { delay, getBase64Image } from '../utils/util';
+import { delay, getBase64Image, convertToFile } from '../utils/util';
+import { uploadToS3 } from './s3/s3-config';
 
 const ENV = import.meta.env
 
@@ -37,8 +38,11 @@ export async function parseData(hash: any): Promise<string> {
 
 
 export async function mintNFT(thumbnail: string){
+  const file = await convertToFile(thumbnail);
+  const res = await uploadToS3('name2',file);
+
   const contract = await createContract()
-  const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, '알맞은 URI')
+  const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, res)
   console.log(tx)
 
   const tokenId = await parseData(tx.hash)
