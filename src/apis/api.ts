@@ -121,7 +121,7 @@ export async function getData(): Promise<DataType>{
       },
     ],
     details: {
-      'Contact Address':'0x72f223423984723649823782374982392e9',
+      'Contract Address':'0x72f223423984723649823782374982392e9',
       'Token ID': '',
       'Token Standard': 'ERC-721',
       'Chain': 'Settlus',

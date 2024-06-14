@@ -4,4 +4,10 @@
   align-items: center;
   gap: 1.5rem;
   gap: 5vh;
+
+  .instruction{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
 }

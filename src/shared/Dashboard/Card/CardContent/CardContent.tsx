@@ -4,14 +4,14 @@ import { DashboardContext } from '../../../../store/dashboard_context';
 
 
 export default function CardContent(){
-  const {data} = useContext(DashboardContext)
+  const {data, setStep} = useContext(DashboardContext)
 
   return <div className={styles.back}>
     <div className={styles.onChain}>
       <p>NFT Info</p>
       <ul>
         {Object.keys(data.details).map((item: string,index)=>(
-          <li key={index}>{item}: {item==='Contract Address' ? <a href=''>{data.details[item]}</a>
+          <li key={index}>{item}: {item==='Contract Address' ? <a href='https://www.google.com' target='_blank' onClick={()=>{setStep(1)}}>{data.details[item]}</a>
           : data.details[item]}</li>
         ))}
       </ul>
