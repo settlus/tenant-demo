@@ -11,7 +11,7 @@ export default function CardContent(){
       <p>NFT Info</p>
       <ul>
         {Object.keys(data.details).map((item: string,index)=>(
-          <li key={index}>{item}: {item==='Contract Address' ? <a href='https://www.google.com' target='_blank' onClick={()=>{setStep(1)}}>{data.details[item]}</a>
+          <li key={index}>{item}: {item==='Contract Address' ? <a href={`https://devnet.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/inventory`} target='_blank' onClick={()=>{setStep(1)}}>{data.details[item]}</a>
           : data.details[item]}</li>
         ))}
       </ul>

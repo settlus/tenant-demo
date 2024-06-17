@@ -16,7 +16,7 @@ export default function Main(){
     if(step===2){
       setOffer({
         itemIndex: 0,
-        offerAddress: '0x1ed3da02aaGd0x1ed3da02aaGd',
+        offerAddress: import.meta.env.VITE_JOY_PB_KEY,
         offerPrice: 1000,
       });
     }

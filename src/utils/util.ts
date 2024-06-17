@@ -7,3 +7,16 @@ export const formatNum = (value: number)=>{
     maximumFractionDigits: 2,
   });
 }
+
+export const formatTimeString = (isoString: string)=>{
+  return isoString.slice(0,10)+' '+isoString.slice(11,19);
+}
+
+export const addTime = (dateString: string, addSec: number)=>{
+  const ogDate = new Date(dateString);
+  const ogTime = ogDate.getTime();
+  const newTime = ogTime + (addSec*1000);
+  const newDate = new Date(newTime);
+
+  return formatTimeString(newDate.toISOString());
+}

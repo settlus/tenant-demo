@@ -38,7 +38,7 @@ export default function Content(){
                   {item['Profile'] && <img src={item['Profile']}/>}
                   {item['Activity']}
                 </td>
-                <td>2024-06-10 9:52 AM</td>
+                <td>{item['Time']}</td>
               </tr>
             ))}
           </tbody>

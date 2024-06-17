@@ -7,11 +7,12 @@ const INITIAL_DATA = {
   history: [],
   details: {
     'Contract Address':'0x72f223423984723649823782374982392e9',
+    'Mint Hash': '',
     'Token ID': '',
     'Token Standard': 'ERC-721',
     'Chain': 'Settlus',
-    'Creator ID': '',
-    'Owner ID': '',
+    'Creator': '',
+    'Owner': '',
   },
   revenue: {
     'Price': 0,
@@ -44,7 +45,7 @@ interface GlobalProviderProps {
 
 const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [isOfferModal, setIsOfferModal] = useState<boolean>(false);
-  const [offer, setOffer] = useState<OfferType>(null); //dummy initial state
+  const [offer, setOffer] = useState<OfferType>(null);
   const [data, setData] = useState<DataType>(INITIAL_DATA);
   const [step, setStep] = useState<number>(0);
 

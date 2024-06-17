@@ -8,6 +8,7 @@ import user6 from '../public/svg/userProfile/user6.svg';
 import userProfile from '../public/svg/userProfile/userProfile.svg';
 import {ethers} from 'ethers';
 import {abi} from './data/abi.json';
+import { addTime, formatTimeString } from '../utils/util';
 
 import { InfoType, DataType } from '../types/type';
 const ENV = import.meta.env;
@@ -58,7 +59,11 @@ export async function mintNFT(){
   const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, 'uri');
   const data = await tx.wait();
   
-  sessionStorage.setItem('tokenId',data?.logs[0].topics[3]);
+  const now = new Date();
+
+  sessionStorage.setItem('tokenId', data?.logs[0].topics[3])
+  sessionStorage.setItem('hash',tx.hash)
+  sessionStorage.setItem('mintTime',now.toISOString())
 
   return;
 }
@@ -76,9 +81,13 @@ export async function createItem(info: InfoType, thumbnail: string, file:string)
 
 export async function getItem(){
   const raw = sessionStorage.getItem('itemInfo');
+  const tokenId = sessionStorage.getItem('tokenId') || '';
+  const hash= sessionStorage.getItem('hash') || '';
+  const mintTime = sessionStorage.getItem('mintTime') || '';
   const name = getNickName();
   const result = raw ? JSON.parse(raw) : {};
-  return {...result, nickname: name};
+  return {...result, nickname: name, tokenId: tokenId, hash:hash, mintTime: mintTime};
+
 }
 
 export function getNickName(){
@@ -107,51 +116,62 @@ export async function getData(): Promise<DataType>{
       {
         'Profile': giftImg,
         'Activity': 'NFT Offer Arrived',
+        'Time': addTime(data.mintTime,10),
       },
       {
         'Profile': user5,
         'Activity': 'User 5 bought an item',
+        'Time': addTime(data.mintTime,9.2),
       },
       {
         'Profile': user1,
         'Activity': 'User 9 bought an item',
+        'Time': addTime(data.mintTime,8.9),
       },
       {
         'Profile': user2,
         'Activity': 'User 6 bought an item',
+        'Time': addTime(data.mintTime,8),
       },
       {
         'Profile': user3,
         'Activity': 'User 2 bought an item',
+        'Time': addTime(data.mintTime,7.6),
       },
       {
         'Profile': user4,
         'Activity': 'User 4 bought an item',
+        'Time': addTime(data.mintTime,7.1),
       },
       {
         'Profile': user5,
         'Activity': 'User 5 bought an item',
+        'Time': addTime(data.mintTime,6.5),
       },
       {
         'Profile': user6,
         'Activity': 'User 1 bought an item',
+        'Time': addTime(data.mintTime,6),
       },
       {
         'Profile': userProfile,
         'Activity': 'created an item',
+        'Time': addTime(data.mintTime,5),
       },
       {
         'Profile': userProfile,
         'Activity': 'minted NFT',
+        'Time': formatTimeString(data.mintTime),
       },
     ],
     details: {
-      'Contract Address':'0x72f223423984723649823782374982392e9',
-      'Token ID': '',
+      'Contract Address':ENV.VITE_CONTRACT_ADDR,
+      'Mint Hash': data.hash,
+      'Token ID': parseInt(data.tokenId,16).toString(),
       'Token Standard': 'ERC-721',
       'Chain': 'Settlus',
-      'Creator ID': '',
-      'Owner ID': '',
+      'Creator': data.nickname,
+      'Owner': data.nickname,
     },
     revenue: {
       'Price': data.price,
