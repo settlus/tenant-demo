@@ -13,7 +13,7 @@ const s3client = new S3Client({region:S3_REGION,credentials:{
   secretAccessKey: ENV.VITE_AWS_SECRET_ACCESS_KEY,
 }});
 
-async function uploadToS3(type: string, file: File, fileName: string, contentType:string){
+async function uploadToS3(type: string, file: File | Buffer, fileName: string, contentType:string){
   const params = {
     Bucket: S3_BUCKET,
     Key: `${type}/${fileName}`,
@@ -26,7 +26,7 @@ async function uploadToS3(type: string, file: File, fileName: string, contentTyp
   })
 
   await upload.done()
-    .then(_ => console.log(`${S3_BUCKET}/${file.name}`))
+    .then(_ => console.log(`${S3_BUCKET}/${fileName}`))
     .catch(e => {
       console.error("unable to upload", e);
     })
@@ -41,7 +41,7 @@ export async function uploadImageToS3(file: File, sample?:number){
   return result;
 }
 
-export async function uploadJsonToS3(object: any, fileName: string){
+export async function uploadJsonToS3(object: Buffer, fileName: string){
   const result = await uploadToS3('json',object, fileName, 'application/json');
   return result;
 }
