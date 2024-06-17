@@ -9,8 +9,11 @@ import userProfile from '../public/svg/userProfile/userProfile.svg';
 import {ethers} from 'ethers';
 import {abi} from './data/abi.json';
 import { addTime, formatTimeString } from '../utils/util';
-
+import { delay, getBase64Image, convertToFile } from '../utils/util';
+import { Buffer } from 'buffer';
+import { uploadImageToS3, uploadJsonToS3 } from './s3/s3-upload';
 import { InfoType, DataType } from '../types/type';
+
 const ENV = import.meta.env;
 
 
@@ -32,31 +35,24 @@ async function createContract(){
   return contract
 }
 
-const delay = (ms: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
+export async function mintNFT(thumbnail: string, sample?:number){
+  const nickname=getNickName();
+  const file = await convertToFile(thumbnail, nickname);
+  const res = await uploadImageToS3(file,sample);
 
-async function getBase64Image(file: string) {
-  const response = await fetch(file);
-  const blob = await response.blob();
+  const metadataObj = {
+    name: `Tenant Demo Item NFT #${nickname}`,
+    description: 'Tenant Demo NFT',
+    image: `${res}`,
+    buildFileUrl: ``,
+    attributes: [],
+  }
 
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
+  const metadata = Buffer.from(JSON.stringify(metadataObj))
+  const metadataRes = await uploadJsonToS3(metadata,`${nickname}.json`);
 
-    reader.onload = () => {
-      resolve(reader.result); 
-    };
-
-    reader.onerror = (error) => {
-      reject(error);
-    };
-  });
-}
-
-export async function mintNFT(){
   const contract = await createContract();
-  const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, 'uri');
+  const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, metadataRes);
   const data = await tx.wait();
   
   const now = new Date();

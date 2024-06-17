@@ -5,7 +5,6 @@ import downloadIcon from '../../../../public/svg/Download.svg';
 import sample1 from '../../../../public/images/clothTemplate/sampleTexture/sample1.png';
 import sample2 from '../../../../public/images/clothTemplate/sampleTexture/sample2.png';
 import sample3 from '../../../../public/images/clothTemplate/sampleTexture/sample3.png';
-import { useState } from 'react';
 
 const SAMPLES = [sample1, sample2, sample3]
 
@@ -42,11 +41,13 @@ export function validateFile(imgFile: File): Promise<{ error?: string }>{
 type PropType={
   file: string,
   handleFile: (file: string)=>void,
+  sample: number,
+  handleSample: ()=>void,
+  useSample: boolean,
+  handleUseSample: (value:boolean)=>void,
 }
 
-export default function Upload({file, handleFile}: PropType):React.ReactElement{
-  const [useSample, setUseSample] = useState(false);
-  const [sample, setSample] = useState(0);
+export default function Upload({file, handleFile, sample, handleSample, useSample, handleUseSample}: PropType):React.ReactElement{
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>){
     if (e.target.files && e.target.files.length > 0) {
@@ -58,7 +59,7 @@ export default function Upload({file, handleFile}: PropType):React.ReactElement{
           if(result.error){
             alert(result.error);
           }else{
-            setUseSample(false);
+            handleUseSample(false);
             handleFile(url);
           }
         })
@@ -66,14 +67,12 @@ export default function Upload({file, handleFile}: PropType):React.ReactElement{
           console.log(e);
         })
     }
-
-    e.target.value='';
   }
 
   function handleClick(){
-    if(useSample==false) setUseSample(true);
+    if(useSample==false) handleUseSample(true);
     if(useSample){
-      setSample(prev=>(prev+1)%3);
+      handleSample();
     }
     handleFile(SAMPLES[sample]);
 
