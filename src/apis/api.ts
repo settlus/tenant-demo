@@ -87,12 +87,12 @@ export function getNickName(){
 }
 
 export async function transferNFT(offer: any){
-  // const prev = sessionStorage.getItem('nftArr') || '[]';
-  // const arr = JSON.parse(prev);
+  const raw = sessionStorage.getItem('tokenId') || '0x0';
+  const tokenId = BigInt(raw);
+  const contract = await createContract();
+  const tx = await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, tokenId);
 
-  // if(offer.itemIndex<arr.length) arr.splice(offer.itemIndex, 1);
-  // sessionStorage.setItem('nftArr',JSON.stringify(arr));
-
+  console.log(tx);
   await delay(2000);
   return;
 }
