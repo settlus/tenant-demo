@@ -6,9 +6,30 @@ import user4 from '../public/svg/userProfile/user4.svg';
 import user5 from '../public/svg/userProfile/user5.svg';
 import user6 from '../public/svg/userProfile/user6.svg';
 import userProfile from '../public/svg/userProfile/userProfile.svg';
+import {ethers} from 'ethers';
+import {abi} from './data/abi.json';
 
 import { InfoType, DataType } from '../types/type';
+const ENV = import.meta.env;
 
+
+async function createContract(){
+  const provider = new ethers.JsonRpcProvider(
+    ENV.VITE_DEVNET_RPC_URL,
+    {
+      name: 'settlus',
+      chainId: parseInt(ENV.VITE_DEVNET_CHAIN_ID),
+    }
+  )
+
+  const contract = new ethers.Contract(
+    ENV.VITE_CONTRACT_ADDR,
+    abi,
+    new ethers.Wallet(ENV.VITE_USER_PV_KEY, provider),
+  )
+
+  return contract
+}
 
 const delay = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -33,8 +54,12 @@ async function getBase64Image(file: string) {
 }
 
 export async function mintNFT(){
+  const contract = await createContract();
+  const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, 'uri');
+  const data = await tx.wait();
+  
+  sessionStorage.setItem('tokenId',data?.logs[0].topics[3]);
 
-  await delay(2000);
   return;
 }
 
