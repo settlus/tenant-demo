@@ -31,17 +31,18 @@ async function uploadToS3(type: string, file: File | Buffer, fileName: string, c
       console.error("unable to upload", e);
     })
 
-  console.log(`https://${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com/${type}/${fileName}`)
-  return `https://${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com/${type}/${fileName}`;
+  return fileName;
 }
 
 export async function uploadImageToS3(file: File, sample?:number){
   const FILENAME = sample ? `sample${sample+1}.png` : file.name
   const result = await uploadToS3('images',file, FILENAME, 'image/png');
-  return result;
+  
+  return `https://tenant-demo-dev-asset.settlus.io/images/${FILENAME}`;
 }
 
 export async function uploadJsonToS3(object: Buffer, fileName: string){
   const result = await uploadToS3('json',object, fileName, 'application/json');
-  return result;
+  
+  return `https://${S3_BUCKET}.s3.${S3_REGION}.amazonaws.com/json/${fileName}`
 }
