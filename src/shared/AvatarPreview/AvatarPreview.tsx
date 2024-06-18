@@ -1,14 +1,7 @@
-// import clsx from 'clsx'
-// import { useAtom } from 'jotai'
-// import Image from 'next/image'
-// import Script from 'next/script'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import LoadingSpinner from '../../public/svg/loading.svg'
-
-// import { isUnrealErrorAtom } from '@shared/store'
-// import { Button } from '@shared/ui/button'
-
 import styles from './AvatarPreview.module.scss'
+import { delay } from '../../utils/util'
 
 type Props = {
   small?: boolean
@@ -187,14 +180,14 @@ const AvatarPreview = ({
     }
   }, [isLoaded, isUnrealLoaded, handleAddCanvas])
 
-  // (init 시에) selectedTemplate / uploadedFile 있을 경우 셋팅
-  // selectedTemplate / uploadedFile 값이 바뀔 경우 재셋팅
-  useEffect(() => {
-      if (isLoaded && (isUnrealLoaded || isCanvasLoaded) && selectedTemplateMeshName) {
-        handleSelectTemplate(selectedTemplateMeshName)
-      }
+  // // (init 시에) selectedTemplate / uploadedFile 있을 경우 셋팅
+  // // selectedTemplate / uploadedFile 값이 바뀔 경우 재셋팅
+  // useEffect(() => {
+  //     if (isLoaded && (isUnrealLoaded || isCanvasLoaded) && selectedTemplateMeshName) {
+  //       handleSelectTemplate(selectedTemplateMeshName)
+  //     }
     
-  }, [isLoaded, isUnrealLoaded, isCanvasLoaded, selectedTemplateMeshName, handleSelectTemplate])
+  // }, [isLoaded, isUnrealLoaded, isCanvasLoaded, selectedTemplateMeshName, handleSelectTemplate])
 
   useEffect(() => {
     const resetAndApply = async()=>{
@@ -204,14 +197,10 @@ const AvatarPreview = ({
         selectedTemplateMeshName &&
         uploadedFile
       ) {
-        // handleResetAvatar()
-        //   .then(()=>handleApplyPng(uploadedFile, selectedTemplateMeshName))
-
-        // handleResetAvatar()
-        //   .then(()=>handleSelectTemplate(selectedTemplateMeshName))
-        //   .then(()=>handleApplyPng(uploadedFile, selectedTemplateMeshName))
-
-        handleApplyPng(uploadedFile, selectedTemplateMeshName);
+        await handleResetAvatar()
+        await delay(100)
+        await handleSelectTemplate(selectedTemplateMeshName)
+        await handleApplyPng(uploadedFile, selectedTemplateMeshName)
       }
 
     }
