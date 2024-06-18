@@ -9,6 +9,7 @@
   flex-grow: 1;
   box-sizing: border-box;
   text-align: center;
+  padding: 0rem 3rem;
 }
 
 footer {
@@ -18,8 +19,10 @@ footer {
   height: calc(100vh / 7);
   background-color: #1A202C;
   color: #fff;
-  padding: 1rem 3rem;
+  padding: 1rem 3vw;
   justify-content: center;
+  min-width: 60rem;
+  width: 94vw;
   
   ul {
     list-style-type: none;
