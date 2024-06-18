@@ -1,11 +1,5 @@
 import giftImg from '../public/svg/Present.svg';
-import user1 from '../public/svg/userProfile/user1.svg';
-import user2 from '../public/svg/userProfile/user2.svg';
-import user3 from '../public/svg/userProfile/user3.svg';
-import user4 from '../public/svg/userProfile/user4.svg';
-import user5 from '../public/svg/userProfile/user5.svg';
-import user6 from '../public/svg/userProfile/user6.svg';
-import userProfile from '../public/svg/userProfile/userProfile.svg';
+import { user1, user2, user3, user4, user5, user6, userProfile } from '../public/svg/userProfile'; 
 import {ethers} from 'ethers';
 import {abi} from './data/abi.json';
 import { addTime, formatTimeString } from '../utils/util';
