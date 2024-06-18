@@ -13,6 +13,7 @@ import { delay, getBase64Image, convertToFile } from '../utils/util';
 import { Buffer } from 'buffer';
 import { uploadImageToS3, uploadJsonToS3 } from './s3/s3-upload';
 import { InfoType, DataType } from '../types/type';
+import {v4 as uuid} from 'uuid';
 
 const ENV = import.meta.env;
 
@@ -36,12 +37,12 @@ async function createContract(){
 }
 
 export async function mintNFT(thumbnail: string, sample?:number){
-  const nickname=getNickName();
-  const file = await convertToFile(thumbnail, nickname);
+  const name = uuid();
+  const file = await convertToFile(thumbnail, name);
   const res = await uploadImageToS3(file,sample);
 
   const metadataObj = {
-    name: `Tenant Demo Item NFT #${nickname}`,
+    name: `Tenant Demo Item NFT #${name}`,
     description: 'Tenant Demo NFT',
     image: `${res}`,
     buildFileUrl: ``,
@@ -49,7 +50,7 @@ export async function mintNFT(thumbnail: string, sample?:number){
   }
 
   const metadata = Buffer.from(JSON.stringify(metadataObj))
-  const metadataRes = await uploadJsonToS3(metadata,`${nickname}.json`);
+  const metadataRes = await uploadJsonToS3(metadata,`${name}.json`);
 
   const contract = await createContract();
   const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, metadataRes);
