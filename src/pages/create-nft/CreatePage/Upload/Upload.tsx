@@ -42,7 +42,7 @@ type PropType={
   file: string,
   handleFile: (file: string)=>void,
   sample: number,
-  handleSample: ()=>void,
+  handleSample: (value?:number)=>void,
   useSample: boolean,
   handleUseSample: (value:boolean)=>void,
 }
@@ -60,7 +60,11 @@ export default function Upload({file, handleFile, sample, handleSample, useSampl
             alert(result.error);
           }else{
             handleUseSample(false);
+            handleSample(2);
             handleFile(url);
+            
+            const doc = document.getElementById('fileInput') as HTMLInputElement
+            if(doc) doc.value = '';
           }
         })
         .catch(e=>{
@@ -71,11 +75,11 @@ export default function Upload({file, handleFile, sample, handleSample, useSampl
 
   function handleClick(){
     if(useSample==false) handleUseSample(true);
-    if(useSample){
-      handleSample();
-    }
+    // if(useSample){
+    //   handleSample();
+    // }
+    handleSample();
     handleFile(SAMPLES[sample]);
-
   }
 
   return <div className={styles.main}>
@@ -95,7 +99,7 @@ export default function Upload({file, handleFile, sample, handleSample, useSampl
         <br />The image size cannot exceed 1024 x 1024 px(2MB)
       </p>
       <span className={styles.upload}>
-        <input className={styles.hidden} type="file" onChange={handleChange}/>
+        <input className={styles.hidden} type="file" id="fileInput" onChange={handleChange}/>
         <p>Select</p>
       </span>
     </div>

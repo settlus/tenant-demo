@@ -49,7 +49,7 @@ export default function CreatePage(){
   })
 
   const [useSample, setUseSample] = useState(false);
-  const [sample, setSample] = useState(0);
+  const [sample, setSample] = useState(2);
 
   const navigate = useNavigate();
   const instruction = step<3 ? TEXT[0]: TEXT[1];
@@ -58,8 +58,9 @@ export default function CreatePage(){
     setUseSample(value);
   }
 
-  function handleSample(){
-    setSample(prev=>(prev+1)%3);
+  function handleSample(value?:number){
+    if(value) setSample(value);
+    else setSample(prev=>(prev+1)%3);
   }
 
 
