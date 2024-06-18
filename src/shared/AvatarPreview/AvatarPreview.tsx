@@ -37,6 +37,7 @@ const AvatarPreview = ({
   const [isJQueryLoaded, setJQueryLoaded] = useState(false)
   const [isUnrealLoaded, setUnrealLoaded] = useState(false)
   const [isCanvasLoaded, setCanvasLoaded] = useState(false)
+  const [prevTemplateMesh, setPrevTemplateMesh] = useState(selectedTemplateMeshName)
   const [bodyType, setBodyType] = useState(1)
 
   const handleLoadJquery = useCallback(async () => {
@@ -197,8 +198,12 @@ const AvatarPreview = ({
         selectedTemplateMeshName &&
         uploadedFile
       ) {
-        await handleResetAvatar()
-        await delay(100)
+
+        if(prevTemplateMesh!=selectedTemplateMeshName){
+          await handleResetAvatar()
+          await delay(100)
+          setPrevTemplateMesh(selectedTemplateMeshName)
+        }
         await handleSelectTemplate(selectedTemplateMeshName)
         await handleApplyPng(uploadedFile, selectedTemplateMeshName)
       }
@@ -211,6 +216,7 @@ const AvatarPreview = ({
     isUnrealLoaded,
     isCanvasLoaded,
     selectedTemplateMeshName,
+    prevTemplateMesh,
     uploadedFile,
     handleApplyPng,
   ])
