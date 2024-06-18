@@ -1,9 +1,7 @@
 @import '../../styling/modal';
 
 .main{
-  position: absolute;
-  top: -1rem;
-  left: 10rem;
+  position: relative;
   z-index: 3000;
 
   button{

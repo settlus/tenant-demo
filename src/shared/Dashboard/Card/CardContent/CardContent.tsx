@@ -1,18 +1,25 @@
 import { useContext } from 'react';
 import styles from '../Card.module.scss';
 import { DashboardContext } from '../../../../store/dashboard_context';
+import GuidePointer from '../../../GuidePointer/GuidePointer';
 
 
 export default function CardContent(){
-  const {data, setStep} = useContext(DashboardContext)
+  const {data, step, setStep} = useContext(DashboardContext)
 
   return <div className={styles.back}>
     <div className={styles.onChain}>
       <p>NFT Info</p>
       <ul>
         {Object.keys(data.details).map((item: string,index)=>(
-          <li key={index}>{item}: {item==='Contract Address' ? <a href={`https://devnet.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/inventory`} target='_blank' onClick={()=>{setStep(1)}}>{data.details[item]}</a>
-          : data.details[item]}</li>
+          item==='Contract Address' ? 
+            <GuidePointer topPos={5} leftPos={100} doGuide={step===0}>
+              <li key={index}>
+                {item}:<a href={`https://devnet.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/inventory`} target='_blank' onClick={()=>{setStep(prev=>prev===0 ? 1 : prev)}}>{data.details[item]}</a>
+              </li>
+            </GuidePointer>
+        : <li key={index}>{item}:{data.details[item]}</li>
+          
         ))}
       </ul>
       <img src={data.thumbnail}/>

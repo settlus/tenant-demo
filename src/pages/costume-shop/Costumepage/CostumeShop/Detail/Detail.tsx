@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../../../../../store/costumeshop_context';
 import { formatNum } from '../../../../../utils/util';
+import GuidePointer from '../../../../../shared/GuidePointer/GuidePointer';
 
 export default function Detail(){
   const {selected, items, step} = useContext(ShopContext);
@@ -37,7 +38,9 @@ export default function Detail(){
   </p>
 
   {selectedItem.userCreated ? 
-    <button className={styles.dashboardButton} onClick={handleClick}>Go to my dashboard</button>  
+    <GuidePointer doGuide={true}>
+      <button className={styles.dashboardButton} onClick={handleClick}>Go to my dashboard</button> 
+    </GuidePointer> 
     : <button>Buy</button>}
  
 </div>

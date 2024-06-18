@@ -3,12 +3,17 @@ import CardContent from './CardContent/CardContent';
 import OfferNoti from '../OfferNoti/OfferNoti';
 import { useContext } from 'react';
 import { DashboardContext } from '../../../store/dashboard_context';
+import GuidePointer from '../../GuidePointer/GuidePointer';
 
 export default function Card(){
-  const {offer} = useContext(DashboardContext);
+  const {offer, step, isOfferModal} = useContext(DashboardContext);
 
   return <div className={`${styles.card}`}>
-    {offer && <OfferNoti />}
+    {offer && <div className={styles.offerNoti}>
+      <GuidePointer doGuide={step===2 && !isOfferModal}>
+        <OfferNoti />
+      </GuidePointer>  
+    </div>}
     <CardContent />
   </div>
 }

@@ -4,6 +4,7 @@ import Instruction from '../../../shared/Instruction/Instruction';
 import Navigation from '../../../shared/Navigation/Navigation';
 import { useContext, useEffect } from 'react';
 import { DashboardContext } from '../../../store/dashboard_context';
+import GuidePointer from '../../../shared/GuidePointer/GuidePointer';
 
 export default function Main(){
   const {step, setStep, setOffer} = useContext(DashboardContext);
@@ -28,7 +29,9 @@ export default function Main(){
       {step<2 ? 'On the creator’s dashboard, you can see your NFT info, Item listing, and activity history. Click the contract address to see your minting on Settlus Scan.'
       : ' As more users buy your item, sales revenue increases and so does the value of your NFT. Look! You’ve received an offer from a NFT collector. '}
       </Instruction>
-      {step===1 && <Navigation handleClick={handleStep}/>}
+      {step===1 && <GuidePointer doGuide={step===1}>
+        <Navigation handleClick={handleStep}/>
+      </GuidePointer>}
     </div>
     <Dashboard />
   </div>
