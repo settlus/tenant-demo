@@ -3,6 +3,18 @@ export type InfoType = {
   name: string | null,
 }
 
+export type DetailType = {
+  'Contract Address': string,
+  'Mint Hash': string,
+  'Token ID': string,
+  'Token Standard': string,
+  'Chain': string,
+  'Creator': string,
+  'Owner': string,
+}
+
+export type DetailKeys = keyof DetailType;
+
 export type DataType = {
   thumbnail: string,
   title: string,
@@ -11,15 +23,7 @@ export type DataType = {
     'Activity': string,
     'Time': string,
   }[],
-  details: {
-    'Contract Address': string,
-    'Mint Hash': string,
-    'Token ID': string,
-    'Token Standard': string,
-    'Chain': string,
-    'Creator': string,
-    'Owner': string,
-  },
+  details: DetailType,
   revenue: {
     'Price': number,
     'Quantity': number,

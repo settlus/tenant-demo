@@ -2,8 +2,19 @@ import { useContext } from 'react';
 import styles from '../Card.module.scss';
 import { DashboardContext } from '../../../../store/dashboard_context';
 import GuidePointer from '../../../GuidePointer/GuidePointer';
+import { DetailKeys } from '../../../../types/type';
 
 const ENV = import.meta.env;
+
+const keys: DetailKeys[] = [
+  'Contract Address',
+  'Mint Hash',
+  'Token ID',
+  'Token Standard',
+  'Chain',
+  'Creator',
+  'Owner'
+]
 
 
 export default function CardContent(){
@@ -13,7 +24,7 @@ export default function CardContent(){
     <div className={styles.onChain}>
       <p>NFT Info</p>
       <ul>
-        {Object.keys(data.details).map((item: string,index)=>(
+        {keys.map((item,index)=>(
           item==='Contract Address' ? 
             <GuidePointer topPos={5} leftPos={100} doGuide={step===0}>
               <li key={index}>

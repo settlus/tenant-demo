@@ -28,7 +28,7 @@ export function validateFile(imgFile: File): Promise<{ error?: string }>{
       URL.revokeObjectURL(img.src);
     };
 
-    img.onerror = function (e) {
+    img.onerror = function () {
       reject({ error: 'Failed to load the image. Please select a valid image file.' });
     };
 

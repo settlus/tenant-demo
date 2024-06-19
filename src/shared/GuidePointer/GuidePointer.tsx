@@ -13,7 +13,7 @@ export default function GuidePointer({children, doGuide, topPos, leftPos}:PropTy
   const [isVisible, setIsVisible] = useState(false); 
 
   useEffect(()=>{
-    let timeout = null;
+    let timeout:NodeJS.Timeout | null = null;
     if(doGuide){
       setIsVisible(false);
       timeout = setTimeout(()=>{

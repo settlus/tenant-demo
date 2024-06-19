@@ -38,6 +38,6 @@ export default function TransferPage(){
     </div>
     <p>Transfer "{data.name}" To <img src={profile1}/>Joy: </p>
     <p>{offer?.offerAddress}</p>
-    <button className={styles.button} onClick={handleOpen}>Transfer & Receive {formatNum(offer?.offerPrice)}</button>
+    <button className={styles.button} onClick={handleOpen}>Transfer & Receive {formatNum(offer?.offerPrice || 1000)}</button>
   </div>
 }

@@ -2,7 +2,6 @@ import styles from './Submit.module.scss';
 import QnaBanner from './QnaBanner/QnaBanner';
 import Field from './Field/Field';
 import { useEffect } from 'react';
-import { getNFT } from '../../../../apis/api';
 
 type PropType = {
   info: {

@@ -15,7 +15,7 @@ type PropType={
 export default function ConfirmModal({open, handleClose, offer}:PropType):React.ReactElement{
   const navigate = useNavigate();
   const {mutate, isLoading,} = useMutation(
-    offer=>transferNFT(offer),
+    ()=>transferNFT(),
     {
       onSuccess: ()=>{
         sessionStorage.setItem('mission','5');
@@ -26,7 +26,7 @@ export default function ConfirmModal({open, handleClose, offer}:PropType):React.
 
 
   async function handleConfirm(){
-    mutate(offer);
+    mutate();
   }
 
   return <Modal open={open} handleClose={handleClose} style={styles.style}>

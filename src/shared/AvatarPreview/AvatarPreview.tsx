@@ -34,7 +34,7 @@ const AvatarPreview = ({
   const mainAreaRef = useRef<HTMLDivElement>(null)
   const [isUnrealError, setIsUnrealError] = useState(false)//useAtom(isUnrealErrorAtom)
 
-  const [isJQueryLoaded, setJQueryLoaded] = useState(false)
+  //const [isJQueryLoaded, setJQueryLoaded] = useState(false)
   const [isUnrealLoaded, setUnrealLoaded] = useState(false)
   const [isCanvasLoaded, setCanvasLoaded] = useState(false)
   const [prevTemplateMesh, setPrevTemplateMesh] = useState(selectedTemplateMeshName)
@@ -54,7 +54,7 @@ const AvatarPreview = ({
       document.body.appendChild(jquery)
 
       jquery.onload = () => {
-        setJQueryLoaded(true)
+        //setJQueryLoaded(true)
       }
 
     }catch(e){

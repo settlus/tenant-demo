@@ -26,7 +26,7 @@ export default function OfferModal(){
       <h3>Deal Offer</h3>
       <img src={GiftSvg}/>
       <p>
-      <img src={profile1} />Joy has just offered to buy your NFT for {formatNum(offer?.offerPrice)}. 
+      <img src={profile1} />Joy has just offered to buy your NFT for {formatNum(offer?.offerPrice || 1000)}. 
       Want to accept the offer 
       and transfer NFT?
       <br /><br />

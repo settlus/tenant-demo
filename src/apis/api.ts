@@ -86,13 +86,11 @@ export function getNickName(){
   return name;
 }
 
-export async function transferNFT(offer: any){
+export async function transferNFT(){
   const raw = sessionStorage.getItem('tokenId') || '0x0';
   const tokenId = BigInt(raw);
   const contract = await createContract();
-  const tx = await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, tokenId);
-
-  console.log(tx);
+  await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, tokenId);
   await delay(2000);
   return;
 }
