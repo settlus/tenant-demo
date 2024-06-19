@@ -111,6 +111,8 @@ export default function CreatePage(){
     if(step<0) navigate(-1);
     if(step===0) {
       setFile('');
+      setUseSample(false);
+      setSample(2);
     }
     if(step===1) {
       const errorMsg = validateFile(file).error;
