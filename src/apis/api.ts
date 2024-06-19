@@ -14,10 +14,10 @@ const ENV = import.meta.env;
 
 async function createContract(){
   const provider = new ethers.JsonRpcProvider(
-    ENV.VITE_DEVNET_RPC_URL,
+    ENV.VITE_RPC_URL,
     {
       name: 'settlus',
-      chainId: parseInt(ENV.VITE_DEVNET_CHAIN_ID),
+      chainId: parseInt(ENV.VITE_CHAIN_ID),
     }
   )
 

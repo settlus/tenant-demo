@@ -3,9 +3,10 @@ import './init';
 import {S3Client} from '@aws-sdk/client-s3';
 import {Upload} from '@aws-sdk/lib-storage';
 
-const S3_BUCKET = 'settlus-tenant-demo-dev';
-const S3_REGION = 'ap-northeast-2'
 const ENV = import.meta.env;
+const S3_BUCKET = ENV.VITE_S3_BUCKET;
+const S3_REGION = 'ap-northeast-2'
+
 
 //const awsConfig = fromIni();
 const s3client = new S3Client({region:S3_REGION,credentials:{
@@ -31,7 +32,7 @@ async function uploadToS3(type: string, file: File | Buffer, fileName: string, c
       console.error("unable to upload", e);
     })
 
-  return `https://tenant-demo-dev-asset.settlus.io/${type}/${fileName}`
+  return `https://${ENV.VITE_CLOUDFRONT_DOMAIN}/${type}/${fileName}`
 }
 
 export async function uploadImageToS3(file: File, sample?:number){
