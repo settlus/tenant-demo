@@ -25,8 +25,8 @@ export { default as item8template } from './Item8/T_UGC_Skirt_Longskirt001_D.png
 export { default as item9thumbnail } from './Item9/Pants_Jean006.png'
 export { default as item9template } from './Item9/T_UGC_Pants_Jean006_D.png'
 
-export { default as item10thumbnail } from './Item10/Pants_DefaultShorts001.png'
-export { default as item10template } from './Item10/T_UGC_Pants_DefaultShorts001_D.png'
+export { default as item10thumbnail } from './Item10/Pants_Shorts005.png'
+export { default as item10template } from './Item10/T_UGC_Pants_Shorts005_D.png'
 
 export { default as item11thumbnail } from './Item11/Outer_Blouson001.png'
 export { default as item11template } from './Item11/T_UGC_Outer_Blouson001_D.png'
