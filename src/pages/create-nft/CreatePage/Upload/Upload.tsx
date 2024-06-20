@@ -1,7 +1,7 @@
 import styles from './Upload.module.scss';
 import AvatarPreview from '../../../../shared/AvatarPreview/AvatarPreview';
-import templateImg from '../../../../public/images/clothTemplate/Item1/T_UGC_Top_DefaultWear001F_D.png';
 import downloadIcon from '../../../../public/svg/Download.svg';
+import { tshirtTemplate as templateImg } from '../../../../public/images/clothTemplate';
 import { sample1, sample2, sample3 } from '../../../../public/images/clothTemplate/sampleTexture'
 
 const SAMPLES = [sample1, sample2, sample3]

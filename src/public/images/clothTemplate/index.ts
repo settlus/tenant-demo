@@ -34,7 +34,7 @@ export { default as item11template } from './Item11/T_UGC_Outer_Blouson001_D.png
 export { default as item12thumbnail } from './Item12/Socks_Default005.png'
 export { default as item12template } from './Item12/T_UGC_Socks_Default005_D.png'
 
-
+export { default as tshirtTemplate } from './tshirtTemplate.png'
 
 
 
