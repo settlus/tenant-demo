@@ -20,7 +20,7 @@ export { default as item7thumbnail } from './Item7/Skirt_HalfSkirt001.png'
 export { default as item7template } from './Item7/T_UGC_Skirt_HalfSkirt001_D.png'
 
 export { default as item8thumbnail } from './Item8/Skirt_Longskirt001.png'
-export { default as item8template } from './Item8/T_UGC_Skirt_Longskirt001_D.png'
+export { default as item8template } from './Item8/T_UGC_Skirt_LongSkirt001_D.png'
 
 export { default as item9thumbnail } from './Item9/Pants_Jean006.png'
 export { default as item9template } from './Item9/T_UGC_Pants_Jean006_D.png'
