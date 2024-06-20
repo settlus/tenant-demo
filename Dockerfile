@@ -16,19 +16,24 @@ RUN yarn global add pnpm && \
     pnpm i && pnpm build
 
 ##### RUNNER
-FROM public.ecr.aws/docker/library/node:18-slim AS runner
-WORKDIR /app
+FROM nginx:stable-alpine
+WORKDIR /usr/share/nginx/html
+#FROM public.ecr.aws/docker/library/node:18-slim AS runner
+#WORKDIR /app
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 demo
+# RUN addgroup --system --gid 1001 nodejs
+# RUN adduser --system --uid 1001 demo
 
-COPY --from=builder --chown=demo:nodejs /app/dist ./
-COPY --from=builder --chown=demo:nodejs /app/node_modules ./node_modules
-COPY --from=builder --chown=demo:nodejs /app/package.json ./package.json
-COPY --from=builder --chown=demo:nodejs /app/pnpm-lock.yaml ./pnpm-lock.yaml
+# COPY --from=builder --chown=demo:nodejs /app/dist ./dist
+# COPY --from=builder --chown=demo:nodejs /app/node_modules ./node_modules
+# COPY --from=builder --chown=demo:nodejs /app/package.json ./package.json
+# COPY --from=builder --chown=demo:nodejs /app/pnpm-lock.yaml ./pnpm-lock.yaml
 
-USER demo
-EXPOSE 3000
-ENV PORT 3000
+# USER demo
 
-CMD ["npm","run", "preview"]
+COPY --from=builder /app/dist .
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
