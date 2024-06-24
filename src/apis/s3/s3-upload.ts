@@ -1,7 +1,11 @@
 import './init';
 //import {fromIni} from '@aws-sdk/credential-providers';
-import {S3Client} from '@aws-sdk/client-s3';
+import {S3Client, GetObjectCommand} from '@aws-sdk/client-s3';
 import {Upload} from '@aws-sdk/lib-storage';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { LambdaClient, InvokeCommand } from "@aws-sdk/client-lambda";
+import { Buffer } from 'buffer';
+import axios from 'axios';
 
 const ENV = import.meta.env;
 const S3_BUCKET = ENV.VITE_S3_BUCKET;
@@ -9,10 +13,12 @@ const S3_REGION = 'ap-northeast-2'
 
 
 //const awsConfig = fromIni();
-const s3client = new S3Client({region:S3_REGION,credentials:{
+const s3client = new S3Client({region:S3_REGION,
+  credentials:{
   accessKeyId: ENV.VITE_AWS_ACCESS_KEY_ID,
   secretAccessKey: ENV.VITE_AWS_SECRET_ACCESS_KEY,
-}});
+}
+});
 
 async function uploadToS3(type: string, file: File | Buffer, fileName: string, contentType:string){
   const params = {
@@ -22,15 +28,45 @@ async function uploadToS3(type: string, file: File | Buffer, fileName: string, c
     contentType: contentType,
   }
 
-  const upload = new Upload({
-    client: s3client, params: params
-  })
+  ///
+  const event = {filename:fileName, type:type};
+  const client = new LambdaClient({
+    region: S3_REGION, //change to your region
+    credentials:{
+      accessKeyId: ENV.VITE_AWS_ACCESS_KEY_ID,
+      secretAccessKey: ENV.VITE_AWS_SECRET_ACCESS_KEY,
+    }
+  });
+  const command = new InvokeCommand({
+    FunctionName: 'getPresignedUrl',
+    Payload: JSON.stringify(event),
+    LogType: 'Tail',
+  });
 
-  await upload.done()
-    .then(_ => console.log(`${S3_BUCKET}/${fileName}`))
-    .catch(e => {
-      console.error("unable to upload", e);
-    })
+  const { Payload, LogResult } = await client.send(command);
+  const result = JSON.parse(Buffer.from(Payload).toString());
+  console.log(result);
+
+  ///
+
+  let options = { headers: { 'Content-Type': contentType,'x-amz-acl': 'public-read' } };
+  console.log(contentType)
+
+  await axios
+    .put(result,file,options)
+    .then((response)=>console.log(response))
+    .catch((err)=>console.error(err));
+
+
+  // const upload = new Upload({
+  //   client: s3client, params: params
+  // })
+
+  // await upload.done()
+  //   .then(_ => console.log(`${S3_BUCKET}/${fileName}`))
+  //   .catch(e => {
+  //     console.error("unable to upload", e);
+  //   })
 
   return `https://${ENV.VITE_CLOUDFRONT_DOMAIN}/${type}/${fileName}`
 }
