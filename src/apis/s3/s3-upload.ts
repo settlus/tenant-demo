@@ -46,16 +46,20 @@ async function uploadToS3(type: string, file: File | Buffer, fileName: string, c
   const { Payload, LogResult } = await client.send(command);
   const result = JSON.parse(Buffer.from(Payload).toString());
   console.log(result);
+  console.log(LogResult);
 
   ///
 
-  let options = { headers: { 'Content-Type': contentType,'x-amz-acl': 'public-read' } };
+  let options = { headers: { 'Content-Type': contentType, } };
   console.log(contentType)
+  
+
 
   await axios
-    .put(result,file,options)
-    .then((response)=>console.log(response))
-    .catch((err)=>console.error(err));
+  .put(result,file,options)
+  .then((response)=>console.log(response))
+  .catch((err)=>console.error(err));
+
 
 
   // const upload = new Upload({
