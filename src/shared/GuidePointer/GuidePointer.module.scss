@@ -15,7 +15,7 @@
     position: absolute;
     top:var(--topPos);//75px;
     left: var(--leftPos);//100px;
-    z-index: 10000;
+    z-index: 1000;
     animation: upDown 1.5s infinite ease-in-out;
   }
 
