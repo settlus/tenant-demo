@@ -5,12 +5,11 @@ import axios from 'axios';
 const ENV = import.meta.env;
 
 async function uploadToS3(type: string, file: File | Buffer, fileName: string, contentType:string){
-  axios.get(ENV.VITE_LAMBDA_API_URL)
+  axios.get(ENV.VITE_LAMBDA_API_PRESIGNED_URL)
     .then((response)=>{
       const url = response.data;
       return axios.put(url,file,{ headers: { 'Content-Type': contentType, } })
     })
-    .then(response=>console.log(response))
     .catch((err)=>console.error(err));
 
   return `https://${ENV.VITE_CLOUDFRONT_DOMAIN}/${type}/${fileName}`

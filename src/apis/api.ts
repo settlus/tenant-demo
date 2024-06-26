@@ -8,6 +8,7 @@ import { Buffer } from 'buffer';
 import { uploadImageToS3, uploadJsonToS3 } from './s3/s3-upload';
 import { InfoType, DataType } from '../types/type';
 import {v4 as uuid} from 'uuid';
+import axios from 'axios';
 
 const ENV = import.meta.env;
 
@@ -21,10 +22,11 @@ async function createContract(){
     }
   )
 
+  const user_pv_key = await axios.get(ENV.VITE_LAMBDA_API_PRIVATE_KEY+ `?chain=${ENV.VITE_CHAIN_TYPE}`);
   const contract = new ethers.Contract(
     ENV.VITE_CONTRACT_ADDR,
     abi,
-    new ethers.Wallet(ENV.VITE_USER_PV_KEY, provider),
+    new ethers.Wallet(user_pv_key.data, provider),
   )
 
   return contract
