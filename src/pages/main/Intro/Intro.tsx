@@ -7,7 +7,7 @@ export default function Intro(){
     <p>
       Settlus is the upcoming standard of creator economy.
       <br />
-      Transform the way you manage and monetize your IP  in the web3 era.
+      Experience as an avatar costume creator and learn the value of  NFT licensing on Settlus.
     </p>
 
     <Card />

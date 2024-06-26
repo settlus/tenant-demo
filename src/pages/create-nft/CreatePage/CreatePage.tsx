@@ -11,10 +11,10 @@ import { mintNFT, createItem } from '../../../apis/api';
 
 const TEXT = [{
   title: 'Now, let’ experience as a creator and make an awesome t-shirt!',
-  text: 'Upload 2D image or choose AI generated image.',
+  text: 'Upload 2D image or select a sample costume.',
 },{
   title: 'Whoa! Almost there',
-  text: 'As you finish this step, we will mint your creation as NFT and also list the item on the off-chain Avatar Costume Shop. Be ready:)',
+  text: 'Now, your costume is minted as NFT, and you have rights to sell the costume. How much do you want to sell your costume on the Avatar Costume Shop?',
 }];
 
 type Info = {
