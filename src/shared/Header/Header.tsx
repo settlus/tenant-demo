@@ -5,6 +5,7 @@ import MissionModal from './MissionModal/MissionModal.tsx';
 import missionSvg from '../../public/svg/Mission.svg';
 import qnaSvg from '../../public/svg/qna.svg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type PropType = {
   logoOnly?: boolean, 
@@ -24,7 +25,7 @@ export default function Header({logoOnly}: PropType): React.ReactElement{
 
   return <div className={styles.header}>
     {qnaOpen && <QnaModal open={qnaOpen} handleClose={handleQna}/> }
-    <h2>Demo</h2>
+    <Link to='/' style={{ textDecoration: 'none' }}><h2>Demo</h2></Link>
     {!logoOnly && <div className={styles.menu}>
       <div className={styles.mission}>
         <HeaderButton icon={missionSvg} name='Mission' handleClick={handleMission}/>
