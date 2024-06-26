@@ -1,4 +1,5 @@
 import giftImg from '../public/svg/Present.svg';
+import { USER_NAMES } from '../utils/constants';
 import { user1, user2, user3, user4, user5, user6, userProfile } from '../public/svg/userProfile'; 
 import {ethers} from 'ethers';
 import {abi} from './data/abi.json';
@@ -111,37 +112,37 @@ export async function getData(): Promise<DataType>{
       },
       {
         'Profile': user5,
-        'Activity': 'User 5 bought an item',
+        'Activity': `${USER_NAMES[4]} bought an item`,
         'Time': addTime(data.mintTime,9.2),
       },
       {
         'Profile': user1,
-        'Activity': 'User 9 bought an item',
+        'Activity': `${USER_NAMES[8]} bought an item`,
         'Time': addTime(data.mintTime,8.9),
       },
       {
         'Profile': user2,
-        'Activity': 'User 6 bought an item',
+        'Activity': `${USER_NAMES[5]} bought an item`,
         'Time': addTime(data.mintTime,8),
       },
       {
         'Profile': user3,
-        'Activity': 'User 2 bought an item',
+        'Activity': `${USER_NAMES[2]} bought an item`,
         'Time': addTime(data.mintTime,7.6),
       },
       {
         'Profile': user4,
-        'Activity': 'User 4 bought an item',
+        'Activity': `${USER_NAMES[3]} bought an item`,
         'Time': addTime(data.mintTime,7.1),
       },
       {
         'Profile': user5,
-        'Activity': 'User 5 bought an item',
+        'Activity': `${USER_NAMES[4]} bought an item`,
         'Time': addTime(data.mintTime,6.5),
       },
       {
         'Profile': user6,
-        'Activity': 'User 1 bought an item',
+        'Activity': `${USER_NAMES[0]} bought an item`,
         'Time': addTime(data.mintTime,6),
       },
       {

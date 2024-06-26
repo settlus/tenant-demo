@@ -36,3 +36,16 @@ export type OfferType = {
   offerAddress: string,
   offerPrice: number,
 } | null;
+
+export type itemType = {
+  thumbnailPng: string,
+  meshName: string,
+  templatePng: string,
+  title: string, 
+  price: number, 
+  creator: string, 
+  creatorProfilePng: string, 
+  quantity: number,
+  offerValue: number,
+  userCreated?: boolean,
+}

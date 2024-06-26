@@ -4,20 +4,7 @@ import LiveIcon from '../../../../../public/images/live.gif';
 import { useContext, useEffect, useState } from 'react';
 import {useLocation} from 'react-router-dom';
 import { ShopContext } from '../../../../../store/costumeshop_context';
-
-const LIST = [
-  {user: 1, thumbnail: 4,},
-  {user: 2, thumbnail: 1,},
-  {user: 3, thumbnail: 1,},
-  {user: 2, thumbnail: 6,},
-  {user: 3, thumbnail: 8,},
-  {user: 1, thumbnail: 2,},
-  {user: 1, thumbnail: 11,},
-  {user: 4, thumbnail: 5,},
-  {user: 1, thumbnail: 7,},
-  {user: 1, thumbnail: 6,},
-  {user: 4, thumbnail: 9,},
-]
+import { LIVE_LIST as LIST, USER_NAMES } from '../../../../../utils/constants';
 
 export default function Live(){
   const {items, setItems, step} = useContext(ShopContext);
@@ -41,7 +28,13 @@ export default function Live(){
       await addToList(2,2);
       await addToList(3,2);
       await addToList(4,10);
-      await addToList(2,8);
+      await addToList(2,7);
+      await addToList(6,7);
+      await addToList(7,8);
+      await addToList(9,1);
+      await addToList(1,11);
+      await addToList(7,4);
+      await addToList(8,5);
     }
 
     const addUserLive = async()=>{
@@ -66,7 +59,7 @@ export default function Live(){
     </div>
     <ul>
       {liveList.map((item,index)=><li key={`${item.user}-${item.thumbnail}-${index}`} className={`${index===0 ? styles.first : styles.remaining}`}>
-        <p>User {item.user} bought</p>
+        <p>{USER_NAMES[item.user-1]} bought</p>
         <Thumbnail style={styles.thumbnail} thumbnail={items[item.thumbnail].thumbnailPng}/>
       </li>)}
     </ul>

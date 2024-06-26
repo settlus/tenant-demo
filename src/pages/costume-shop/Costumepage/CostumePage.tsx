@@ -1,13 +1,14 @@
 import { useContext, useEffect } from "react"
 import Instruction from "../../../shared/Instruction/Instruction"
 import CostumeShop from "./CostumeShop/CostumeShop"
-import { ShopContext, ITEM_ARR } from "../../../store/costumeshop_context"
+import { ShopContext } from "../../../store/costumeshop_context"
 import nftIcon from '../../../public/images/NftLicense.png'
 import styles from './CostumePage.module.scss'
 import Navigation from "../../../shared/Navigation/Navigation"
 import { useNavigate } from 'react-router-dom';
 import { formatNum } from "../../../utils/util";
 import GuidePointer from "../../../shared/GuidePointer/GuidePointer"
+import { ITEM_ARR } from "../../../utils/constants"
 
 const TITLES = [
   'Welcome to the Avatar Costume Shop!',

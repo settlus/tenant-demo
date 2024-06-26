@@ -1,25 +1,6 @@
 import React, { useState } from "react";
 import { DataType, OfferType } from "../types/type";
-
-const INITIAL_DATA = {
-  thumbnail: '',
-  title: '',
-  history: [],
-  details: {
-    'Contract Address':'0x72f223423984723649823782374982392e9',
-    'Mint Hash': '',
-    'Token ID': '',
-    'Token Standard': 'ERC-721',
-    'Chain': 'Settlus',
-    'Creator': '',
-    'Owner': '',
-  },
-  revenue: {
-    'Price': 0,
-    'Quantity': 0,
-  },
-
-}
+import { INITIAL_NFT_INFO as INITIAL_DATA } from "../utils/constants";
 
 type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
