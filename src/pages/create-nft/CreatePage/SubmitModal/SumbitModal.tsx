@@ -21,7 +21,7 @@ export default function SubmitModal({step, open, handleClose, handleStep}: PropT
   }
 
   return <>
-    {step>0 && step<3 && <Modal open={open} handleClose={step===2 ? handleClick : undefined}>
+    {step>0 && step<3 && <Modal open={open} handleClose={step===2 ? handleClick : undefined} style={styles.style}>
       {step===1 && <>
         <h3>Processing</h3>
         <div className={styles.loading}>
