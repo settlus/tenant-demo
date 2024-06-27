@@ -50,3 +50,33 @@ export const addTime = (dateString: string, addSec: number)=>{
 
   return formatTimeString(newDate.toISOString());
 }
+
+export function validateFile(imgFile: File): Promise<{ error?: string }>{
+  return new Promise((resolve, reject) => {
+    const extension = imgFile.name.split('.').pop() || 'none';
+    if ('png' !== extension.toLowerCase()) {
+      resolve({ error: 'The file must have a png extension!' });
+      return;
+    }
+
+    const img = new Image();
+    
+    img.onload = function () {
+      if (img.width !== img.height) {
+        resolve({ error: 'The image should be of 1:1 ratio!' });
+      } else if(img.width>1024){
+        resolve({ error: 'The file size is too large!' });
+      }
+      else {
+        resolve({});
+      }
+      URL.revokeObjectURL(img.src);
+    };
+
+    img.onerror = function () {
+      reject({ error: 'Failed to load the image. Please select a valid image file.' });
+    };
+
+    img.src = URL.createObjectURL(imgFile);
+  });
+}

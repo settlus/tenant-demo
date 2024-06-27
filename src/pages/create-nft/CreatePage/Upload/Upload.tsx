@@ -3,38 +3,9 @@ import AvatarPreview from '../../../../shared/AvatarPreview/AvatarPreview';
 import downloadIcon from '../../../../public/svg/Download.svg';
 import { tshirtTemplate as templateImg } from '../../../../public/images/clothTemplate';
 import { sample1, sample2, sample3 } from '../../../../public/images/clothTemplate/sampleTexture'
+import { validateFile } from '../../../../utils/util';
 
 const SAMPLES = [sample1, sample2, sample3]
-
-export function validateFile(imgFile: File): Promise<{ error?: string }>{
-  return new Promise((resolve, reject) => {
-    const extension = imgFile.name.split('.').pop() || 'none';
-    if ('png' !== extension.toLowerCase()) {
-      resolve({ error: 'The file must have a png extension!' });
-      return;
-    }
-
-    const img = new Image();
-    
-    img.onload = function () {
-      if (img.width !== img.height) {
-        resolve({ error: 'The image should be of 1:1 ratio!' });
-      } else if(img.width>1024){
-        resolve({ error: 'The file size is too large!' });
-      }
-      else {
-        resolve({});
-      }
-      URL.revokeObjectURL(img.src);
-    };
-
-    img.onerror = function () {
-      reject({ error: 'Failed to load the image. Please select a valid image file.' });
-    };
-
-    img.src = URL.createObjectURL(imgFile);
-  });
-}
 
 type PropType={
   file: string,
@@ -45,8 +16,7 @@ type PropType={
   handleUseSample: (value:boolean)=>void,
 }
 
-export default function Upload({file, handleFile, sample, handleSample, useSample, handleUseSample}: PropType):React.ReactElement{
-
+export default function Upload({file, handleFile, sample, handleSample, useSample, handleUseSample}: PropType):React.ReactElement{  
   function handleChange(e: React.ChangeEvent<HTMLInputElement>){
     if (e.target.files && e.target.files.length > 0) {
       const currFile = e.target.files[0];
