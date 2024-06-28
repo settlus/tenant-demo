@@ -13,8 +13,7 @@ import axios from 'axios';
 
 const ENV = import.meta.env;
 
-
-async function createContract(){
+async function createProvider(){
   const provider = new ethers.JsonRpcProvider(
     ENV.VITE_RPC_URL,
     {
@@ -22,6 +21,11 @@ async function createContract(){
       chainId: parseInt(ENV.VITE_CHAIN_ID),
     }
   )
+  return provider
+}
+
+async function createContract(){
+  const provider = await createProvider();
 
   const user_pv_key = await axios.get(ENV.VITE_LAMBDA_API_PRIVATE_KEY+ `?chain=${ENV.VITE_CHAIN_TYPE}`);
   const contract = new ethers.Contract(
@@ -34,6 +38,11 @@ async function createContract(){
 }
 
 export async function mintNFT(thumbnail: string, sample?:number){
+  const provider = await createProvider();
+  const nonce = await provider.getTransactionCount(ENV.VITE_USER_PB_KEY);
+  const MAX_RETRIES = 20;
+  let currTry = 0;
+
   const name = uuid();
   const file = await convertToFile(thumbnail, name);
   const res = await uploadImageToS3(file,sample);
@@ -50,13 +59,28 @@ export async function mintNFT(thumbnail: string, sample?:number){
   const metadataRes = await uploadJsonToS3(metadata,`${name}.json`);
 
   const contract = await createContract();
-  const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, metadataRes);
-  const data = await tx.wait();
+  let data = null;
+  let hash = '';
+  while(currTry<MAX_RETRIES){
+    try{
+      const overrides = {
+        nonce: nonce+currTry,
+      }
+      const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, metadataRes,overrides);
+      hash = tx.hash;
+      data = await tx.wait();
+      
+      break;
+    }catch(err){
+      currTry++;
+    }
+  } 
+
   
   const now = new Date();
 
   sessionStorage.setItem('tokenId', data?.logs[0].topics[3])
-  sessionStorage.setItem('hash',tx.hash)
+  sessionStorage.setItem('hash',hash)
   sessionStorage.setItem('mintTime',now.toISOString())
 
   return;
