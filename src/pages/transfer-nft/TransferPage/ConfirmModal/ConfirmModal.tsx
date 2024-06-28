@@ -7,6 +7,8 @@ import {useMutation} from 'react-query';
 import { formatNum } from "../../../../utils/util";
 import { useState } from "react";
 import CheckImg from "../../../../public/svg/Check.svg";
+import retrySvg from '../../../../public/svg/retry.svg';
+import errorSvg from '../../../../public/svg/error.svg';
 
 type PropType={
   handleClose: ()=>void,
@@ -17,6 +19,7 @@ type PropType={
 export default function ConfirmModal({open, handleClose, offer}:PropType):React.ReactElement{
   const navigate = useNavigate();
   const [isComplete, setIsComplete] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [hash, setHash] = useState(null);
   const {mutate, isLoading,} = useMutation(
     ()=>transferNFT(),
@@ -26,6 +29,9 @@ export default function ConfirmModal({open, handleClose, offer}:PropType):React.
         setIsComplete(true);
         setHash(hash);
       },
+      onError: ()=>{
+        setIsError(true);
+      }
     },
   )
 
@@ -37,7 +43,7 @@ export default function ConfirmModal({open, handleClose, offer}:PropType):React.
   return <Modal open={open} handleClose={!isComplete ? handleClose : undefined} style={styles.style}>
     <div className={styles.main}>
       {
-        !isComplete && <>
+        !isComplete && !isError && <>
         <h2>Confirm</h2>
           <img src={sendIcon} />
           <p>
@@ -47,6 +53,19 @@ export default function ConfirmModal({open, handleClose, offer}:PropType):React.
           (In demo, no payment will be received.)
           </p>
           <button onClick={!isLoading ? handleConfirm: undefined} className={isLoading ? styles.loading : ''}>{isLoading ? 'Loading...' : 'Confirm'}</button>
+        </>
+      }
+      {
+        !isComplete && isError && <>
+        <h2>Error</h2>
+          <img src={errorSvg} />
+          <p>
+          There was an error processing transaction.
+          <br />
+          Please try again.
+          </p>
+          <button onClick={!isLoading ? handleConfirm: undefined} className={isLoading ? styles.loading : styles.retryBtn}>{isLoading ? 'Loading...' : <><img src={retrySvg} /><p>Retry</p></>}</button>
+          {/* <button onClick={handleConfirm} className={styles.retryBtn}><img src={retrySvg} /><p>Retry</p></button> */}
         </>
       }
       {

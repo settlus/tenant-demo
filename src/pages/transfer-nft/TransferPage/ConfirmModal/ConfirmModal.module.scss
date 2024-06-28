@@ -48,5 +48,16 @@
     &.loading{
       background-color: #1555b5;
     }
+
+    &.retryBtn{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+
+      img{
+        height: 1.5rem;
+      }
+    }
   }
 }

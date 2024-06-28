@@ -3,13 +3,15 @@ import checkSvg from '../../../../public/svg/Check.svg';
 import docSvg from '../../../../public/svg/Doc.svg';
 import styles from './SubmitModal.module.scss';
 import loadingSpinner from '../../../../public/svg/loading.svg';
+import errorSvg from '../../../../public/svg/error.svg';
+import retrySvg from '../../../../public/svg/retry.svg';
 
 
 type PropType = {
   step: number,
   open: boolean,
   handleClose: ()=>void,
-  handleStep: ()=>void, 
+  handleStep: (step?:number)=>void, 
 }
 
 export default function SubmitModal({step, open, handleClose, handleStep}: PropType): React.ReactElement{
@@ -17,11 +19,14 @@ export default function SubmitModal({step, open, handleClose, handleStep}: PropT
   
   function handleClick(){
     handleClose();
-    handleStep();
+    if(step===2.5){
+      handleStep(0);
+    }
+    else handleStep();
   }
 
   return <>
-    {step>0 && step<3 && <Modal open={open} handleClose={step===2 ? handleClick : undefined} style={styles.style}>
+    {step>0 && step<3 && <Modal open={open} handleClose={step>=2 ? handleClick : undefined} style={styles.style}>
       {step===1 && <>
         <h3>Processing</h3>
         <div className={styles.loading}>
@@ -41,6 +46,12 @@ export default function SubmitModal({step, open, handleClose, handleStep}: PropT
           <img className={styles.thumbnail} src={isLoaded ? Module.OVDR_Thumbnails?.main.url : ''} />
         </div>
       </>}
+      {step===2.5 && <div className={styles.error}>
+        <h3>ERROR</h3>
+        <img className={styles.errorImg} src={errorSvg}/>
+        <p>Error has occurred while minting NFT. Please retry.</p>
+        <button onClick={()=>handleStep(1)}><img src={retrySvg} /><p>Retry</p></button>
+      </div>}
     </Modal>}
   </>
 }

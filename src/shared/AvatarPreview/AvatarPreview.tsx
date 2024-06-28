@@ -195,17 +195,19 @@ const AvatarPreview = ({
       if (
         isLoaded &&
         (isUnrealLoaded || isCanvasLoaded) &&
-        selectedTemplateMeshName &&
-        uploadedFile
+        selectedTemplateMeshName
       ) {
-
-        if(prevTemplateMesh!=selectedTemplateMeshName){
+        if(!uploadedFile){
           await handleResetAvatar()
-          await delay(100)
-          setPrevTemplateMesh(selectedTemplateMeshName)
+        }else{
+          if(prevTemplateMesh!=selectedTemplateMeshName){
+            await handleResetAvatar()
+            await delay(100)
+            setPrevTemplateMesh(selectedTemplateMeshName)
+          }
+          await handleSelectTemplate(selectedTemplateMeshName)
+          await handleApplyPng(uploadedFile, selectedTemplateMeshName)
         }
-        await handleSelectTemplate(selectedTemplateMeshName)
-        await handleApplyPng(uploadedFile, selectedTemplateMeshName)
       }
 
     }

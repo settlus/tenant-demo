@@ -12,7 +12,7 @@ export default function OfferNoti(){
   }
 
   return <div className={styles.main}>
-    <button onClick={handleClick}>
+    <button onClick={handleClick} id='modal'>
       <img src={GiftboxSvg}/>
       <p>Offer Arrived!</p>
     </button>

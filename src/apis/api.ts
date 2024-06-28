@@ -70,20 +70,21 @@ export async function mintNFT(thumbnail: string, sample?:number){
       hash = tx.hash;
       data = await tx.wait();
       
-      break;
+      //after success
+      const now = new Date();
+
+      sessionStorage.setItem('tokenId', data?.logs[0].topics[3])
+      sessionStorage.setItem('hash',hash)
+      sessionStorage.setItem('mintTime',now.toISOString())
+
+      return;
+
     }catch(err){
       currTry++;
     }
-  } 
+  }
 
-  
-  const now = new Date();
-
-  sessionStorage.setItem('tokenId', data?.logs[0].topics[3])
-  sessionStorage.setItem('hash',hash)
-  sessionStorage.setItem('mintTime',now.toISOString())
-
-  return;
+  throw {error: 'error has occurred'};
 }
 
 export async function createItem(info: InfoType, thumbnail: string, file:string){
@@ -114,12 +115,20 @@ export function getNickName(){
 }
 
 export async function transferNFT(){
-  const raw = sessionStorage.getItem('tokenId') || '0x0';
-  const tokenId = BigInt(raw);
-  const contract = await createContract();
-  const tx = await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, tokenId);
-  await delay(4000);
-  return tx.hash;
+
+    try{
+      const raw = sessionStorage.getItem('tokenId') || '0x0';
+      const tokenId = BigInt(raw);
+      const contract = await createContract();
+      const tx = await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, tokenId);
+      
+      //after success
+      //console.log(tx);
+      await delay(4000);
+      return tx.hash;
+    }catch(err){
+      throw {error: 'transaction error'};
+    }
 }
 
 export async function getData(): Promise<DataType>{

@@ -8,6 +8,7 @@ import profile1 from '../../../public/svg/userProfile/profile1.svg';
 import { formatNum } from '../../../utils/util';
 
 export default function OfferModal(){
+
   const {isOfferModal, setIsOfferModal, offer} = useContext(DashboardContext);
   const navigate = useNavigate();
 

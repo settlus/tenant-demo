@@ -8,6 +8,7 @@ import Upload from './Upload/Upload';
 import Submit from './Submit/Submit';
 import SubmitModal from './SubmitModal/SumbitModal';
 import { mintNFT, createItem } from '../../../apis/api';
+import { useMutation } from 'react-query';
 
 const TEXT = [{
   title: 'Now, let’ experience as a creator and make an awesome t-shirt!',
@@ -84,6 +85,19 @@ export default function CreatePage(){
   const [useSample, setUseSample] = useState(false);
   const [sample, setSample] = useState(2);
 
+  const {mutate} = useMutation(
+    (args:{thumbnail:string, sample?:number})=>mintNFT(args.thumbnail, args.sample),
+    {
+      onSuccess: ()=>{
+        setStep(2);
+        console.log(step);
+      },
+      onError: ()=>{
+        setStep(2.5);
+      }
+    },
+  )
+
   const navigate = useNavigate();
   const instruction = step<3 ? TEXT[0]: TEXT[1];
 
@@ -112,9 +126,12 @@ export default function CreatePage(){
     
   }
 
-  function handleStep(){
+  function handleStep(currStep?:number){
     setStep(prev=>{
-      return prev+1;
+      if(currStep!=undefined){
+        return currStep;
+      }
+      else return prev+1;
     });
   }
 
@@ -155,11 +172,12 @@ export default function CreatePage(){
         // setOpen(false);
       }else{
         const mint = async()=>{
+          setOpen(true);
           const thumbnail = isLoaded ? Module.OVDR_Thumbnails?.main.url : file;
-          await mintNFT(thumbnail, useSample ? sample : undefined);
-          setStep(2);    
+          const args = {thumbnail: thumbnail, sample: useSample ? sample : undefined}
+          mutate(args);
         }
-        setOpen(true);
+        
         mint();
       }
     }
@@ -187,14 +205,14 @@ export default function CreatePage(){
   },[step]);
 
   return <div className={styles.main}>
-    <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep}/>
+    {open && <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep}/>}
 
     <Instruction title={instruction.title}>{instruction.text}</Instruction>
     <ProgressBar step={step}/>
     <div className={styles.pos}>
       <Navigation handleClick={()=>handleNavigate('back')} isBackwards={true}/>
-      {step<3 && <Upload file={file} handleFile={handleFile} sample={sample} handleSample={handleSample} useSample={useSample} handleUseSample={handleUseSample}/>}
-      {step>2 && <Submit info={info} handleInfo={handleInfo}/>}
+      {step<3 ? <Upload file={file} handleFile={handleFile} sample={sample} handleSample={handleSample} useSample={useSample} handleUseSample={handleUseSample}/>
+      : <Submit info={info} handleInfo={handleInfo}/>}
       <div className={styles.proceed} onClick={()=>handleNavigate('next')} onMouseEnter={()=>{handleNavHover(true)}} onMouseLeave={()=>{handleNavHover(false)}}>
         {navOnHover && <h3>{step===0 && 'Mint'}{step===3 && 'Save'} &gt;&gt;</h3>}
         {!navOnHover && <Navigation />}
