@@ -59,7 +59,7 @@ export default function Live(){
     </div>
     <ul>
       {liveList.map((item,index)=><li key={`${item.user}-${item.thumbnail}-${index}`} className={`${index===0 ? styles.first : styles.remaining}`}>
-        <p>{USER_NAMES[item.user-1]} bought</p>
+        <p><em>{USER_NAMES[item.user-1]}</em> bought</p>
         <Thumbnail style={styles.thumbnail} thumbnail={items[item.thumbnail].thumbnailPng}/>
       </li>)}
     </ul>

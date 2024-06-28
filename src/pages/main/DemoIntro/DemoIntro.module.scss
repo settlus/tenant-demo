@@ -2,12 +2,12 @@
 
 .pos{
   @include n.pos;
-  margin-top: 1rem;
   align-items: center;
   display: flex;
   flex-direction: column;
   height: 90%;
   gap: 5vh;
+  margin-bottom: 2rem;
 }
 
 .intro{

@@ -16,10 +16,10 @@ footer {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  height: calc(100vh / 11);
+  height: calc(100vh / 10);
   background-color: #1A202C;
   color: #fff;
-  padding: 1.5rem 3vw 1.0rem 3vw;
+  padding: 1.5rem 3vw 1.5rem 3vw;
   justify-content: center;
   min-width: 60rem;
   width: 94vw;
@@ -27,6 +27,7 @@ footer {
   ul {
     list-style-type: none;
     margin-left:auto;
+    margin-top: 0rem;
   }
 
   li {

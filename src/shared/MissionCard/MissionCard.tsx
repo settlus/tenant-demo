@@ -5,11 +5,11 @@ import sparkleIcon from '../../public/svg/Sparkle.svg';
 import { useRef } from 'react';
 
 const STEPS = [
-  'Browse Avatar Costume Shop',
-  'Create 3D costume & mint as NFT',
-  'Check your item on the Costume Shop',
-  'Check the NFT info of your costume',
-  'Sell the NFT',
+  '1. Browse Avatar Costume Shop',
+  '2. Create 3D costume & mint as NFT',
+  '3. Check your item on the Costume Shop',
+  '4. Check the NFT info of your costume',
+  '5. Sell the NFT',
 ]
 
 type PropType={
