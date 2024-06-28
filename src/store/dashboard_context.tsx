@@ -26,7 +26,11 @@ interface GlobalProviderProps {
 
 const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [isOfferModal, setIsOfferModal] = useState<boolean>(false);
-  const [offer, setOffer] = useState<OfferType>(null);
+  const [offer, setOffer] = useState<OfferType>({
+    itemIndex: 0,
+    offerAddress: '0xdddddddddddd',
+    offerPrice: 1000000,
+  });
   const [data, setData] = useState<DataType>(INITIAL_DATA);
   const [step, setStep] = useState<number>(0);
 
