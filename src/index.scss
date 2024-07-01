@@ -55,7 +55,6 @@ button {
   // }
 }
 
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -79,4 +78,9 @@ button {
   #container {
     min-height: 45rem;
   }
+}
+
+::backdrop {
+  background-color: rgba(64, 64, 64, 0.9);
+  opacity: 0.75;
 }

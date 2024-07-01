@@ -9,7 +9,7 @@ export default function Card(){
   const {offer, step, isOfferModal} = useContext(DashboardContext);
 
   return <div className={`${styles.card}`}>
-    {offer && <div className={styles.offerNoti}>
+    {step==2 && offer && offer.itemIndex>=0 && <div className={styles.offerNoti}>
       <GuidePointer doGuide={step===2 && !isOfferModal}>
         <OfferNoti />
       </GuidePointer>  

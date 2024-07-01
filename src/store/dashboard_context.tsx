@@ -5,6 +5,7 @@ import { INITIAL_NFT_INFO as INITIAL_DATA } from "../utils/constants";
 type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 export interface DashboardState {
+  isGiftModal: boolean; setIsGiftModal: SetState<boolean>;
   isOfferModal: boolean; setIsOfferModal: SetState<boolean>;
   offer: OfferType; setOffer: SetState<OfferType>;
   data: DataType; setData: SetState<DataType>;
@@ -13,6 +14,7 @@ export interface DashboardState {
 }
 
 export const DashboardContext = React.createContext<DashboardState>({
+  isGiftModal: false, setIsGiftModal: ()=>{},
   isOfferModal: false, setIsOfferModal: ()=>{},
   offer: null, setOffer: ()=>{},
   data: INITIAL_DATA, setData:()=>{},
@@ -25,9 +27,10 @@ interface GlobalProviderProps {
 }
 
 const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
+  const [isGiftModal, setIsGiftModal] = useState<boolean>(false);
   const [isOfferModal, setIsOfferModal] = useState<boolean>(false);
   const [offer, setOffer] = useState<OfferType>({
-    itemIndex: 0,
+    itemIndex: -1,
     offerAddress: '0xdddddddddddd',
     offerPrice: 1000000,
   });
@@ -41,6 +44,7 @@ const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   }
 
   const state: DashboardState = {
+    isGiftModal, setIsGiftModal,
     isOfferModal, setIsOfferModal,
     offer, setOffer,
     data, setData,

@@ -13,7 +13,7 @@
   to {transform: scale(0.7);}
 }
 
-@keyframes shake {
+@keyframes shakeAndScaleUp {
   0%, 100% {
     transform: translateY(0);
   }
@@ -26,6 +26,15 @@
     transform: scale(1);
   }
 
+  10%, 30%, 50%, 70%, 90% {
+    transform: rotate(5deg);
+  }
+  20%, 40%, 60%, 80% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes shake {
   10%, 30%, 50%, 70%, 90% {
     transform: rotate(5deg);
   }

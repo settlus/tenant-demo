@@ -13,6 +13,7 @@ import ShopProvider from './store/costumeshop_context.tsx';
 import CompletePage from './pages/complete/CompletePage/CompletePage.tsx';
 import GuidePage from './pages/costume-shop/Costumepage/GuidePage.tsx';
 import NewItemPage from './pages/costume-shop/Costumepage/NewItemPage.tsx';
+import OfferPage from './pages/offer/OfferPage.tsx';
 
 
 const queryClient = new QueryClient();
@@ -59,6 +60,11 @@ const router = createBrowserRouter([
         path:'dashboard',
         loader: loader,
         element: <DashboardPage />,
+      },
+      {
+        path:'offer',
+        loader: loader,
+        element: <OfferPage />,
       },
       {
         path:'transfer-nft',
