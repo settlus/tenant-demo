@@ -18,7 +18,7 @@ export default function GuidePointer({children, doGuide, topPos, leftPos}:PropTy
       setIsVisible(false);
       timeout = setTimeout(()=>{
         setIsVisible(true);
-      }, 3000);
+      }, 2000);
     }
 
     return ()=>{

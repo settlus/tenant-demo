@@ -1,6 +1,7 @@
 import './App.scss'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterProvider, createBrowserRouter, redirect, Outlet} from 'react-router-dom';
+import { loader } from './utils/loader.ts';
 import Intro from './pages/main/Intro/Intro'
 import DemoIntro from './pages/main/DemoIntro/DemoIntro';
 import CreatePage from './pages/create-nft/CreatePage/CreatePage.tsx';
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
           {index: true, element: <GuidePage />},
           {
             path:'new-item',
+            loader: loader,
             element: <NewItemPage />
           },
         ]
@@ -55,10 +57,12 @@ const router = createBrowserRouter([
       },
       {
         path:'dashboard',
+        loader: loader,
         element: <DashboardPage />,
       },
       {
         path:'transfer-nft',
+        loader: loader,
         element: <TransferPage />,
       },
     ]
@@ -66,11 +70,11 @@ const router = createBrowserRouter([
   {
     path:'/complete',
     element: <CompletePage />
+  },
+  {
+    path:'*',
+    loader: ()=>redirect('/intro'),
   }
-  // {
-  //   path:'*',
-  //   element: <PageNotFound />,
-  // }
 ]);
 
 function App() {

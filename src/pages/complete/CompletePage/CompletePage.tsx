@@ -18,11 +18,10 @@ export default function CompletePage(){
     <Header logoOnly={true} />
     <div className={styles.main}>
       <div className={styles.instruction}>
-        <Instruction title='🎉 Congratulations! You’ve completed all the missions. '>
-          Using NFT for royalty right, You’ve earned revenue from the costume sales and the NFT sales. 
+        <Instruction title='🎉 Congratulations! You’ve completed all the missions. '
+          typeWriter="Using NFT for royalty right, You’ve earned revenue from the costume sales and the NFT sales. 
           Settlus blockchain is designed to help monetize creator’s IP in the web3. era. 
-          Read Settlus Whitepaper for details!
-        </Instruction>
+          Read Settlus Whitepaper for details!" />
       </div>
       <div className={styles.mission}>
         <MissionCard title='Mission Completed'/>

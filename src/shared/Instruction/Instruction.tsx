@@ -1,14 +1,21 @@
 import styles from './Instruction.module.scss';
+import {ReactTyped} from 'react-typed';
 
 type PropType = {
   title: string,
-  children: React.ReactNode,
+  typeWriter: string,
+  onComplete?: ()=>void,
   style?: string,
 }
 
-export default function Instruction({title, children, style}: PropType): React.ReactElement{
+export default function Instruction({title, style, typeWriter, onComplete}: PropType): React.ReactElement{
     return <div className={`${styles.instruction} ${style}`}>
       <h2>{title}</h2>
-      <div className={styles.content}>{children}</div>
+      <ReactTyped
+        strings={[typeWriter]}
+        typeSpeed={0.5}
+        onComplete={onComplete || function (){}}
+      >
+      </ReactTyped>
     </div>
 }

@@ -25,10 +25,9 @@ export default function Main(){
 
   return <div className={styles.main}>
     <div className={styles.instruction}>
-      <Instruction title={step===0 ? '🎉 Congratulations on your first revenue!' : '🎉 Sell your NFT license to earn more profits'}>
-      {step<2 ? 'On the creator’s dashboard, you can see your NFT info, Item listing, and activity history. Click the contract address to see your minting on Settlus Scan.'
-      : ' As more users buy your item, sales revenue increases and so does the value of your NFT. Look! You’ve received an offer from a NFT collector. '}
-      </Instruction>
+      <Instruction title={step===0 ? '🎉 Congratulations on your first revenue!' : '🎉 Sell your NFT license to earn more profits'} 
+       typeWriter={step<2 ? 'On the creator’s dashboard, you can see your NFT info, Item listing, and activity history. Click the contract address to see your minting on Settlus Scan.'
+       : ' As more users buy your item, sales revenue increases and so does the value of your NFT. Look! You’ve received an offer from a NFT collector. '} />
       {step===1 && <GuidePointer doGuide={step===1}>
         <Navigation handleClick={handleStep}/>
       </GuidePointer>}

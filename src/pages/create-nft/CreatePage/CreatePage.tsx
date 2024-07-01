@@ -207,7 +207,7 @@ export default function CreatePage(){
   return <div className={styles.main}>
     {open && <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep}/>}
 
-    <Instruction title={instruction.title}>{instruction.text}</Instruction>
+    <Instruction title={instruction.title} typeWriter={instruction.text} />
     <ProgressBar step={step}/>
     <div className={styles.pos}>
       <Navigation handleClick={()=>handleNavigate('back')} isBackwards={true}/>
