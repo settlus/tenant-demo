@@ -15,6 +15,7 @@ import CompletePage from './pages/complete/CompletePage/CompletePage.tsx';
 import GuidePage from './pages/costume-shop/Costumepage/GuidePage.tsx';
 import NewItemPage from './pages/costume-shop/Costumepage/NewItemPage.tsx';
 import OfferPage from './pages/offer/OfferPage.tsx';
+import ErrorPage from './pages/error/ErrorPage.tsx';
 
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
   {
     path: '/demo',
     element: <Demo />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path:'costume-shop',

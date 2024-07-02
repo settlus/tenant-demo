@@ -1,0 +1,22 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  margin:auto;
+  gap:1rem;
+
+  img{
+    height: 13rem;
+    width: 13rem;
+    margin:auto;
+  }
+  
+  .buttons{
+    display: flex;
+    gap: 2rem;
+
+    button{
+      background-color: white;
+      border: 2px solid black;
+    }
+  }
+}
