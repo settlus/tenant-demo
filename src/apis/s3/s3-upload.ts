@@ -17,6 +17,8 @@ async function uploadToS3(type: string, file: File | Buffer, fileName: string, c
 
 export async function uploadImageToS3(file: File, sample?:number){
   const FILENAME = sample ? `sample${sample+1}.png` : file.name
+  if(sample) return `https://${ENV.VITE_CLOUDFRONT_DOMAIN}/images/${FILENAME}`
+  
   const result = await uploadToS3('images',file, FILENAME, 'image/png');
   return result;
 }
