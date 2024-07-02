@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatNum } from "../../../utils/util";
 import GuidePointer from "../../../shared/GuidePointer/GuidePointer"
 import { ITEM_ARR } from "../../../utils/constants"
+import 'react-toastify/dist/ReactToastify.css';
 
 const TITLES = [
   'Welcome to the Avatar Costume Shop!',

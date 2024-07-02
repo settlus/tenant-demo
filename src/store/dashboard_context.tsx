@@ -31,7 +31,7 @@ const DashboardProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [isOfferModal, setIsOfferModal] = useState<boolean>(false);
   const [offer, setOffer] = useState<OfferType>({
     itemIndex: -1,
-    offerAddress: '0xdddddddddddd',
+    offerAddress: import.meta.env.VITE_JOY_PB_KEY,
     offerPrice: 1000000,
   });
   const [data, setData] = useState<DataType>(INITIAL_DATA);

@@ -3,22 +3,8 @@ import styles from './DemoIntro.module.scss';
 import Instruction from '../../../shared/Instruction/Instruction.tsx';
 import Profile from './Profile/Profile.tsx';
 import Header from '../../../shared/Header/Header.tsx';
-import { useContext, useEffect } from 'react';
-import { ShopContext } from '../../../store/costumeshop_context.tsx';
-import { DashboardContext } from '../../../store/dashboard_context.tsx';
-
 export default function DemoIntro(){
-  const {reset: resetShop} = useContext(ShopContext);
-  const {reset: resetDashboard} = useContext(DashboardContext);
-
-  useEffect(()=>{
-    sessionStorage.clear();
-    sessionStorage.setItem('mission','0');
-    resetShop();
-    resetDashboard();
-
-    return ()=>{}
-  },[]);
+  console.log(sessionStorage.getItem('mission'))
 
   return <>
     <Header logoOnly={true} />

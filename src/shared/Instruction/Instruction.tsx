@@ -15,7 +15,6 @@ export default function Instruction({title, style, typeWriter, onComplete}: Prop
         strings={[typeWriter]}
         typeSpeed={0.5}
         onComplete={onComplete || function (){}}
-      >
-      </ReactTyped>
+      />
     </div>
 }

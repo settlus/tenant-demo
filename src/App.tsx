@@ -10,6 +10,7 @@ import DashboardPage from './pages/dashboard/DashboardPage/DashboardPage.tsx';
 import TransferPage from './pages/transfer-nft/TransferPage/TransferPage.tsx';
 import DashboardProvider from './store/dashboard_context.tsx';
 import ShopProvider from './store/costumeshop_context.tsx';
+import MissionProvider from './store/mission_context.tsx';
 import CompletePage from './pages/complete/CompletePage/CompletePage.tsx';
 import GuidePage from './pages/costume-shop/Costumepage/GuidePage.tsx';
 import NewItemPage from './pages/costume-shop/Costumepage/NewItemPage.tsx';
@@ -85,11 +86,13 @@ const router = createBrowserRouter([
 
 function App() {
   return <QueryClientProvider client={queryClient}>
-    <DashboardProvider>
-      <ShopProvider>
-        <RouterProvider router={router} />
-      </ShopProvider>
-    </DashboardProvider>
+    <MissionProvider>
+      <DashboardProvider>
+        <ShopProvider>
+          <RouterProvider router={router} />
+        </ShopProvider>
+      </DashboardProvider>
+    </MissionProvider>
   </QueryClientProvider> 
 }
 

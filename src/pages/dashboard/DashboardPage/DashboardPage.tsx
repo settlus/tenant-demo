@@ -4,13 +4,10 @@ import Instruction from '../../../shared/Instruction/Instruction';
 import GiftModal from '../../../shared/Dashboard/GiftModal/GiftModal';
 import { useContext, useEffect } from 'react';
 import { DashboardContext } from '../../../store/dashboard_context';
+import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate';
 
 export default function Main(){
-  const {step, setStep, setOffer, isGiftModal, setIsGiftModal} = useContext(DashboardContext);
-
-  const handleStep = ()=>{
-    setStep(prev=>prev+1);
-  }
+  const {step, setOffer, isGiftModal, setIsGiftModal} = useContext(DashboardContext);
 
   useEffect(()=>{
     if(step===1){
@@ -23,15 +20,14 @@ export default function Main(){
     }
   },[step]);
 
-  return <div className={styles.main}>
-    { isGiftModal && <GiftModal open={isGiftModal} />}
-    <div className={styles.instruction}>
-      <Instruction title='🎉 Congratulations on your first revenue!' 
-       typeWriter='On the creator’s dashboard, you can see your NFT info, Item listing, and activity history. Click the contract address to see your minting on Settlus Scan.' />
-      {/* {step===1 && <GuidePointer doGuide={step===1}>
-        <Navigation handleClick={handleStep}/>
-      </GuidePointer>} */}
+  return <MissionUpdate updatedMission={3}>
+    <div className={styles.main}>
+      { isGiftModal && <GiftModal open={isGiftModal} />}
+      <div className={styles.instruction}>
+        <Instruction title='🎉 Congratulations on your first revenue!' 
+        typeWriter='On the creator’s dashboard, you can see your NFT info, Item listing, and activity history. Click the contract address to see your minting on Settlus Scan.' />
+      </div>
+      <Dashboard />
     </div>
-    <Dashboard />
-  </div>
+  </MissionUpdate>
 }

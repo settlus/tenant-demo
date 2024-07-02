@@ -2,7 +2,8 @@ import styles from './MissionCard.module.scss';
 import bulletIcon from '../../public/svg/bullet.svg';
 import checkBulletIcon from '../../public/svg/checkBullet.svg';
 import sparkleIcon from '../../public/svg/Sparkle.svg';
-import { useRef } from 'react';
+import { useContext } from 'react';
+import { MissionContext } from '../../store/mission_context';
 
 const STEPS = [
   '1. Browse Avatar Costume Shop',
@@ -18,8 +19,7 @@ type PropType={
 }
 
 export default function MissionCard({title, beforeStart}: PropType): React.ReactElement{
-  const missionRef = useRef(beforeStart ? '0' : sessionStorage.getItem('mission') || '0');
-  const mission = Number(missionRef.current);
+  const { mission } = useContext(MissionContext);
 
   return <div className={styles.mission}>
     <img src={sparkleIcon} className={styles.sparkle} />

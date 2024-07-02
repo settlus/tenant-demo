@@ -5,6 +5,8 @@ import QnaModal from "../../../shared/QnaModal/QnaModal";
 import { useState } from "react";
 import styles from './CompletePage.module.scss';
 import {Link} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import MissionUpdate from "../../../shared/MissionUpdate/MissionUpdate";
 
 export default function CompletePage(){
   const [qnaOpen, setQnaOpen] = useState(false);
@@ -13,7 +15,7 @@ export default function CompletePage(){
     setQnaOpen(prev=>!prev);
   }
 
-  return <>
+  return <MissionUpdate updatedMission={5}>
     {qnaOpen && <QnaModal open={qnaOpen} handleClose={handleQna} />}
     <Header logoOnly={true} />
     <div className={styles.main}>
@@ -36,5 +38,6 @@ export default function CompletePage(){
         </Link> 
       </div>
     </div>
-  </>
+    <ToastContainer />
+  </MissionUpdate>
 }

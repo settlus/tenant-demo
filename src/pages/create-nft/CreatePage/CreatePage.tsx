@@ -9,6 +9,7 @@ import Submit from './Submit/Submit';
 import SubmitModal from './SubmitModal/SumbitModal';
 import { mintNFT, createItem } from '../../../apis/api';
 import { useMutation } from 'react-query';
+import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate';
 
 const TEXT = [{
   title: 'Now, let’ experience as a creator and make an awesome t-shirt!',
@@ -90,7 +91,6 @@ export default function CreatePage(){
     {
       onSuccess: ()=>{
         setStep(2);
-        console.log(step);
       },
       onError: ()=>{
         setStep(2.5);
@@ -204,20 +204,20 @@ export default function CreatePage(){
     }
   },[step]);
 
-  return <div className={styles.main}>
-    {open && <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep}/>}
-
-    <Instruction title={instruction.title} typeWriter={instruction.text} />
-    <ProgressBar step={step}/>
-    <div className={styles.pos}>
-      <Navigation handleClick={()=>handleNavigate('back')} isBackwards={true}/>
-      {step<3 ? <Upload file={file} handleFile={handleFile} sample={sample} handleSample={handleSample} useSample={useSample} handleUseSample={handleUseSample}/>
-      : <Submit info={info} handleInfo={handleInfo}/>}
-      <div className={styles.proceed} onClick={()=>handleNavigate('next')} onMouseEnter={()=>{handleNavHover(true)}} onMouseLeave={()=>{handleNavHover(false)}}>
-        {navOnHover && <h3>{step===0 && 'Mint'}{step===3 && 'Save'} &gt;&gt;</h3>}
-        {!navOnHover && <Navigation />}
+  return <MissionUpdate updatedMission={1}>
+      <div className={styles.main}>
+      {open && <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep}/>}
+      <Instruction title={instruction.title} typeWriter={instruction.text} />
+      <ProgressBar step={step}/>
+      <div className={styles.pos}>
+        <Navigation handleClick={()=>handleNavigate('back')} isBackwards={true}/>
+        {step<3 ? <Upload file={file} handleFile={handleFile} sample={sample} handleSample={handleSample} useSample={useSample} handleUseSample={handleUseSample}/>
+        : <Submit info={info} handleInfo={handleInfo}/>}
+        <div className={styles.proceed} onClick={()=>handleNavigate('next')} onMouseEnter={()=>{handleNavHover(true)}} onMouseLeave={()=>{handleNavHover(false)}}>
+          {navOnHover && <h3>{step===0 && 'Mint'}{step===3 && 'Save'} &gt;&gt;</h3>}
+          {!navOnHover && <Navigation />}
+        </div>
       </div>
     </div>
-  </div>
-  
+    </MissionUpdate>
 }
