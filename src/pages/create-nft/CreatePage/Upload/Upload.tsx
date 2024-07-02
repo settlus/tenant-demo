@@ -66,10 +66,10 @@ export default function Upload({file, handleFile, sample, handleSample, useSampl
         Only 1:1 ration PNG files can be uploaded.
         <br />The image size cannot exceed 1024 x 1024 px(2MB)
       </p>
-      <span className={styles.upload}>
-        <input className={styles.hidden} type="file" id="fileInput" onChange={handleChange}/>
+      <button className={styles.buttonSelect}>
         <p>Select</p>
-      </span>
+        <input className={styles.hidden} type="file" id="fileInput" onChange={handleChange}/>
+      </button>
     </div>
     <button onClick={handleClick} className={useSample ? styles.active : ''}>Or use Sample Costume {useSample ? sample+1 : ' '}</button>
   </div>
