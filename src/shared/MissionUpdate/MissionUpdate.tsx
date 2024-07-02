@@ -11,7 +11,7 @@ export default function MissionUpdate({updatedMission, children}: PropType): Rea
   const { mission, handleMission } = useContext(MissionContext);
   useEffect(()=>{
     if(mission<updatedMission){
-      toast(updatedMission===5 ? 'All missions complete!' : `Mission ${updatedMission} complete!`);
+      toast.success(updatedMission===5 ? 'All missions complete!' : `Mission ${updatedMission} complete!`);
       handleMission(updatedMission);
     }
   },[]);
