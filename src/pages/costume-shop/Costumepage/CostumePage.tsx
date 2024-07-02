@@ -61,6 +61,7 @@ export default function CostumePage({isAfterItemCreated}: PropType): React.React
 
   useEffect(()=>{
     return ()=>{
+      setStep(0);
       setSelected(0);
       setItems(ITEM_ARR);
     }
