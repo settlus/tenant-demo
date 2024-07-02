@@ -4,7 +4,6 @@ import Instruction from '../../../shared/Instruction/Instruction.tsx';
 import Profile from './Profile/Profile.tsx';
 import Header from '../../../shared/Header/Header.tsx';
 export default function DemoIntro(){
-  console.log(sessionStorage.getItem('mission'))
 
   return <>
     <Header logoOnly={true} />

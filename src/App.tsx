@@ -23,67 +23,69 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path:'/',
-    loader: ()=>redirect('/intro'),
-  },
-  {
-    path: '/intro',
-    element: <Outlet />,
-    children: [
-      { index: true,
-        element: <Intro />,
-      },
-      {
-        path:'mission',
-        element: <DemoIntro />,
-      },
-    ],
-  },
-  {
-    path: '/demo',
-    element: <Demo />,
     errorElement: <ErrorPage />,
     children: [
+      { index: true, loader: ()=>redirect('/intro')},
       {
-        path:'costume-shop',
+        path: '/intro',
         element: <Outlet />,
         children: [
-          {index: true, element: <GuidePage />},
+          { index: true,
+            element: <Intro />,
+          },
           {
-            path:'new-item',
+            path:'mission',
+            element: <DemoIntro />,
+          },
+        ],
+      },
+      {
+        path: '/demo',
+        element: <Demo />,
+        children: [
+          {
+            path:'costume-shop',
+            element: <Outlet />,
+            children: [
+              {index: true, element: <GuidePage />},
+              {
+                path:'new-item',
+                loader: loader,
+                element: <NewItemPage />
+              },
+            ]
+          },
+          {
+            path:'create-nft',
+            element: <CreatePage />,
+          },
+          {
+            path:'dashboard',
             loader: loader,
-            element: <NewItemPage />
+            element: <DashboardPage />,
+          },
+          {
+            path:'offer',
+            loader: loader,
+            element: <OfferPage />,
+          },
+          {
+            path:'transfer-nft',
+            loader: loader,
+            element: <TransferPage />,
           },
         ]
       },
       {
-        path:'create-nft',
-        element: <CreatePage />,
+        path:'/complete',
+        element: <CompletePage />
       },
       {
-        path:'dashboard',
-        loader: loader,
-        element: <DashboardPage />,
-      },
-      {
-        path:'offer',
-        loader: loader,
-        element: <OfferPage />,
-      },
-      {
-        path:'transfer-nft',
-        loader: loader,
-        element: <TransferPage />,
-      },
+        path:'*',
+        loader: ()=>redirect('/intro'),
+      }
     ]
   },
-  {
-    path:'/complete',
-    element: <CompletePage />
-  },
-  {
-    path:'*',
-    loader: ()=>redirect('/intro'),
-  }
 ]);
 
 function App() {
