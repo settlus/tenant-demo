@@ -40,6 +40,7 @@ async function createContract(){
 export async function mintNFT(thumbnail: string, sample?:number){
   const provider = await createProvider();
   const nonce = await provider.getTransactionCount(ENV.VITE_USER_PB_KEY);
+  const nickname = getNickName();
   const MAX_RETRIES = 20;
   let currTry = 0;
 
@@ -48,7 +49,7 @@ export async function mintNFT(thumbnail: string, sample?:number){
   const res = await uploadImageToS3(file,sample);
 
   const metadataObj = {
-    name: `Tenant Demo Item NFT #${name}`,
+    name: `${nickname}'s t-shirt`,
     description: 'Tenant Demo NFT',
     image: `${res}`,
     buildFileUrl: ``,
