@@ -191,7 +191,6 @@ export async function getData(): Promise<DataType>{
     ],
     details: {
       'Contract Address':ENV.VITE_CONTRACT_ADDR,
-      'Mint Hash': data.hash,
       'Token ID': parseInt(data.tokenId,16).toString(),
       'Token Standard': 'ERC-721',
       'Chain': 'Settlus',

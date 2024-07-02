@@ -8,7 +8,6 @@ const ENV = import.meta.env;
 
 const keys: DetailKeys[] = [
   'Contract Address',
-  'Mint Hash',
   'Token ID',
   'Token Standard',
   'Chain',

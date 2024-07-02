@@ -5,7 +5,6 @@ export type InfoType = {
 
 export type DetailType = {
   'Contract Address': string,
-  'Mint Hash': string,
   'Token ID': string,
   'Token Standard': string,
   'Chain': string,
