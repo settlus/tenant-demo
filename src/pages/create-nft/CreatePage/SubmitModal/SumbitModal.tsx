@@ -41,7 +41,7 @@ export default function SubmitModal({step, open, handleClose, handleStep}: PropT
       {step===2 && <>
         <h3>NFT Minted</h3>
         <img src={checkSvg}/>
-        <div className={styles.icon}>
+        <div className={styles.icon} onClick={()=>window.open(`http://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`,'_blank')}>
           <img className={styles.doc} src={docSvg} />
           <img className={styles.thumbnail} src={isLoaded ? Module.OVDR_Thumbnails?.main.url : ''} />
         </div>

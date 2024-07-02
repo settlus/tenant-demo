@@ -3,7 +3,6 @@ import { useEffect, useContext } from "react"
 import { getItem } from "../../../apis/api"
 import { ShopContext } from "../../../store/costumeshop_context"
 import userProfile from '../../../public/svg/userProfile/userProfile.svg';
-import MissionUpdate from "../../../shared/MissionUpdate/MissionUpdate";
 
 export default function NewItemPage(){
   const {setStep, setItems} = useContext(ShopContext);
@@ -35,7 +34,6 @@ export default function NewItemPage(){
   },[])
 
 
-  return <MissionUpdate updatedMission={2}>
-    <CostumePage isAfterItemCreated={true}/>
-  </MissionUpdate>
+  return <CostumePage isAfterItemCreated={true}/>
+
 }
