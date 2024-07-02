@@ -10,7 +10,7 @@ export default function Card(){
 
   return <div className={`${styles.card}`}>
     {step==2 && offer && offer.itemIndex>=0 && <div className={styles.offerNoti}>
-      <GuidePointer  topPos={100} leftPos={20} doGuide={step===2 && !isOfferModal}>
+      <GuidePointer margin={2} topPos={100} leftPos={20} doGuide={step===2 && !isOfferModal}>
         <OfferNoti />
       </GuidePointer>  
     </div>}

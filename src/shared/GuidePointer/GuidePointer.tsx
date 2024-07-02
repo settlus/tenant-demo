@@ -7,9 +7,10 @@ type PropType = {
   doGuide: boolean,
   topPos?: number,
   leftPos?: number,
+  margin?: number,
 }
 
-export default function GuidePointer({children, doGuide, topPos, leftPos}:PropType): React.ReactElement{
+export default function GuidePointer({children, doGuide, topPos, leftPos, margin}:PropType): React.ReactElement{
   const [isVisible, setIsVisible] = useState(false); 
 
   useEffect(()=>{
@@ -37,6 +38,6 @@ export default function GuidePointer({children, doGuide, topPos, leftPos}:PropTy
   
   return <div className={styles.main}>
     {children}
-    {isVisible && doGuide && <img className={styles.pointer} src={Pointer} />}
+    {isVisible && doGuide && <img className={styles.pointer} src={Pointer} style={{marginTop: `${margin||0.5}rem`}}/>}
   </div>
 }
