@@ -7,16 +7,15 @@ type PropType = {
   path?: string,
   handleClick?: (...args: any[]) => any,
   isBackwards?: boolean,
-  hide?: boolean,
 }
 
-export default function Navigation({path, handleClick, isBackwards, hide}: PropType): React.ReactElement{
+export default function Navigation({path, handleClick, isBackwards}: PropType): React.ReactElement{
   const navigate = useNavigate();
   const handleNavigate = handleClick || function(){
     if(path) navigate(path);
   }
 
-  return <div onClick={handleNavigate} className={`${styles.button} ${hide ? styles.hide : ''} ${isBackwards ? styles.backwards : ''}`}>
+  return <div onClick={handleNavigate} className={`${styles.button} ${isBackwards ? styles.backwards : ''}`}>
     <img src={isBackwards ? navBackSymbol : navSymbol} alt='nav' />
   </div> 
 

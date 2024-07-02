@@ -73,12 +73,14 @@ export default function CostumePage({isAfterItemCreated}: PropType): React.React
     <div className={styles.instruction}>
       <Instruction title={!isAfterItemCreated ? TITLES[step]: 'Congratulations! Your item is listed for sale.'} style={styles.detail} 
         typeWriter={getInstructionDetail()} onComplete={showNav} />
+      <span>
       {
-        !isAfterItemCreated &&
+        !isAfterItemCreated && navIsVisible &&
         <GuidePointer doGuide={true}>
-          <Navigation handleClick={handleNav} hide={!navIsVisible}/>
+          <Navigation handleClick={handleNav}/>
         </GuidePointer>
       }
+      </span>
     </div>
 
     <CostumeShop />

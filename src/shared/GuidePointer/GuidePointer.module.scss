@@ -1,6 +1,6 @@
 :root{
-  --topPos: 40px;
-  --bottomPos: 55px;
+  --topPos: -20px;
+  --bottomPos: 5px;
   --leftPos: 6px;
 }
 
@@ -11,7 +11,8 @@
   text-overflow: ellipsis;
 
   .pointer{
-    margin: 0px;
+    margin: 0rem;
+    margin-top: 1.5rem;
     position: absolute;
     top:var(--topPos);//75px;
     left: var(--leftPos);//100px;
