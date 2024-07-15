@@ -31,7 +31,7 @@ export default function Detail(){
     This item is NFT-licensed.<br />
     Profit will be paid to the NFT holder.<br />
     <br />
-    <span className={step===2 ? styles.active : ''}>
+    <span className={step===2 ? styles.active : ''} translate='no'>
       Total sales quantity: {selectedItem.quantity}<br />
       Total sold amount: {formatNum(selectedItem.quantity*selectedItem.price)}
     </span>
