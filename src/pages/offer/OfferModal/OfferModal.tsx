@@ -34,7 +34,7 @@ export default function OfferModal(){
       *Once transferred, revenue from selling this NFT costume will be vested to the new owner.
       </p>
       <div className={styles.buttons}>
-        <button onClick={handleClose}>Cancel</button>
+        <button className={styles.cancel} onClick={handleClose}>Cancel</button>
         <button className={styles.proceed} onClick={handleProceed}>Proceed</button>
       </div>
     </div>
