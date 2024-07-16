@@ -52,7 +52,7 @@ export default function Upload({file, handleFile, sample, handleSample, useSampl
 
   return <div className={styles.main}>
     <div className={styles.avatar}>
-      <AvatarPreview uploadedFile={file} selectedTemplateMeshName='DefaultWear001F'/>
+      <AvatarPreview uploadedFile={file || "file"} selectedTemplateMeshName='DefaultWear001F'/>
     </div>
     <div className={styles.preview}>
       <img src={templateImg}/>
