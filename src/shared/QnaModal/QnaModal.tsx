@@ -13,6 +13,10 @@ const QNA = [
     answer: 'Yes! Item price is the price for the costume selling on the Avatar Costume Shop. NFT price is the price for the original digital asset selling on the NFT Marketplace.',
   },
   {
+    question: 'What happens when you sell your NFT?',
+    answer: 'The copyright still remains with the creator(you). Only the revenue from selling the NFT licensed costume will be vested to new NFT holder.',
+  },
+  {
     question: 'What happens when the user cancels the transactions of a purchased item?',
     answer: 'User can cancel the transaction within 7 days of the purchase day. Thus, Settlus records the transaction after the cancellation period.',
   },

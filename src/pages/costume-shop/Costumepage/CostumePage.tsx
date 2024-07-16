@@ -50,7 +50,7 @@ export default function CostumePage({isAfterItemCreated}: PropType): React.React
         case 1:
           return `<img src=${nftIcon} alt=\'license\' style="height: 1rem; width: 1rem; margin: 0;"/> mark shows that the costumes are minted as NFTs. The NFT guarantees the ownership of a creator\'s costumes, and copies of costumes can be sold as items without quantity limit on the off-chain Avatar Costume Shop. Click your favorite costume to see the detail!`;
         case 2: 
-          return `This costume’s creator earned ${formatNum(selectedItem.price*selectedItem.quantity)} for item sales and now consider selling NFT for ${formatNum(selectedItem.offerValue)} on the NFT Marketplace. Once the NFT is sold, the new owner will earn profits from the item sales. That’s why NFT licensing is attractive.`;
+          return `This costume’s creator earned ${formatNum(selectedItem.price*selectedItem.quantity)} for item sales and now consider selling NFT for ${formatNum(selectedItem.offerValue)} on the NFT Marketplace. Once the NFT is sold, the new owner will earn profits from the item sales. However, the <b>copyright remains</b> with the creator! That’s why NFT licensing is attractive.`;
         default: 
           return '';
       }
