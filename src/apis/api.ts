@@ -123,6 +123,7 @@ export async function transferNFT(){
       const contract = await createContract();
       const tx = await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, tokenId);
       
+      console.log(raw,tokenId)
       //after success
       //console.log(tx);
       await delay(4000);

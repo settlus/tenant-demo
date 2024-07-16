@@ -30,8 +30,8 @@ export default function CompletePage(){
       </div>
       <div className={styles.buttons}>
         <button onClick={handleQna}>Demo Questions & Answers</button>
-        <a href='https://blueholestudio.sharepoint.com/:w:/r/sites/ProjectMigaloo/_layouts/15/doc2.aspx?sourcedoc=%7B92B4DFB1-C0D8-4A65-860D-97624C9585EE%7D&file=Whitepaper_240201.docx&action=default&mobileredirect=true' target="_blank">
-          <button>Read Settlus White paper</button>
+        <a href='https://settlus.org/docs/whitepaper.pdf' target="_blank">
+          <button>Read Settlus Whitepaper</button>
         </a>
         <Link to={'/intro'}>
           <button>Return to Beginning</button>
