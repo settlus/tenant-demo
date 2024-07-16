@@ -13,7 +13,7 @@ import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate';
 
 const TEXT = [{
   title: 'Now, let’ experience as a creator and make an awesome t-shirt!',
-  text: 'Upload 2D image or select a sample costume.',
+  text: 'Draw your own design on canvas.',
 },{
   title: 'Whoa! Almost there',
   text: 'Now, your costume is minted as NFT, and you have rights to sell the costume. How much do you want to sell your costume on the Avatar Costume Shop?',
@@ -25,7 +25,7 @@ type Info = {
 }
 
 function validateFile(file: string ){
-  if(file.length==0) return {error: 'Please upload an NFT image file or select a sample costume!'};
+  if(file.length==0) return {error: 'Please create a costume!'};
 
   return {};
 }

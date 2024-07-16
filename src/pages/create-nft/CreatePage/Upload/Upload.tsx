@@ -1,6 +1,7 @@
 import styles from './Upload.module.scss';
 import AvatarPreview from '../../../../shared/AvatarPreview/AvatarPreview';
 import downloadIcon from '../../../../public/svg/Download.svg';
+import Canvas from './Canvas/Canvas';
 import { tshirtTemplate as templateImg } from '../../../../public/images/clothTemplate';
 import { sample1, sample2, sample3 } from '../../../../public/images/clothTemplate/sampleTexture'
 import { validateFile } from '../../../../utils/util';
@@ -52,9 +53,12 @@ export default function Upload({file, handleFile, sample, handleSample, useSampl
 
   return <div className={styles.main}>
     <div className={styles.avatar}>
-      <AvatarPreview uploadedFile={file || "file"} selectedTemplateMeshName='DefaultWear001F'/>
+      <AvatarPreview uploadedFile={file} selectedTemplateMeshName='DefaultWear001F'/>
     </div>
-    <div className={styles.preview}>
+    <div className={styles.canvas}>
+      <Canvas handleFile={handleFile}/>
+    </div>
+    {/* <div className={styles.preview}>
       <img src={templateImg}/>
       <a href={templateImg} download={'template.png'}>
         <img src={downloadIcon} alt='download'/>
@@ -71,6 +75,6 @@ export default function Upload({file, handleFile, sample, handleSample, useSampl
         <input className={styles.hidden} type="file" id="fileInput" onChange={handleChange}/>
       </button>
     </div>
-    <button onClick={handleClick} className={useSample ? styles.active : ''}>Or use Sample Costume {useSample ? sample+1 : ' '}</button>
+    <button onClick={handleClick} className={useSample ? styles.active : ''}>Or use Sample Costume {useSample ? sample+1 : ' '}</button> */}
   </div>
 }
