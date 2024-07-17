@@ -21,7 +21,7 @@ export default function ConfirmModal({open, handleClose, offer}:PropType):React.
   const [isComplete, setIsComplete] = useState(false);
   const [isError, setIsError] = useState(false);
   const [hash, setHash] = useState(null);
-  const {mutate, isLoading,} = useMutation(
+  const {mutate, isLoading, isSuccess} = useMutation(
     ()=>transferNFT(),
     {
       onSuccess: (hash)=>{
@@ -40,7 +40,7 @@ export default function ConfirmModal({open, handleClose, offer}:PropType):React.
     mutate();
   }
 
-  return <Modal open={open} handleClose={!isComplete ? handleClose : undefined} style={styles.style}>
+  return <Modal open={open} handleClose={isLoading || isSuccess  ? undefined: handleClose} style={styles.style}>
     <div className={styles.main}>
       {
         !isComplete && !isError && <>
