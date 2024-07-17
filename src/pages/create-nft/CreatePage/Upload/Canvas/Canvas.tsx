@@ -2,7 +2,6 @@ import styles from './Canvas.module.scss'
 import { useRef, useEffect, useState } from 'react'
 import resetIcon from '../../../../../public/svg/retry.svg'
 import strokeIcon from '../../../../../public/svg/stroke.svg'
-import fillIcon from '../../../../../public/svg/fill.svg'
 
 const COLORS = [
   "#000000",
@@ -23,22 +22,27 @@ export default function Canvas({handleFile}: propType):React.ReactElement{
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null)
   const [isPainting, setIsPainting] = useState(false)
-  const [stroke, setStroke] = useState({color: '#000000', size: 6, type: 'stroke'})
+  const [stroke, setStroke] = useState({color: '#000000', size: 6})
+  const [bgColor, setBgColor] = useState('#FFFFFF')
 
-  function handleStroke(options: {color?: string, size?:number, type?:string}){
+  function handleStroke(options: {color?: string, size?:number}){
     setStroke(prev=>{
       const updated = {...prev}
       if(options.color) updated.color = options.color
       if(options.size) updated.size = options.size
-      if(options.type) updated.type = options.type
       return updated
     })
+  }
+
+  function handleBgColor(color: string){
+    setBgColor(color)
   }
 
 
   function resetCanvas(){
     if(canvasRef && canvasRef.current && ctx){
-      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     }
   }
 
@@ -56,7 +60,7 @@ export default function Canvas({handleFile}: propType):React.ReactElement{
       tempCtx.drawImage(canvasRef.current, 130, 120)
 
       ctx.clearRect(0, 0, SIZE, SIZE)
-      ctx.fillStyle = 'white'
+      ctx.fillStyle = bgColor
       ctx.fillRect(0, 0, SIZE, SIZE)
 
       const newWidth = SIZE / 3.5
@@ -85,19 +89,12 @@ export default function Canvas({handleFile}: propType):React.ReactElement{
     const y = e.offsetY
 
     if(ctx && canvasRef && canvasRef.current){
-      if(stroke.type=="stroke"){
-        if(!isPainting) {
-          ctx.beginPath()
-          ctx.moveTo(x,y)
-        }else{
-          ctx.lineTo(x,y)
-          ctx.stroke()
-        }
-      }
-  
-      if(stroke.type=="fill"){
-        ctx.fillStyle = stroke.color;
-        ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      if(!isPainting) {
+        ctx.beginPath()
+        ctx.moveTo(x,y)
+      }else{
+        ctx.lineTo(x,y)
+        ctx.stroke()
       }
     }
   }
@@ -142,22 +139,29 @@ export default function Canvas({handleFile}: propType):React.ReactElement{
   },[stroke])
 
   return <div className={styles.main}>
-    <div className={styles.canvasContainer}>
-      <canvas ref={canvasRef} /> 
-      <img src={resetIcon} onClick={resetCanvas} />
+    <div className={styles.tshirt}>
+      <h3>Choose T-shirt color</h3>
+      <div className={styles.colors}>
+          {COLORS.map((item)=><li key={item} className={bgColor===item ? styles.active : ''} style={{backgroundColor:item}} onClick={()=>handleBgColor(item)} />)}
+      </div>
     </div>
-    <div className={styles.panel}>
-      <p>Color Palette</p>
+    <div className={styles.canvas}>
+      <h3>Draw your design</h3>
+      <div className={styles.canvasContainer}>
+      <canvas ref={canvasRef} style={{backgroundColor: bgColor}}/> 
       <div className={styles.tools}>
-        <input id="size" type="range" min="1.0" max="12.0" step="1.0" defaultValue="6.0" onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleStroke({size:Number(e.target.value)})}/>
+        <div className={styles.strokeType}>
+          <span>
+            <img src={strokeIcon}/>
+            <input id="size" type="range" min="1.0" max="52.0" step="1.0" defaultValue="6.0" onChange={(e:React.ChangeEvent<HTMLInputElement>)=>handleStroke({size:Number(e.target.value)})}/>
+          </span>
+          <img src={resetIcon} className={styles.reset} onClick={resetCanvas} />
+        </div>
         <div className={styles.colors}>
           {COLORS.map((item)=><li key={item} className={stroke.color===item ? styles.active : ''} style={{backgroundColor:item}} onClick={()=>handleStroke({color: item})} />)}
         </div>
-        <div className={styles.strokeType}>
-          <img src={strokeIcon} className={stroke.type=="stroke" ? styles.active : ''} onClick={()=>handleStroke({type:"stroke"})}/>
-          <img src={fillIcon} className={stroke.type=="fill" ? styles.active : ''} onClick={()=>handleStroke({type:"fill"})}/>
-        </div>
       </div>
+    </div>
     </div>
     <div className={styles.control}>
         <button onClick={handleSave}>Finish Drawing</button>

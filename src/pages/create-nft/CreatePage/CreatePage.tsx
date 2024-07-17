@@ -13,7 +13,7 @@ import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate';
 
 const TEXT = [{
   title: 'Now, let’ experience as a creator and make an awesome t-shirt!',
-  text: 'Draw your own design on canvas.',
+  text: 'Design your own t-shirt.',
 },{
   title: 'Whoa! Almost there',
   text: 'Now, your costume is minted as NFT, and you have rights to sell the costume. How much do you want to sell your costume on the Avatar Costume Shop?',
