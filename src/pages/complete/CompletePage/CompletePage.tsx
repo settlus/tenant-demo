@@ -38,6 +38,6 @@ export default function CompletePage(){
         </Link> 
       </div>
     </div>
-    <ToastContainer />
+    <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
   </MissionUpdate>
 }

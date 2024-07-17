@@ -7,6 +7,6 @@ export default function Demo(){
   return <div className={styles.main}>
     <Header />
     <Outlet />
-    <ToastContainer />
+    <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
   </div>
 }
