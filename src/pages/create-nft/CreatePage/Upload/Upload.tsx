@@ -1,5 +1,4 @@
 import AvatarPreview from '../../../../shared/AvatarPreview/AvatarPreview'
-import BaseCard from '../../../../shared/Card/BaseCard'
 import Canvas from './Canvas/Canvas'
 
 type PropType = {
@@ -15,9 +14,7 @@ export default function Upload({ file, handleFile }: PropType): React.ReactEleme
   return (
     <div className='flex flex-row gap-[10px]'>
       <AvatarPreview uploadedFile={file} selectedTemplateMeshName='DefaultWear001F' />
-      <BaseCard>
-        <Canvas handleFile={handleFile} />
-      </BaseCard>
+      <Canvas handleFile={handleFile} />
     </div>
   )
 }

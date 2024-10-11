@@ -1,10 +1,17 @@
 import introMain from '../../../../public/png/intro_main.png'
 import introRight from '../../../../public/png/intro_right.png'
 import introLeft from '../../../../public/png/intro_left.png'
-import { useNavigate } from 'react-router-dom'
+import BasicButton from '../../../../shared/Button/BasicButton'
+import { useState } from 'react'
+import IntroModal from './IntroModal/IntroModal'
 
-export default function Card() {
-  const navigate = useNavigate()
+export default function IntroCard() {
+  // const navigate = useNavigate()
+  const [introModalOpen, setIntroModalOpen] = useState(false)
+
+  function handleIntroModal() {
+    setIntroModalOpen((prev) => !prev)
+  }
 
   return (
     <div
@@ -18,26 +25,14 @@ export default function Card() {
         justifyContent: 'center',
       }}
     >
+      {introModalOpen && <IntroModal open={introModalOpen} handleClose={handleIntroModal} />}
       <div style={{ width: 730, height: 566, position: 'relative' }}>
-        <button
-          style={{
-            position: 'absolute',
-            top: '10px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            backgroundColor: '#00D966',
-            color: 'white',
-            borderRadius: '8px',
-            padding: '0.2rem 6rem',
-            fontSize: '1.7rem',
-            boxShadow: '0px 3px 2px rgba(0,0,0,0.5)',
-            fontFamily: 'Pacifico',
-            zIndex: 10,
-          }}
-          onClick={() => navigate('/intro/mission')}
+        <BasicButton
+          className='absolute top-[10px] left-1/2 transform -translate-x-1/2 bg-[#2CD673] text-white rounded-lg px-20 py-[13px] text-[1.7rem] shadow-md font-[Pacifico] z-10'
+          handleClick={() => handleIntroModal()}
         >
           Start !!
-        </button>
+        </BasicButton>
         <img
           style={{
             width: '100%',

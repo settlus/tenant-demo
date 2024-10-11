@@ -216,7 +216,7 @@ const AvatarPreview = ({
   ])
 
   return (
-    <BaseCard className='bg-[#fff]' widthRatio='flex-[3]'>
+    <BaseCard className='bg-[#fff]'>
       {isUnrealError ? (
         <div className='absolute w-[82%] h-[87.4%] rounded-[16px] border border-[#eef1f3] bg-[#fff] top-0 left-0 flex flex-col items-center justify-center p-6 gap-6 text-center whitespace-pre-wrap z-[1]'>
           {`Oops! An unknown error has occurred.\nPlease reload the page.`}

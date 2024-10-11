@@ -5,14 +5,14 @@ import closeSvg from '../../public/svg/Close.svg'
 type PropType = {
   children: React.ReactNode
   open: boolean
-  handleClose?: () => void
+  // handleClose?: () => void
   style?: string
 }
 
 export default function Modal({
   children,
   open,
-  handleClose,
+  // handleClose,
   style,
 }: PropType): React.ReactElement {
   const dialog = useRef<HTMLDialogElement>(null)
@@ -27,7 +27,6 @@ export default function Modal({
   return (
     <dialog ref={dialog} className={`animate-scale-up ${style}`}>
       <div className='animate-scale-up'>
-        {handleClose && <img className={styles.close} onClick={handleClose} src={closeSvg} />}
         {children}
       </div>
     </dialog>

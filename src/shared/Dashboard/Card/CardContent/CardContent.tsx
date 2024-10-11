@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import styles from '../Card.module.scss'
 import { DashboardContext } from '../../../../store/dashboard_context'
 import GuidePointer from '../../../GuidePointer/GuidePointer'
 import { DetailKeys } from '../../../../types/type'

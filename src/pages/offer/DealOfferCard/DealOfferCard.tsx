@@ -1,4 +1,3 @@
-import styles from './OfferModal.module.scss'
 import Joy from '../../../public/png/joy_avatar.png'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -8,7 +7,7 @@ import BaseCard from '../../../shared/Card/BaseCard'
 import BaseTitle from '../../../shared/Card/Title'
 import BasicButton from '../../../shared/Button/BasicButton'
 
-export default function OfferModal() {
+export default function DealOfferCard() {
   const { offer, setIsGiftModal, setStep } = useContext(DashboardContext)
   const navigate = useNavigate()
 
@@ -25,7 +24,7 @@ export default function OfferModal() {
   }
 
   return (
-    <BaseCard className='w-[732px] h-[496px] bg-[#fff] p-[50px] shadow-lg'>
+    <BaseCard className='w-[732px] h-[496px] bg-[#fff] rounded-[20px] px-12 py-12 shadow-lg'>
       <BaseTitle name='Deal Offer' />
       <div className='flex flex-col gap-[24px] overflow-visible items-center'>
         <img className='w-[100px] h-auto m-0' src={Joy} />
@@ -39,11 +38,11 @@ export default function OfferModal() {
             owner.
           </p>
         </p>
-        <div className='flex flex-row gap-[18px] justify-center'>
-          <BasicButton className="w-[190px] h-[50px]" filled={false} handleClick={handleClose}>
+        <div className='flex flex-row gap-[18px] justify-center font-bold'>
+          <BasicButton className='w-[190px] h-[50px]' filled={false} handleClick={handleClose}>
             Cancel
           </BasicButton>
-          <BasicButton className="w-[190px] h-[50px]" filled={true} handleClick={handleProceed}>
+          <BasicButton className='w-[190px] h-[50px]' filled={true} handleClick={handleProceed}>
             Proceed
           </BasicButton>
         </div>

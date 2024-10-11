@@ -35,12 +35,18 @@ export default function CompletePage() {
           <MissionCard title='Mission Completed' />
         </div>
         <div className='flex flex-row items-center justify-between gap-[10px]'>
-          <button onClick={handleQna}><img src={QnaImage} className='w-[244.65px] h-[307.28px] cursor-pointer'/></button>
+          <button onClick={handleQna}>
+            <img src={QnaImage} className='w-[244.65px] h-[307.28px] cursor-pointer' />
+          </button>
           <a href='https://settlus.org/docs/whitepaper.pdf' target='_blank'>
-            <button><img src={ReadImage} className='w-[244.65px] h-[307.28px]  cursor-pointer'/></button>
+            <button>
+              <img src={ReadImage} className='w-[244.65px] h-[307.28px]  cursor-pointer' />
+            </button>
           </a>
           <Link to={'/intro'}>
-            <button><img src={ReturnImage} className=' w-[244.65px] h-[307.28px]  cursor-pointer'></img></button>
+            <button>
+              <img src={ReturnImage} className=' w-[244.65px] h-[307.28px]  cursor-pointer'></img>
+            </button>
           </Link>
         </div>
       </div>

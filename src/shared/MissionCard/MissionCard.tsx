@@ -30,9 +30,9 @@ export default function MissionCard({ title, beforeStart }: PropType): React.Rea
         <p>{mission} / 5</p>
       </div>
       <div className='px-6'>
-        <ul className='list-none text-left text-[1rem] m-auto flex flex-col gap-[2rem] py-5 w-auto min-w-0'>
+        <div className='list-none text-left text-[1rem] m-auto flex flex-col gap-[2rem] py-5 w-auto min-w-0'>
           {STEPS.map((item, index) => (
-            <li
+            <div
               key={item}
               className={`whitespace-nowrap flex flex-row items-center w-full gap-3 ${
                 index === mission && !beforeStart ? 'font-bold italic' : ''
@@ -44,9 +44,9 @@ export default function MissionCard({ title, beforeStart }: PropType): React.Rea
               src={index < mission ? checkBulletIcon : bulletIcon}
             /> */}
               {item}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   )

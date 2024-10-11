@@ -15,9 +15,9 @@ export default function Thumbnail({ style, thumbnail, onClick, selected, isNew }
       className={`${styles.main} ${style ? style : ''} ${selected ? styles.selected : ''}`}
       onClick={onClick}
     >
+      {isNew && <div className={styles.new}>New</div>}
       <img className={styles.nft} src={nftIcon} />
       <img className={styles.item} src={thumbnail} />
-      {isNew && <p className='w-[31px] h-[16px] p-[2px_6px_3px_6px] gap-[8px] bg-[#1ABF5D]'>NEW</p>}
     </div>
   )
 }

@@ -1,11 +1,10 @@
 import Modal from '../../../../shared/Modal/Modal.tsx'
-import checkSvg from '../../../../public/svg/Check.svg'
-import docSvg from '../../../../public/svg/Doc.svg'
+import MintedSvg from '../../../../public/svg/minted.svg'
 import styles from './SubmitModal.module.scss'
 import loadingSpinner from '../../../../public/svg/loading.svg'
 import errorSvg from '../../../../public/svg/error.svg'
 import retrySvg from '../../../../public/svg/retry.svg'
-import { SubmitModalContentBox } from './SubmitModalContentBox.tsx'
+import BasicButton from '../../../../shared/Button/BasicButton.tsx'
 
 type PropType = {
   step: number
@@ -34,45 +33,53 @@ export default function SubmitModal({
       {step > 0 && step < 3 && (
         <Modal
           open={open}
-          handleClose={step >= 2 ? handleClick : undefined}
-          style='w-[700px] h-[404px] items-center justify-center rounded-[20px]'
+          // handleClose={step >= 2 ? handleClick : undefined}
+          style='w-[700px] rounded-[20px] items-center p-[50px]'
         >
           {step === 1 && (
-            <SubmitModalContentBox title='Processing...'>
+            <div>
+              <div className='flex flex-col w-[200px] h-[274px] gap-[40px] items-center'>
+                <div className='flex flex-row h-[34px] gap-[16px] items-center'>
+                  <p className='font-[Manrope] text-2xl font-bold'>Processing...</p>
+                </div>
+              </div>
               <div className='flex flex-row justify-between items-center my-8 mx-auto w-[80%]'>
                 <img
                   className='w-[200px] h-[200px]'
                   src={isLoaded ? Module.OVDR_Thumbnails?.main.url : ''}
                 />
-                <img src={loadingSpinner} />
-                <div className={styles.nftDoc}>
-                  <img src={docSvg} />
-                  <h3>NFT</h3>
-                </div>
               </div>
-            </SubmitModalContentBox>
+              <img src={loadingSpinner} />
+            </div>
           )}
           {step === 2 && (
-            <SubmitModalContentBox title='NFT Minted' titleDeco={checkSvg}>
-              <img src={checkSvg} />
-              <div
-                className='bg-[#fff]'
-                onClick={() =>
-                  window.open(
-                    `http://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`,
-                    '_blank'
-                  )
-                }
-              >
+            <div className='flex flex-col items-center'>
+              <div className='flex flex-col w-[200px] h-[274px] gap-[40px] items-center'>
+                <div className='flex flex-row h-[34px] gap-[16px] items-center'>
+                  <img src={MintedSvg} className='w-[24px] h-[24px]' />
+                  <p className='font-[Manrope] text-2xl font-bold flex flex-col justify-end h-full'>NFT Minted</p>
+                </div>
                 <img
                   className='m-auto h-[200px] w-[200px]'
                   src={isLoaded ? Module.OVDR_Thumbnails?.main.url : ''}
                 />
               </div>
-            </SubmitModalContentBox>
+              <div className="flex flex-row gap-[10px]">
+                <BasicButton filled={false}
+                className='font-bold w-[190px] h-[50px]'
+                handleClick={() =>
+                  window.open(
+                    `http://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`,
+                    '_blank'
+                  )}>NFT Detail</BasicButton>
+                <BasicButton filled={true}
+                handleClick={handleClick}
+                className="w-[190px] h-[50px]  font-bold">Done</BasicButton>
+              </div>
+            </div>
           )}
           {step === 2.5 && (
-            <SubmitModalContentBox title='Error' className='gap-3'>
+            <div>
               <div className={styles.error}>
                 <img className={styles.errorImg} src={errorSvg} />
                 <p>Error has occurred while minting NFT. Please retry.</p>
@@ -81,7 +88,7 @@ export default function SubmitModal({
                   <p>Retry</p>
                 </button>
               </div>
-            </SubmitModalContentBox>
+            </div>
           )}
         </Modal>
       )}

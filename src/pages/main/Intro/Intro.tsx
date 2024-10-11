@@ -1,4 +1,4 @@
-import Card from './Card/Card.tsx'
+import IntroCard from './IntroCard/IntroCard.tsx'
 import { useContext, useEffect } from 'react'
 import { ShopContext } from '../../../store/costumeshop_context.tsx'
 import { DashboardContext } from '../../../store/dashboard_context.tsx'
@@ -29,7 +29,7 @@ export default function Intro() {
         <br />
         Experience as an avatar costume creator and learn the value of NFT licensing on Settlus.
       </p>
-      <Card />
+      <IntroCard />
     </div>
   )
 }

@@ -12,9 +12,9 @@ export default function CostumeList() {
   }
 
   return (
-    <BaseCard widthRatio='flex-[3]' className='bg-white h-full flex flex-col'>
+    <BaseCard className='bg-white h-full flex flex-col w-[340px] gap-[20px]'>
       <BaseTitle name='Costume List' />
-      <ul className='grid grid-cols-[repeat(auto-fill,minmax(5rem,1fr))] gap-2 overflow-y-auto h-full pb-[0.1rem]'>
+      <div className='grid grid-cols-[repeat(auto-fill,minmax(5rem,1fr))] gap-2 overflow-y-auto h-full pb-[0.1rem]'>
         {items.map((item, index) => (
           <li className='flex m-auto pb-[0.03rem]' key={item.title}>
             <Thumbnail
@@ -27,7 +27,7 @@ export default function CostumeList() {
             />
           </li>
         ))}
-      </ul>
+      </div>
     </BaseCard>
   )
 }

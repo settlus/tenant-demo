@@ -58,30 +58,25 @@ export default function Live() {
     <BaseCard
       step={step}
       pageStep={liveStep}
-      widthRatio='flex-[2]'
-      className='backdrop-blur-[23.7px]'
+      className='backdrop-blur-[23.7px] w-[192px] gap-[20px]'
     >
-      <div className='rounded-lg bg-[#F9FAFB] gap-2 w-auto'>
-        <BaseTitle name='Live' />
-        <ul className=' m-0 overflow-auto w-full h-[512px] gap-[28px]'>
-          {liveList.map((item, index) => (
-            <li
-              className={`flex flex-row items-center justify-center m-auto p-[2px_6px] gap-2 rounded-tl-[5px] rounded-tr-none rounded-br-none rounded-bl-none rounded-md text-sm ${
-                index === 0
-                  ? 'animate-listComponentChangeBg animate-listComponentSlideIn'
-                  : 'animate-listComponentSlideIn'
-              }`}
-            >
-              <Thumbnail
-                style='w-[44px] h-[44px] top-[2px] left-[6px] gap-0'
-                thumbnail={items[item.thumbnail].thumbnailPng}
-              />
-              <p className='text-xs'>
-                <em>{USER_NAMES[item.user - 1]}</em> bought
-              </p>
-            </li>
-          ))}
-        </ul>
+      <BaseTitle name='Live' />
+      <div className='m-0 overflow-auto w-[160px] h-[512px] gap-[10px]'>
+        {liveList.map((item, index) => (
+          <div
+            className={`flex flex-row items-center justify-center m-auto p-[2px_6px] gap-2 rounded-tl-[5px] rounded-tr-none rounded-br-none rounded-bl-none rounded-md text-sm ${
+              index === 0 ? 'animate-listComponentSlideIn' : 'animate-listComponentSlideIn'
+            }`}
+          >
+            <Thumbnail
+              style='w-[44px] h-[44px] top-[2px] left-[6px] gap-0'
+              thumbnail={items[item.thumbnail].thumbnailPng}
+            />
+            <p className='text-xs font-bold'>
+              <em>{USER_NAMES[item.user - 1]}</em> bought
+            </p>
+          </div>
+        ))}
       </div>
     </BaseCard>
   )

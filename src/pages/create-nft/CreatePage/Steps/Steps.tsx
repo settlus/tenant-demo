@@ -12,17 +12,17 @@ export default function StepsCard({ step }: PropType): React.ReactElement {
   return (
     <BaseCard className='w-[192px]'>
       <BaseTitle name='Steps' />
-      <ul className='list-none text-left text-[1rem] ml-4 flex flex-col gap-5 py-3 w-auto min-w-0'>
+      <div className='list-none text-left text-[1rem] flex flex-col gap-5 py-3 w-auto min-w-0'>
         {STEP_TEXT.map((item, index) => (
-          <li
+          <div
             key={item}
             className={`whitespace-nowrap flex flex-row items-center w-full gap-3 font-semibold font-[Manrope]`}
           >
             <MissionStep filled={index == step} index={index + 1} />
             {item}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </BaseCard>
   )
 }

@@ -15,14 +15,14 @@ export default function Content() {
       {isOfferModal && <OfferModal />}
       <Card />
       <div className='flex flex-col gap-[10px]'>
-        <BaseCard className='flex flex-col bg-[#fff] w-[456px] h-[264px] gap-[20px]'>
+        <BaseCard className='flex flex-col bg-[#fff] w-[456px] h-[264px] gap-[20px] font-[Manrope]'>
           <BaseTitle name='Item' />
           <div>
-            <div className='flex flex-row w-[424px] h-[60px]'>
+            <div className='flex flex-row w-[424px] h-[60px] gap-[8px] items-center'>
               <img className='w-[60px] h-[60px] m-0' src={data.thumbnail} />
               <p>{data.title}</p>
             </div>
-            <div className='flex flex-col text-sm text-left gap-[16px]'>
+            <div className='flex flex-col text-sm text-left gap-[16px] pt-[16px]'>
               <p>Item Price: {formatNum(data.revenue['Price'])}</p>
               <p>Total Quantity Sold: {data.revenue['Quantity']}</p>
               <div className='border-t border-[#DFE4EA] w-full'></div>

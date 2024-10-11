@@ -9,6 +9,7 @@ import { formatNum } from '../../../utils/util'
 import GuidePointer from '../../../shared/GuidePointer/GuidePointer'
 import { ITEM_ARR } from '../../../utils/constants'
 import 'react-toastify/dist/ReactToastify.css'
+import Layout from '../../../shared/Layout/Layout'
 
 const TITLES = [
   'Welcome to the Avatar Costume Shop!',
@@ -68,7 +69,7 @@ export default function CostumePage({ isAfterItemCreated }: PropType): React.Rea
   }, [])
 
   return (
-    <div className='m-auto flex flex-col gap-[2vh]'>
+    <Layout>
       <div className='flex flex-row justify-center items-center gap-4 min-h-[7rem]'>
         <Instruction
           title={
@@ -88,6 +89,6 @@ export default function CostumePage({ isAfterItemCreated }: PropType): React.Rea
       </div>
 
       <CostumeShop />
-    </div>
+    </Layout>
   )
 }

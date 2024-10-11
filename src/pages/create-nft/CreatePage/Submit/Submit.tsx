@@ -30,8 +30,8 @@ export default function Submit({ info, handleInfo }: PropType): React.ReactEleme
 
   return (
     <MissionUpdate updatedMission={2}>
-      <BaseCard className='flex flex-col bg-white w-[772px]'>
-        <div className='flex items-center justify-between relative'>
+      <BaseCard className='flex flex-col bg-white w-[772px] items-center'>
+        <div className='flex items-center w-full justify-between relative'>
           <BaseTitle name='Item' />
           <div className='mr-4' id='buttonarea'>
             <button

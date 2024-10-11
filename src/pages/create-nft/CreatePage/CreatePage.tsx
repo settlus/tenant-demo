@@ -9,6 +9,7 @@ import { useMutation } from 'react-query'
 import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate'
 import StepsCard from './Steps/Steps'
 import BasicButton from '../../../shared/Button/BasicButton'
+import Layout from '../../../shared/Layout/Layout'
 
 const TEXT = [
   {
@@ -208,7 +209,7 @@ export default function CreatePage() {
 
   return (
     <MissionUpdate updatedMission={1}>
-      <div className='flex flex-col m-auto max-w-full'>
+      <Layout>
         {open && (
           <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep} />
         )}
@@ -223,7 +224,7 @@ export default function CreatePage() {
             onMouseLeave={() => {
               handleNavHover(false)
             }}
-            className={`w-[100px] h-[50px] ${navOnHover ? 'bg-[#FFA300]' : ''}`}
+            className={`w-[200px] h-[50px] font-bold ${navOnHover ? 'bg-[#FFA300]' : ''}`}
           >
             {navOnHover && (
               <h3 className='z-[3000] text-center bg-[#FFA300] text-white whitespace-nowrap animate-[scaleUp_0.03s_ease-in-out] hover:cursor-pointer'>
@@ -254,7 +255,7 @@ export default function CreatePage() {
             <Submit info={info} handleInfo={handleInfo} />
           )}
         </div>
-      </div>
+      </Layout>
     </MissionUpdate>
   )
 }

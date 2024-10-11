@@ -35,7 +35,6 @@ async function createContract() {
     new ethers.Wallet(user_pv_key.data, provider)
   )
 
-  console.log(contract)
   return contract
 }
 
