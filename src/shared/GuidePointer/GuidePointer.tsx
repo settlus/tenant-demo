@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import Pointer from "../../public/svg/pointer.svg";
-import styles from "./GuidePointer.module.scss";
+import { useState, useEffect } from 'react'
+import Pointer from '../../public/svg/pointer.svg'
+import styles from './GuidePointer.module.scss'
 
 type PropType = {
-  children: React.ReactNode;
-  doGuide: boolean;
-  topPos?: number;
-  leftPos?: number;
-  margin?: number;
-};
+  children: React.ReactNode
+  doGuide: boolean
+  topPos?: number
+  leftPos?: number
+  margin?: number
+}
 
 export default function GuidePointer({
   children,
@@ -17,30 +17,30 @@ export default function GuidePointer({
   leftPos,
   margin,
 }: PropType): React.ReactElement {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout | null = null;
+    let timeout: NodeJS.Timeout | null = null
     if (doGuide) {
-      setIsVisible(false);
+      setIsVisible(false)
       timeout = setTimeout(() => {
-        setIsVisible(true);
-      }, 2000);
+        setIsVisible(true)
+      }, 2000)
     }
 
     return () => {
-      if (timeout) clearTimeout(timeout);
-    };
-  }, [children, doGuide]);
+      if (timeout) clearTimeout(timeout)
+    }
+  }, [children, doGuide])
 
   useEffect(() => {
-    const top = topPos || 40;
-    document.documentElement.style.setProperty("--topPos", `${top}px`);
-    document.documentElement.style.setProperty("--bottomPos", `${top + 15}px`);
+    const top = topPos || 40
+    document.documentElement.style.setProperty('--topPos', `${top}px`)
+    document.documentElement.style.setProperty('--bottomPos', `${top + 15}px`)
 
-    const left = leftPos || 6;
-    document.documentElement.style.setProperty("--leftPos", `${left}px`);
-  }, [topPos, leftPos]);
+    const left = leftPos || 6
+    document.documentElement.style.setProperty('--leftPos', `${left}px`)
+  }, [topPos, leftPos])
 
   return (
     <div className={styles.main}>
@@ -53,5 +53,5 @@ export default function GuidePointer({
         />
       )}
     </div>
-  );
+  )
 }

@@ -1,4 +1,3 @@
-
 declare namespace Module {
   let OVDR_FilePath: string
   let initDone: boolean

@@ -1,25 +1,25 @@
-import {useEffect, useContext} from 'react';
-import styles from './Dashboard.module.scss';
-import Header from './Header/Header';
-import Content from './Content/Content';
-import { DashboardContext } from '../../store/dashboard_context';
-import { getData } from '../../apis/api';
+import { useEffect, useContext } from 'react'
+import Header from './Header/Header'
+import Content from './Content/Content'
+import { DashboardContext } from '../../store/dashboard_context'
+import { getData } from '../../apis/api'
 
-export default function Dashboard(){
-  const { setData } = useContext(DashboardContext);
+export default function Dashboard() {
+  const { setData } = useContext(DashboardContext)
 
-  useEffect(()=>{
-    const setMainData = async ()=>{
-      const info = await getData();
-      setData(info);
+  useEffect(() => {
+    const setMainData = async () => {
+      const info = await getData()
+      setData(info)
     }
 
-    setMainData();
-  },[]);
+    setMainData()
+  }, [])
 
- 
-  return <div className={styles.board}>
+  return (
+    <div className='flex flex-col w-[700px] gap-[10px]'>
       <Header />
       <Content />
     </div>
+  )
 }

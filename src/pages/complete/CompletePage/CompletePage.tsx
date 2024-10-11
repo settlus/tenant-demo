@@ -1,43 +1,50 @@
-import Instruction from "../../../shared/Instruction/Instruction";
-import MissionCard from "../../../shared/MissionCard/MissionCard";
-import Header from "../../../shared/Header/Header";
-import QnaModal from "../../../shared/QnaModal/QnaModal";
-import { useState } from "react";
-import styles from './CompletePage.module.scss';
-import {Link} from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import MissionUpdate from "../../../shared/MissionUpdate/MissionUpdate";
+import Instruction from '../../../shared/Instruction/Instruction'
+import MissionCard from '../../../shared/MissionCard/MissionCard'
+import Header from '../../../shared/Header/Header'
+import QnaModal from '../../../shared/QnaModal/QnaModal'
+import QnaImage from '../../../public/png/complete_demo_qna.png'
+import ReturnImage from '../../../public/png/complete_return_beginning.png'
+import ReadImage from '../../../public/png/complete_read_wp.png'
+import { useState } from 'react'
+import styles from './CompletePage.module.scss'
+import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate'
 
-export default function CompletePage(){
-  const [qnaOpen, setQnaOpen] = useState(false);
+export default function CompletePage() {
+  const [qnaOpen, setQnaOpen] = useState(false)
 
-  const handleQna = ()=>{
-    setQnaOpen(prev=>!prev);
+  const handleQna = () => {
+    setQnaOpen((prev) => !prev)
   }
 
-  return <MissionUpdate updatedMission={5}>
-    {qnaOpen && <QnaModal open={qnaOpen} handleClose={handleQna} />}
-    <Header logoOnly={true} />
-    <div className={styles.main}>
-      <div className={styles.instruction}>
-        <Instruction title='🎉 Congratulations! You’ve completed all the missions. '
-          typeWriter="Using NFT for royalty right, You’ve earned revenue from the costume sales and the NFT sales. 
+  return (
+    <MissionUpdate updatedMission={5}>
+      {qnaOpen && <QnaModal open={qnaOpen} handleClose={handleQna} />}
+      <Header logoOnly={true} />
+      <div className={styles.main}>
+        <div className={styles.instruction}>
+          <Instruction
+            title='🎉 Congratulations! You’ve completed all the missions. '
+            typeWriter='Using NFT for royalty right, You’ve earned revenue from the costume sales and the NFT sales. 
           Settlus blockchain is designed to help monetize creator’s IP in the web3. era. 
-          Read Settlus Whitepaper for details!" />
+          Read Settlus Whitepaper for details!'
+          />
+        </div>
+        <div className={styles.mission}>
+          <MissionCard title='Mission Completed' />
+        </div>
+        <div className='flex flex-row items-center justify-between gap-[10px]'>
+          <button onClick={handleQna}><img src={QnaImage} className='w-[244.65px] h-[307.28px] cursor-pointer'/></button>
+          <a href='https://settlus.org/docs/whitepaper.pdf' target='_blank'>
+            <button><img src={ReadImage} className='w-[244.65px] h-[307.28px]  cursor-pointer'/></button>
+          </a>
+          <Link to={'/intro'}>
+            <button><img src={ReturnImage} className=' w-[244.65px] h-[307.28px]  cursor-pointer'></img></button>
+          </Link>
+        </div>
       </div>
-      <div className={styles.mission}>
-        <MissionCard title='Mission Completed'/>
-      </div>
-      <div className={styles.buttons}>
-        <button onClick={handleQna}>Demo Questions & Answers</button>
-        <a href='https://settlus.org/docs/whitepaper.pdf' target="_blank">
-          <button>Read Settlus Whitepaper</button>
-        </a>
-        <Link to={'/intro'}>
-          <button>Return to Beginning</button>
-        </Link> 
-      </div>
-    </div>
-    <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
-  </MissionUpdate>
+      <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
+    </MissionUpdate>
+  )
 }

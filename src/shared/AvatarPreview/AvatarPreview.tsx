@@ -1,20 +1,20 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import LoadingSpinner from "../../public/svg/loading.svg";
-import { delay } from "../../utils/util";
-import CostumeShopTitle from "../CostumeShop/Title";
-import CostumeShopContainer from "../CostumeShop/CostumeShopContainer";
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import LoadingSpinner from '../../public/svg/loading.svg'
+import { delay } from '../../utils/util'
+import BaseTitle from '../Card/Title'
+import BaseCard from '../Card/BaseCard'
 
 type Props = {
-  small?: boolean;
-  selectedTemplateMeshName?: string;
-  uploadedFile: string | null;
-  onUploadReady?: () => void;
-  handleIsLoading?: (value: boolean) => void;
-};
+  small?: boolean
+  selectedTemplateMeshName?: string
+  uploadedFile: string | null
+  onUploadReady?: () => void
+  handleIsLoading?: (value: boolean) => void
+}
 
 declare global {
   interface Window {
-    Module: any;
+    Module: any
   }
 }
 
@@ -27,163 +27,156 @@ const AvatarPreview = ({
   handleIsLoading,
 }: Props) => {
   const isLoaded = useMemo(
-    () => typeof window !== "undefined" && typeof window.Module !== "undefined",
+    () => typeof window !== 'undefined' && typeof window.Module !== 'undefined',
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [window.Module]
-  );
+  )
 
-  const mainAreaRef = useRef<HTMLDivElement>(null);
-  const [isUnrealError, setIsUnrealError] = useState(false); //useAtom(isUnrealErrorAtom)
+  const mainAreaRef = useRef<HTMLDivElement>(null)
+  const [isUnrealError, setIsUnrealError] = useState(false) //useAtom(isUnrealErrorAtom)
 
   //const [isJQueryLoaded, setJQueryLoaded] = useState(false)
-  const [isUnrealLoaded, setUnrealLoaded] = useState(false);
-  const [isCanvasLoaded, setCanvasLoaded] = useState(false);
-  const [prevTemplateMesh, setPrevTemplateMesh] = useState(
-    selectedTemplateMeshName
-  );
-  const [bodyType, setBodyType] = useState(1);
+  const [isUnrealLoaded, setUnrealLoaded] = useState(false)
+  const [isCanvasLoaded, setCanvasLoaded] = useState(false)
+  const [prevTemplateMesh, setPrevTemplateMesh] = useState(selectedTemplateMeshName)
+  const [bodyType, setBodyType] = useState(1)
 
   const handleLoadJquery = useCallback(async () => {
-    console.log("load jquery");
+    console.log('load jquery')
     try {
-      const unloadedScript = document.querySelector(
-        'script[src="/lib/jquery-2.1.3.min.js"]'
-      );
+      const unloadedScript = document.querySelector('script[src="/lib/jquery-2.1.3.min.js"]')
       if (unloadedScript) {
-        unloadedScript.parentNode?.removeChild(unloadedScript);
+        unloadedScript.parentNode?.removeChild(unloadedScript)
       }
 
-      const jquery = document.createElement("script");
-      jquery.src = "/lib/jquery-2.1.3.min.js";
-      jquery.setAttribute("data-nscript", "lazyOnload");
-      document.body.appendChild(jquery);
+      const jquery = document.createElement('script')
+      jquery.src = '/lib/jquery-2.1.3.min.js'
+      jquery.setAttribute('data-nscript', 'lazyOnload')
+      document.body.appendChild(jquery)
 
       jquery.onload = () => {
         //setJQueryLoaded(true)
-      };
+      }
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
-  }, []);
+  }, [])
 
   const handleLoadScript = useCallback(async () => {
     try {
       const unloadedScript = document.querySelector(
         'script[src="/lib/unreal/OVDRClothWeb-HTML5-Shipping.UE4.js"]'
-      );
+      )
       if (unloadedScript) {
-        unloadedScript.parentNode?.removeChild(unloadedScript);
+        unloadedScript.parentNode?.removeChild(unloadedScript)
       }
 
-      const script = document.createElement("script");
-      script.src = "/lib/unreal/OVDRClothWeb-HTML5-Shipping.UE4.js";
-      script.setAttribute("data-nscript", "lazyOnload");
+      const script = document.createElement('script')
+      script.src = '/lib/unreal/OVDRClothWeb-HTML5-Shipping.UE4.js'
+      script.setAttribute('data-nscript', 'lazyOnload')
 
       script.onload = async () => {
         try {
-          handleLoadTemplate();
+          handleLoadTemplate()
         } catch (e) {
-          setIsUnrealError(true);
-          console.error(e);
+          setIsUnrealError(true)
+          console.error(e)
         }
-      };
+      }
 
-      document.body.appendChild(script);
+      document.body.appendChild(script)
     } catch (e) {
-      console.log(e);
+      console.log(e)
     }
-  }, []);
+  }, [])
 
   const handleLoadTemplate = useCallback(async () => {
     try {
-      Module.OVDR_FilePath = "/lib/unreal/";
-      setIsUnrealError(false);
-      await Module.init();
-      setUnrealLoaded(true);
-      onUploadReady && onUploadReady();
+      Module.OVDR_FilePath = '/lib/unreal/'
+      setIsUnrealError(false)
+      await Module.init()
+      setUnrealLoaded(true)
+      onUploadReady && onUploadReady()
     } catch (e) {
-      setIsUnrealError(true);
-      console.error(e);
+      setIsUnrealError(true)
+      console.error(e)
     }
-  }, [onUploadReady]);
+  }, [onUploadReady])
 
   const handleAddCanvas = useCallback(async () => {
-    setCanvasLoaded(true);
-    mainAreaRef.current?.appendChild(Module.canvas);
-    Module.UE4_resizeCanvas && Module.UE4_resizeCanvas();
-    onUploadReady && onUploadReady();
-  }, [onUploadReady]);
+    setCanvasLoaded(true)
+    mainAreaRef.current?.appendChild(Module.canvas)
+    Module.UE4_resizeCanvas && Module.UE4_resizeCanvas()
+    onUploadReady && onUploadReady()
+  }, [onUploadReady])
 
   const handleResetAvatar = useCallback(async () => {
     try {
-      Module.OVDR_ResetAvatar && (await Module.OVDR_ResetAvatar());
+      Module.OVDR_ResetAvatar && (await Module.OVDR_ResetAvatar())
     } catch (e) {
-      setIsUnrealError(true);
-      console.error(e);
+      setIsUnrealError(true)
+      console.error(e)
     }
-  }, []);
+  }, [])
 
   const handleSelectTemplate = useCallback(async (meshName: string) => {
     try {
-      handleIsLoading && handleIsLoading(true);
-      Module.OVDR_SelectTemplate &&
-        (await Module.OVDR_SelectTemplate(meshName));
+      handleIsLoading && handleIsLoading(true)
+      Module.OVDR_SelectTemplate && (await Module.OVDR_SelectTemplate(meshName))
     } catch (e) {
-      setIsUnrealError(true);
-      console.error(e);
+      setIsUnrealError(true)
+      console.error(e)
     }
-    handleIsLoading && handleIsLoading(false);
-  }, []);
+    handleIsLoading && handleIsLoading(false)
+  }, [])
 
   const handleApplyPng = useCallback(async (file: string, meshName: string) => {
-    console.log("executed");
+    console.log('executed')
     try {
-      handleIsLoading && handleIsLoading(true);
-      Module.OVDR_ApplyPNG && (await Module.OVDR_ApplyPNG(file, meshName));
-      Module.OVDR_CaptureThumbnail &&
-        (await Module.OVDR_CaptureThumbnail(meshName));
+      handleIsLoading && handleIsLoading(true)
+      Module.OVDR_ApplyPNG && (await Module.OVDR_ApplyPNG(file, meshName))
+      Module.OVDR_CaptureThumbnail && (await Module.OVDR_CaptureThumbnail(meshName))
     } catch (e) {
-      setIsUnrealError(true);
-      console.error(e);
+      setIsUnrealError(true)
+      console.error(e)
     }
-    handleIsLoading && handleIsLoading(false);
-  }, []);
+    handleIsLoading && handleIsLoading(false)
+  }, [])
 
   const handleChangeBody = useCallback(async (beforeType: number) => {
-    const nextBodyType = beforeType === 11 ? 1 : beforeType + 1;
+    const nextBodyType = beforeType === 11 ? 1 : beforeType + 1
     try {
-      handleIsLoading && handleIsLoading(true);
-      Module.OVDR_ApplyCustomize &&
-        (await Module.OVDR_ApplyCustomize(nextBodyType));
-      setBodyType(nextBodyType);
+      handleIsLoading && handleIsLoading(true)
+      Module.OVDR_ApplyCustomize && (await Module.OVDR_ApplyCustomize(nextBodyType))
+      setBodyType(nextBodyType)
     } catch (e) {
-      setIsUnrealError(true);
-      console.error(e);
+      setIsUnrealError(true)
+      console.error(e)
     }
-    handleIsLoading && handleIsLoading(false);
-  }, []);
+    handleIsLoading && handleIsLoading(false)
+  }, [])
 
   useEffect(() => {
-    if (!isLoaded) handleLoadJquery();
-  }, [isLoaded, handleLoadJquery]);
+    if (!isLoaded) handleLoadJquery()
+  }, [isLoaded, handleLoadJquery])
 
   useEffect(() => {
-    if (!isLoaded) handleLoadScript();
-  }, []);
+    if (!isLoaded) handleLoadScript()
+  }, [])
 
   // unmount 시, 2d template 초기화
   useEffect(() => {
     return () => {
-      handleResetAvatar();
-    };
-  }, [handleResetAvatar]);
+      handleResetAvatar()
+    }
+  }, [handleResetAvatar])
 
   // 이미 한 번 그렸을 시(initDone), 이미 만든 DOM(Module.canvas) append + resize
   useEffect(() => {
     if (isLoaded && !isUnrealLoaded && Module?.initDone) {
-      handleAddCanvas();
+      handleAddCanvas()
     }
-  }, [isLoaded, isUnrealLoaded, handleAddCanvas]);
+  }, [isLoaded, isUnrealLoaded, handleAddCanvas])
 
   // // (init 시에) selectedTemplate / uploadedFile 있을 경우 셋팅
   // // selectedTemplate / uploadedFile 값이 바뀔 경우 재셋팅
@@ -196,26 +189,22 @@ const AvatarPreview = ({
 
   useEffect(() => {
     const resetAndApply = async () => {
-      if (
-        isLoaded &&
-        (isUnrealLoaded || isCanvasLoaded) &&
-        selectedTemplateMeshName
-      ) {
+      if (isLoaded && (isUnrealLoaded || isCanvasLoaded) && selectedTemplateMeshName) {
         if (!uploadedFile) {
-          await handleResetAvatar();
+          await handleResetAvatar()
         } else {
           if (prevTemplateMesh != selectedTemplateMeshName) {
-            await handleResetAvatar();
-            await delay(100);
-            setPrevTemplateMesh(selectedTemplateMeshName);
+            await handleResetAvatar()
+            await delay(100)
+            setPrevTemplateMesh(selectedTemplateMeshName)
           }
-          await handleSelectTemplate(selectedTemplateMeshName);
-          await handleApplyPng(uploadedFile, selectedTemplateMeshName);
+          await handleSelectTemplate(selectedTemplateMeshName)
+          await handleApplyPng(uploadedFile, selectedTemplateMeshName)
         }
       }
-    };
+    }
 
-    resetAndApply();
+    resetAndApply()
   }, [
     isLoaded,
     isUnrealLoaded,
@@ -224,17 +213,17 @@ const AvatarPreview = ({
     prevTemplateMesh,
     uploadedFile,
     handleApplyPng,
-  ]);
+  ])
 
   return (
-    <CostumeShopContainer className="bg-[#fff]" widthRatio="flex-[3]">
+    <BaseCard className='bg-[#fff]' widthRatio='flex-[3]'>
       {isUnrealError ? (
-        <div className="absolute w-[82%] h-[87.4%] rounded-[16px] border border-[#eef1f3] bg-[#fff] top-0 left-0 flex flex-col items-center justify-center p-6 gap-6 text-center whitespace-pre-wrap z-[1]">
+        <div className='absolute w-[82%] h-[87.4%] rounded-[16px] border border-[#eef1f3] bg-[#fff] top-0 left-0 flex flex-col items-center justify-center p-6 gap-6 text-center whitespace-pre-wrap z-[1]'>
           {`Oops! An unknown error has occurred.\nPlease reload the page.`}
           <button
-            className="text-[0.8rem] p-[0.4rem_1rem]"
+            className='text-[0.8rem] p-[0.4rem_1rem]'
             onClick={() => {
-              window.location.reload();
+              window.location.reload()
             }}
           >
             Reload
@@ -243,18 +232,14 @@ const AvatarPreview = ({
       ) : (
         !isUnrealLoaded &&
         !isCanvasLoaded && (
-          <img
-            src={LoadingSpinner}
-            alt="loading"
-            className="m-auto ml-[40%] absolute"
-          />
+          <img src={LoadingSpinner} alt='loading' className='m-auto ml-[40%] absolute' />
         )
       )}
-      <div className="flex items-center justify-between relative">
-        <CostumeShopTitle name="Avatar" />
-        <div className="mr-4" id="buttonarea">
+      <div className='flex items-center justify-between relative'>
+        <BaseTitle name='Avatar' />
+        <div className='mr-4' id='buttonarea'>
           <button
-            className="flex w-max text-[0.8rem] p-[5px_10px] gap-1 rounded-md bg-[#fff] text-[#637381] border border-[#DFE4EA] font-[Manrope]"
+            className='flex w-max text-[0.8rem] p-[5px_10px] gap-1 rounded-md bg-[#fff] text-[#637381] border border-[#DFE4EA] font-[Manrope]'
             onClick={() => handleChangeBody(bodyType)}
           >
             {`Body type ${bodyType}`}
@@ -263,21 +248,21 @@ const AvatarPreview = ({
       </div>
       <div
         ref={mainAreaRef}
-        className="wrapper"
-        id="mainarea"
+        className='wrapper'
+        id='mainarea'
         style={{
-          position: "relative",
+          position: 'relative',
           minWidth: small ? 342 : 324,
           height: 410,
         }}
       >
         <canvas
-          id="canvas"
-          className="emscripten"
-          style={{ display: "none", height: 380, minWidth: 305 }}
+          id='canvas'
+          className='emscripten'
+          style={{ display: 'none', height: 380, minWidth: 305 }}
         />
       </div>
-    </CostumeShopContainer>
-  );
-};
-export default AvatarPreview;
+    </BaseCard>
+  )
+}
+export default AvatarPreview
