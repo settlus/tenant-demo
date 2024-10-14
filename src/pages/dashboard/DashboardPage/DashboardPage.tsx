@@ -1,10 +1,10 @@
-import styles from './DashboardPage.module.scss'
 import Dashboard from '../../../shared/Dashboard/Dashboard'
 import Instruction from '../../../shared/Instruction/Instruction'
 import GiftModal from '../../../shared/Dashboard/GiftModal/GiftModal'
 import { useContext, useEffect } from 'react'
 import { DashboardContext } from '../../../store/dashboard_context'
 import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate'
+import Layout from '../../../shared/Layout/Layout'
 
 export default function Main() {
   const { step, setOffer, isGiftModal, setIsGiftModal } = useContext(DashboardContext)
@@ -22,16 +22,17 @@ export default function Main() {
 
   return (
     <MissionUpdate updatedMission={3}>
-      <div className={styles.main}>
+      <Layout>
         {isGiftModal && <GiftModal open={isGiftModal} />}
-        <div className={styles.instruction}>
+        <div className='w-[1124px]'>
           <Instruction
+          className='w-full'
             title='🎉 Congratulations on your first revenue!'
             typeWriter='On the creator’s dashboard, you can see your NFT info, Item listing, and activity history. Click the contract address to see your minting on Settlus Scan.'
           />
         </div>
         <Dashboard />
-      </div>
+      </Layout>
     </MissionUpdate>
   )
 }

@@ -32,7 +32,7 @@ type PropType = {
 export default function QnaModal({ open, handleClose }: PropType): React.ReactElement {
   return (
     <>
-      <Modal open={open} style='min-h-[70vh] w-[60vw] flex bg-transparent rounded-[20px] p-0'>
+      <Modal open={open} className='min-h-[70vh] w-[60vw] flex bg-transparent rounded-[20px] p-0'>
         <div className='h-full flex flex-col relative overflow-visible'>
           <div className='h-full overflow-auto bg-white rounded-[20px] p-12 gap-2 text-left flex flex-col'>
             {QNA.map((item) => (

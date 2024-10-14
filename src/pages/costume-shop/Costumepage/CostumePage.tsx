@@ -45,7 +45,7 @@ export default function CostumePage({ isAfterItemCreated }: PropType): React.Rea
         case 0:
           return 'People who want to decorate avatars in the metaverse buy avatar costumes created by our creators. You can see the online users’ real-time shopping activities on the “Live” section.'
         case 1:
-          return `<img src=${nftIcon} alt=\'license\' style="height: 1rem; width: 1rem; margin: 0;"/> mark shows that the costumes are minted as NFTs. The NFT guarantees the ownership of a creator\'s costumes, and copies of costumes can be sold as items without quantity limit on the off-chain Avatar Costume Shop. Click your favorite costume to see the detail!`
+          return `License mark shows that the costumes are minted as NFTs. The NFT guarantees the ownership of a creator\'s costumes, and copies of costumes can be sold as items without quantity limit on the off-chain Avatar Costume Shop. Click your favorite costume to see the detail!`
         case 2:
           return `This costume’s creator earned ${formatNum(
             selectedItem.price * selectedItem.quantity
@@ -70,19 +70,20 @@ export default function CostumePage({ isAfterItemCreated }: PropType): React.Rea
 
   return (
     <Layout>
-      <div className='flex flex-row justify-center items-center gap-4 min-h-[7rem]'>
+      <div className='flex flex-row w-[1124px] justify-between items-center gap-[8px] min-h-[7rem]'>
         <Instruction
           title={
             !isAfterItemCreated ? TITLES[step] : 'Congratulations! Your item is listed for sale.'
           }
-          style='m-0'
+          className='m-0'
           typeWriter={getInstructionDetail()}
           onComplete={showNav}
+          mark={ step === 1 ? nftIcon : undefined }
         />
         <span>
           {!isAfterItemCreated && navIsVisible && (
-            <GuidePointer doGuide={true}>
-              <Navigation handleClick={handleNav} />
+            <GuidePointer doGuide={true} topPos='top-[1.8rem]' leftPos='left-[2rem]'>
+              <Navigation handleClick={handleNav} className='w-[200px]' />
             </GuidePointer>
           )}
         </span>

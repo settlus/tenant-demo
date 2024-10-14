@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import styles from './Content.module.scss'
-import Card from '../Card/Card.tsx'
+import NFTInfo from '../Card/NFTInfo.tsx'
 import { DashboardContext } from '../../../store/dashboard_context.tsx'
 import OfferModal from '../OfferModal/OfferModal.tsx'
 import { formatNum } from '../../../utils/util.ts'
@@ -13,9 +13,9 @@ export default function Content() {
   return (
     <div className='flex flex-row w-[700px] h-[458px] gap-[10px]'>
       {isOfferModal && <OfferModal />}
-      <Card />
+      <NFTInfo />
       <div className='flex flex-col gap-[10px]'>
-        <BaseCard className='flex flex-col bg-[#fff] w-[456px] h-[264px] gap-[20px] font-[Manrope]'>
+        <BaseCard className='flex flex-col bg-[#fff] w-[456px] h-[264px] gap-[20px] font-[Manrope] px-[16px] py-[20px] rounded-[10px]'>
           <BaseTitle name='Item' />
           <div>
             <div className='flex flex-row w-[424px] h-[60px] gap-[8px] items-center'>
@@ -32,7 +32,7 @@ export default function Content() {
             </div>
           </div>
         </BaseCard>
-        <BaseCard className='flex flex-col w-[456px] h-[182px] bg-[#fff] gap-[20px]'>
+        <BaseCard className='flex flex-col w-[456px] h-[182px] bg-[#fff] gap-[20px] px-[16px] py-[20px] rounded-[10px]'>
           <BaseTitle name='Activity history' />
           <span className='flex flex-col gap-[12px] overflow-y-auto'>
             {data.history.map((item, index) => (

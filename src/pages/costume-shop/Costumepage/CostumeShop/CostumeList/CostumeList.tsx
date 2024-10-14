@@ -12,7 +12,7 @@ export default function CostumeList() {
   }
 
   return (
-    <BaseCard className='bg-white h-full flex flex-col w-[340px] gap-[20px]'>
+    <BaseCard className='bg-white h-full flex flex-col px-[16px] py-[20px] gap-[20px] w-[340px] rounded-[10px]'>
       <BaseTitle name='Costume List' />
       <div className='grid grid-cols-[repeat(auto-fill,minmax(5rem,1fr))] gap-2 overflow-y-auto h-full pb-[0.1rem]'>
         {items.map((item, index) => (

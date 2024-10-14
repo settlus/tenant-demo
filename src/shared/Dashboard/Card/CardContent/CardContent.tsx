@@ -25,10 +25,10 @@ export default function CardContent() {
           {keys.map((item, index) =>
             item === 'Contract Address' ? (
               <>
-                <GuidePointer topPos={5} leftPos={100} doGuide={step === 0}>
-                  <div key={index} className='text-bold break-after-all'>
+                <GuidePointer topPos='top-[1.5rem]' leftPos='left-[6rem]' doGuide={step === 0}>
+                  <div key={index} className='text-bold'>
                     {item}:{' '}
-                    <p className='text-[#10B981]'>
+                    <p className='text-[#10B981] text-[9px]'>
                       <a
                         href={`http://${ENV.VITE_CHAIN_TYPE}net.settlus.network/nft/${ENV.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`}
                         target='_blank'

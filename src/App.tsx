@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { RouterProvider, createBrowserRouter, redirect, Outlet } from 'react-router-dom'
 import { loader } from './utils/loader.ts'
 import Intro from './pages/main/Intro/Intro'
-import DemoIntro from './pages/main/DemoIntro/DemoIntro'
 import CreatePage from './pages/create-nft/CreatePage/CreatePage.tsx'
 import Demo from './pages/demo/Demo/Demo.tsx'
 import DashboardPage from './pages/dashboard/DashboardPage/DashboardPage.tsx'
@@ -30,10 +29,6 @@ const router = createBrowserRouter([
         element: <Outlet />,
         children: [
           { index: true, element: <Intro /> },
-          {
-            path: 'mission',
-            element: <DemoIntro />,
-          },
         ],
       },
       {

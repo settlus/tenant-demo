@@ -16,6 +16,7 @@ type PropType = {
 export default function Submit({ info, handleInfo }: PropType): React.ReactElement {
   const isLoaded = typeof window !== 'undefined' && typeof window.Module !== 'undefined'
   const [qnaModalOpen, setQnaModalOpen] = useState(false)
+  const [errorModalOpen, setErrorModalOpen] = useState(false)
 
   useEffect(() => {
     return () => {
@@ -28,9 +29,13 @@ export default function Submit({ info, handleInfo }: PropType): React.ReactEleme
     setQnaModalOpen((prev: boolean) => !prev)
   }
 
+  function handleErrorModal() {
+    setErrorModalOpen((prev: boolean) => !prev)
+  }
+
   return (
     <MissionUpdate updatedMission={2}>
-      <BaseCard className='flex flex-col bg-white w-[772px] items-center'>
+      <BaseCard className='flex flex-col bg-white w-[772px] items-center px-[16px] py-[20px] rounded-lg'>
         <div className='flex items-center w-full justify-between relative'>
           <BaseTitle name='Item' />
           <div className='mr-4' id='buttonarea'>
@@ -54,6 +59,7 @@ export default function Submit({ info, handleInfo }: PropType): React.ReactEleme
         </div>
       </BaseCard>
       {qnaModalOpen && <QnaModal open={qnaModalOpen} handleClose={handleQnaModal} />}
+      {errorModalOpen && <QnaModal open={errorModalOpen} handleClose={handleErrorModal} />}
     </MissionUpdate>
   )
 }

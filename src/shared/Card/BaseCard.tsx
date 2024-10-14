@@ -16,7 +16,7 @@ const BaseCard: React.FC<BaseCardProps> = ({ step, pageStep, className, children
   ) : (
     <div
       className={clsx(
-        'py-[20px] px-[16px] relative rounded-lg max-h-[580px]',
+        'relative max-h-[580px]',
         className
       )}
     >

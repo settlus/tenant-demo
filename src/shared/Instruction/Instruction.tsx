@@ -1,24 +1,32 @@
+import clsx from 'clsx'
 import { ReactTyped } from 'react-typed'
 
 type PropType = {
   title: string
   typeWriter: string
+  mark?: string
   onComplete?: () => void
-  style?: string
+  className?: string
 }
 
 export default function Instruction({
   title,
-  style,
+  className,
+  mark,
   typeWriter,
   onComplete,
 }: PropType): React.ReactElement {
   return (
     <div
-      className={`p-[1rem_0rem] text-left self-center w-[70vw] min-h-[6rem] border-l-[6px] border-l-[#10B981] ${style}`}
+      className={clsx(
+        'py-[1rem] text-left self-center w-[914px] min-h-[6rem] border-l-[6px] border-l-[#10B981]',
+        className)}
     >
       <div className='ml-6'>
-        <p className='text-2xl font-[Manrope] font-bold text-left leading-[33.6px]'>{title}</p>
+        <div className='flex flex-row'>
+          <p className='text-2xl font-[Manrope] font-bold text-left leading-[33.6px]'>{title}</p>
+          {!mark ? <></> : <img src={mark} className='w-[1.5rem] h-[1.5rem] m-1 ml-2' />}
+        </div>
         <ReactTyped
           strings={[typeWriter]}
           className='text-base font-[Manrope] font-normal text-left leading-[19.2px]'

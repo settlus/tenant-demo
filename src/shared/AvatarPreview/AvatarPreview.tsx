@@ -35,14 +35,12 @@ const AvatarPreview = ({
   const mainAreaRef = useRef<HTMLDivElement>(null)
   const [isUnrealError, setIsUnrealError] = useState(false) //useAtom(isUnrealErrorAtom)
 
-  //const [isJQueryLoaded, setJQueryLoaded] = useState(false)
   const [isUnrealLoaded, setUnrealLoaded] = useState(false)
   const [isCanvasLoaded, setCanvasLoaded] = useState(false)
   const [prevTemplateMesh, setPrevTemplateMesh] = useState(selectedTemplateMeshName)
   const [bodyType, setBodyType] = useState(1)
 
   const handleLoadJquery = useCallback(async () => {
-    console.log('load jquery')
     try {
       const unloadedScript = document.querySelector('script[src="/lib/jquery-2.1.3.min.js"]')
       if (unloadedScript) {
@@ -131,7 +129,6 @@ const AvatarPreview = ({
   }, [])
 
   const handleApplyPng = useCallback(async (file: string, meshName: string) => {
-    console.log('executed')
     try {
       handleIsLoading && handleIsLoading(true)
       Module.OVDR_ApplyPNG && (await Module.OVDR_ApplyPNG(file, meshName))
@@ -216,7 +213,7 @@ const AvatarPreview = ({
   ])
 
   return (
-    <BaseCard className='bg-[#fff]'>
+    <BaseCard className='bg-[#fff] px-[16px] py-[20px] rounded-[10px]'>
       {isUnrealError ? (
         <div className='absolute w-[82%] h-[87.4%] rounded-[16px] border border-[#eef1f3] bg-[#fff] top-0 left-0 flex flex-col items-center justify-center p-6 gap-6 text-center whitespace-pre-wrap z-[1]'>
           {`Oops! An unknown error has occurred.\nPlease reload the page.`}
@@ -252,8 +249,8 @@ const AvatarPreview = ({
         id='mainarea'
         style={{
           position: 'relative',
-          minWidth: small ? 342 : 324,
-          height: 410,
+          minWidth: small ? 342 : 300,
+          height: 408,
         }}
       >
         <canvas

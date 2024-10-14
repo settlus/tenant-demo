@@ -34,47 +34,56 @@ export default function SubmitModal({
         <Modal
           open={open}
           // handleClose={step >= 2 ? handleClick : undefined}
-          style='w-[700px] rounded-[20px] items-center p-[50px]'
+          className='w-[700px] rounded-[20px] items-center p-[50px]'
         >
           {step === 1 && (
-            <div>
-              <div className='flex flex-col w-[200px] h-[274px] gap-[40px] items-center'>
-                <div className='flex flex-row h-[34px] gap-[16px] items-center'>
-                  <p className='font-[Manrope] text-2xl font-bold'>Processing...</p>
-                </div>
+            <div className='flex flex-col w-[200px] items-center gap-[40px]'>
+              <div>
+                <p className='font-[Manrope] text-2xl font-bold'>Processing...</p>
               </div>
-              <div className='flex flex-row justify-between items-center my-8 mx-auto w-[80%]'>
+              <div className='flex flex-col gap-[10px]'>
                 <img
                   className='w-[200px] h-[200px]'
                   src={isLoaded ? Module.OVDR_Thumbnails?.main.url : ''}
                 />
+                <img src={loadingSpinner} />
               </div>
-              <img src={loadingSpinner} />
             </div>
           )}
           {step === 2 && (
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center gap-[40px]'>
               <div className='flex flex-col w-[200px] h-[274px] gap-[40px] items-center'>
                 <div className='flex flex-row h-[34px] gap-[16px] items-center'>
                   <img src={MintedSvg} className='w-[24px] h-[24px]' />
-                  <p className='font-[Manrope] text-2xl font-bold flex flex-col justify-end h-full'>NFT Minted</p>
+                  <p className='font-[Manrope] text-2xl font-bold flex flex-col justify-end h-full'>
+                    NFT Minted
+                  </p>
                 </div>
                 <img
                   className='m-auto h-[200px] w-[200px]'
                   src={isLoaded ? Module.OVDR_Thumbnails?.main.url : ''}
                 />
               </div>
-              <div className="flex flex-row gap-[10px]">
-                <BasicButton filled={false}
-                className='font-bold w-[190px] h-[50px]'
-                handleClick={() =>
-                  window.open(
-                    `http://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`,
-                    '_blank'
-                  )}>NFT Detail</BasicButton>
-                <BasicButton filled={true}
-                handleClick={handleClick}
-                className="w-[190px] h-[50px]  font-bold">Done</BasicButton>
+              <div className='flex flex-row gap-[10px]'>
+                <BasicButton
+                  filled={false}
+                  className='font-bold w-[190px] h-[50px]'
+                  handleClick={() =>
+                    window.open(
+                      `http://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`,
+                      '_blank'
+                    )
+                  }
+                >
+                  NFT Detail
+                </BasicButton>
+                <BasicButton
+                  filled={true}
+                  handleClick={handleClick}
+                  className='w-[190px] h-[50px]  font-bold'
+                >
+                  Done
+                </BasicButton>
               </div>
             </div>
           )}

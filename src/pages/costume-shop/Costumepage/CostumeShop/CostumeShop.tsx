@@ -11,7 +11,7 @@ export default function CostumeShop() {
 
   return (
     <div className='inline-flex flex-col w-auto min-w-[750px] rounded-lg p-2 gap-2 mb-2'>
-      <div className='flex flex-row gap-3 justify-between'>
+      <div className='flex flex-row gap-3 justify-center w-[1124px]'>
         <Live />
         <CostumeList />
         <AvatarPreview

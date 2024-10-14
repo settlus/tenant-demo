@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import Pointer from '../../public/svg/pointer.svg'
-import styles from './GuidePointer.module.scss'
+import clsx from 'clsx'
 
 type PropType = {
   children: React.ReactNode
   doGuide: boolean
-  topPos?: number
-  leftPos?: number
+  topPos?: string
+  leftPos?: string
   margin?: number
 }
 
@@ -18,6 +18,8 @@ export default function GuidePointer({
   margin,
 }: PropType): React.ReactElement {
   const [isVisible, setIsVisible] = useState(false)
+  // topPos = topPos || 40
+  // leftPos = leftPos || 6
 
   useEffect(() => {
     let timeout: NodeJS.Timeout | null = null
@@ -33,21 +35,25 @@ export default function GuidePointer({
     }
   }, [children, doGuide])
 
-  useEffect(() => {
-    const top = topPos || 40
-    document.documentElement.style.setProperty('--topPos', `${top}px`)
-    document.documentElement.style.setProperty('--bottomPos', `${top + 15}px`)
+  // useEffect(() => {
+  //   const top = topPos || 40
+  //   document.documentElement.style.setProperty('--topPos', `${top}px`)
+  //   document.documentElement.style.setProperty('--bottomPos', `${top + 15}px`)
 
-    const left = leftPos || 6
-    document.documentElement.style.setProperty('--leftPos', `${left}px`)
-  }, [topPos, leftPos])
+  //   const left = leftPos || 6
+  //   document.documentElement.style.setProperty('--leftPos', `${left}px`)
+  // }, [topPos, leftPos])
 
   return (
-    <div className={styles.main}>
+    <div className='relative flex m-auto overflow-ellipsis'>
       {children}
       {isVisible && doGuide && (
         <img
-          className={styles.pointer}
+        className={clsx(
+          'mt-2 absolute z-[1000] animate-bounce',
+          topPos || 'top-40',
+          leftPos || 'left-6'
+        )}
           src={Pointer}
           style={{ marginTop: `${margin || 0.5}rem` }}
         />

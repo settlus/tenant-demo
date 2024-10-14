@@ -4,7 +4,6 @@ import Joy from '../../../public/png/joy_avatar.png'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { DashboardContext } from '../../../store/dashboard_context'
-import profile1 from '../../../public/svg/userProfile/profile1.svg'
 import { formatNum } from '../../../utils/util'
 
 export default function OfferModal() {
@@ -22,7 +21,7 @@ export default function OfferModal() {
   }
 
   return (
-    <Modal open={isOfferModal} style={styles.style}>
+    <Modal open={isOfferModal} className={styles.style}>
       <div className='flex flex-col w-[632px] h-[306px]'>
         <p className='text-2xl font-[Manrope] font-bold'>Deal Offer</p>
         <img src={Joy} />

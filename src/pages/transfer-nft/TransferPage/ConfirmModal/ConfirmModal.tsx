@@ -17,12 +17,12 @@ type PropType = {
   offer: any
 }
 
-export default function ConfirmModal({ open, handleClose, offer }: PropType): React.ReactElement {
+export default function ConfirmModal({ open, offer }: PropType): React.ReactElement {
   const navigate = useNavigate()
   const [isComplete, setIsComplete] = useState(false)
   const [isError, setIsError] = useState(false)
   const [hash, setHash] = useState(null)
-  const { mutate, isLoading, isSuccess } = useMutation(() => transferNFT(), {
+  const { mutate, isLoading } = useMutation(() => transferNFT(), {
     onSuccess: (hash) => {
       sessionStorage.setItem('mission', '5')
       setIsComplete(true)
@@ -40,8 +40,8 @@ export default function ConfirmModal({ open, handleClose, offer }: PropType): Re
   return (
     <Modal
       open={open}
-      handleClose={isLoading || isSuccess ? undefined : handleClose}
-      style='w-[700px] p-[50px] rounded-[20px]'
+      // handleClose={isLoading || isSuccess ? undefined : handleClose}
+      className='w-[700px] p-[50px] rounded-[20px]'
     >
       {!isComplete && !isError && (
         <div>

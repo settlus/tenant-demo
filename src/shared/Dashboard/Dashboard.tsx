@@ -17,7 +17,7 @@ export default function Dashboard() {
   }, [])
 
   return (
-    <div className='flex flex-col w-[700px] gap-[10px]'>
+    <div className='flex flex-col m-auto w-[700px] gap-[10px]'>
       <Header />
       <Content />
     </div>

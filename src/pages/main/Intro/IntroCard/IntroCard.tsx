@@ -6,7 +6,6 @@ import { useState } from 'react'
 import IntroModal from './IntroModal/IntroModal'
 
 export default function IntroCard() {
-  // const navigate = useNavigate()
   const [introModalOpen, setIntroModalOpen] = useState(false)
 
   function handleIntroModal() {
@@ -14,21 +13,11 @@ export default function IntroCard() {
   }
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <div className='w-full h-full relative flex flex-col items-center'>
       {introModalOpen && <IntroModal open={introModalOpen} handleClose={handleIntroModal} />}
       <div style={{ width: 730, height: 566, position: 'relative' }}>
         <BasicButton
-          className='absolute top-[10px] left-1/2 transform -translate-x-1/2 bg-[#2CD673] text-white rounded-lg px-20 py-[13px] text-[1.7rem] shadow-md font-[Pacifico] z-10'
+          className='absolute w-[230px] top-[10px] left-1/2 transform -translate-x-1/2 bg-[#2CD673] text-white rounded-lg px-20 py-[13px] text-[1.7rem] shadow-md font-[Pacifico] z-10'
           handleClick={() => handleIntroModal()}
         >
           Start !!

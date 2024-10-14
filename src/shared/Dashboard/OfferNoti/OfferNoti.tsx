@@ -1,4 +1,3 @@
-import styles from './OfferNoti.module.scss'
 import Letter from '../../../public/png/settlus_letter.png'
 import { useContext } from 'react'
 import { DashboardContext } from '../../../store/dashboard_context'
@@ -11,10 +10,9 @@ export default function OfferNoti() {
   }
 
   return (
-    <div className={styles.main}>
-      <button onClick={handleClick} id='modal'>
-        <img src={Letter} />
-        <p>Offer Arrived!</p>
+    <div className='relative z-3000'>
+      <button className='max-h-[2rem] w-[7rem] animate-shakeAndScaleUp' onClick={handleClick} id='modal'>
+        <img className='m-0 h-[2rem] w-[2rem] -ml-2 mr-[0.2rem]' src={Letter} />
       </button>
     </div>
   )

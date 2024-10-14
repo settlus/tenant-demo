@@ -1,19 +1,18 @@
 import { useRef, useEffect } from 'react'
-import styles from './Modal.module.scss'
-import closeSvg from '../../public/svg/Close.svg'
+import clsx from 'clsx'
 
 type PropType = {
   children: React.ReactNode
   open: boolean
   // handleClose?: () => void
-  style?: string
+  className?: string
 }
 
 export default function Modal({
   children,
   open,
   // handleClose,
-  style,
+  className,
 }: PropType): React.ReactElement {
   const dialog = useRef<HTMLDialogElement>(null)
 
@@ -25,7 +24,7 @@ export default function Modal({
   }, [open])
 
   return (
-    <dialog ref={dialog} className={`animate-scale-up ${style}`}>
+    <dialog ref={dialog} className={clsx('animate-scale-up', className)}>
       <div className='animate-scale-up'>
         {children}
       </div>

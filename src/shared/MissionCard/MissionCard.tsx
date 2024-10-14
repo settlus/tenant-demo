@@ -13,14 +13,15 @@ const STEPS = [
 type PropType = {
   title: string
   beforeStart?: boolean
+  done?: boolean
 }
 
-export default function MissionCard({ title, beforeStart }: PropType): React.ReactElement {
+export default function MissionCard({ title, beforeStart, done }: PropType): React.ReactElement {
   const { mission } = useContext(MissionContext)
 
   //TODO: align the text center and extend the mission card
   return (
-    <div className='w-auto border-[1.5px] border-[#DFE4EA] rounded-[10px] m-0 flex flex-col relative bg-white z-[10000]'>
+    <div className={!done ? 'w-auto border-[1.5px] border-[#DFE4EA] rounded-[10px] m-0 flex flex-col relative bg-white z-[10000]' : 'w-[307px] h-[334px] border-[1.5px] border-[#DFE4EA] rounded-[10px] m-0 flex flex-col relative bg-white z-[10000]'}>
       {/* <img
         src={sparkleIcon}
         className="absolute top-[-2.5rem] left-[-2rem] h-[4rem] w-auto object-cover transform -rotate-30"

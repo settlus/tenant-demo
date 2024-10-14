@@ -24,7 +24,7 @@ export default function DealOfferCard() {
   }
 
   return (
-    <BaseCard className='w-[732px] h-[496px] bg-[#fff] rounded-[20px] px-12 py-12 shadow-lg'>
+    <BaseCard className='w-[732px] h-[496px] bg-[#fff] rounded-[20px] p-[50px] shadow-lg'>
       <BaseTitle name='Deal Offer' />
       <div className='flex flex-col gap-[24px] overflow-visible items-center'>
         <img className='w-[100px] h-auto m-0' src={Joy} />

@@ -21,7 +21,7 @@ export default function Profile() {
   }
 
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col gap-[20px] items-center'>
       <div className='flex flex-row items-center'>
         <img className='w-[100px] h-[100px]' src={userProfile} alt='profile' />
         <div className='text-base text-left'>
@@ -33,7 +33,7 @@ export default function Profile() {
           />
         </div>
       </div>
-      <BasicButton className='w-[190px]' handleClick={handleClick}>
+      <BasicButton className='w-[190px] font-bold' handleClick={handleClick}>
         Explore as a Creator
       </BasicButton>
     </div>
