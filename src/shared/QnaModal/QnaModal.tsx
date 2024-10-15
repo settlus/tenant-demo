@@ -1,5 +1,6 @@
 import Modal from '../Modal/Modal'
 import BasicButton from '../Button/BasicButton'
+import BaseCard from '../Card/BaseCard'
 
 const QNA = [
   {
@@ -32,29 +33,23 @@ type PropType = {
 export default function QnaModal({ open, handleClose }: PropType): React.ReactElement {
   return (
     <>
-      <Modal open={open} className='min-h-[70vh] w-[60vw] flex bg-transparent rounded-[20px] p-0'>
-        <div className='h-full flex flex-col relative overflow-visible'>
-          <div className='h-full overflow-auto bg-white rounded-[20px] p-12 gap-2 text-left flex flex-col'>
-            {QNA.map((item) => (
-              <div key={item.question}>
-                <h3 className='font-bold text-2xl'>{'🙋🏼 ' + item.question}</h3>
-                <p className='mb-4 text-lg'>{'\u2003→ 💁🏼‍' + item.answer}</p>
-              </div>
-            ))}
-            <div className='flex items-center justify-center gap-4 pt-4'>
-              <BasicButton filled={false}>
-                <a
-                  className='mt-auto'
-                  href='https://settlus.org/docs/whitepaper.pdf'
-                  target='_blank'
-                >
-                  Go to Settlus Whitepaper
-                </a>
-              </BasicButton>
-              <BasicButton filled={true} handleClick={handleClose} className='w-[150px]'>
-                <p>Close</p>
-              </BasicButton>
+      <Modal open={open} className='w-[700px] rounded-[20px] bg-white items-center p-[50px]'>
+        <div className='flex flex-col text-left font-[Manrope]'>
+          {QNA.map((item) => (
+            <div key={item.question} className='flex flex-col gap-[8px]'>
+              <h3 className='font-bold text-2xl'>{item.question}</h3>
+              <p className='mb-4 text-lg'>{item.answer}</p>
             </div>
+          ))}
+          <div className='flex items-center justify-center gap-4 pt-4 font-bold'>
+            <BasicButton filled={false}>
+              <a className='mt-auto' href='https://settlus.org/docs/whitepaper.pdf' target='_blank'>
+                Settlus Whitepaper
+              </a>
+            </BasicButton>
+            <BasicButton filled={true} handleClick={handleClose} className='w-[150px]'>
+              <p>Close</p>
+            </BasicButton>
           </div>
         </div>
       </Modal>

@@ -26,9 +26,9 @@ export default function CardContent() {
             item === 'Contract Address' ? (
               <>
                 <GuidePointer topPos='top-[1.5rem]' leftPos='left-[6rem]' doGuide={step === 0}>
-                  <div key={index} className='text-bold'>
+                  <div key={index} className='text-bold overflow-hidden break-words'>
                     {item}:{' '}
-                    <p className='text-[#10B981] text-[9px]'>
+                    <p className='text-[#10B981] text-[12px] underline'>
                       <a
                         href={`http://${ENV.VITE_CHAIN_TYPE}net.settlus.network/nft/${ENV.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`}
                         target='_blank'

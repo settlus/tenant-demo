@@ -68,7 +68,7 @@ export async function mintNFT(thumbnail: string, sample?: number) {
       const overrides = {
         nonce: nonce + currTry,
       }
-      
+
       const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, metadataRes, overrides)
       hash = tx.hash
       data = await tx.wait()

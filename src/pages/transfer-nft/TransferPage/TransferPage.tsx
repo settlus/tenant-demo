@@ -34,7 +34,7 @@ export default function TransferPage() {
 
   return (
     <Layout>
-      <div className='flex flex-col items-center gap-10'>
+      <div className='flex flex-col items-center gap-[20px]'>
         <Instruction
           title='🎉 You’ve received an offer from a NFT collector. '
           typeWriter='As more users buy your item, sales revenue increases and so does the value of your NFT.  Sell your NFT license to earn more profits!

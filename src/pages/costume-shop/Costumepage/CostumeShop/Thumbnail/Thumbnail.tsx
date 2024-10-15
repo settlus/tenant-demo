@@ -9,7 +9,13 @@ type propType = {
   isNew?: boolean
 }
 
-export default function Thumbnail({ className: style, thumbnail, onClick, selected, isNew }: propType) {
+export default function Thumbnail({
+  className: style,
+  thumbnail,
+  onClick,
+  selected,
+  isNew,
+}: propType) {
   return (
     <div
       className={clsx(

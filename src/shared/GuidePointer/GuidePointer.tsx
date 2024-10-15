@@ -35,25 +35,16 @@ export default function GuidePointer({
     }
   }, [children, doGuide])
 
-  // useEffect(() => {
-  //   const top = topPos || 40
-  //   document.documentElement.style.setProperty('--topPos', `${top}px`)
-  //   document.documentElement.style.setProperty('--bottomPos', `${top + 15}px`)
-
-  //   const left = leftPos || 6
-  //   document.documentElement.style.setProperty('--leftPos', `${left}px`)
-  // }, [topPos, leftPos])
-
   return (
     <div className='relative flex m-auto overflow-ellipsis'>
       {children}
       {isVisible && doGuide && (
         <img
-        className={clsx(
-          'mt-2 absolute z-[1000] animate-bounce',
-          topPos || 'top-40',
-          leftPos || 'left-6'
-        )}
+          className={clsx(
+            'mt-2 absolute z-[1000] animate-bounce',
+            topPos || 'top-40',
+            leftPos || 'left-6'
+          )}
           src={Pointer}
           style={{ marginTop: `${margin || 0.5}rem` }}
         />

@@ -34,7 +34,7 @@ export default function Header({ logoOnly }: PropType): React.ReactElement {
               <HeaderButton name='Mission' handleClick={handleMission} />
               {missionOpen && <MissionModal handleClose={handleMission} />}
             </div>
-            <HeaderButton name='Q&A' handleClick={handleQna} />
+            <HeaderButton name='FAQ' handleClick={handleQna} />
           </div>
         )}
       </div>

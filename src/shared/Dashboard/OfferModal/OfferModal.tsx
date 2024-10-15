@@ -21,7 +21,7 @@ export default function OfferModal() {
   }
 
   return (
-    <Modal open={isOfferModal} className={styles.style}>
+    <Modal open={isOfferModal} className='w-[18rem] h-[20rem]'>
       <div className='flex flex-col w-[632px] h-[306px]'>
         <p className='text-2xl font-[Manrope] font-bold'>Deal Offer</p>
         <img src={Joy} />

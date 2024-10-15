@@ -75,10 +75,10 @@ export default function CostumePage({ isAfterItemCreated }: PropType): React.Rea
           title={
             !isAfterItemCreated ? TITLES[step] : 'Congratulations! Your item is listed for sale.'
           }
-          className='m-0'
+          className={`${isAfterItemCreated ? 'w-full' : ''}`}
           typeWriter={getInstructionDetail()}
           onComplete={showNav}
-          mark={ step === 1 ? nftIcon : undefined }
+          mark={step === 1 ? nftIcon : undefined}
         />
         <span>
           {!isAfterItemCreated && navIsVisible && (

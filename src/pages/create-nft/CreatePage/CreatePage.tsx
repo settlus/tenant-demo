@@ -169,7 +169,6 @@ export default function CreatePage() {
       if (errorMsg) {
         alert(errorMsg)
         setStep(0)
-        // setOpen(false);
       } else {
         const mint = async () => {
           setOpen(true)
@@ -178,7 +177,6 @@ export default function CreatePage() {
             thumbnail: thumbnail,
             sample: useSample ? sample : undefined,
           }
-          console.log(args)
           mutate(args)
         }
 
@@ -215,45 +213,83 @@ export default function CreatePage() {
         )}
         <div className='flex flex-row justify-center items-center gap-4 min-h-[7rem]'>
           <Instruction title={instruction.title} typeWriter={instruction.text} />
-          <BasicButton
-            filled={true}
-            handleClick={() => handleNavigate('next')}
-            onMouseEnter={() => {
-              handleNavHover(true)
-            }}
-            onMouseLeave={() => {
-              handleNavHover(false)
-            }}
-            className={`w-[200px] h-[50px] font-bold ${navOnHover ? 'bg-[#FFA300]' : ''}`}
-          >
-            {navOnHover && (
-              <h3 className='z-[3000] text-center bg-[#FFA300] text-white whitespace-nowrap animate-[scaleUp_0.03s_ease-in-out] hover:cursor-pointer'>
-                {step === 0 && 'Mint'}
-                {step === 3 && 'Save'} &gt;&gt;
-              </h3>
-            )}
-            {!navOnHover && 'Next'}
-          </BasicButton>
+          {/* <div>{step}</div>
+          {step < 3 ? (
+            <BasicButton
+              filled={true}
+              handleClick={() => handleNavigate('next')}
+              onMouseEnter={() => {
+                handleNavHover(true)
+              }}
+              onMouseLeave={() => {
+                handleNavHover(false)
+              }}
+              className={`w-[200px] h-[50px] font-bold ${navOnHover ? 'bg-[#FFA300]' : ''}`}
+            >
+              {navOnHover && (
+                <h3 className='z-[3000] text-center bg-[#FFA300] text-white whitespace-nowrap animate-[scaleUp_0.03s_ease-in-out] hover:cursor-pointer'>
+                  {step === 0 && 'Mint'}
+                  {step === 3 && 'Save'} &gt;&gt;
+                </h3>
+              )}
+              {!navOnHover && 'Next'}
+            </BasicButton>
+          ) : (
+            <></>
+          )} */}
         </div>
-        {/* <ProgressBar step={step} /> */}
-        <div className='flex flex-row p-6 mt-[3vh] gap-[10px] justify-center'>
+        <div className='flex flex-row  gap-[10px] justify-center'>
           {/* <Navigation
             handleClick={() => handleNavigate("back")}
             isBackwards={true}
           /> */}
           <StepsCard step={step} />
-          {step < 3 ? (
-            <Upload
-              file={file}
-              handleFile={handleFile}
-              sample={sample}
-              handleSample={handleSample}
-              useSample={useSample}
-              handleUseSample={handleUseSample}
-            />
-          ) : (
-            <Submit info={info} handleInfo={handleInfo} />
-          )}
+          <div>
+            {step < 3 ? (
+              <Upload
+                file={file}
+                handleFile={handleFile}
+                sample={sample}
+                handleSample={handleSample}
+                useSample={useSample}
+                handleUseSample={handleUseSample}
+              />
+            ) : (
+              <Submit info={info} handleInfo={handleInfo} />
+            )}
+            {/* {step >= 3 ? ( */}
+            <div className='flex flex-row mt-4 justify-between'>
+              <BasicButton
+                filled={false}
+                className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-white text-[#111928]'
+                handleClick={() => handleNavigate('back')}
+              >
+                Previous
+              </BasicButton>
+              <BasicButton
+                filled={true}
+                handleClick={() => handleNavigate('next')}
+                onMouseEnter={() => {
+                  handleNavHover(true)
+                }}
+                onMouseLeave={() => {
+                  handleNavHover(false)
+                }}
+                className={`w-[200px] h-[50px] font-bold ${navOnHover ? 'bg-[#FFA300]' : ''}`}
+              >
+                {navOnHover && (
+                  <h3 className='z-[3000] text-center bg-[#FFA300] text-white whitespace-nowrap animate-[scaleUp_0.03s_ease-in-out] hover:cursor-pointer'>
+                    {step === 0 && 'Mint'}
+                    {step === 3 && 'Save'} &gt;&gt;
+                  </h3>
+                )}
+                {!navOnHover && 'Next'}
+              </BasicButton>
+            </div>
+            {/* ) : (
+              <></>
+            )} */}
+          </div>
         </div>
       </Layout>
     </MissionUpdate>

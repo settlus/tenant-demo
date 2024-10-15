@@ -26,7 +26,7 @@ export default function Main() {
         {isGiftModal && <GiftModal open={isGiftModal} />}
         <div className='w-[1124px]'>
           <Instruction
-          className='w-full'
+            className='w-full'
             title='🎉 Congratulations on your first revenue!'
             typeWriter='On the creator’s dashboard, you can see your NFT info, Item listing, and activity history. Click the contract address to see your minting on Settlus Scan.'
           />

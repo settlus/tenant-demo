@@ -163,7 +163,7 @@ export default function Canvas({ handleFile }: propType): React.ReactElement {
 
   return (
     <div className='flex flex-col gap-[10px]'>
-      <BaseCard className='flex flex-col px-[16px] py-[20px] h-[150px] bg-[#fff] gap-[20px]'>
+      <BaseCard className='flex flex-col px-[16px] py-[20px] h-[150px] bg-[#fff] gap-[20px] rounded-[10px]'>
         <BaseTitle name='Choose T-shirt color' />
         <div className={`grid grid-rows-2 grid-cols-10 gap-[8px]`}>
           {COLORS.map((item) => (
@@ -178,7 +178,7 @@ export default function Canvas({ handleFile }: propType): React.ReactElement {
           ))}
         </div>
       </BaseCard>
-      <BaseCard className='flex flex-col px-[16px] py-[20px] bg-[#fff] gap-[20px]'>
+      <BaseCard className='flex flex-col px-[16px] py-[20px] bg-[#fff] gap-[20px] rounded-[10px]'>
         <BaseTitle name='Draw your design' />
         <div className='flex flex-row mb-4 gap-[10px] h-[240px] justify-center'>
           <canvas

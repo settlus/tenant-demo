@@ -23,6 +23,14 @@ import {
   item11template,
   item12thumbnail,
   item12template,
+  item13thumbnail,
+  item13template,
+  item14thumbnail,
+  item14template,
+  item15thumbnail,
+  item15template,
+  item16thumbnail,
+  item16template,
 } from '../public/images/clothTemplate'
 import { profile1, profile2, profile3, profile4 } from '../public/svg/userProfile'
 import { itemType } from '../types/type'
@@ -42,12 +50,12 @@ export const USER_NAMES = [
 export const ITEM_ARR: itemType[] = [
   {
     thumbnailPng: item1thumbnail,
-    meshName: 'DefaultWear001F',
+    meshName: 'Tank004F',
     templatePng: item1template,
-    title: 'Basic T-shirt',
-    price: 3,
-    creator: 'Joy',
-    creatorProfilePng: profile1,
+    title: 'Tank Top',
+    price: 4,
+    creator: 'Chloe',
+    creatorProfilePng: profile4,
     quantity: 200000,
     offerValue: 100000,
   },
@@ -172,11 +180,55 @@ export const ITEM_ARR: itemType[] = [
     quantity: 180000,
     offerValue: 125000,
   },
+  {
+    thumbnailPng: item13thumbnail,
+    meshName: 'DenimJacket001',
+    templatePng: item13template,
+    title: 'Denim Jacket',
+    price: 3,
+    creator: 'Joy',
+    creatorProfilePng: profile1,
+    quantity: 200000,
+    offerValue: 100000,
+  },
+  {
+    thumbnailPng: item14thumbnail,
+    meshName: 'DoubleJacket002M',
+    templatePng: item14template,
+    title: 'Double Jacket',
+    price: 5,
+    creator: 'Jay',
+    creatorProfilePng: profile3,
+    quantity: 100000,
+    offerValue: 120000,
+  },
+  {
+    thumbnailPng: item15thumbnail,
+    meshName: 'Skirt012',
+    templatePng: item15template,
+    title: 'Purple Check Skirt',
+    price: 6,
+    creator: 'Jay',
+    creatorProfilePng: profile3,
+    quantity: 300000,
+    offerValue: 130000,
+  },
+  {
+    thumbnailPng: item16thumbnail,
+    meshName: 'Track001',
+    templatePng: item16template,
+    title: 'Track Pants',
+    price: 6,
+    creator: 'Ann',
+    creatorProfilePng: profile2,
+    quantity: 50000,
+    offerValue: 140000,
+  },
 ]
 
 export const LIVE_LIST = [
   { user: 1, thumbnail: 4 },
-  { user: 2, thumbnail: 1 },
+  { user: 2, thumbnail: 2 },
   { user: 3, thumbnail: 1 },
   { user: 2, thumbnail: 6 },
   { user: 3, thumbnail: 8 },
@@ -186,6 +238,8 @@ export const LIVE_LIST = [
   { user: 1, thumbnail: 7 },
   { user: 1, thumbnail: 6 },
   { user: 4, thumbnail: 9 },
+  { user: 2, thumbnail: 15 },
+  { user: 2, thumbnail: 13 },
 ]
 
 export const INITIAL_NFT_INFO = {

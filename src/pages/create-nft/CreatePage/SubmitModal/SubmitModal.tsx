@@ -67,7 +67,7 @@ export default function SubmitModal({
               <div className='flex flex-row gap-[10px]'>
                 <BasicButton
                   filled={false}
-                  className='font-bold w-[190px] h-[50px]'
+                  className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent text-[#111928]'
                   handleClick={() =>
                     window.open(
                       `http://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`,
@@ -75,12 +75,12 @@ export default function SubmitModal({
                     )
                   }
                 >
-                  NFT Detail
+                  Detail
                 </BasicButton>
                 <BasicButton
                   filled={true}
                   handleClick={handleClick}
-                  className='w-[190px] h-[50px]  font-bold'
+                  className='w-[190px] h-[50px] font-bold'
                 >
                   Done
                 </BasicButton>

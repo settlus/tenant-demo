@@ -20,7 +20,8 @@ export default function Instruction({
     <div
       className={clsx(
         'py-[1rem] text-left self-center w-[914px] min-h-[6rem] border-l-[6px] border-l-[#10B981]',
-        className)}
+        className
+      )}
     >
       <div className='ml-6'>
         <div className='flex flex-row'>

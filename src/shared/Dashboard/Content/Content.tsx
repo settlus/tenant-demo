@@ -23,12 +23,21 @@ export default function Content() {
               <p>{data.title}</p>
             </div>
             <div className='flex flex-col text-sm text-left gap-[16px] pt-[16px]'>
-              <p>Item Price: {formatNum(data.revenue['Price'])}</p>
-              <p>Total Quantity Sold: {data.revenue['Quantity']}</p>
+              <div className='flex flex-row justify-between'>
+                <p>Item Price:</p>
+                <p className='font-bold'>{formatNum(data.revenue['Price'])}</p>
+              </div>
+              <div className='flex flex-row justify-between'>
+                <p>Total Quantity Sold:</p>
+                <p className='font-bold'>{data.revenue['Quantity']}</p>
+              </div>
               <div className='border-t border-[#DFE4EA] w-full'></div>
-              <p className={styles.soldAmount}>
-                Total Sold Amount: {formatNum(data.revenue['Price'] * data.revenue['Quantity'])}
-              </p>
+              <div className='flex flew-row justify-between'>
+                <p>Total Sold Amount:</p>
+                <p className='font-bold'>
+                  {formatNum(data.revenue['Price'] * data.revenue['Quantity'])}
+                </p>
+              </div>
             </div>
           </div>
         </BaseCard>

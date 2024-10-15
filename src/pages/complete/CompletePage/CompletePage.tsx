@@ -24,28 +24,31 @@ export default function CompletePage() {
         {qnaOpen && <QnaModal open={qnaOpen} handleClose={handleQna} />}
         <Header logoOnly={true} />
         <Layout>
-          <Instruction
-            title='🎉 Congratulations! You’ve completed all the missions. '
-            typeWriter='Using NFT for royalty right, You’ve earned revenue from the costume sales and the NFT sales. 
+          <div className='w-[1124px]'>
+            <Instruction
+              title='🎉 Congratulations! You’ve completed all the missions. '
+              typeWriter='Using NFT for royalty right, You’ve earned revenue from the costume sales and the NFT sales. 
           Settlus blockchain is designed to help monetize creator’s IP in the web3. era. 
           Read Settlus Whitepaper for details!'
-          />
-          <div className='flex flex-row gap-[10px]'>
-              <MissionCard title='Mission Completed' />
-            <div className='flex flex-row items-center justify-between gap-[10px]'>
+              className='w-full'
+            />
+          </div>
+          <div className='flex flex-row w-[1100px] gap-[10px]'>
+            <MissionCard title='Mission Completed' done={true} />
+            <div className='flex flex-row items-start justify-between gap-[10px]'>
               <button onClick={handleQna}>
                 <img src={QnaImage} className='w-[244.65px] h-[307.28px] cursor-pointer' />
               </button>
               <a href='https://settlus.org/docs/whitepaper.pdf' target='_blank'>
                 <button>
-                  <img src={ReadImage} className='w-[244.65px] h-[307.28px]  cursor-pointer' />
+                  <img src={ReadImage} className='w-[244.65px] h-[307.28px] cursor-pointer' />
                 </button>
               </a>
               <Link to={'/intro'}>
                 <button>
                   <img
                     src={ReturnImage}
-                    className=' w-[244.65px] h-[307.28px]  cursor-pointer'
+                    className=' w-[244.65px] h-[307.28px] cursor-pointer'
                   ></img>
                 </button>
               </Link>

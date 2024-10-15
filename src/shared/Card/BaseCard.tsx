@@ -14,14 +14,7 @@ const BaseCard: React.FC<BaseCardProps> = ({ step, pageStep, className, children
       <div className='h-full bg-[#F9FAFB] rounded-lg p-4'>{children}</div>
     </div>
   ) : (
-    <div
-      className={clsx(
-        'relative max-h-[580px]',
-        className
-      )}
-    >
-      {children}
-    </div>
+    <div className={clsx('relative max-h-[580px]', className)}>{children}</div>
   )
 }
 

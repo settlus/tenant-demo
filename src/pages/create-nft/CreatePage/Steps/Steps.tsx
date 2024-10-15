@@ -18,7 +18,10 @@ export default function StepsCard({ step }: PropType): React.ReactElement {
             key={item}
             className={`whitespace-nowrap flex flex-row items-center w-full gap-3 font-semibold font-[Manrope]`}
           >
-            <MissionStep filled={step === 3 ? index == step - 2 : index == step} index={index + 1} />
+            <MissionStep
+              filled={step === 3 ? index == step - 2 : index == step}
+              index={index + 1}
+            />
             {item}
           </div>
         ))}

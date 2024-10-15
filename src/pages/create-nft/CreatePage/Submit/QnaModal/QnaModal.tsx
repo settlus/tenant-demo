@@ -8,10 +8,7 @@ type QnaModalProps = {
 
 export default function QnaModal({ open, handleClose }: QnaModalProps): React.ReactElement {
   return (
-    <Modal
-      open={open}
-      className='w-[700px] h-[497px] items-center rounded-[20px]'
-    >
+    <Modal open={open} className='w-[700px] h-[497px] items-center rounded-[20px]'>
       <div className='flex flex-col text-left gap-[20px] px-[50px] pt-[50px] pb-[40px] items-center'>
         <div>
           <p className='text-2xl font-[Manrope] font-bold'>

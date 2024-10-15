@@ -61,10 +61,10 @@ export default function Live() {
       className='backdrop-blur-[23.7px] px-[16px] py-[20px] w-[186px] gap-[20px]'
     >
       <BaseTitle name='Live' />
-      <div className='flex flex-col m-0 overflow-auto w-[160px] h-[512px] pt-[20px] gap-[10px]'>
+      <div className='flex flex-col overflow-auto w-[160px] h-[512px] pt-[20px] gap-[10px]'>
         {liveList.map((item, index) => (
           <div
-            className={`flex flex-row items-center m-auto gap-[10px] rounded-tl-[5px] rounded-tr-none rounded-br-none rounded-bl-none rounded-md text-sm ${
+            className={`flex flex-row items-center justify-start gap-[10px] rounded-md text-sm ${
               index === 0 ? 'animate-listComponentSlideIn' : 'animate-listComponentSlideIn'
             }`}
           >
