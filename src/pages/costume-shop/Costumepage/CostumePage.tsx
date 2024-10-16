@@ -1,15 +1,16 @@
 import { useContext, useEffect, useState } from 'react'
-import Instruction from '../../../shared/Instruction/Instruction'
-import CostumeShop from './CostumeShop/CostumeShop'
-import { ShopContext } from '../../../store/costumeshop_context'
-import nftIcon from '../../../public/images/NftLicense.png'
-import Navigation from '../../../shared/Navigation/Navigation'
 import { useNavigate } from 'react-router-dom'
-import { formatNum } from '../../../utils/util'
-import GuidePointer from '../../../shared/GuidePointer/GuidePointer'
-import { ITEM_ARR } from '../../../utils/constants'
 import 'react-toastify/dist/ReactToastify.css'
+
+import nftIcon from '../../../public/images/NftLicense.png'
+import GuidePointer from '../../../shared/GuidePointer/GuidePointer'
+import Instruction from '../../../shared/Instruction/Instruction'
 import Layout from '../../../shared/Layout/Layout'
+import Navigation from '../../../shared/Navigation/Navigation'
+import { ShopContext } from '../../../store/costumeshop_context'
+import { ITEM_ARR } from '../../../utils/constants'
+import { formatNum } from '../../../utils/util'
+import CostumeShop from './CostumeShop/CostumeShop'
 
 const TITLES = [
   'Welcome to the Avatar Costume Shop!',

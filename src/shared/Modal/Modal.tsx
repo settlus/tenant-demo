@@ -1,10 +1,10 @@
 import { useRef, useEffect } from 'react'
+
 import clsx from 'clsx'
 
 type PropType = {
   children: React.ReactNode
   open: boolean
-  // handleClose?: () => void
   className?: string
 }
 

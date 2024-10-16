@@ -1,6 +1,8 @@
-import navBackSymbol from '../../public/svg/navBack.svg'
 import { useNavigate } from 'react-router-dom'
+
 import clsx from 'clsx'
+
+import navBackSymbol from '../../public/svg/navBack.svg'
 
 type PropType = {
   path?: string

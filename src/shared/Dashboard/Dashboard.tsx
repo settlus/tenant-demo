@@ -1,8 +1,9 @@
 import { useEffect, useContext } from 'react'
-import Header from './Header/Header'
-import Content from './Content/Content'
-import { DashboardContext } from '../../store/dashboard_context'
+
 import { getData } from '../../apis/api'
+import { DashboardContext } from '../../store/dashboard_context'
+import Content from './Content/Content'
+import Header from './Header/Header'
 
 export default function Dashboard() {
   const { setData } = useContext(DashboardContext)

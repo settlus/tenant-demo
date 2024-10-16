@@ -1,5 +1,6 @@
-import clsx from 'clsx'
 import { ReactTyped } from 'react-typed'
+
+import clsx from 'clsx'
 
 type PropType = {
   title: string
@@ -26,7 +27,7 @@ export default function Instruction({
       <div className='ml-6'>
         <div className='flex flex-row'>
           <p className='text-2xl font-[Manrope] font-bold text-left leading-[33.6px]'>{title}</p>
-          {!mark ? <></> : <img src={mark} className='w-[1.5rem] h-[1.5rem] m-1 ml-2' />}
+          {!mark ? <></> : <img src={mark} className='w-[1.5rem] h-[1.5rem] m-1 ml-2 animate-shakeAndScaleUp' />}
         </div>
         <ReactTyped
           strings={[typeWriter]}

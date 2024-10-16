@@ -1,18 +1,16 @@
 import { useContext } from 'react'
-import styles from './Content.module.scss'
-import NFTInfo from '../Card/NFTInfo.tsx'
+
 import { DashboardContext } from '../../../store/dashboard_context.tsx'
-import OfferModal from '../OfferModal/OfferModal.tsx'
 import { formatNum } from '../../../utils/util.ts'
 import BaseCard from '../../Card/BaseCard.tsx'
 import BaseTitle from '../../Card/Title.tsx'
+import NFTInfo from '../Card/NFTInfo.tsx'
 
 export default function Content() {
-  const { data, isOfferModal } = useContext(DashboardContext)
+  const { data } = useContext(DashboardContext)
 
   return (
     <div className='flex flex-row w-[700px] h-[458px] gap-[10px]'>
-      {isOfferModal && <OfferModal />}
       <NFTInfo />
       <div className='flex flex-col gap-[10px]'>
         <BaseCard className='flex flex-col bg-[#fff] w-[456px] h-[264px] gap-[20px] font-[Manrope] px-[16px] py-[20px] rounded-[10px]'>
@@ -20,7 +18,7 @@ export default function Content() {
           <div>
             <div className='flex flex-row w-[424px] h-[60px] gap-[8px] items-center'>
               <img className='w-[60px] h-[60px] m-0' src={data.thumbnail} />
-              <p>{data.title}</p>
+              <p className='font-bold'>{data.title}</p>
             </div>
             <div className='flex flex-col text-sm text-left gap-[16px] pt-[16px]'>
               <div className='flex flex-row justify-between'>

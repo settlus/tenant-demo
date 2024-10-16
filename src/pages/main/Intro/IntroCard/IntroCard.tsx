@@ -1,8 +1,9 @@
+import { useState } from 'react'
+
+import introLeft from '../../../../public/png/intro_left.png'
 import introMain from '../../../../public/png/intro_main.png'
 import introRight from '../../../../public/png/intro_right.png'
-import introLeft from '../../../../public/png/intro_left.png'
 import BasicButton from '../../../../shared/Button/BasicButton'
-import { useState } from 'react'
 import IntroModal from './IntroModal/IntroModal'
 
 export default function IntroCard() {
@@ -15,7 +16,7 @@ export default function IntroCard() {
   return (
     <div className='w-full h-full relative flex flex-col items-center'>
       {introModalOpen && <IntroModal open={introModalOpen} handleClose={handleIntroModal} />}
-      <div style={{ width: 730, height: 566, position: 'relative' }}>
+      <div className='w-[730px] h-[566px] relative'>
         <BasicButton
           className='absolute w-[230px] top-[10px] left-1/2 transform -translate-x-1/2 bg-[#2CD673] text-white rounded-lg px-20 py-[13px] text-[1.7rem] shadow-md font-[Pacifico] z-10'
           handleClick={() => handleIntroModal()}

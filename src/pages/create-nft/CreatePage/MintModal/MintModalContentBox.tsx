@@ -1,16 +1,16 @@
-type SubmitModalContentBoxProp = {
+type MintModalContentBoxProp = {
   title: string
   isLoaded?: boolean
   thumbnail?: string
   titleDeco?: string
 }
 
-export const SubmitModalContentBox = ({
+export const MintModalContentBox = ({
   title,
   isLoaded,
   thumbnail,
   titleDeco,
-}: SubmitModalContentBoxProp): React.ReactElement => {
+}: MintModalContentBoxProp): React.ReactElement => {
   return (
     <div className='flex flex-col w-[200px] h-[274px] gap-[40px] items-center'>
       <div className='flex flex-row h-[34px] gap-[16px] items-center'>

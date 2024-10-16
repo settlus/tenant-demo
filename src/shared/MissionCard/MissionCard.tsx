@@ -1,7 +1,9 @@
 import { useContext } from 'react'
+
+import clsx from 'clsx'
+
 import { MissionContext } from '../../store/mission_context'
 import MissionStep from './MissionStep'
-import clsx from 'clsx'
 
 const STEPS = [
   'Browse Avatar Costume Shop',

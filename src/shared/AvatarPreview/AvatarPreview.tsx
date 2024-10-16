@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+
 import LoadingSpinner from '../../public/svg/loading.svg'
 import { delay } from '../../utils/util'
-import BaseTitle from '../Card/Title'
 import BaseCard from '../Card/BaseCard'
+import BaseTitle from '../Card/Title'
 
 type Props = {
   small?: boolean
@@ -213,7 +214,7 @@ const AvatarPreview = ({
   ])
 
   return (
-    <BaseCard className='bg-[#fff] px-[16px] py-[20px] rounded-[10px]'>
+    <BaseCard className='flex flex-col gap-8 bg-[#fff] px-[16px] py-[20px] rounded-[10px]'>
       {isUnrealError ? (
         <div className='absolute w-[82%] h-[87.4%] rounded-[16px] border border-[#eef1f3] bg-[#fff] top-0 left-0 flex flex-col items-center justify-center p-6 gap-6 text-center whitespace-pre-wrap z-[1]'>
           {`Oops! An unknown error has occurred.\nPlease reload the page.`}
@@ -229,12 +230,12 @@ const AvatarPreview = ({
       ) : (
         !isUnrealLoaded &&
         !isCanvasLoaded && (
-          <img src={LoadingSpinner} alt='loading' className='m-auto ml-[40%] absolute' />
+          <img src={LoadingSpinner} alt='loading' className='m-auto mt-[50%] ml-[40%] absolute h-[15%] w-[15%]' />
         )
       )}
       <div className='flex items-center justify-between relative'>
         <BaseTitle name='Avatar' />
-        <div className='mr-4' id='buttonarea'>
+        <div id='buttonarea'>
           <button
             className='flex w-max text-[0.8rem] p-[5px_10px] gap-1 rounded-md bg-[#fff] text-[#637381] border border-[#DFE4EA] font-[Manrope]'
             onClick={() => handleChangeBody(bodyType)}

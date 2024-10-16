@@ -1,6 +1,7 @@
-import Modal from '../../Modal/Modal'
-import Letter from '../../../public/png/settlus_letter.png'
 import { useNavigate } from 'react-router-dom'
+
+import Letter from '../../../public/png/settlus_letter.png'
+import Modal from '../../Modal/Modal'
 
 type PropType = {
   open: boolean

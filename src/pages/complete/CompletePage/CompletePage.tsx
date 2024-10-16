@@ -1,15 +1,16 @@
-import Instruction from '../../../shared/Instruction/Instruction'
-import MissionCard from '../../../shared/MissionCard/MissionCard'
-import Header from '../../../shared/Header/Header'
-import QnaModal from '../../../shared/QnaModal/QnaModal'
-import QnaImage from '../../../public/png/complete_demo_qna.png'
-import ReturnImage from '../../../public/png/complete_return_beginning.png'
-import ReadImage from '../../../public/png/complete_read_wp.png'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
-import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate'
+
+import QnaImage from '../../../public/png/complete_demo_qna.png'
+import ReadImage from '../../../public/png/complete_read_wp.png'
+import ReturnImage from '../../../public/png/complete_return_beginning.png'
+import FaqModal from '../../../shared/FaqModal/FaqModal'
+import Header from '../../../shared/Header/Header'
+import Instruction from '../../../shared/Instruction/Instruction'
 import Layout from '../../../shared/Layout/Layout'
+import MissionCard from '../../../shared/MissionCard/MissionCard'
+import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate'
 
 export default function CompletePage() {
   const [qnaOpen, setQnaOpen] = useState(false)
@@ -21,7 +22,7 @@ export default function CompletePage() {
   return (
     <div className='flex flex-col h-full w-full gap-3'>
       <MissionUpdate updatedMission={5}>
-        {qnaOpen && <QnaModal open={qnaOpen} handleClose={handleQna} />}
+        {qnaOpen && <FaqModal open={qnaOpen} handleClose={handleQna} />}
         <Header logoOnly={true} />
         <Layout>
           <div className='w-[1124px]'>

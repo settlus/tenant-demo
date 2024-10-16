@@ -1,5 +1,6 @@
-import Letter from '../../../public/png/settlus_letter.png'
 import { useNavigate } from 'react-router-dom'
+
+import Letter from '../../../public/png/settlus_letter.png'
 
 export default function OfferNoti() {
   const navigate = useNavigate()

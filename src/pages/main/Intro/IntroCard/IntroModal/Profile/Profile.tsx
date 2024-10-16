@@ -1,6 +1,7 @@
-import userProfile from '../../../../../../public/svg/userProfile/userProfile.svg'
-import { useNavigate } from 'react-router-dom'
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import userProfile from '../../../../../../public/svg/userProfile/userProfile.svg'
 import BasicButton from '../../../../../../shared/Button/BasicButton'
 
 export default function Profile() {

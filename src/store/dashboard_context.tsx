@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 import { DataType, OfferType } from '../types/type'
 import { INITIAL_NFT_INFO as INITIAL_DATA } from '../utils/constants'
 

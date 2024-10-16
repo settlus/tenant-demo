@@ -1,10 +1,10 @@
+import { useContext } from 'react'
+
 import AvatarPreview from '../../../../shared/AvatarPreview/AvatarPreview'
-import Live from './Live/Live'
+import { ShopContext } from '../../../../store/costumeshop_context'
 import CostumeList from './CostumeList/CostumeList'
 import Detail from './Detail/Detail'
-
-import { useContext } from 'react'
-import { ShopContext } from '../../../../store/costumeshop_context'
+import Live from './Live/Live'
 
 export default function CostumeShop() {
   const { selected, items } = useContext(ShopContext)

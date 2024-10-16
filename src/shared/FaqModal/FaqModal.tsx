@@ -1,6 +1,5 @@
-import Modal from '../Modal/Modal'
 import BasicButton from '../Button/BasicButton'
-import BaseCard from '../Card/BaseCard'
+import Modal from '../Modal/Modal'
 
 const QNA = [
   {
@@ -30,7 +29,7 @@ type PropType = {
   handleClose: () => void
 }
 
-export default function QnaModal({ open, handleClose }: PropType): React.ReactElement {
+export default function FaqModal({ open, handleClose }: PropType): React.ReactElement {
   return (
     <>
       <Modal open={open} className='w-[700px] rounded-[20px] bg-white items-center p-[50px]'>

@@ -1,7 +1,7 @@
 import Instruction from '../../shared/Instruction/Instruction'
-import DealOfferCard from './DealOfferCard/DealOfferCard'
-import MissionUpdate from '../../shared/MissionUpdate/MissionUpdate'
 import Layout from '../../shared/Layout/Layout'
+import MissionUpdate from '../../shared/MissionUpdate/MissionUpdate'
+import DealOfferCard from './DealOfferCard/DealOfferCard'
 
 export default function OfferPage() {
   return (

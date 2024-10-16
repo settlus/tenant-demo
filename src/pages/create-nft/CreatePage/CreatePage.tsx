@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Instruction from '../../../shared/Instruction/Instruction'
-import Upload from './Upload/Upload'
-import Submit from './Submit/Submit'
-import SubmitModal from './SubmitModal/SubmitModal'
-import { mintNFT, createItem } from '../../../apis/api'
 import { useMutation } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+
+import { mintNFT, createItem } from '../../../apis/api'
+import BasicButton from '../../../shared/Button/BasicButton'
+import Instruction from '../../../shared/Instruction/Instruction'
+import Layout from '../../../shared/Layout/Layout'
 import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate'
 import StepsCard from './Steps/Steps'
-import BasicButton from '../../../shared/Button/BasicButton'
-import Layout from '../../../shared/Layout/Layout'
+import Submit from './Submit/Submit'
+import MintModal from './MintModal/MintModal'
+import Upload from './Upload/Upload'
 
 const TEXT = [
   {
@@ -209,40 +210,12 @@ export default function CreatePage() {
     <MissionUpdate updatedMission={1}>
       <Layout>
         {open && (
-          <SubmitModal step={step} open={open} handleClose={handleClose} handleStep={handleStep} />
+          <MintModal step={step} open={open} handleClose={handleClose} handleStep={handleStep} />
         )}
         <div className='flex flex-row justify-center items-center gap-4 min-h-[7rem]'>
           <Instruction title={instruction.title} typeWriter={instruction.text} />
-          {/* <div>{step}</div>
-          {step < 3 ? (
-            <BasicButton
-              filled={true}
-              handleClick={() => handleNavigate('next')}
-              onMouseEnter={() => {
-                handleNavHover(true)
-              }}
-              onMouseLeave={() => {
-                handleNavHover(false)
-              }}
-              className={`w-[200px] h-[50px] font-bold ${navOnHover ? 'bg-[#FFA300]' : ''}`}
-            >
-              {navOnHover && (
-                <h3 className='z-[3000] text-center bg-[#FFA300] text-white whitespace-nowrap animate-[scaleUp_0.03s_ease-in-out] hover:cursor-pointer'>
-                  {step === 0 && 'Mint'}
-                  {step === 3 && 'Save'} &gt;&gt;
-                </h3>
-              )}
-              {!navOnHover && 'Next'}
-            </BasicButton>
-          ) : (
-            <></>
-          )} */}
         </div>
         <div className='flex flex-row  gap-[10px] justify-center'>
-          {/* <Navigation
-            handleClick={() => handleNavigate("back")}
-            isBackwards={true}
-          /> */}
           <StepsCard step={step} />
           <div>
             {step < 3 ? (
@@ -257,7 +230,6 @@ export default function CreatePage() {
             ) : (
               <Submit info={info} handleInfo={handleInfo} />
             )}
-            {/* {step >= 3 ? ( */}
             <div className='flex flex-row mt-4 justify-between'>
               <BasicButton
                 filled={false}
@@ -286,9 +258,6 @@ export default function CreatePage() {
                 {!navOnHover && 'Next'}
               </BasicButton>
             </div>
-            {/* ) : (
-              <></>
-            )} */}
           </div>
         </div>
       </Layout>

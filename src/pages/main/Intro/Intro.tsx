@@ -1,8 +1,9 @@
-import IntroCard from './IntroCard/IntroCard.tsx'
 import { useContext, useEffect } from 'react'
+
 import { ShopContext } from '../../../store/costumeshop_context.tsx'
 import { DashboardContext } from '../../../store/dashboard_context.tsx'
 import { MissionContext } from '../../../store/mission_context.tsx'
+import IntroCard from './IntroCard/IntroCard.tsx'
 
 export default function Intro() {
   const { reset: resetShop } = useContext(ShopContext)

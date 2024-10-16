@@ -1,9 +1,10 @@
 import { useRef, useEffect, useState } from 'react'
-import resetIcon from '../../../../../public/svg/retry.svg'
+
 import pencilIcon from '../../../../../public/png/pencil.png'
-import BaseTitle from '../../../../../shared/Card/Title'
+import resetIcon from '../../../../../public/svg/retry.svg'
 import BasicButton from '../../../../../shared/Button/BasicButton'
 import BaseCard from '../../../../../shared/Card/BaseCard'
+import BaseTitle from '../../../../../shared/Card/Title'
 
 const COLORS = [
   '#000000',

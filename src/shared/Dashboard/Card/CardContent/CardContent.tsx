@@ -1,7 +1,8 @@
 import { useContext } from 'react'
+
 import { DashboardContext } from '../../../../store/dashboard_context'
-import GuidePointer from '../../../GuidePointer/GuidePointer'
 import { DetailKeys } from '../../../../types/type'
+import GuidePointer from '../../../GuidePointer/GuidePointer'
 
 const ENV = import.meta.env
 

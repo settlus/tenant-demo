@@ -1,6 +1,6 @@
-import Profile from './Profile/Profile.tsx'
-import Modal from '../../../../../shared/Modal/Modal.tsx'
 import BaseCard from '../../../../../shared/Card/BaseCard.tsx'
+import Modal from '../../../../../shared/Modal/Modal.tsx'
+import Profile from './Profile/Profile.tsx'
 
 type IntroModalProps = {
   open: boolean
@@ -19,21 +19,6 @@ export default function IntroModal({ open }: IntroModalProps) {
           </p>
         </div>
         <Profile></Profile>
-        {/* <Header logoOnly={true} />
-      <div className='h-full flex flex-col justify-center px-8 mx-12 '>
-        <Instruction
-          title='Tips before you start the journey'
-          typeWriter='On this Demo, you will create a 3D costume and monetize your IP in a special way.
-        Follow the tutorial and complete all the missions!
-        Write your creator nickname and enter the Shop!'
-        />
-        <div className={styles.intro}>
-          <div className={styles.card}>
-            <MissionCard title={'Tutorial Mission'} beforeStart={true} />
-          </div>
-          <Profile />
-        </div>
-      </div> */}
       </BaseCard>
     </Modal>
   )

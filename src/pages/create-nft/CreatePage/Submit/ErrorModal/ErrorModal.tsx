@@ -1,6 +1,7 @@
+import InvalidErrorImg from '../../../../../public/svg/invalid_input_error.svg'
 import BasicButton from '../../../../../shared/Button/BasicButton'
 import Modal from '../../../../../shared/Modal/Modal'
-import InvalidErrorImg from '../../../../../public/svg/invalid_input_error.svg'
+
 type ErrorModalProps = {
   open: boolean
   handleClose: () => void

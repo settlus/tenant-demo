@@ -1,10 +1,11 @@
-import Thumbnail from '../Thumbnail/Thumbnail'
 import { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { ShopContext } from '../../../../../store/costumeshop_context'
-import { LIVE_LIST as LIST, USER_NAMES } from '../../../../../utils/constants'
+
 import BaseCard from '../../../../../shared/Card/BaseCard'
 import BaseTitle from '../../../../../shared/Card/Title'
+import { ShopContext } from '../../../../../store/costumeshop_context'
+import { LIVE_LIST as LIST, USER_NAMES } from '../../../../../utils/constants'
+import Thumbnail from '../Thumbnail/Thumbnail'
 
 export default function Live() {
   const { items, setItems, step } = useContext(ShopContext)
@@ -60,16 +61,16 @@ export default function Live() {
       pageStep={liveStep}
       className='backdrop-blur-[23.7px] px-[16px] py-[20px] w-[186px] gap-[20px]'
     >
-      <BaseTitle name='Live' />
+      <BaseTitle name='Live' isLive={step===liveStep} />
       <div className='flex flex-col overflow-auto w-[160px] h-[512px] pt-[20px] gap-[10px]'>
         {liveList.map((item, index) => (
           <div
             className={`flex flex-row items-center justify-start gap-[10px] rounded-md text-sm ${
-              index === 0 ? 'animate-listComponentSlideIn' : 'animate-listComponentSlideIn'
+              index === 0 ? 'animate-changeBgAndSlideIn' : 'animate-slideIn'
             }`}
           >
             <Thumbnail
-              className='w-[44px] h-[44px]'
+              className='w-[40px] h-[40px]'
               thumbnail={items[item.thumbnail].thumbnailPng}
             />
             <p className='text-xs font-bold'>

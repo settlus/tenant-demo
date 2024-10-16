@@ -1,15 +1,15 @@
-import Modal from '../../../../shared/Modal/Modal'
+import { useState } from 'react'
+import { useMutation } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+
+import { transferNFT } from '../../../../apis/api'
 import TransferImage from '../../../../public/png/transfer.png'
 import TransferDoneImage from '../../../../public/png/transfer_done.png'
-import styles from './ConfirmModal.module.scss'
-import { transferNFT } from '../../../../apis/api'
-import { useNavigate } from 'react-router-dom'
-import { useMutation } from 'react-query'
-import { formatNum } from '../../../../utils/util'
-import { useState } from 'react'
-import retrySvg from '../../../../public/svg/retry.svg'
 import errorSvg from '../../../../public/svg/error.svg'
+import retrySvg from '../../../../public/svg/retry.svg'
 import BasicButton from '../../../../shared/Button/BasicButton'
+import Modal from '../../../../shared/Modal/Modal'
+import { formatNum } from '../../../../utils/util'
 
 type PropType = {
   handleClose: () => void
@@ -44,8 +44,8 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
       className='w-[700px] p-[50px] rounded-[20px]'
     >
       {!isComplete && !isError && (
-        <div>
-          <img src={TransferImage} className='w-[60px] h-[60px]' />
+        <div className='flex flex-col items-center'>
+          <img src={TransferImage} className='w-[60px] h-[60px] mb-4' />
           <div className='w-[600px] h-[185px] gap-[15px]'>
             <p className='text-[24px] font-semibold'>Confirm</p>
             <p className='text-xl text-center font-normal'>
@@ -77,7 +77,7 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
           </p>
           <button
             onClick={!isLoading ? handleConfirm : undefined}
-            className={isLoading ? styles.loading : styles.retryBtn}
+            className={isLoading ? 'bg-[#1555b5]' : 'flex flex-row items-center gap-2'}
           >
             {isLoading ? (
               'Loading...'
@@ -88,7 +88,6 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
               </>
             )}
           </button>
-          {/* <button onClick={handleConfirm} className={styles.retryBtn}><img src={retrySvg} /><p>Retry</p></button> */}
         </>
       )}
       {isComplete && (

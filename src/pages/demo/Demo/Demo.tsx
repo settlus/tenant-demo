@@ -1,6 +1,7 @@
-import Header from '../../../shared/Header/Header'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+
+import Header from '../../../shared/Header/Header'
 
 export default function Demo() {
   return (

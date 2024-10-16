@@ -52,7 +52,7 @@ module.exports = {
         },
       },
       animation: {
-        listComponentChangeBg: 'listComponentChangeBg 2s ease-in-out',
+        changeBgAndSlideIn: 'changeBackgroundColor 2s slideIn 0.2s ease-in-out',
         slideIn: 'slideIn 0.2s ease-in-out forwards',
         upDown: 'upDown 1.5s infinite ease-in-out',
         shakeAndScaleUp: 'shake 1.5s infinite ease-in-out',

@@ -1,10 +1,9 @@
-import Modal from '../../../../shared/Modal/Modal.tsx'
-import MintedSvg from '../../../../public/svg/minted.svg'
-import styles from './SubmitModal.module.scss'
-import loadingSpinner from '../../../../public/svg/loading.svg'
 import errorSvg from '../../../../public/svg/error.svg'
+import loadingSpinner from '../../../../public/svg/loading.svg'
+import MintedSvg from '../../../../public/svg/minted.svg'
 import retrySvg from '../../../../public/svg/retry.svg'
 import BasicButton from '../../../../shared/Button/BasicButton.tsx'
+import Modal from '../../../../shared/Modal/Modal.tsx'
 
 type PropType = {
   step: number
@@ -13,7 +12,7 @@ type PropType = {
   handleStep: (step?: number) => void
 }
 
-export default function SubmitModal({
+export default function MintModal({
   step,
   open,
   handleClose,
@@ -41,12 +40,12 @@ export default function SubmitModal({
               <div>
                 <p className='font-[Manrope] text-2xl font-bold'>Processing...</p>
               </div>
-              <div className='flex flex-col gap-[10px]'>
+              <div className='flex flex-col items-center gap-[10px]'>
                 <img
                   className='w-[200px] h-[200px]'
                   src={isLoaded ? Module.OVDR_Thumbnails?.main.url : ''}
                 />
-                <img src={loadingSpinner} />
+                <img className='m-0 w-[75px] h-[75px]' src={loadingSpinner} />
               </div>
             </div>
           )}
@@ -67,7 +66,7 @@ export default function SubmitModal({
               <div className='flex flex-row gap-[10px]'>
                 <BasicButton
                   filled={false}
-                  className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent text-[#111928]'
+                  className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent'
                   handleClick={() =>
                     window.open(
                       `http://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`,
@@ -75,7 +74,7 @@ export default function SubmitModal({
                     )
                   }
                 >
-                  Detail
+                  <p className='text-[#111928]'>Detail</p>
                 </BasicButton>
                 <BasicButton
                   filled={true}
@@ -89,8 +88,8 @@ export default function SubmitModal({
           )}
           {step === 2.5 && (
             <div>
-              <div className={styles.error}>
-                <img className={styles.errorImg} src={errorSvg} />
+              <div className='flex flex-col gap-6 items-center'>
+                <img className='h-[4rem] w-[4rem]' src={errorSvg} />
                 <p>Error has occurred while minting NFT. Please retry.</p>
                 <button className={'rounded-lg'} onClick={() => handleStep(1)}>
                   <img src={retrySvg} />

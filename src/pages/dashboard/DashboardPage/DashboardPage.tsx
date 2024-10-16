@@ -1,10 +1,11 @@
-import Dashboard from '../../../shared/Dashboard/Dashboard'
-import Instruction from '../../../shared/Instruction/Instruction'
-import GiftModal from '../../../shared/Dashboard/GiftModal/GiftModal'
 import { useContext, useEffect } from 'react'
-import { DashboardContext } from '../../../store/dashboard_context'
-import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate'
+
+import Dashboard from '../../../shared/Dashboard/Dashboard'
+import GiftModal from '../../../shared/Dashboard/GiftModal/GiftModal'
+import Instruction from '../../../shared/Instruction/Instruction'
 import Layout from '../../../shared/Layout/Layout'
+import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate'
+import { DashboardContext } from '../../../store/dashboard_context'
 
 export default function Main() {
   const { step, setOffer, isGiftModal, setIsGiftModal } = useContext(DashboardContext)

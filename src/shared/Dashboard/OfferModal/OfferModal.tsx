@@ -1,10 +1,11 @@
-import styles from './OfferModal.module.scss'
-import Modal from '../../Modal/Modal'
-import Joy from '../../../public/png/joy_avatar.png'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import Joy from '../../../public/png/joy_avatar.png'
 import { DashboardContext } from '../../../store/dashboard_context'
 import { formatNum } from '../../../utils/util'
+import Modal from '../../Modal/Modal'
+import styles from './OfferModal.module.scss'
 
 export default function OfferModal() {
   const { isOfferModal, setIsOfferModal, offer } = useContext(DashboardContext)

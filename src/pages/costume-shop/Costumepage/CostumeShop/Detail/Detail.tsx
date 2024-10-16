@@ -1,12 +1,13 @@
-import nftIcon from '../../../../../public/images/NftLicense.png'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ShopContext } from '../../../../../store/costumeshop_context'
-import { formatNum } from '../../../../../utils/util'
-import GuidePointer from '../../../../../shared/GuidePointer/GuidePointer'
+
+import nftIcon from '../../../../../public/images/NftLicense.png'
+import BasicButton from '../../../../../shared/Button/BasicButton'
 import BaseCard from '../../../../../shared/Card/BaseCard'
 import BaseTitle from '../../../../../shared/Card/Title'
-import BasicButton from '../../../../../shared/Button/BasicButton'
+import GuidePointer from '../../../../../shared/GuidePointer/GuidePointer'
+import { ShopContext } from '../../../../../store/costumeshop_context'
+import { formatNum } from '../../../../../utils/util'
 
 export default function Detail() {
   const { selected, items, step } = useContext(ShopContext)
@@ -28,7 +29,7 @@ export default function Detail() {
       <div className='flex flex-col p-2 my-2 gap-5'>
         <div className='w-[200px] h-[200px] relative'>
           <img className='h-[20%] w-[20%] absolute top-0 right-0 mr-2 mt-2' src={nftIcon} />
-          <img className='h-[70%] w-[70%] mx-auto' src={selectedItem.thumbnailPng} />
+          <img className='h-[70%] w-[70%] mx-auto mt-3' src={selectedItem.thumbnailPng} />
         </div>
         {/* <Thumbnail thumbnail={selectedItem.thumbnailPng} /> */}
         <div>
@@ -38,7 +39,7 @@ export default function Detail() {
             <span className='text-base'>{formatNum(selectedItem.price)}</span>
           </p>
           <div className='flex flex-row items-center justify-start mt-[10px] gap-[10px]'>
-            <img className='m-0 p-0 block' src={selectedItem.creatorProfilePng} />
+            <img className='m-0 w-8' src={selectedItem.creatorProfilePng} />
             <p className='pt-2 font-[Inter] font-medium'>{selectedItem.creator}, NFT holder</p>
           </div>
         </div>
@@ -46,10 +47,6 @@ export default function Detail() {
         <div>
           <p className='text-left text-xs text-[#4B5563]'>
             This item is NFT-licensed.
-            {/* <img
-              className="h-[12px] w-[12px] relative"
-              src={nftIcon}
-            />     */}
             <br />
             Profit will be paid to the NFT holder.
             <br />

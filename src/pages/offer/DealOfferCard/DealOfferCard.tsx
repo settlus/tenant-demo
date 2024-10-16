@@ -1,11 +1,13 @@
-import Joy from '../../../public/png/joy_avatar.png'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { DashboardContext } from '../../../store/dashboard_context'
-import { formatNum } from '../../../utils/util'
+
+import Joy from '../../../public/png/joy_avatar.png'
+import NotiSvg from '../../../public/svg/noti_triangle.svg'
+import BasicButton from '../../../shared/Button/BasicButton'
 import BaseCard from '../../../shared/Card/BaseCard'
 import BaseTitle from '../../../shared/Card/Title'
-import BasicButton from '../../../shared/Button/BasicButton'
+import { DashboardContext } from '../../../store/dashboard_context'
+import { formatNum } from '../../../utils/util'
 
 export default function DealOfferCard() {
   const { offer, setIsGiftModal, setStep } = useContext(DashboardContext)
@@ -33,14 +35,17 @@ export default function DealOfferCard() {
           accept the offer and transfer NFT?
           <br />
           <br />
-          <p className='font-[Manrope] text-[16px] text-[#4B5563]'>
-            *Once transferred, revenue from selling this NFT costume will be vested to the new
-            owner.
-          </p>
+          <div className='flex flex-row items-center'>
+            <img className='w-[24px] h-[24px] m-0 mr-2' src={NotiSvg} />
+            <p className='font-[Manrope] text-[16px] text-[#4B5563]'>
+              Once transferred, revenue from selling this NFT costume will be vested to the new
+              owner.
+            </p>
+          </div>
         </p>
         <div className='flex flex-row gap-[18px] justify-center font-bold'>
-          <BasicButton className='w-[190px] h-[50px]' filled={false} handleClick={handleClose}>
-            Cancel
+          <BasicButton className='w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent' filled={false} handleClick={handleClose}>
+            <p className='text-black'>Cancel</p>
           </BasicButton>
           <BasicButton className='w-[190px] h-[50px]' filled={true} handleClick={handleProceed}>
             Proceed

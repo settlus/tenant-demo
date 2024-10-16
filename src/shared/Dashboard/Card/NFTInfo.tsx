@@ -1,9 +1,10 @@
-import CardContent from './CardContent/CardContent'
-import OfferNoti from '../OfferNoti/OfferNoti'
 import { useContext } from 'react'
+
 import { DashboardContext } from '../../../store/dashboard_context'
 import BaseCard from '../../Card/BaseCard'
 import BaseTitle from '../../Card/Title'
+import OfferNoti from '../OfferNoti/OfferNoti'
+import CardContent from './CardContent/CardContent'
 
 export default function NFTInfo() {
   const { offer, step } = useContext(DashboardContext)

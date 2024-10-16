@@ -1,15 +1,16 @@
-import giftImg from '../public/svg/Present.svg'
-import { USER_NAMES } from '../utils/constants'
-import { user1, user2, user3, user4, user5, user6, userProfile } from '../public/svg/userProfile'
+import axios from 'axios'
+import { Buffer } from 'buffer'
 import { ethers } from 'ethers'
-import { abi } from './data/abi.json'
+import { v4 as uuid } from 'uuid'
+
+import giftImg from '../public/svg/Present.svg'
+import { user1, user2, user3, user4, user5, user6, userProfile } from '../public/svg/userProfile'
+import { InfoType, DataType } from '../types/type'
+import { USER_NAMES } from '../utils/constants'
 import { addTime, formatTimeString } from '../utils/util'
 import { delay, getBase64Image, convertToFile } from '../utils/util'
-import { Buffer } from 'buffer'
+import { abi } from './data/abi.json'
 import { uploadImageToS3, uploadJsonToS3 } from './s3/s3-upload'
-import { InfoType, DataType } from '../types/type'
-import { v4 as uuid } from 'uuid'
-import axios from 'axios'
 
 const ENV = import.meta.env
 

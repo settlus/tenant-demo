@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
-import Pointer from '../../public/svg/pointer.svg'
+
 import clsx from 'clsx'
+
+import Pointer from '../../public/svg/pointer.svg'
 
 type PropType = {
   children: React.ReactNode
@@ -18,8 +20,6 @@ export default function GuidePointer({
   margin,
 }: PropType): React.ReactElement {
   const [isVisible, setIsVisible] = useState(false)
-  // topPos = topPos || 40
-  // leftPos = leftPos || 6
 
   useEffect(() => {
     let timeout: NodeJS.Timeout | null = null
@@ -41,7 +41,7 @@ export default function GuidePointer({
       {isVisible && doGuide && (
         <img
           className={clsx(
-            'mt-2 absolute z-[1000] animate-bounce',
+            'w-8 h-8 mt-2 absolute z-[1000] animate-bounce',
             topPos || 'top-40',
             leftPos || 'left-6'
           )}

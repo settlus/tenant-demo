@@ -1,6 +1,7 @@
-import './init'
-import { Buffer } from 'buffer'
 import axios from 'axios'
+import { Buffer } from 'buffer'
+
+import './init'
 
 const ENV = import.meta.env
 
