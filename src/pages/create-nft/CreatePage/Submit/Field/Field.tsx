@@ -13,8 +13,8 @@ export default function Field({ value, label, handleInfo }: PropType): React.Rea
   }
 
   return (
-    <div className='flex flex-col w-[400px] justify-start text-base font-[Manrope]'>
-      <label className='w-[5.5rem] text-left'>{label}</label>
+    <div className='flex flex-col w-[400px] justify-start text-base font-manrope'>
+      <label className='text-left'>{label}</label>
       <input
         type='text'
         className='border border-[#DFE4EA] rounded-[6px] px-[0.8rem] h-[48px] w-full'

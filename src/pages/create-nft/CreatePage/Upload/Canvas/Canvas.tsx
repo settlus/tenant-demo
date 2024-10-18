@@ -144,8 +144,8 @@ export default function Canvas({ handleFile }: propType): React.ReactElement {
 
   useEffect(() => {
     if (canvasRef && canvasRef.current) {
-      canvasRef.current.width = 280
-      canvasRef.current.height = 280
+      canvasRef.current.width = 240
+      canvasRef.current.height = 240
 
       const initialCtx = canvasRef.current.getContext('2d')
       if (initialCtx) {

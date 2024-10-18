@@ -21,7 +21,7 @@ export default function CardContent() {
   return (
     <div className='flex flex-col h-[373px] gap-[20px]'>
       <img className='w-[200px] h-[200px]' src={data.thumbnail} />
-      <div className='h-[153px] font-[Manrope] text-xs text-left'>
+      <div className='h-[153px] font-manrope text-xs text-left'>
         <div>
           {keys.map((item, index) =>
             item === 'Contract Address' ? (

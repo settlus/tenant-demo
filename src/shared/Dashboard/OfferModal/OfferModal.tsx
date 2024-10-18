@@ -24,14 +24,14 @@ export default function OfferModal() {
   return (
     <Modal open={isOfferModal} className='w-[18rem] h-[20rem]'>
       <div className='flex flex-col w-[632px] h-[306px]'>
-        <p className='text-2xl font-[Manrope] font-bold'>Deal Offer</p>
+        <p className='text-2xl font-manrope font-bold'>Deal Offer</p>
         <img src={Joy} />
-        <p className='text-xl font-[Manrope] font-normal'>
+        <p className='text-xl font-manrope font-normal'>
           Joy has just offered to buy your NFT for {formatNum(offer?.offerPrice || 1000)}. Want to
           accept the offer and transfer NFT?
           <br />
           <br />
-          <p className='font-[Manrope] text-[16px]'>
+          <p className='font-manrope text-[16px]'>
             *Once transferred, revenue from selling this NFT costume will be vested to the new
             owner.
           </p>

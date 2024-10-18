@@ -10,7 +10,7 @@ type IntroModalProps = {
 export default function IntroModal({ open }: IntroModalProps) {
   return (
     <Modal open={open}>
-      <BaseCard className='flex flex-col w-[700px] px-12 py-12 font-[Manrope] gap-[40px] rounded-[20px]'>
+      <BaseCard className='flex flex-col w-[700px] px-12 py-12 font-manrope gap-[40px] rounded-[20px]'>
         <div className='flex flex-col gap-4 text-left'>
           <p className='text-2xl font-bold'>Tips before you start the journey</p>
           <p className='text-xl font-normal'>

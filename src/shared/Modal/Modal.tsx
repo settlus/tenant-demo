@@ -24,8 +24,8 @@ export default function Modal({
   }, [open])
 
   return (
-    <dialog ref={dialog} className={clsx('animate-scale-up', className)}>
-      <div className='animate-scale-up'>{children}</div>
+    <dialog ref={dialog} className={clsx('animate-scaleUp', className)}>
+      <div>{children}</div>
     </dialog>
   )
 }

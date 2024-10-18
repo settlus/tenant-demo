@@ -16,3 +16,8 @@
     animation: scaleUp 0.1s ease-in-out;
   }
 }
+
+@font-face {
+  font-family: 'manrope';
+  src: url('/src/public/font/Manrope.ttf');
+}

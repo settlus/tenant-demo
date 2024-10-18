@@ -17,16 +17,16 @@ export default function CostumeList() {
       <BaseTitle name='Costumes' />
       <div className='grid grid-cols-[repeat(auto-fill,minmax(80px,1fr))] gap-[5px] overflow-y-auto h-full pb-[0.1rem]'>
         {items.map((item, index) => (
-            <Thumbnail
-              thumbnail={item.thumbnailPng}
-              className='w-[85px] h-[85px]'
-              isNew={item.userCreated ? true : false}
-              onClick={() => {
-                handleClick(index)
-              }}
-              key={item.title}
-              selected={selected === index ? true : false}
-            />
+          <Thumbnail
+            thumbnail={item.thumbnailPng}
+            className='w-[84px] h-[84px]'
+            isNew={item.userCreated ? true : false}
+            onClick={() => {
+              handleClick(index)
+            }}
+            key={item.title}
+            selected={selected === index ? true : false}
+          />
         ))}
       </div>
     </BaseCard>

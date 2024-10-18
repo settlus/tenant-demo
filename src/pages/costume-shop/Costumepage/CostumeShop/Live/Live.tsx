@@ -29,7 +29,7 @@ export default function Live() {
   useEffect(() => {
     const addLive = async () => {
       await addToList(2, 2)
-      await addToList(3, 2)
+      await addToList(3, 13)
       await addToList(4, 10)
       await addToList(2, 7)
       await addToList(6, 7)
@@ -61,12 +61,12 @@ export default function Live() {
       pageStep={liveStep}
       className='backdrop-blur-[23.7px] px-[16px] py-[20px] w-[186px] gap-[20px]'
     >
-      <BaseTitle name='Live' isLive={step===liveStep} />
+      <BaseTitle name='Live' isLive={step === liveStep} />
       <div className='flex flex-col overflow-auto w-[160px] h-[512px] pt-[20px] gap-[10px]'>
         {liveList.map((item, index) => (
           <div
             className={`flex flex-row items-center justify-start gap-[10px] rounded-md text-sm ${
-              index === 0 ? 'animate-changeBgAndSlideIn' : 'animate-slideIn'
+              index === 0 ? 'animate-slideIn' : 'animate-slideIn'
             }`}
           >
             <Thumbnail

@@ -33,7 +33,7 @@ export default function FaqModal({ open, handleClose }: PropType): React.ReactEl
   return (
     <>
       <Modal open={open} className='w-[700px] rounded-[20px] bg-white items-center p-[50px]'>
-        <div className='flex flex-col text-left font-[Manrope]'>
+        <div className='flex flex-col text-left font-manrope'>
           {QNA.map((item) => (
             <div key={item.question} className='flex flex-col gap-[8px]'>
               <h3 className='font-bold text-2xl'>{item.question}</h3>

@@ -230,14 +230,18 @@ const AvatarPreview = ({
       ) : (
         !isUnrealLoaded &&
         !isCanvasLoaded && (
-          <img src={LoadingSpinner} alt='loading' className='m-auto mt-[50%] ml-[40%] absolute h-[15%] w-[15%]' />
+          <img
+            src={LoadingSpinner}
+            alt='loading'
+            className='m-auto mt-[50%] ml-[40%] absolute h-[15%] w-[15%]'
+          />
         )
       )}
       <div className='flex items-center justify-between relative'>
         <BaseTitle name='Avatar' />
         <div id='buttonarea'>
           <button
-            className='flex w-max text-[0.8rem] p-[5px_10px] gap-1 rounded-md bg-[#fff] text-[#637381] border border-[#DFE4EA] font-[Manrope]'
+            className='flex w-max text-[0.8rem] p-[5px_10px] gap-1 rounded-md bg-[#fff] text-[#637381] border border-[#DFE4EA] font-manrope'
             onClick={() => handleChangeBody(bodyType)}
           >
             {`Body type ${bodyType}`}

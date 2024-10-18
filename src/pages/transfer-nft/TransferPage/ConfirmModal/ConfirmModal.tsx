@@ -6,6 +6,7 @@ import { transferNFT } from '../../../../apis/api'
 import TransferImage from '../../../../public/png/transfer.png'
 import TransferDoneImage from '../../../../public/png/transfer_done.png'
 import errorSvg from '../../../../public/svg/error.svg'
+import loadingSpinner from '../../../../public/svg/loading.svg'
 import retrySvg from '../../../../public/svg/retry.svg'
 import BasicButton from '../../../../shared/Button/BasicButton'
 import Modal from '../../../../shared/Modal/Modal'
@@ -57,13 +58,17 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
               (In demo, no payment will be received.)
             </p>
           </div>
-          <BasicButton
-            handleClick={!isLoading ? handleConfirm : undefined}
-            filled={isLoading ? false : true}
-            className={`w-[120px] h-[50px] mt-10 font-bold`}
-          >
-            {isLoading ? 'Loading...' : 'Confirm'}
-          </BasicButton>
+          {isLoading ? (
+            <img className='m-0 w-[75px] h-[75px]' src={loadingSpinner} />
+          ) : (
+            <BasicButton
+              handleClick={handleConfirm}
+              filled={true}
+              className={`w-[120px] h-[50px] mt-10 font-bold`}
+            >
+              Confirm
+            </BasicButton>
+          )}
         </div>
       )}
       {!isComplete && isError && (

@@ -11,9 +11,9 @@ export default function Header() {
     <BaseCard className='flex flex-col w-[700px] h-[120px] bg-[#fff] p-[20px] gap-[20px] rounded-[10px]'>
       <div className='flex flex-row gap-[8px] items-center'>
         <img className='m-0 w-8' src={userProfile} />
-        <p className='text-lg font-bold font-[Manrope]'>{nickname.current}’s Dashboard</p>
+        <p className='text-lg font-bold font-manrope'>{nickname.current}’s Dashboard</p>
       </div>
-      <span className='text-left text-base font-[Manrope]'>
+      <span className='text-left text-base font-manrope'>
         NFT is the royalty right of your creation. You can also sell your NFT and earn more profits.
       </span>
     </BaseCard>

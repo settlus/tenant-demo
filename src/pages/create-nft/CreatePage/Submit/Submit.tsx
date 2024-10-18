@@ -41,7 +41,7 @@ export default function Submit({ info, handleInfo }: PropType): React.ReactEleme
           <BaseTitle name='Item' />
           <div className='mr-4' id='buttonarea'>
             <button
-              className='flex w-max text-[0.8rem] p-[5px_10px] gap-1 rounded-md bg-[#fff] text-[#637381] border border-[#DFE4EA] font-[Manrope]'
+              className='flex w-max text-[0.8rem] p-[5px_10px] gap-1 rounded-md bg-[#fff] text-[#637381] border border-[#DFE4EA] font-manrope'
               onClick={() => handleQnaModal()}
             >
               {'What is NFT?'}

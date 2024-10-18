@@ -2,6 +2,9 @@
 module.exports = {
   content: ['./src/**/*.{js,ts,tsx,jsx}'],
   theme: {
+    fontFamily: {
+      manrope: ['Manrope'],
+    },
     extend: {
       keyframes: {
         upDown: {
@@ -52,10 +55,10 @@ module.exports = {
         },
       },
       animation: {
-        changeBgAndSlideIn: 'changeBackgroundColor 2s slideIn 0.2s ease-in-out',
-        slideIn: 'slideIn 0.2s ease-in-out forwards',
+        slideIn: 'slideIn 0.2s ease-in-out',
         upDown: 'upDown 1.5s infinite ease-in-out',
         shakeAndScaleUp: 'shake 1.5s infinite ease-in-out',
+        scaleUp: 'scaleUp 0.1s ease-in-out',
       },
     },
   },

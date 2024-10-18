@@ -7,9 +7,9 @@ import BasicButton from '../../../shared/Button/BasicButton'
 import Instruction from '../../../shared/Instruction/Instruction'
 import Layout from '../../../shared/Layout/Layout'
 import MissionUpdate from '../../../shared/MissionUpdate/MissionUpdate'
+import MintModal from './MintModal/MintModal'
 import StepsCard from './Steps/Steps'
 import Submit from './Submit/Submit'
-import MintModal from './MintModal/MintModal'
 import Upload from './Upload/Upload'
 
 const TEXT = [
@@ -212,9 +212,7 @@ export default function CreatePage() {
         {open && (
           <MintModal step={step} open={open} handleClose={handleClose} handleStep={handleStep} />
         )}
-        <div className='flex flex-row justify-center items-center gap-4 min-h-[7rem]'>
-          <Instruction title={instruction.title} typeWriter={instruction.text} />
-        </div>
+        <Instruction title={instruction.title} typeWriter={instruction.text} />
         <div className='flex flex-row  gap-[10px] justify-center'>
           <StepsCard step={step} />
           <div>
@@ -233,10 +231,10 @@ export default function CreatePage() {
             <div className='flex flex-row mt-4 justify-between'>
               <BasicButton
                 filled={false}
-                className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-white text-[#111928]'
+                className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-white'
                 handleClick={() => handleNavigate('back')}
               >
-                Previous
+                <p className='text-[#111928]'>Previous</p>
               </BasicButton>
               <BasicButton
                 filled={true}

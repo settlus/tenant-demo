@@ -21,7 +21,7 @@ export default function Intro() {
   }, [])
 
   return (
-    <div className='h-[70vh] max-h-full w-[60%] flex items-center flex-col justify-center gap-[1rem] m-auto'>
+    <div className='h-[70vh] max-h-full w-[60%] flex items-center flex-col justify-center gap-[1rem] m-auto font-manrope'>
       <div className='text-center text-5xl font-extrabold'>
         Experience <span className='text-[#2CD673]'>NFT Licensing</span> in a minute!
       </div>

@@ -38,7 +38,7 @@ export default function MintModal({
           {step === 1 && (
             <div className='flex flex-col w-[200px] items-center gap-[40px]'>
               <div>
-                <p className='font-[Manrope] text-2xl font-bold'>Processing...</p>
+                <p className='font-manrope text-2xl font-bold'>Processing...</p>
               </div>
               <div className='flex flex-col items-center gap-[10px]'>
                 <img
@@ -54,7 +54,7 @@ export default function MintModal({
               <div className='flex flex-col w-[200px] h-[274px] gap-[40px] items-center'>
                 <div className='flex flex-row h-[34px] gap-[16px] items-center'>
                   <img src={MintedSvg} className='w-[24px] h-[24px]' />
-                  <p className='font-[Manrope] text-2xl font-bold flex flex-col justify-end h-full'>
+                  <p className='font-manrope text-2xl font-bold flex flex-col justify-end h-full'>
                     NFT Minted
                   </p>
                 </div>

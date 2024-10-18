@@ -106,7 +106,7 @@ var Module = {
 		}
 	},
 	UE4_indexedDBName: 'UE4_assetDatabase_OVDRClothWeb', // this should be an ascii ID string without special characters that is unique to the project that is being packaged
-	UE4_indexedDBVersion: 202405120323, // Bump this number to invalidate existing IDB storages in browsers.
+	UE4_indexedDBVersion: 202410181025, // Bump this number to invalidate existing IDB storages in browsers.
 };
 
 
@@ -440,7 +440,6 @@ Module['UE4_wheelEvent'] = function(eventType, x, y, button, buttons, deltaX, de
 //----------------------------------------
 //--------OVDR Func-----------------------
 Module['OVDR_SelectTemplate'] = function (templateName) {
-	console.log('OVDR_SelectTemplate')
 	return new Promise((resolve, reject) => {
 	  try {
 		if (UE_JSOVDRClothHTML5.RegisterCallbacks) {
@@ -459,7 +458,6 @@ Module['OVDR_SelectTemplate'] = function (templateName) {
 }
   
 Module['OVDR_ApplyPNG'] = function (imagePath, templateName) {
-	console.log('OVDR_ApplyPNG')
 	return new Promise(async (resolve, reject) => {
 	  try {
 		if (UE_JSOVDRClothHTML5.RegisterCallbacks) {
@@ -509,7 +507,6 @@ Module['OVDR_Restore'] = function (templateName) {
 }
   
 Module['OVDR_ResetAvatar'] = function () {
-	console.log('OVDR_ResetAvatar')
 	return new Promise((resolve, reject) => {
 	  try {
 		if (UE_JSOVDRClothHTML5.RegisterCallbacks) {
@@ -526,7 +523,6 @@ Module['OVDR_ResetAvatar'] = function () {
 }
   
 Module['OVDR_CaptureThumbnail'] = function (templateName) {
-	console.log('OVDR_CaptureThumbnail')
 	return new Promise((resolve, reject) => {
 	  try {
 		if (UE_JSOVDRClothHTML5.RegisterCallbacks) {
@@ -545,7 +541,6 @@ Module['OVDR_CaptureThumbnail'] = function (templateName) {
 }
 
 Module['OVDR_ApplyCustomize'] = function (CustomizeType) {
-	console.log('OVDR_ApplyCustomize')
 	return new Promise((resolve, reject) => {
 	  try {
 		if (UE_JSOVDRClothHTML5.RegisterCallbacks) {
@@ -715,7 +710,7 @@ function fetchFromIndexedDB(db, key) {
 function fetchOrDownloadAndStore(db, url, responseType) {
 	return new Promise(function(resolve, reject) {
 		fetchFromIndexedDB(db, url)
-		.then(function(data) { throw 'err'; return resolve(data); })
+		.then(function(data) { return resolve(data); })
 		.catch(function(error) {
 			return download(url, responseType)
 			.then(function(data) {
@@ -807,6 +802,7 @@ Module['instantiateWasm'] = function(info, receiveInstance) {
 			if (!downloadResults.fromIndexedDB) {
 				storeToIndexedDB(downloadResults.db, 'wasmModule', module).catch(function() {
 					// If the browser did not support storing Wasm Modules to IndexedDB, try to store the Wasm instance instead.
+					console.log('store wasmBytes instead of wasmModule');
 					return storeToIndexedDB(downloadResults.db, 'wasmBytes', downloadResults.wasmBytes);
 				});
 			}
@@ -1048,7 +1044,7 @@ function download(url, responseType) {
 					var decompressedReadableStream = readableStream.pipeThrough(new DecompressionStream('gzip'));
 					//console.warn(decompressedReadableStream);
 					var response = new Response(decompressedReadableStream);
-					console.warn(response);
+					//console.warn(response);
 					var promise = xhr.responseType == 'blob' ? response.blob() : response.arrayBuffer();
 					//console.warn(result);
 					return promise.then(function(data) { 
@@ -1369,7 +1365,7 @@ Module['init'] = () => new Promise((initResolve, initReject) => {
 		// ----------------------------------------
 		// MAIN JS
 		var mainJsDownload = fetchOrDownloadAndStore(db, Module.locateFile('OVDRClothWeb-HTML5-Shipping.js'), 'blob').then(function(data) {
-			Module['mainScriptUrlOrBlob'] = data;
+				Module['mainScriptUrlOrBlob'] = data;
 				return addScriptToDom(data).then(function() {
 					addRunDependency('wait-for-compiled-code');
 				});
@@ -1422,8 +1418,6 @@ Module['init'] = () => new Promise((initResolve, initReject) => {
 			removeRunDependency('wait-for-compiled-code'); // Now we are ready to call main()
 			Module['initDone'] = true
 			initResolve()
-		}).catch((error)=>{
-			console.log(error);
 		});
 	};
 
@@ -1435,6 +1429,5 @@ Module['init'] = () => new Promise((initResolve, initReject) => {
 		}
 		console.error(e);
 		withIndexedDB(null);
-		initReject(e);
 	});
 });

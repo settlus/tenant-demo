@@ -16,7 +16,7 @@ export default function StepsCard({ step }: PropType): React.ReactElement {
         {STEP_TEXT.map((item, index) => (
           <div
             key={item}
-            className={`whitespace-nowrap flex flex-row items-center w-full gap-3 font-semibold font-[Manrope]`}
+            className={`whitespace-nowrap flex flex-row items-center w-full gap-3 font-semibold font-manrope`}
           >
             <MissionStep
               filled={step === 3 ? index == step - 2 : index == step}

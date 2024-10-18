@@ -10,8 +10,8 @@ export default function CostumeShop() {
   const { selected, items } = useContext(ShopContext)
 
   return (
-    <div className='inline-flex flex-col w-auto min-w-[750px] rounded-lg p-2 gap-2 mb-2'>
-      <div className='flex flex-row gap-3 justify-center w-[1124px]'>
+    <div className='inline-flex flex-col w-auto min-w-[750px] rounded-lg p-2'>
+      <div className='flex flex-row gap-2 w-[1124px]'>
         <Live />
         <CostumeList />
         <AvatarPreview

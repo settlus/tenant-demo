@@ -11,10 +11,10 @@ export default function QnaModal({ open, handleClose }: QnaModalProps): React.Re
     <Modal open={open} className='w-[700px] h-[497px] items-center rounded-[20px]'>
       <div className='flex flex-col text-left gap-[20px] px-[50px] pt-[50px] pb-[40px] items-center'>
         <div>
-          <p className='text-2xl font-[Manrope] font-bold'>
+          <p className='text-2xl font-manrope font-bold'>
             What is the relationship between NFT and Item?
           </p>
-          <p className='text-lg font-medium font-[Manrope] mt-1'>
+          <p className='text-lg font-medium font-manrope mt-1'>
             {' '}
             Item is the copy of a digital asset. Simply, it’s the printmaking in arts. You can think
             of NFT as a proof of a digital asset’s ownership. In NFT marketplace, you generate the
@@ -24,10 +24,8 @@ export default function QnaModal({ open, handleClose }: QnaModalProps): React.Re
           </p>
         </div>
         <div>
-          <p className='text-2xl font-[Manrope] font-bold'>
-            Is item price different from NFT price?
-          </p>
-          <p className='text-lg font-medium font-[Manrope] mt-1'>
+          <p className='text-2xl font-manrope font-bold'>Is item price different from NFT price?</p>
+          <p className='text-lg font-medium font-manrope mt-1'>
             {' '}
             Yes! Item price is the price for the costume selling on the Avatar Costume Shop. NFT
             price is the price for the original digital asset selling on the NFT Marketplace.

@@ -30,21 +30,25 @@ export default function DealOfferCard() {
       <BaseTitle name='Deal Offer' />
       <div className='flex flex-col gap-[24px] overflow-visible items-center'>
         <img className='w-[100px] h-auto m-0' src={Joy} />
-        <p className='text-xl font-[Manrope] font-normal text-left'>
+        <p className='text-xl font-manrope font-normal text-left'>
           Joy has just offered to buy your NFT for {formatNum(offer?.offerPrice || 1000)}. Want to
           accept the offer and transfer NFT?
           <br />
           <br />
           <div className='flex flex-row items-center'>
             <img className='w-[24px] h-[24px] m-0 mr-2' src={NotiSvg} />
-            <p className='font-[Manrope] text-[16px] text-[#4B5563]'>
+            <p className='font-manrope text-[16px] text-[#4B5563]'>
               Once transferred, revenue from selling this NFT costume will be vested to the new
               owner.
             </p>
           </div>
         </p>
         <div className='flex flex-row gap-[18px] justify-center font-bold'>
-          <BasicButton className='w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent' filled={false} handleClick={handleClose}>
+          <BasicButton
+            className='w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent'
+            filled={false}
+            handleClick={handleClose}
+          >
             <p className='text-black'>Cancel</p>
           </BasicButton>
           <BasicButton className='w-[190px] h-[50px]' filled={true} handleClick={handleProceed}>

@@ -31,16 +31,15 @@ export default function Detail() {
           <img className='h-[20%] w-[20%] absolute top-0 right-0 mr-2 mt-2' src={nftIcon} />
           <img className='h-[70%] w-[70%] mx-auto mt-3' src={selectedItem.thumbnailPng} />
         </div>
-        {/* <Thumbnail thumbnail={selectedItem.thumbnailPng} /> */}
         <div>
-          <p className='text-left font-[Manrope] pl-1'>
+          <p className='text-left font-manrope pl-1'>
             <span className='text-lg font-bold'>{selectedItem.title}</span>
             <br />
             <span className='text-base'>{formatNum(selectedItem.price)}</span>
           </p>
           <div className='flex flex-row items-center justify-start mt-[10px] gap-[10px]'>
             <img className='m-0 w-8' src={selectedItem.creatorProfilePng} />
-            <p className='pt-2 font-[Inter] font-medium'>{selectedItem.creator}, NFT holder</p>
+            <p className='pt-2 font-manrope font-medium'>{selectedItem.creator}, NFT holder</p>
           </div>
         </div>
 
