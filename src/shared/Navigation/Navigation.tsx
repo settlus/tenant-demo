@@ -1,22 +1,39 @@
-import styles from './Navigation.module.scss';
-import navSymbol from '../../public/svg/nav.svg';
-import navBackSymbol from '../../public/svg/navBack.svg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+
+import clsx from 'clsx'
+
+import navBackSymbol from '../../public/svg/navBack.svg'
 
 type PropType = {
-  path?: string,
-  handleClick?: (...args: any[]) => any,
-  isBackwards?: boolean,
+  path?: string
+  handleClick?: (...args: any[]) => any
+  isBackwards?: boolean
+  className?: string
 }
 
-export default function Navigation({path, handleClick, isBackwards}: PropType): React.ReactElement{
-  const navigate = useNavigate();
-  const handleNavigate = handleClick || function(){
-    if(path) navigate(path);
-  }
+export default function Navigation({
+  path,
+  handleClick,
+  isBackwards,
+  className,
+}: PropType): React.ReactElement {
+  const navigate = useNavigate()
+  const handleNavigate =
+    handleClick ||
+    function () {
+      if (path) navigate(path)
+    }
 
-  return <div onClick={handleNavigate} className={`${styles.button} ${isBackwards ? styles.backwards : ''}`}>
-    <img src={isBackwards ? navBackSymbol : navSymbol} alt='nav' />
-  </div> 
-
+  return (
+    <div
+      onClick={handleNavigate}
+      className={clsx(
+        'w-[6rem] min-w-[2.5rem] h-[2.3rem] m-auto my-0 bg-[#1ABF5D] flex justify-center items-center hover:cursor-pointer rounded',
+        isBackwards ? 'border border-[#C8C8C8] bg-transparent' : '',
+        className
+      )}
+    >
+      {isBackwards ? <img src={navBackSymbol} alt='nav' /> : <p className='text-white'>Next</p>}
+    </div>
+  )
 }

@@ -1,38 +1,44 @@
-import styles from './Header.module.scss';
-import HeaderButton from './HeaderButton/HeaderButton.tsx';
-import QnaModal from '../QnaModal/QnaModal.tsx';
-import MissionModal from './MissionModal/MissionModal.tsx';
-import missionSvg from '../../public/svg/Mission.svg';
-import qnaSvg from '../../public/svg/qna.svg';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
+import settlusLogo from '../../public/png/settlus_symbol_dg.png'
+import FaqModal from '../FaqModal/FaqModal.tsx'
+import HeaderButton from './HeaderButton/HeaderButton.tsx'
+import MissionModal from './MissionModal/MissionModal.tsx'
 
 type PropType = {
-  logoOnly?: boolean, 
+  logoOnly?: boolean
 }
 
-export default function Header({logoOnly}: PropType): React.ReactElement{
-  const [qnaOpen, setQnaOpen] = useState(false);
-  const [missionOpen, setMissionOpen] = useState(false);
+export default function Header({ logoOnly }: PropType): React.ReactElement {
+  const [qnaOpen, setQnaOpen] = useState(false)
+  const [missionOpen, setMissionOpen] = useState(false)
 
-  function handleQna(){
-    setQnaOpen(prev=>!prev);
+  function handleQna() {
+    setQnaOpen((prev) => !prev)
   }
 
-  function handleMission(){
-    setMissionOpen(prev=>!prev);
+  function handleMission() {
+    setMissionOpen((prev) => !prev)
   }
 
-  return <div className={styles.header}>
-    {qnaOpen && <QnaModal open={qnaOpen} handleClose={handleQna}/> }
-    <Link to='/' style={{ textDecoration: 'none' }}><h2>Demo</h2></Link>
-    {!logoOnly && <div className={styles.menu}>
-      <div className={styles.mission}>
-        <HeaderButton icon={missionSvg} name='Mission' handleClick={handleMission}/>
-        {missionOpen && <MissionModal handleClose={handleMission}/>}
+  return (
+    <div className='flex flex-row w-full bg-[#FFFFFF]'>
+      <div className='w-full max-w-[1260px] h-[64px] mx-auto px-8 flex items-center'>
+        {qnaOpen && <FaqModal open={qnaOpen} handleClose={handleQna} />}
+        <Link to='/'>
+          <img className='w-[40px] h-[40px]' src={settlusLogo}></img>
+        </Link>
+        {!logoOnly && (
+          <div className='ml-auto flex flex-row gap-2 items-center'>
+            <div className='relative inline-flex'>
+              <HeaderButton name='Missions' handleClick={handleMission} />
+              {missionOpen && <MissionModal handleClose={handleMission} />}
+            </div>
+            <HeaderButton name='FAQ' handleClick={handleQna} />
+          </div>
+        )}
       </div>
-      <HeaderButton icon={qnaSvg} name='Q&A' handleClick={handleQna}/>
-    </div>}
-  </div>
-
+    </div>
+  )
 }

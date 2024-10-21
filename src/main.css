@@ -1,0 +1,23 @@
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-scale-up {
+    animation: scaleUp 0.1s ease-in-out;
+  }
+}
+
+@font-face {
+  font-family: 'manrope';
+  src: url('/src/public/font/Manrope.ttf');
+}

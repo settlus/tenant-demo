@@ -1,22 +1,25 @@
-import AvatarPreview from "../../../../shared/AvatarPreview/AvatarPreview"
-import Live from "./Live/Live"
-import CostumeList from "./CostumeList/CostumeList"
-import styles from './CostumeShop.module.scss'
-import Detail from "./Detail/Detail"
+import { useContext } from 'react'
 
-import { useContext } from "react"
-import { ShopContext } from "../../../../store/costumeshop_context"
+import AvatarPreview from '../../../../shared/AvatarPreview/AvatarPreview'
+import { ShopContext } from '../../../../store/costumeshop_context'
+import CostumeList from './CostumeList/CostumeList'
+import Detail from './Detail/Detail'
+import Live from './Live/Live'
 
-export default function CostumeShop(){
-  const {selected, items} = useContext(ShopContext);
+export default function CostumeShop() {
+  const { selected, items } = useContext(ShopContext)
 
-  return <div className={styles.main}>
-    <h3>Avatar Costume Shop</h3>
-    <div className={styles.contents}>
-      <Live />
-      <AvatarPreview uploadedFile={items[selected].templatePng} selectedTemplateMeshName={items[selected].meshName}/>
-      <CostumeList />
-      <Detail />
-  </div>
-  </div>
+  return (
+    <div className='inline-flex flex-col w-auto min-w-[750px] rounded-lg p-2'>
+      <div className='flex flex-row gap-2 w-[1124px]'>
+        <Live />
+        <CostumeList />
+        <AvatarPreview
+          uploadedFile={items[selected].templatePng}
+          selectedTemplateMeshName={items[selected].meshName}
+        />
+        <Detail />
+      </div>
+    </div>
+  )
 }

@@ -1,5 +1,5 @@
-export { default as item1thumbnail } from './Item1/Top_DefaultWear001F.png'
-export { default as item1template } from './Item1/T_UGC_Top_DefaultWear001F_D.png'
+export { default as item1thumbnail } from './Item1/Top_Tank004F.png'
+export { default as item1template } from './Item1/T_Top_Tank004_01_D.png'
 
 export { default as item2thumbnail } from './Item2/Back_Backpack001_thumbnail.png'
 export { default as item2template } from './Item2/T_UGC_Back_Backpack001_D.png'
@@ -34,7 +34,16 @@ export { default as item11template } from './Item11/T_UGC_Outer_Blouson001_D.png
 export { default as item12thumbnail } from './Item12/Socks_Default005.png'
 export { default as item12template } from './Item12/T_UGC_Socks_Default005_D.png'
 
+export { default as item13thumbnail } from './Item13/Outer_DenimJacket001.png'
+export { default as item13template } from './Item13/T_Outer_DenimJacket001_01_D.png'
+
+export { default as item14thumbnail } from './Item14/Top_DoubleJacket002M.png'
+export { default as item14template } from './Item14/T_Top_DoubleJacket002_01_D.png'
+
+export { default as item15thumbnail } from './Item15/Skirt_Skirt012.png'
+export { default as item15template } from './Item15/T_Skirt_Skirt012_01_D.png'
+
+export { default as item16thumbnail } from './Item16/Pants_Track001.png'
+export { default as item16template } from './Item16/T_Pants_Track001_01_D.png'
+
 export { default as tshirtTemplate } from './tshirtTemplate.png'
-
-
-

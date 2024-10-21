@@ -1,39 +1,40 @@
-import CostumePage from "./CostumePage"
-import { useEffect, useContext } from "react"
-import { getItem } from "../../../apis/api"
-import { ShopContext } from "../../../store/costumeshop_context"
-import userProfile from '../../../public/svg/userProfile/userProfile.svg';
+import { useEffect, useContext } from 'react'
 
-export default function NewItemPage(){
-  const {setStep, setItems} = useContext(ShopContext);
+import { getItem } from '../../../apis/api'
+import userProfile from '../../../public/svg/userProfile/userProfile.svg'
+import { ShopContext } from '../../../store/costumeshop_context'
+import CostumePage from './CostumePage'
 
-  useEffect(()=>{
-    const handleData = async ()=>{
-      const sessionData = await getItem();
-      console.log(sessionData);
-      setItems(prev=>{
-        return [{
-          thumbnailPng: sessionData.thumbnail,
-          meshName: 'DefaultWear001F',
-          templatePng: sessionData.template,
-          title: sessionData.name, 
-          price: sessionData.price, 
-          creator: sessionData.nickname, 
-          creatorProfilePng: userProfile, 
-          quantity: 0,
-          offerValue: 0,
-          userCreated: true,
-        }, ...prev];
-      });
+export default function NewItemPage() {
+  const { setStep, setItems } = useContext(ShopContext)
 
-      setStep(3);
+  useEffect(() => {
+    const handleData = async () => {
+      const sessionData = await getItem()
+      console.log(sessionData)
+      setItems((prev) => {
+        return [
+          {
+            thumbnailPng: sessionData.thumbnail,
+            meshName: 'DefaultWear001F',
+            templatePng: sessionData.template,
+            title: sessionData.name,
+            price: sessionData.price,
+            creator: sessionData.nickname,
+            creatorProfilePng: userProfile,
+            quantity: 0,
+            offerValue: 0,
+            userCreated: true,
+          },
+          ...prev,
+        ]
+      })
+
+      setStep(3)
     }
-    
-    handleData();
- 
-  },[])
 
+    handleData()
+  }, [])
 
-  return <CostumePage isAfterItemCreated={true}/>
-
+  return <CostumePage isAfterItemCreated={true} />
 }

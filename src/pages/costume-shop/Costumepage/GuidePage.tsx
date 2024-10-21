@@ -1,5 +1,5 @@
-import CostumePage from "./CostumePage"
+import CostumePage from './CostumePage'
 
-export default function GuidePage(){
+export default function GuidePage() {
   return <CostumePage />
 }

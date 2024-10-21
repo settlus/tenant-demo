@@ -1,20 +1,21 @@
-import styles from './Header.module.scss';
-import userProfile from '../../../public/svg/userProfile/userProfile.svg';
-import infoSvg from '../../../public/svg/Info.svg';
-import { getNickName } from '../../../apis/api';
-import { useRef } from 'react';
+import { useRef } from 'react'
 
-export default function Header(){
-  const nickname = useRef(getNickName());
+import { getNickName } from '../../../apis/api'
+import userProfile from '../../../public/svg/userProfile/userProfile.svg'
+import BaseCard from '../../Card/BaseCard'
 
-  return <header className={styles.header}>
-    <span>
-      <img src={userProfile} />
-      <h3>{nickname.current}’s Dashboard</h3>
-    </span>
-    <span>
-      <img src={infoSvg} className={styles.info}/>
-      <p>NFT is the royalty right of your creation. You can also sell your NFT and earn more profits.</p>
-    </span>
-  </header>
+export default function Header() {
+  const nickname = useRef(getNickName())
+
+  return (
+    <BaseCard className='flex flex-col w-[700px] h-[120px] bg-[#fff] p-[20px] gap-[20px] rounded-[10px]'>
+      <div className='flex flex-row gap-[8px] items-center'>
+        <img className='m-0 w-8' src={userProfile} />
+        <p className='text-lg font-bold font-manrope'>{nickname.current}’s Dashboard</p>
+      </div>
+      <span className='text-left text-base font-manrope'>
+        NFT is the royalty right of your creation. You can also sell your NFT and earn more profits.
+      </span>
+    </BaseCard>
+  )
 }

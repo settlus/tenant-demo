@@ -1,19 +1,34 @@
-import { useContext } from "react"
-import Thumbnail from "../Thumbnail/Thumbnail"
-import styles from './CostumeList.module.scss'
-import { ShopContext } from "../../../../../store/costumeshop_context"
+import { useContext } from 'react'
 
-export default function CostumeList(){
-  const {items, setSelected, selected} = useContext(ShopContext);
+import BaseCard from '../../../../../shared/Card/BaseCard'
+import BaseTitle from '../../../../../shared/Card/Title'
+import { ShopContext } from '../../../../../store/costumeshop_context'
+import Thumbnail from '../Thumbnail/Thumbnail'
 
-  function handleClick(value: number){
-    setSelected(value);
+export default function CostumeList() {
+  const { items, setSelected, selected } = useContext(ShopContext)
+
+  function handleClick(value: number) {
+    setSelected(value)
   }
 
-  return <div className={styles.main}>
-  <h3>Costume lists</h3>
-  <ul>
-    {items.map((item, index)=><li key={item.title}><Thumbnail thumbnail={item.thumbnailPng} isNew={item.userCreated ? true : false} onClick={()=>{handleClick(index)}} selected={selected===index ? true : false}/></li>)}
-  </ul>
-</div>
+  return (
+    <BaseCard className='bg-white h-full flex flex-col px-[16px] py-[20px] gap-[20px] w-[340px] rounded-[10px]'>
+      <BaseTitle name='Costumes' />
+      <div className='grid grid-cols-[repeat(auto-fill,minmax(80px,1fr))] gap-[5px] overflow-y-auto h-full pb-[0.1rem]'>
+        {items.map((item, index) => (
+          <Thumbnail
+            thumbnail={item.thumbnailPng}
+            className='w-[84px] h-[84px]'
+            isNew={item.userCreated ? true : false}
+            onClick={() => {
+              handleClick(index)
+            }}
+            key={item.title}
+            selected={selected === index ? true : false}
+          />
+        ))}
+      </div>
+    </BaseCard>
+  )
 }
