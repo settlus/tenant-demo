@@ -14,7 +14,7 @@ export default function Content() {
       <NFTInfo />
       <div className='flex flex-col gap-[10px]'>
         <BaseCard className='flex flex-col bg-[#fff] w-[456px] h-[264px] gap-[20px] font-manrope px-[16px] py-[20px] rounded-[10px]'>
-          <BaseTitle name='Item' />
+          <BaseTitle name='Sales Summary' />
           <div>
             <div className='flex flex-row w-[424px] h-[60px] gap-[8px] items-center'>
               <img className='w-[60px] h-[60px] m-0' src={data.thumbnail} />

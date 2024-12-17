@@ -62,8 +62,11 @@ export default function Detail() {
       <div id='sample' className='p-2'>
         {selectedItem.userCreated ? (
           <GuidePointer doGuide={true} topPos='top-[2.2rem]' leftPos='left-[5rem]'>
-            <BasicButton filled={false} handleClick={handleClick} className='w-[200px]'>
-              <span className='text-[#1ABF5D]'>Go to my dashboard</span>
+            <BasicButton
+              handleClick={handleClick}
+              className='w-[200px] border border-[#1ABF5D] text-[#1ABF5D] hover:bg-[#D4FFE6]'
+            >
+              <span>Go to my dashboard</span>
             </BasicButton>
           </GuidePointer>
         ) : (

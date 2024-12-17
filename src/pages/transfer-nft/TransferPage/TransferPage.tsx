@@ -54,7 +54,10 @@ export default function TransferPage() {
             <p className='w-[600px] h-[57px] rounded-[10px] p-[20px] bg-[#F9FAFB] text-xs font-bold text-left'>
               {offer?.offerAddress}
             </p>
-            <BasicButton className='w-[299px] h-[50px] font-bold' handleClick={handleOpen}>
+            <BasicButton
+              className='w-[299px] h-[50px] bg-[#1ABF5D] text-white font-bold'
+              handleClick={handleOpen}
+            >
               Transfer & Receive {formatNum(offer?.offerPrice || 1000)}
             </BasicButton>
           </div>

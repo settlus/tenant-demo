@@ -39,11 +39,7 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
   }
 
   return (
-    <Modal
-      open={open}
-      // handleClose={isLoading || isSuccess ? undefined : handleClose}
-      className='w-[700px] p-[50px] rounded-[20px]'
-    >
+    <Modal open={open} className='w-[700px] p-[50px] rounded-[20px]'>
       {!isComplete && !isError && (
         <div className='flex flex-col items-center'>
           <img src={TransferImage} className='w-[60px] h-[60px] mb-4' />
@@ -63,8 +59,7 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
           ) : (
             <BasicButton
               handleClick={handleConfirm}
-              filled={true}
-              className={`w-[120px] h-[50px] mt-10 font-bold`}
+              className={`w-[120px] h-[50px] mt-10 bg-[#1ABF5D] text-white font-bold`}
             >
               Confirm
             </BasicButton>
@@ -105,10 +100,7 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
             </div>
           </div>
           <div className='flex flex-row gap-[18px] justify-center font-bold mt-10'>
-            <BasicButton
-              className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent'
-              filled={false}
-            >
+            <BasicButton className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent'>
               <a
                 href={`https://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/tx/${hash}`}
                 target='_blank'
@@ -121,8 +113,7 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
               handleClick={() => {
                 navigate('/complete')
               }}
-              filled={true}
-              className='w-[190px] h-[50px]'
+              className='w-[190px] h-[50px] bg-[#1ABF5D] text-white'
             >
               Complete
             </BasicButton>

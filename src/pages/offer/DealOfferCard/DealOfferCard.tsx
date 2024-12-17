@@ -46,12 +46,14 @@ export default function DealOfferCard() {
         <div className='flex flex-row gap-[18px] justify-center font-bold'>
           <BasicButton
             className='w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent'
-            filled={false}
             handleClick={handleClose}
           >
             <p className='text-black'>Cancel</p>
           </BasicButton>
-          <BasicButton className='w-[190px] h-[50px]' filled={true} handleClick={handleProceed}>
+          <BasicButton
+            className='w-[190px] h-[50px] bg-[#1ABF5D] text-white font-bold'
+            handleClick={handleProceed}
+          >
             Proceed
           </BasicButton>
         </div>

@@ -34,7 +34,10 @@ export default function Profile() {
           />
         </div>
       </div>
-      <BasicButton className='w-[190px] font-bold' handleClick={handleClick}>
+      <BasicButton
+        className='w-[190px] h-[50px] font-bold bg-[#1ABF5D] text-white'
+        handleClick={handleClick}
+      >
         Explore as a Creator
       </BasicButton>
     </div>

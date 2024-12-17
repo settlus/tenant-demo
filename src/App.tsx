@@ -12,6 +12,7 @@ import ErrorPage from './pages/error/ErrorPage.tsx'
 import Intro from './pages/main/Intro/Intro'
 import OfferPage from './pages/offer/OfferPage.tsx'
 import TransferPage from './pages/transfer-nft/TransferPage/TransferPage.tsx'
+import MobileWarningBanner from './shared/MobileWarning/MobileWarning.tsx'
 import ShopProvider from './store/costumeshop_context.tsx'
 import DashboardProvider from './store/dashboard_context.tsx'
 import MissionProvider from './store/mission_context.tsx'
@@ -82,6 +83,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <MobileWarningBanner />
       <MissionProvider>
         <DashboardProvider>
           <ShopProvider>

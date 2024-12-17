@@ -31,7 +31,10 @@ export default function QnaModal({ open, handleClose }: QnaModalProps): React.Re
             price is the price for the original digital asset selling on the NFT Marketplace.
           </p>
         </div>
-        <BasicButton filled={true} handleClick={handleClose} className='w-[150px]'>
+        <BasicButton
+          handleClick={handleClose}
+          className='w-[190px] h-[50px] bg-[#1ABF5D] text-white font-bold'
+        >
           Close{' '}
         </BasicButton>
       </div>
