@@ -230,14 +230,12 @@ export default function CreatePage() {
             )}
             <div className='flex flex-row mt-4 justify-between'>
               <BasicButton
-                filled={false}
-                className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-white'
+                className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-white hover:bg-[#DEE2E6]'
                 handleClick={() => handleNavigate('back')}
               >
                 <p className='text-[#111928]'>Previous</p>
               </BasicButton>
               <BasicButton
-                filled={true}
                 handleClick={() => handleNavigate('next')}
                 onMouseEnter={() => {
                   handleNavHover(true)
@@ -245,12 +243,12 @@ export default function CreatePage() {
                 onMouseLeave={() => {
                   handleNavHover(false)
                 }}
-                className={`w-[200px] h-[50px] font-bold ${navOnHover ? 'bg-[#FFA300]' : ''}`}
+                className={`w-[200px] h-[50px] font-bold text-white ${navOnHover ? 'bg-[#15994A]' : 'bg-[#1ABF5D]'}`}
               >
                 {navOnHover && (
-                  <h3 className='z-[3000] text-center bg-[#FFA300] text-white whitespace-nowrap animate-[scaleUp_0.03s_ease-in-out] hover:cursor-pointer'>
+                  <h3 className='z-[3000] text-center text-white hover:cursor-pointer'>
                     {step === 0 && 'Mint'}
-                    {step === 3 && 'Save'} &gt;&gt;
+                    {step === 3 && 'Save'}
                   </h3>
                 )}
                 {!navOnHover && 'Next'}

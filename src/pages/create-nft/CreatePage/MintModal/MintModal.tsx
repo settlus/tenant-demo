@@ -20,7 +20,7 @@ export default function MintModal({
 }: PropType): React.ReactElement {
   const isLoaded = typeof window !== 'undefined' && typeof window.Module !== 'undefined'
 
-  function handleClick() {
+  function handleDone() {
     handleClose()
     if (step === 2.5) {
       handleStep(0)
@@ -30,15 +30,13 @@ export default function MintModal({
   return (
     <>
       {step > 0 && step < 3 && (
-        <Modal
-          open={open}
-          // handleClose={step >= 2 ? handleClick : undefined}
-          className='w-[700px] rounded-[20px] items-center p-[50px]'
-        >
+        <Modal open={open} className='w-[700px] rounded-[20px] items-center p-[50px]'>
           {step === 1 && (
-            <div className='flex flex-col w-[200px] items-center gap-[40px]'>
+            <div className='flex flex-col w-[500px] items-center gap-[40px]'>
               <div>
-                <p className='font-manrope text-2xl font-bold'>Processing...</p>
+                <p className='font-manrope text-2xl font-bold whitespace-nowrap'>
+                  Minting your digital asset as an NFT...
+                </p>
               </div>
               <div className='flex flex-col items-center gap-[10px]'>
                 <img
@@ -65,7 +63,6 @@ export default function MintModal({
               </div>
               <div className='flex flex-row gap-[10px]'>
                 <BasicButton
-                  filled={false}
                   className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent'
                   handleClick={() =>
                     window.open(
@@ -77,9 +74,8 @@ export default function MintModal({
                   <p className='text-[#111928]'>Detail</p>
                 </BasicButton>
                 <BasicButton
-                  filled={true}
-                  handleClick={handleClick}
-                  className='w-[190px] h-[50px] font-bold'
+                  handleClick={handleDone}
+                  className='w-[190px] h-[50px] font-bold bg-[#1ABF5D] text-white'
                 >
                   Done
                 </BasicButton>

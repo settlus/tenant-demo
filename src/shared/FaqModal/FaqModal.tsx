@@ -41,12 +41,15 @@ export default function FaqModal({ open, handleClose }: PropType): React.ReactEl
             </div>
           ))}
           <div className='flex items-center justify-center gap-4 pt-4 font-bold'>
-            <BasicButton filled={false}>
+            <BasicButton className='w-[190px] h-[50px] border border-[#1ABF5D] text-[#1ABF5D]'>
               <a className='mt-auto' href='https://settlus.org/docs/whitepaper.pdf' target='_blank'>
                 Settlus Whitepaper
               </a>
             </BasicButton>
-            <BasicButton filled={true} handleClick={handleClose} className='w-[150px]'>
+            <BasicButton
+              handleClick={handleClose}
+              className='w-[190px] h-[50px] bg-[#1ABF5D] text-white'
+            >
               <p>Close</p>
             </BasicButton>
           </div>

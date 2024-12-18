@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import clsx from 'clsx'
 
-import Pointer from '../../public/svg/pointer.svg'
+import CursorPointer from '../../public/svg/cursor_pointer.svg'
 
 type PropType = {
   children: React.ReactNode
@@ -45,7 +45,7 @@ export default function GuidePointer({
             topPos || 'top-40',
             leftPos || 'left-6'
           )}
-          src={Pointer}
+          src={CursorPointer}
           style={{ marginTop: `${margin || 0.5}rem` }}
         />
       )}

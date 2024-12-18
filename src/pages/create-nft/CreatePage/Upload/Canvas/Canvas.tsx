@@ -232,8 +232,7 @@ export default function Canvas({ handleFile }: propType): React.ReactElement {
           </div>
         </div>
         <BasicButton
-          filled={false}
-          className='w-[200px] m-auto justify-center'
+          className='w-[200px] m-auto justify-center border border-[#1ABF5D] text-[#1ABF5D]'
           handleClick={handleSave}
         >
           Finish Drawing
