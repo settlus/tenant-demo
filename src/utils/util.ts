@@ -81,3 +81,9 @@ export function validateFile(imgFile: File): Promise<{ error?: string }> {
     img.src = URL.createObjectURL(imgFile)
   })
 }
+
+export function isMobileDevice(): boolean {
+  const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches
+  return /android|iphone|ipad|ipod|blackberry|iemobile|mobile/i.test(userAgent) || isTouchDevice
+}
