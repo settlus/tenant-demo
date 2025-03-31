@@ -66,7 +66,7 @@ export default function MintModal({
                   className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent'
                   handleClick={() =>
                     window.open(
-                      `http://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/nft/${import.meta.env.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`,
+                      `http://sepolia.settlus.network/token/${import.meta.env.VITE_CONTRACT_ADDR}/instance/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`,
                       '_blank'
                     )
                   }

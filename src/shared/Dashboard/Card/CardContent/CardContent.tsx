@@ -31,7 +31,7 @@ export default function CardContent() {
                     {item}:{' '}
                     <p className='text-[#10B981] text-[12px] underline'>
                       <a
-                        href={`http://${ENV.VITE_CHAIN_TYPE}net.settlus.network/nft/${ENV.VITE_CONTRACT_ADDR}/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`}
+                        href={`https://sepolia.settlus.network/token/${ENV.VITE_CONTRACT_ADDR}/instance/${BigInt(sessionStorage.getItem('tokenId') || '0x0')}`}
                         target='_blank'
                         onClick={() => {
                           setStep((prev) => (prev === 0 ? 1 : prev))

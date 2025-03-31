@@ -9,87 +9,58 @@ import { InfoType, DataType } from '../types/type'
 import { USER_NAMES } from '../utils/constants'
 import { addTime, formatTimeString } from '../utils/util'
 import { delay, getBase64Image, convertToFile } from '../utils/util'
-import { abi } from './data/abi.json'
 import { uploadImageToS3, uploadJsonToS3 } from './s3/s3-upload'
 
 const ENV = import.meta.env
 
-async function createProvider() {
-  const provider = new ethers.JsonRpcProvider(ENV.VITE_RPC_URL, {
-    name: 'settlus',
-    chainId: parseInt(ENV.VITE_CHAIN_ID),
-  })
-
-  return provider
-}
-
-async function createContract() {
-  const provider = await createProvider()
-
-  const user_pv_key = await axios.get(
-    ENV.VITE_LAMBDA_API_PRIVATE_KEY + `?chain=${ENV.VITE_CHAIN_TYPE}`
-  )
-
-  const contract = new ethers.Contract(
-    ENV.VITE_CONTRACT_ADDR,
-    abi,
-    new ethers.Wallet(user_pv_key.data, provider)
-  )
-
-  return contract
-}
-
 export async function mintNFT(thumbnail: string, sample?: number) {
-  const provider = await createProvider()
-  const nonce = await provider.getTransactionCount(ENV.VITE_USER_PB_KEY)
   const nickname = getNickName()
-  const MAX_RETRIES = 5
-  let currTry = 0
-
   const name = uuid()
+
   const file = await convertToFile(thumbnail, name)
-  const res = await uploadImageToS3(file, sample)
+  const imageUrl = await uploadImageToS3(file, sample)
 
   const metadataObj = {
     name: `${nickname}'s t-shirt`,
     description: 'Tenant Demo NFT',
-    image: `${res}`,
-    buildFileUrl: ``,
+    image: imageUrl,
+    buildFileUrl: '',
     attributes: [],
   }
 
   const metadata = Buffer.from(JSON.stringify(metadataObj))
-  const metadataRes = await uploadJsonToS3(metadata, `${name}.json`)
+  const metadataUrl = await uploadJsonToS3(metadata, `${name}.json`)
 
-  const contract = await createContract()
-  let data = null
-  let hash = ''
+  const nonce = await getNonce(ENV.VITE_USER_PB_KEY)
+
+  const MAX_RETRIES = 3
+  let currTry = 0
+
   while (currTry < MAX_RETRIES) {
     try {
-      const overrides = {
+      const res = await axios.post(ENV.VITE_MINT_LAMBDA_URL, {
+        to: ENV.VITE_USER_PB_KEY,
+        metadataUrl,
         nonce: nonce + currTry,
-      }
+      })
 
-      const tx = await contract.mintNft(ENV.VITE_USER_PB_KEY, metadataRes, overrides)
-      hash = tx.hash
-      data = await tx.wait()
-
-      // after success
       const now = new Date()
+      const { tokenId, hash } = res.data
 
-      sessionStorage.setItem('tokenId', data?.logs[0].topics[3])
+      sessionStorage.setItem('tokenId', tokenId)
       sessionStorage.setItem('hash', hash)
       sessionStorage.setItem('mintTime', now.toISOString())
 
       return
     } catch (err) {
-      console.log(err)
+      console.error(`mintNFT retry ${currTry}`, err)
       currTry++
     }
   }
 
   throw { error: 'error has occurred' }
 }
+
 
 export async function createItem(info: InfoType, thumbnail: string, file: string) {
   const base64Thumbnail = await getBase64Image(thumbnail)
@@ -126,16 +97,30 @@ export function getNickName() {
 export async function transferNFT() {
   try {
     const raw = sessionStorage.getItem('tokenId') || '0x0'
-    const tokenId = BigInt(raw)
-    const contract = await createContract()
-    const tx = await contract.safeTransferFrom(ENV.VITE_USER_PB_KEY, ENV.VITE_JOY_PB_KEY, tokenId)
+    const tokenId = BigInt(raw).toString()
+
+    const res = await axios.post(ENV.VITE_TRANSFER_LAMBDA_URL, {
+      from: ENV.VITE_USER_PB_KEY,
+      to: ENV.VITE_JOY_PB_KEY,
+      tokenId,
+    })
 
     await delay(4000)
-    return tx.hash
+    return res.data.hash
   } catch (err) {
+    console.error(err)
     throw { error: 'transaction error' }
   }
 }
+
+async function getNonce(address: string): Promise<number> {
+  const provider = new ethers.JsonRpcProvider(ENV.VITE_RPC_URL, {
+    name: 'settlus',
+    chainId: parseInt(ENV.VITE_CHAIN_ID),
+  })
+  return await provider.getTransactionCount(address)
+}
+
 
 export async function getData(): Promise<DataType> {
   const data = await getItem()

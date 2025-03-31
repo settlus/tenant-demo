@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:mint": "esbuild lambdas/mint/handler.ts --bundle --platform=node --target=node18 --outfile=lambdas/mint/dist/index.js",
+    "build:transfer": "esbuild lambdas/transfer/handler.ts --bundle --platform=node --target=node18 --outfile=lambdas/transfer/dist/index.js",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx,json,js,mjs,cjs,css}\"",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -37,6 +39,7 @@
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.20",
+    "esbuild": "^0.25.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
