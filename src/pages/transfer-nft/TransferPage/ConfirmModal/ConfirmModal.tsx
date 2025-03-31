@@ -67,10 +67,10 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
         </div>
       )}
       {!isComplete && isError && (
-        <>
-          <h2>Error</h2>
+        <div className='flex flex-col items-center gap-[20px]'>
+          <p className='text-[24px] font-semibold'>Error</p>
           <img src={errorSvg} />
-          <p>
+          <p className='text-xl text-center font-normal'>
             There was an error processing transaction.
             <br />
             Please try again.
@@ -84,11 +84,11 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
             ) : (
               <>
                 <img src={retrySvg} />
-                <p>Retry</p>
+                <BasicButton className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent'>Retry</BasicButton>
               </>
             )}
           </button>
-        </>
+        </div>
       )}
       {isComplete && (
         <div className='flex flex-col'>
@@ -102,7 +102,7 @@ export default function ConfirmModal({ open, offer }: PropType): React.ReactElem
           <div className='flex flex-row gap-[18px] justify-center font-bold mt-10'>
             <BasicButton className='font-bold w-[190px] h-[50px] border border-[#DFE4EA] bg-transparent'>
               <a
-                href={`https://${import.meta.env.VITE_CHAIN_TYPE}net.settlus.network/tx/${hash}`}
+                href={`https://sepolia.settlus.network/tx/${hash}`}
                 target='_blank'
                 className='text-[#111928]'
               >
