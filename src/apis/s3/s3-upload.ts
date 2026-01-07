@@ -30,11 +30,11 @@ export async function uploadImageToS3(file: File, sample?: number) {
   const FILENAME = sample ? `sample${sample + 1}.png` : file.name
   if (sample) return `https://${ENV.VITE_CLOUDFRONT_DOMAIN}/images/${FILENAME}`
 
-  const result = await uploadToS3('images', file, FILENAME, 'image/png')
+  const result = await uploadToS3('tenant-demo-asset/images', file, FILENAME, 'image/png')
   return result
 }
 
 export async function uploadJsonToS3(object: Buffer, fileName: string) {
-  const result = await uploadToS3('json', object, fileName, 'application/json')
+  const result = await uploadToS3('tenant-demo-asset/json', object, fileName, 'application/json')
   return result
 }
